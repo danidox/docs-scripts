@@ -633,6 +633,37 @@ def _get_session() -> requests.Session:
     return _SESSION
 
 
+def _extract_topic_body_container_from_next_data(soup: BeautifulSoup) -> Optional[Tag]:
+    script = soup.find("script", id="__NEXT_DATA__")
+    if not script:
+        return None
+
+    next_data_text = script.string or script.get_text()
+    if not next_data_text.strip():
+        return None
+
+    try:
+        data = json.loads(next_data_text)
+    except Exception:
+        return None
+
+    container_items = ((((data.get("props") or {}).get("pageProps") or {}).get("page") or {})
+                       .get("containerItems") or [])
+    html_blocks: List[str] = []
+    for item in container_items:
+        values = ((((item.get("rawContent") or {}).get("data") or {}).get("Component") or {})
+                  .get("Fields", {}).get("topicBody", {}).get("Values") or [])
+        for value in values:
+            if isinstance(value, str) and "<" in value:
+                html_blocks.append(value)
+
+    if not html_blocks:
+        return None
+
+    topic_soup = BeautifulSoup('<div id="DocContainer">' + "\n".join(html_blocks) + '</div>', "html.parser")
+    return topic_soup.find(id="DocContainer")
+
+
 def fetch_page(url: str) -> Tuple[Optional[Tag], Optional[BeautifulSoup]]:
     """Fetch a docs page with retries and optional Cloudflare auth."""
     session = _get_session()
@@ -652,6 +683,9 @@ def fetch_page(url: str) -> Tuple[Optional[Tag], Optional[BeautifulSoup]]:
 
     soup = BeautifulSoup(resp.text, "html.parser")
     container = soup.find(id="DocContainer")
+    topic_body_container = _extract_topic_body_container_from_next_data(soup)
+    if topic_body_container and (not container or len(topic_body_container.get_text(" ", strip=True)) >= len(container.get_text(" ", strip=True))):
+        container = topic_body_container
     if not container:
         container = soup.find("main") or soup.find("article") or soup.body
 
@@ -3640,6 +3674,27 @@ def resolve_md_path(prod_url: str, search_root: Optional[str] = None) -> Optiona
     return None
 
 
+def _resolve_report_path(filename: str) -> str:
+    """Prefer the user's Desktop for report files, with a cwd fallback."""
+    desktop_candidates = []
+
+    onedrive = os.getenv("OneDrive")
+    if onedrive:
+        desktop_candidates.append(os.path.join(onedrive, "Desktop"))
+
+    userprofile = os.getenv("USERPROFILE")
+    if userprofile:
+        desktop_candidates.append(os.path.join(userprofile, "Desktop"))
+
+    desktop_candidates.append(os.path.join(os.path.expanduser("~"), "Desktop"))
+
+    for desktop in desktop_candidates:
+        if desktop and os.path.isdir(desktop):
+            return os.path.join(desktop, filename)
+
+    return os.path.abspath(filename)
+
+
 def _write_report(report_path: str, fixed_pages: List[dict], summary: str):
     """Write a report file listing only the fixed pages and their details."""
     from datetime import datetime
@@ -3734,7 +3789,8 @@ def fix_guide(start_url: str, dry_run: bool = False,
     parsed = urllib.parse.urlparse(start_url)
     path_parts = [s for s in parsed.path.strip("/").split("/") if s]
     guide_slug = "-".join(path_parts[:2]) if len(path_parts) >= 2 else "guide"
-    report_path = f"~fix-md-report-{guide_slug}.txt"
+    report_filename = f"~fix-md-report-{guide_slug}.txt"
+    report_path = _resolve_report_path(report_filename)
     _write_report(report_path, fixed_pages, summary)
 
     return totals
@@ -3789,7 +3845,8 @@ def main():
     struct_warns = stats.get("structural_warnings", 0)
     if total_fixes > 0 or struct_warns > 0:
         slug = args.prod_url.rstrip("/").split("/")[-1]
-        report_path = f"~fix-md-report-{slug}.txt"
+        report_filename = f"~fix-md-report-{slug}.txt"
+        report_path = _resolve_report_path(report_filename)
         fixed_pages = [{"md_path": md_file, "url": args.prod_url, "log": stats.get("log", []), "stats": stats}]
         parts = []
         if total_fixes > 0:
