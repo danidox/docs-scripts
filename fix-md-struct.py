@@ -974,6 +974,26 @@ def _tag_represents_video(tag: Tag) -> bool:
     return "video" in attrs_text.lower()
 
 
+def _nearest_video_heading(tag: Tag) -> tuple[str, int]:
+    heading = tag.find_previous(["h1", "h2", "h3", "h4", "h5", "h6"])
+    if not heading:
+        return "", 0
+    text = re.sub(r'\s+', ' ', _html_to_md_text(heading).strip())
+    level = int(heading.name[1]) if heading.name and len(heading.name) == 2 and heading.name[1].isdigit() else 0
+    return text, level
+
+
+def _nearest_video_paragraph(tag: Tag, direction: str) -> str:
+    iterator = tag.find_all_previous if direction == "previous" else tag.find_all_next
+    for candidate in iterator(["p", "div"]):
+        if candidate.name == "div" and "p" not in (candidate.get("class") or []):
+            continue
+        text = re.sub(r'\s+', ' ', _html_to_md_text(candidate).strip())
+        if len(text) > 10:
+            return text
+    return ""
+
+
 def extract_prod_structure(container: Tag) -> dict:
     """Extract structural info from prod HTML: notes, images, videos, list items, inline paragraphs."""
     structure = {
@@ -1077,12 +1097,19 @@ def extract_prod_structure(container: Tag) -> dict:
         seen_videos.add(signature)
         li_parent = media_tag.find_parent("li")
         depth = _li_depth(li_parent) if li_parent else -1
+        heading_text, heading_level = _nearest_video_heading(media_tag)
+        prev_text = _nearest_video_paragraph(media_tag, "previous")
+        next_text = _nearest_video_paragraph(media_tag, "next")
         structure["videos"].append({
             "in_list": li_parent is not None,
             "li_depth": depth,
             "src": src,
             "tag": media_tag.name,
             "text_preview": preview,
+            "heading_text": heading_text,
+            "heading_level": heading_level,
+            "prev_text": prev_text,
+            "next_text": next_text,
         })
 
     # Extract figure captions. In DITA output these often live in
@@ -2901,6 +2928,84 @@ def _warn_mixed_captions(md: dict) -> None:
             )
 
 
+def _context_matches_md_text(md_text: str, prod_text: str) -> bool:
+    md_norm = _norm_para(md_text)
+    prod_norm = _norm_para(prod_text)
+    if not md_norm or not prod_norm:
+        return False
+    if md_norm == prod_norm:
+        return True
+    if len(prod_norm) >= 24 and prod_norm[:24] in md_norm:
+        return True
+    if len(md_norm) >= 24 and md_norm[:24] in prod_norm:
+        return True
+    return False
+
+
+def _find_matching_md_heading(md: dict, heading_text: str, heading_level: int, heading_offset: int, fm_title: str) -> Optional[dict]:
+    heading_text_norm = _norm_heading(heading_text)
+    if not heading_text_norm:
+        return None
+    if heading_level == 2 and heading_offset == -1 and _norm_heading(fm_title) == heading_text_norm:
+        return {"line": 0, "level": 1, "text": fm_title}
+    expected_level = heading_level + heading_offset
+    for heading in md.get("headings", []):
+        if expected_level > 0 and heading.get("level") != expected_level:
+            continue
+        if _norm_heading(heading.get("text", "")) == heading_text_norm:
+            return heading
+    return None
+
+
+def _suggest_video_insertion(md: dict, prod_video: dict, heading_offset: int, fm_title: str) -> tuple[str, str]:
+    section_start = 0
+    section_end = 10**9
+    heading = _find_matching_md_heading(md, prod_video.get("heading_text", ""), prod_video.get("heading_level", 0), heading_offset, fm_title)
+    if heading:
+        section_start = heading.get("line", 0)
+        heading_level = heading.get("level", 1)
+        for md_heading in md.get("headings", []):
+            if md_heading.get("line", -1) > section_start and md_heading.get("level", 99) <= heading_level:
+                section_end = md_heading.get("line", -1)
+                break
+
+    candidates = []
+    for para in md.get("paragraphs", []):
+        candidates.append((para.get("line", -1), para.get("text", "")))
+    for para in md.get("li_paragraphs", []):
+        candidates.append((para.get("line", -1), para.get("text", "")))
+    for item in md.get("list_items", []):
+        candidates.append((item.get("line", -1), item.get("text", "")))
+    candidates.sort(key=lambda item: item[0])
+    candidates = [item for item in candidates if section_start <= item[0] < section_end]
+
+    prev_text = prod_video.get("prev_text", "")
+    if prev_text:
+        for line_no, text_value in reversed(candidates):
+            if _context_matches_md_text(text_value, prev_text):
+                return f"after line {line_no + 1}", text_value[:80]
+
+    next_text = prod_video.get("next_text", "")
+    if next_text:
+        for line_no, text_value in candidates:
+            if _context_matches_md_text(text_value, next_text):
+                return f"before line {line_no + 1}", text_value[:80]
+
+    if heading:
+        return f"after line {heading.get('line', 0) + 1}", heading.get("text", "")[:80]
+
+    return "near the top of the file", ""
+
+
+def _video_embed_block(src: str) -> List[str]:
+    src = src or "<VIDEO_URL>"
+    return [
+        "<div>",
+        f'  <iframe width="100%" height="100%" src="{src}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>',
+        "</div>",
+    ]
+
+
 def compare_structure(md: dict, prod: dict) -> List[str]:
     """Compare MD and prod structural elements, returning warning messages.
 
@@ -3058,7 +3163,12 @@ def compare_structure(md: dict, prod: dict) -> List[str]:
                 "Videos are not auto-converted; add them manually post-conversion.")
             for video in missing_videos[:5]:
                 detail = video.get("src") or video.get("text_preview") or video.get("tag", "video")
-                warnings.append(f"           Prod video: {detail[:140]}")
+                insertion_hint, _anchor_hint = _suggest_video_insertion(md, video, heading_offset, fm_title)
+                warnings.append(f"  [struct] Prod video: {detail[:140]}")
+                warnings.append(f"  [struct] Suggested MD insertion: {insertion_hint}")
+                warnings.append("  [struct] Suggested MD video block:")
+                for snippet_line in _video_embed_block(video.get("src", "")):
+                    warnings.append(snippet_line)
 
     # --- Tables ---
     md_tables = md.get("tables", [])
