@@ -2025,8 +2025,6 @@ def fix_note_paragraphs(lines: List[str], md_note: dict, prod_note: dict) -> Lis
     """
     if prod_note["paragraphs"] <= 1:
         return lines
-    if md_note["paragraph_count"] >= prod_note["paragraphs"]:
-        return lines
 
     para_starts = prod_note.get("para_starts", [])
     if len(para_starts) < 2:
@@ -2037,6 +2035,7 @@ def fix_note_paragraphs(lines: List[str], md_note: dict, prod_note: dict) -> Lis
     start = md_note["line"]      # :::note line
     end = md_note["end_line"]    # ::: closing line
     indent = md_note["indent"]
+    prefix = ' ' * indent
 
     # Gather the note's content lines (between ::: fences)
     content_lines = []
@@ -2044,6 +2043,82 @@ def fix_note_paragraphs(lines: List[str], md_note: dict, prod_note: dict) -> Lis
         content_lines.append((k, lines[k]))
 
     if not content_lines:
+        return lines
+
+    def _collect_md_note_paragraphs() -> List[str]:
+        paragraphs = []
+        current_para = []
+        for _line_idx, text in content_lines:
+            stripped = text.strip()
+            if not stripped:
+                if current_para:
+                    paragraphs.append(" ".join(current_para).strip())
+                    current_para = []
+                continue
+            current_para.append(stripped)
+        if current_para:
+            paragraphs.append(" ".join(current_para).strip())
+        return paragraphs
+
+    def _note_has_complex_blocks() -> bool:
+        list_re = re.compile(r'^(\s*)([-*+]|\d+\.)\s+')
+        for _line_idx, text in content_lines:
+            stripped = text.strip()
+            if not stripped:
+                continue
+            if list_re.match(text):
+                return True
+            if stripped.startswith(("|", "<table", "<tr", "<td", "<th", "![", "<img", "```", "~~~")):
+                return True
+        return False
+
+    def _rebuild_note_from_prod(reason: str) -> List[str]:
+        rebuilt_lines = []
+        for idx, paragraph in enumerate(para_starts):
+            if idx:
+                rebuilt_lines.append(prefix)
+            rebuilt_lines.append(prefix + paragraph.strip())
+        lines[start + 1:end] = rebuilt_lines
+        _log(
+            f"  [fix] Note at line {start + 1}: {reason} "
+            f"from prod ({len(para_starts)} paragraph(s))"
+        )
+        return lines
+
+    md_paragraphs = _collect_md_note_paragraphs()
+    prod_para_norms = [_norm_para(ps) for ps in para_starts if _norm_para(ps)]
+    md_para_norms = [_norm_para(ps) for ps in md_paragraphs if _norm_para(ps)]
+
+    # Some notes use numbered superscript markers (<sup>1</sup>, <sup>2</sup>, ...).
+    # Splitting these by fuzzy text matching can break the HTML tag across lines,
+    # so rebuild the block directly from the prod paragraph starts instead.
+    note_body_lines = [text for _line_idx, text in content_lines]
+    broken_sup_marker = False
+    for i, note_line in enumerate(note_body_lines):
+        if not note_line.strip().endswith("<sup>"):
+            continue
+        j = i + 1
+        while j < len(note_body_lines) and not note_body_lines[j].strip():
+            j += 1
+        if j < len(note_body_lines) and re.match(r'^\s*\d+</sup>', note_body_lines[j]):
+            broken_sup_marker = True
+            break
+    sup_numbered_paragraphs = (
+        para_starts
+        and all(re.match(r'^\s*<sup>\d+</sup>', ps) for ps in para_starts)
+    )
+    if sup_numbered_paragraphs and (broken_sup_marker or md_note["paragraph_count"] < prod_note["paragraphs"]):
+        return _rebuild_note_from_prod("rebuilt numbered <sup> paragraphs")
+
+    # Rebuild simple text-only notes from prod whenever the current MD paragraph
+    # boundaries differ. This is safer than fuzzy splitting because it fixes both
+    # condensed notes and wrongly split notes using the exact prod paragraphs.
+    if not _note_has_complex_blocks():
+        if md_para_norms == prod_para_norms:
+            return lines
+        return _rebuild_note_from_prod("rebuilt paragraph boundaries")
+
+    if md_note["paragraph_count"] >= prod_note["paragraphs"]:
         return lines
 
     # Join all content into a normalized string to search for paragraph starts.
@@ -2126,7 +2201,6 @@ def fix_note_paragraphs(lines: List[str], md_note: dict, prod_note: dict) -> Lis
     for line_idx in sorted(split_line_indices, reverse=True):
         line_text = lines[line_idx]
         stripped = line_text.strip()
-        prefix = ' ' * indent
 
         # Find which paragraph start matches within this line
         for sp_idx, sp in enumerate(split_positions):
@@ -3696,6 +3770,17 @@ def fix_md_file(md_path: str, prod_url: str, dry_run: bool = False) -> dict:
     lines, n_para = fix_misindented_paragraphs(lines, md, prod)
     stats["para_indent"] += n_para
 
+    # Final note normalization pass: later fix phases can still leave simple
+    # multi-paragraph notes in a malformed state, so enforce prod paragraph
+    # boundaries once more just before writing the file.
+    md = parse_md_structure(lines)
+    note_pairs = match_notes(md["notes"], prod["notes"])
+    for md_note, prod_note in reversed(note_pairs):
+        old_lines = lines[:]
+        lines = fix_note_paragraphs(lines, md_note, prod_note)
+        if lines != old_lines:
+            stats["note_paragraphs"] += 1
+
     lines, marker_fixes = remove_toplevel_note_markers(lines)
     stats["marker_cleanup"] = marker_fixes
 
@@ -3714,6 +3799,7 @@ def fix_md_file(md_path: str, prod_url: str, dry_run: bool = False) -> dict:
     if original.endswith("\n"):
         result += "\n"
     total_fixes = sum(v for k, v in stats.items() if k not in ("errors", "log", "structural_warnings"))
+    struct_warns = stats.get("structural_warnings", 0)
     if result != original:
         if dry_run:
             _log(f"\n  [dry-run] Would fix: {total_fixes} issues")
@@ -3848,9 +3934,15 @@ def _write_report(report_path: str, fixed_pages: List[dict], summary: str):
                     if page_struct_warnings:
                         summary_bits.append(f"{page_struct_warnings} structural warning(s)")
                     f.write(f"    Summary: {', '.join(summary_bits)}\n")
+                include_video_block = False
                 for line in page["log"]:
-                    # Include [fix], [warn], and [struct] lines + continuation lines
                     stripped = line.strip()
+                    if include_video_block:
+                        f.write(line + "\n")
+                        if stripped == "</div>":
+                            include_video_block = False
+                        continue
+                    # Include [fix], [warn], and [struct] lines + continuation lines
                     if (stripped.startswith("[fix]") or stripped.startswith("[warn]")
                             or stripped.startswith("[struct]")
                             or stripped.startswith("MD headings:") or stripped.startswith("Prod headings:")
@@ -3859,6 +3951,8 @@ def _write_report(report_path: str, fixed_pages: List[dict], summary: str):
                         if stripped.startswith("Prod: http"):
                             continue
                         f.write(f"    {stripped}\n")
+                        if stripped == "[struct] Suggested MD video block:":
+                            include_video_block = True
                 f.write("\n")
         f.write(summary + "\n")
     _log(f"  Report written to: {report_path}")
@@ -3965,6 +4059,7 @@ def main():
 
     # Write report for single-page mode too
     total_fixes = sum(v for k, v in stats.items() if k not in ("errors", "log", "structural_warnings"))
+    struct_warns = stats.get("structural_warnings", 0)
     if total_fixes > 0 or struct_warns > 0:
         report_filename = _report_filename_from_url(args.prod_url)
         report_path = _resolve_report_path(report_filename)
