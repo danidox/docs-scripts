@@ -3701,11 +3701,22 @@ def _resolve_report_path(filename: str) -> str:
     return os.path.join(report_dir, filename)
 
 
+def _report_filename_from_url(prod_url: str) -> str:
+    parsed = urllib.parse.urlparse(prod_url)
+    parts = [segment for segment in parsed.path.strip("/").split("/") if segment]
+    if len(parts) >= 4:
+        product, delivery, version, publication = parts[:4]
+        version = version.replace(".", "-")
+        return f"report-{product}-{delivery}-{version}-{publication}.txt"
+    slug = (parts[-1] if parts else "guide").replace(".", "-")
+    return f"report-{slug}.txt"
+
+
 def _write_report(report_path: str, fixed_pages: List[dict], summary: str):
     """Write a report file listing only the fixed pages and their details."""
     from datetime import datetime
     with open(report_path, "w", encoding="utf-8") as f:
-        f.write(f"fix-md-struct.py report â€” {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
+        f.write(f"fix-md-struct.py report - {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
         f.write("=" * 60 + "\n\n")
         if not fixed_pages:
             f.write("No files needed fixing.\n")
@@ -3791,11 +3802,7 @@ def fix_guide(start_url: str, dry_run: bool = False,
     _log(f"\n{'=' * 50}")
     _log(summary)
 
-    # Derive report filename from guide slug
-    parsed = urllib.parse.urlparse(start_url)
-    path_parts = [s for s in parsed.path.strip("/").split("/") if s]
-    guide_slug = "-".join(path_parts[:2]) if len(path_parts) >= 2 else "guide"
-    report_filename = f"~fix-md-report-{guide_slug}.txt"
+    report_filename = _report_filename_from_url(start_url)
     report_path = _resolve_report_path(report_filename)
     _write_report(report_path, fixed_pages, summary)
 
@@ -3848,10 +3855,8 @@ def main():
 
     # Write report for single-page mode too
     total_fixes = sum(v for k, v in stats.items() if k not in ("errors", "log", "structural_warnings"))
-    struct_warns = stats.get("structural_warnings", 0)
     if total_fixes > 0 or struct_warns > 0:
-        slug = args.prod_url.rstrip("/").split("/")[-1]
-        report_filename = f"~fix-md-report-{slug}.txt"
+        report_filename = _report_filename_from_url(args.prod_url)
         report_path = _resolve_report_path(report_filename)
         fixed_pages = [{"md_path": md_file, "url": args.prod_url, "log": stats.get("log", []), "stats": stats}]
         parts = []
