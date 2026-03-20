@@ -3675,7 +3675,7 @@ def resolve_md_path(prod_url: str, search_root: Optional[str] = None) -> Optiona
 
 
 def _resolve_report_path(filename: str) -> str:
-    """Prefer the user's Desktop for report files, with a cwd fallback."""
+    """Save report files under a dedicated Desktop folder, with a cwd fallback."""
     desktop_candidates = []
 
     onedrive = os.getenv("OneDrive")
@@ -3688,11 +3688,17 @@ def _resolve_report_path(filename: str) -> str:
 
     desktop_candidates.append(os.path.join(os.path.expanduser("~"), "Desktop"))
 
+    report_folder_name = "fix-md-struct reports"
     for desktop in desktop_candidates:
-        if desktop and os.path.isdir(desktop):
-            return os.path.join(desktop, filename)
+        if not desktop or not os.path.isdir(desktop):
+            continue
+        report_dir = os.path.join(desktop, report_folder_name)
+        os.makedirs(report_dir, exist_ok=True)
+        return os.path.join(report_dir, filename)
 
-    return os.path.abspath(filename)
+    report_dir = os.path.abspath(report_folder_name)
+    os.makedirs(report_dir, exist_ok=True)
+    return os.path.join(report_dir, filename)
 
 
 def _write_report(report_path: str, fixed_pages: List[dict], summary: str):
