@@ -664,6 +664,17 @@ def _extract_topic_body_container_from_next_data(soup: BeautifulSoup) -> Optiona
     return topic_soup.find(id="DocContainer")
 
 
+def _count_video_like_nodes(container: Optional[Tag]) -> int:
+    if not container:
+        return 0
+    count = len(container.find_all(["video", "iframe"]))
+    for button in container.find_all("button", attrs={"aria-label": re.compile(r'^play video$', re.I)}):
+        wrapper = button.parent if isinstance(button.parent, Tag) else None
+        if wrapper and wrapper.find("img", alt=re.compile(r'video thumbnail', re.I)):
+            count += 1
+    return count
+
+
 def fetch_page(url: str) -> Tuple[Optional[Tag], Optional[BeautifulSoup]]:
     """Fetch a docs page with retries and optional Cloudflare auth."""
     session = _get_session()
@@ -690,6 +701,22 @@ def fetch_page(url: str) -> Tuple[Optional[Tag], Optional[BeautifulSoup]]:
         container = soup.find("main") or soup.find("article") or soup.body
 
     if container and container.get_text(strip=True):
+        try:
+            html_pw = render_html_with_playwright(url, session=session)
+            if html_pw:
+                soup_pw = BeautifulSoup(html_pw, "html.parser")
+                container_pw = (
+                    soup_pw.find(id="DocContainer")
+                    or _extract_topic_body_container_from_next_data(soup_pw)
+                    or soup_pw.body
+                )
+                if container_pw and (
+                    _count_video_like_nodes(container_pw) > _count_video_like_nodes(container)
+                    or len(container_pw.get_text(" ", strip=True)) > len(container.get_text(" ", strip=True))
+                ):
+                    return container_pw, soup_pw
+        except Exception as e:
+            _log(f"  [warn] Playwright enrichment failed: {e}")
         return container, soup
 
     # Fallback: Playwright for client-rendered content
@@ -962,6 +989,16 @@ def _extract_media_signature_from_html(html: str) -> str:
     return ""
 
 
+def _youtube_thumbnail_to_embed_url(value: str) -> str:
+    value = (value or "").strip()
+    if not value:
+        return ""
+    match = re.search(r'img\.youtube\.com/vi/([^/?#]+)/', value, re.I)
+    if not match:
+        return ""
+    return f"https://www.youtube.com/embed/{match.group(1)}"
+
+
 def _tag_represents_video(tag: Tag) -> bool:
     if tag.name == "video":
         return True
@@ -1106,6 +1143,41 @@ def extract_prod_structure(container: Tag) -> dict:
             "src": src,
             "tag": media_tag.name,
             "text_preview": preview,
+            "heading_text": heading_text,
+            "heading_level": heading_level,
+            "prev_text": prev_text,
+            "next_text": next_text,
+        })
+
+    # Extract lazy-rendered video placeholders such as a play button plus a
+    # YouTube thumbnail image. These pages do not expose an iframe/video tag
+    # until the user interacts with the page.
+    for button in container.find_all("button", attrs={"aria-label": re.compile(r'^play video$', re.I)}):
+        wrapper = button.parent if isinstance(button.parent, Tag) else None
+        if not wrapper:
+            continue
+        thumbnail = wrapper.find("img", alt=re.compile(r'video thumbnail', re.I))
+        if not thumbnail:
+            continue
+        thumb_src = thumbnail.get("src") or thumbnail.get("srcset") or ""
+        src = _youtube_thumbnail_to_embed_url(thumb_src)
+        if not src:
+            continue
+        signature = _normalize_media_signature(src)
+        if signature in seen_videos:
+            continue
+        seen_videos.add(signature)
+        li_parent = wrapper.find_parent("li")
+        depth = _li_depth(li_parent) if li_parent else -1
+        heading_text, heading_level = _nearest_video_heading(wrapper)
+        prev_text = _nearest_video_paragraph(wrapper, "previous")
+        next_text = _nearest_video_paragraph(wrapper, "next")
+        structure["videos"].append({
+            "in_list": li_parent is not None,
+            "li_depth": depth,
+            "src": src,
+            "tag": "video-placeholder",
+            "text_preview": "video thumbnail",
             "heading_text": heading_text,
             "heading_level": heading_level,
             "prev_text": prev_text,
@@ -3897,7 +3969,7 @@ def _resolve_report_path(filename: str) -> str:
     return os.path.join(report_dir, filename)
 
 
-def _report_filename_from_url(prod_url: str) -> str:
+def _guide_report_filename_from_url(prod_url: str) -> str:
     parsed = urllib.parse.urlparse(prod_url)
     parts = [segment for segment in parsed.path.strip("/").split("/") if segment]
     if len(parts) >= 4:
@@ -3905,6 +3977,13 @@ def _report_filename_from_url(prod_url: str) -> str:
         version = version.replace(".", "-")
         return f"report-{product}-{delivery}-{version}-{publication}.txt"
     slug = (parts[-1] if parts else "guide").replace(".", "-")
+    return f"report-{slug}.txt"
+
+
+def _page_report_filename_from_url(prod_url: str) -> str:
+    parsed = urllib.parse.urlparse(prod_url)
+    parts = [segment for segment in parsed.path.strip("/").split("/") if segment]
+    slug = "-".join(parts).replace(".", "-") if parts else "page"
     return f"report-{slug}.txt"
 
 
@@ -4006,7 +4085,7 @@ def fix_guide(start_url: str, dry_run: bool = False,
     _log(f"\n{'=' * 50}")
     _log(summary)
 
-    report_filename = _report_filename_from_url(start_url)
+    report_filename = _guide_report_filename_from_url(start_url)
     report_path = _resolve_report_path(report_filename)
     _write_report(report_path, fixed_pages, summary)
 
@@ -4061,7 +4140,7 @@ def main():
     total_fixes = sum(v for k, v in stats.items() if k not in ("errors", "log", "structural_warnings"))
     struct_warns = stats.get("structural_warnings", 0)
     if total_fixes > 0 or struct_warns > 0:
-        report_filename = _report_filename_from_url(args.prod_url)
+        report_filename = _page_report_filename_from_url(args.prod_url)
         report_path = _resolve_report_path(report_filename)
         fixed_pages = [{"md_path": md_file, "url": args.prod_url, "log": stats.get("log", []), "stats": stats}]
         parts = []
