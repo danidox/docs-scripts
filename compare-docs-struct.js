@@ -567,8 +567,24 @@ function similarity(a, b) {
  *
  * Returns an array of issue objects.
  */
-function compareListStructure(prodItems, devItems) {
-  const norm = (s) => s.toLowerCase().replace(/[^a-z0-9 ]/g, '').replace(/\s+/g, ' ').trim();
+function compareListStructure(prodItems, devItems, devParagraphs = []) {
+  const norm = (s) => (s || '')
+    .toLowerCase()
+    .normalize('NFKC')
+    .replace(/[^\p{L}\p{N} ]/gu, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+  const wordSet = (s) => new Set(norm(s).split(' ').filter(w => w.length > 3));
+  const preview = (s, limit = 100) => {
+    const clean = (s || '').replace(/\s+/g, ' ').trim();
+    return clean.length > limit ? clean.slice(0, limit - 1) + '…' : clean;
+  };
+  const overlapRatio = (aWords, bWords) => {
+    if (aWords.size === 0 || bWords.size === 0) return 0;
+    let overlap = 0;
+    for (const w of aWords) { if (bWords.has(w)) overlap++; }
+    return overlap / aWords.size;
+  };
 
   // Build a lookup from normalised text → {depth, type} for dev
   const devMap = new Map();
@@ -577,10 +593,16 @@ function compareListStructure(prodItems, devItems) {
     if (key && !devMap.has(key)) devMap.set(key, item);
   }
 
+  const devParagraphEntries = (devParagraphs || []).map(p => ({
+    text: p.text,
+    words: wordSet(p.text),
+  }));
+
   const issues = [];
   for (const prodItem of prodItems) {
     const key = norm(prodItem.text);
     if (!key) continue;
+    const prodWords = wordSet(prodItem.text);
 
     const devItem = devMap.get(key);
     if (!devItem) {
@@ -608,7 +630,47 @@ function compareListStructure(prodItems, devItems) {
         }
       }
       if (!structuralMatch) {
-        issues.push({ kind: 'missing', text: prodItem.text, prodDepth: prodItem.depth });
+        let bestListMatch = null;
+        let bestListRatio = 0;
+        for (const candidate of devItems) {
+          const ratio = overlapRatio(prodWords, wordSet(candidate.text));
+          if (ratio > bestListRatio) {
+            bestListRatio = ratio;
+            bestListMatch = candidate;
+          }
+        }
+
+        let bestParagraphMatch = null;
+        let bestParagraphRatio = 0;
+        for (const candidate of devParagraphEntries) {
+          const ratio = overlapRatio(prodWords, candidate.words);
+          if (ratio > bestParagraphRatio) {
+            bestParagraphRatio = ratio;
+            bestParagraphMatch = candidate;
+          }
+        }
+
+        if (bestParagraphRatio >= 0.6 && bestParagraphRatio >= bestListRatio && prodWords.size >= 4) {
+          issues.push({
+            kind: 'present-as-paragraph',
+            text: prodItem.text,
+            prodDepth: prodItem.depth,
+            similarityPct: Math.round(bestParagraphRatio * 100),
+            devText: preview(bestParagraphMatch.text),
+          });
+        } else if (bestListRatio >= 0.6 && prodWords.size >= 4) {
+          issues.push({
+            kind: 'similar-list-item',
+            text: prodItem.text,
+            prodDepth: prodItem.depth,
+            devDepth: bestListMatch.depth,
+            devType: bestListMatch.type,
+            similarityPct: Math.round(bestListRatio * 100),
+            devText: preview(bestListMatch.text),
+          });
+        } else {
+          issues.push({ kind: 'missing', text: prodItem.text, prodDepth: prodItem.depth });
+        }
       }
     } else {
       if (devItem.hasNestedNote && !prodItem.hasNestedNote) {
@@ -664,7 +726,8 @@ function comparePage(prodPage, devPage) {
   // List structure issues (wrong depth / missing nested items / ul↔ol swaps)
   const listIssues = compareListStructure(
     prodPage.listItems || [],
-    devPage.listItems  || []
+    devPage.listItems  || [],
+    devPage.paragraphs || []
   );
 
   // Images: compare by count. Alt texts differ between Tridion (prod) and
@@ -888,12 +951,14 @@ function printPageDetail(c, prodPage, devPage) {
     section('LIST ITEMS', prodPage.listItems.length, devPage.listItems.length);
     for (const i of c.listIssues) {
       const p = i.text.length > 80 ? i.text.slice(0, 77) + '…' : i.text;
-      if (i.kind === 'missing')          err(`  ✗ Missing (depth ${i.prodDepth}) — "${p}"`);
-      else if (i.kind === 'wrong-depth') warn(`  ⤵ Wrong depth (dev: ${i.devDepth}, expected: ${i.prodDepth}) — "${p}"`);
-      else if (i.kind === 'wrong-type')  warn(`  ⇄ Type mismatch (${i.prodType}→${i.devType}) — "${p}"`);
+      if (i.kind === 'missing')          err(`  ✗ Missing from dev as list content (expected depth ${i.prodDepth}) — "${p}"`);
+      else if (i.kind === 'similar-list-item') warn(`  ⇄ Similar list item in dev, but phrased/structured differently (expected depth ${i.prodDepth}; match ${i.similarityPct}%) — "${p}"` + (i.devText ? ` → dev: "${i.devText}"` : ''));
+      else if (i.kind === 'present-as-paragraph') warn(`  ¶ Present in dev as paragraph/text block, not list item (expected depth ${i.prodDepth}; match ${i.similarityPct}%) — "${p}"` + (i.devText ? ` → dev: "${i.devText}"` : ''));
+      else if (i.kind === 'wrong-depth') warn(`  ⤵ Same list item found in dev, but at a different nesting level (dev: ${i.devDepth}, expected: ${i.prodDepth}) — "${p}"`);
+      else if (i.kind === 'wrong-type')  warn(`  ⇄ Same list item found in dev, but list type changed (${i.prodType}→${i.devType}) — "${p}"`);
       else if (i.kind === 'nested-note') warn(`  ⚠ Note nested in list item in dev (sibling in prod) — "${p}"`);
-      else if (i.kind === 'content-outside-list') warn(`  ⚠ Paragraph outside list in dev (inside list item in prod) — "${p}"`);
-      else if (i.kind === 'paragraph-longer-in-dev') warn(`  ⚠ Paragraph longer in dev — extra content appended to list item — "${p}"`);
+      else if (i.kind === 'content-outside-list') warn(`  ⚠ Content moved outside the list in dev (inside list item in prod) — "${p}"`);
+      else if (i.kind === 'paragraph-longer-in-dev') warn(`  ⚠ Dev list item absorbs extra paragraph content — "${p}"`);
     }
   }
 
@@ -1168,10 +1233,14 @@ async function main() {
         differentContent: (c.differentContent || []).map(p => ({ section: p.section, text: p.text.slice(0, 120) })),
         condensedContent: (c.condensedContent || []).map(p => ({ section: p.section, text: p.text.slice(0, 120) })),
         listIssues: c.listIssues.map(i => {
+          if (i.kind === 'similar-list-item')
+            return `[similar-list-item] "${i.text}" — similar list item found in dev at depth ${i.devDepth} (${i.devType}), match ${i.similarityPct}%${i.devText ? `; dev: "${i.devText}"` : ''}`;
+          if (i.kind === 'present-as-paragraph')
+            return `[present-as-paragraph] "${i.text}" — content appears in dev as paragraph/text block instead of list item, match ${i.similarityPct}%${i.devText ? `; dev: "${i.devText}"` : ''}`;
           if (i.kind === 'wrong-depth')
             return `[wrong-depth] "${i.text}" — prod depth ${i.prodDepth}, dev depth ${i.devDepth}`;
           if (i.kind === 'missing')
-            return `[missing-nested] "${i.text}" — prod depth ${i.prodDepth}`;
+            return `[missing-list-item] "${i.text}" — not found in dev as list content; expected depth ${i.prodDepth}`;
           if (i.kind === 'wrong-type')
             return `[wrong-type] "${i.text}" — prod ${i.prodType}, dev ${i.devType}`;
           if (i.kind === 'nested-note')
