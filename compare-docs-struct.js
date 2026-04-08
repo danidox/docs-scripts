@@ -28,6 +28,8 @@ const readline = require('readline');
 // ─── CLI args ────────────────────────────────────────────────────────────────
 const args = process.argv.slice(2);
 const getArg = (flag) => { const i = args.indexOf(flag); return i !== -1 ? args[i + 1] : null; };
+const HAS_EXPLICIT_DEV_BASE = !!getArg('--dev-base');
+const HAS_EXPLICIT_PROD_BASE = !!getArg('--prod-base');
 const VALUE_FLAGS = new Set(['--path', '--output', '--dev-base', '--prod-base', '--limit', '--page']);
 const positionalArgs = [];
 for (let i = 0; i < args.length; i++) {
@@ -47,13 +49,20 @@ function parseSeedInput(input) {
 }
 
 const seedInput = parseSeedInput(positionalArgs[0] || getArg('--path'));
+const pageInput = parseSeedInput(getArg('--page'));
 
-let GUIDE_PATH  = seedInput ? seedInput.path : null;
+let GUIDE_PATH  = null;
 const OUTPUT_FILE = getArg('--output') || null;
-let DEV_BASE = (getArg('--dev-base') || seedInput?.base || 'https://docs-dev.uipath.com').replace(/\/$/, '');
+const DESKTOP_DIR = process.env.USERPROFILE
+  ? path.join(process.env.USERPROFILE, 'Desktop')
+  : path.join(process.cwd(), 'Desktop');
+const RESOLVED_OUTPUT_FILE = OUTPUT_FILE
+  ? (path.isAbsolute(OUTPUT_FILE) ? OUTPUT_FILE : path.join(DESKTOP_DIR, OUTPUT_FILE))
+  : null;
+let DEV_BASE = (getArg('--dev-base') || 'https://docs-dev.uipath.com').replace(/\/$/, '');
 let PROD_BASE = (getArg('--prod-base') || 'https://docs.uipath.com').replace(/\/$/, '');
 let DEV_HOST = new URL(DEV_BASE).hostname;
-let DEV_LABEL = DEV_HOST === 'docs-staging.uipath.com' ? 'Staging' : 'Dev';
+let DEV_LABEL = labelForNonProdHost(DEV_HOST);
 let PAGE_START = 0;
 let PAGE_END   = null; // null = not yet set (prompt will ask)
 if (getArg('--limit')) {
@@ -67,8 +76,26 @@ if (getArg('--limit')) {
   }
 }
 // Single-page mode: compare just one page. Accepts a full URL or a pathname.
-const PAGE_SINGLE = getArg('--page') ? normPath(getArg('--page')) : null;
+const PAGE_SINGLE = pageInput ? pageInput.path : null;
 const DEBUG       = args.includes('--debug');
+
+function applySeedInput(parsed) {
+  if (!parsed) return;
+  GUIDE_PATH = parsed.path;
+  if (parsed.base && !HAS_EXPLICIT_DEV_BASE) {
+    const inputHost = new URL(parsed.base).hostname;
+    if (!HAS_EXPLICIT_PROD_BASE && inputHost === 'docs.uipath.com') {
+      PROD_BASE = parsed.base;
+    } else {
+      DEV_BASE = parsed.base;
+      DEV_HOST = inputHost;
+      DEV_LABEL = labelForNonProdHost(DEV_HOST);
+    }
+  }
+}
+
+applySeedInput(seedInput);
+if (!seedInput) applySeedInput(pageInput);
 
 // ─── Interactive prompts ──────────────────────────────────────────────────────
 function prompt(rl, question) {
@@ -80,7 +107,8 @@ async function promptInputs() {
 
   if (!GUIDE_PATH) {
     const answer = await prompt(rl, '  Enter the guide URL or path to compare: ');
-    GUIDE_PATH = normPath(answer.trim() || '/apps/automation-cloud/latest/user-guide/introduction');
+    const parsed = parseSeedInput(answer.trim() || '/apps/automation-cloud/latest/user-guide/introduction');
+    applySeedInput(parsed);
   }
 
   if (PAGE_END === null) {
@@ -122,6 +150,11 @@ function normPath(url) {
 
 function toUrl(base, pathname) {
   return base.replace(/\/$/, '') + '/' + pathname.replace(/^\//, '');
+}
+
+function labelForNonProdHost(hostname) {
+  if (hostname === 'docs-staging.uipath.com') return 'staging';
+  return 'Dev';
 }
 
 function guideBasePath(seedPath) {
@@ -650,7 +683,10 @@ function compareListStructure(prodItems, devItems, devParagraphs = []) {
           }
         }
 
-        if (bestParagraphRatio >= 0.6 && bestParagraphRatio >= bestListRatio && prodWords.size >= 4) {
+        const allowParagraphSimilarity = prodWords.size >= 4 || bestParagraphRatio >= 0.95;
+        const allowListSimilarity = prodWords.size >= 4 || bestListRatio >= 0.95;
+
+        if (bestParagraphRatio >= 0.6 && bestParagraphRatio >= bestListRatio && allowParagraphSimilarity) {
           issues.push({
             kind: 'present-as-paragraph',
             text: prodItem.text,
@@ -658,7 +694,7 @@ function compareListStructure(prodItems, devItems, devParagraphs = []) {
             similarityPct: Math.round(bestParagraphRatio * 100),
             devText: preview(bestParagraphMatch.text),
           });
-        } else if (bestListRatio >= 0.6 && prodWords.size >= 4) {
+        } else if (bestListRatio >= 0.6 && allowListSimilarity) {
           issues.push({
             kind: 'similar-list-item',
             text: prodItem.text,
@@ -834,33 +870,58 @@ function comparePage(prodPage, devPage) {
   }
 
   // Table comparison: match by normalised header text, flag missing tables and row deficits.
+  // Multiple tables on the same page can share the same header/signature, so
+  // we must keep all candidates and consume the best remaining match instead of
+  // storing only the last table for a key.
   const tableKey = (t) => normText(t.signature || t.headerText).slice(0, 120);
-  const devTableMap = new Map(
-    (devPage.tables || []).map(t => [tableKey(t), t])
-  );
-  // Track which dev tables are already matched so merge detection only considers unmatched ones.
-  const matchedDevKeys = new Set();
+  const normCell = (s) => s.toLowerCase().replace(/[^\p{L}\p{N} ]/gu, '').replace(/\s+/g, ' ').trim();
+  const devTables = (devPage.tables || []).map((t, index) => ({ ...t, index }));
+  const devTablesByKey = new Map();
+  for (const t of devTables) {
+    const key = tableKey(t);
+    if (!devTablesByKey.has(key)) devTablesByKey.set(key, []);
+    devTablesByKey.get(key).push(t);
+  }
+  const matchedDevIndexes = new Set();
   const tableIssues = [];
   for (const t of (prodPage.tables || [])) {
     const key  = tableKey(t);
-    const devT = devTableMap.get(key);
+    const prodCells = new Set((t.cells || []).map(normCell).filter(Boolean));
+    const devCandidates = (devTablesByKey.get(key) || []).filter(dt => !matchedDevIndexes.has(dt.index));
+    let devT = null;
+    if (devCandidates.length === 1) {
+      devT = devCandidates[0];
+    } else if (devCandidates.length > 1) {
+      let bestScore = -Infinity;
+      for (const candidate of devCandidates) {
+        const devCells = (candidate.cells || []).map(normCell).filter(Boolean);
+        const overlap = devCells.length === 0
+          ? 0
+          : devCells.filter(c => prodCells.has(c)).length / devCells.length;
+        const rowDistance = Math.abs(candidate.rowCount - t.rowCount);
+        const colDistance = Math.abs(candidate.colCount - t.colCount);
+        const score = overlap * 100 - rowDistance * 5 - colDistance * 10;
+        if (score > bestScore) {
+          bestScore = score;
+          devT = candidate;
+        }
+      }
+    }
     if (!devT) {
       // Check if this prod table is a merge of multiple dev tables by cell-content overlap.
       // Normalise each cell the same way as headers; build a set of prod cell texts.
-      const normCell = (s) => s.toLowerCase().replace(/[^\p{L}\p{N} ]/gu, '').replace(/\s+/g, ' ').trim();
-      const prodCells = new Set((t.cells || []).map(normCell).filter(Boolean));
-      const coveringDevTables = (devPage.tables || []).filter(dt => {
-        if (matchedDevKeys.has(tableKey(dt))) return false;
+      const coveringDevTables = devTables.filter(dt => {
+        if (matchedDevIndexes.has(dt.index)) return false;
         const devCells = (dt.cells || []).map(normCell).filter(Boolean);
         if (devCells.length === 0) return false;
         const overlap = devCells.filter(c => prodCells.has(c)).length;
         return overlap / devCells.length >= 0.6; // ≥60% of dev cells found in prod table
       });
       const kind = coveringDevTables.length >= 2 ? 'possible-merge' : 'missing-table';
-      tableIssues.push({ kind, headerText: t.headerText, prodRows: t.rowCount, prodCols: t.colCount,
+        tableIssues.push({ kind, headerText: t.headerText, prodRows: t.rowCount, prodCols: t.colCount,
         ...(kind === 'possible-merge' ? { devTableCount: coveringDevTables.length } : {}) });
     } else {
-      matchedDevKeys.add(key);
+      matchedDevIndexes.add(devT.index);
       if (devT.hasEmptyHeader && !t.hasEmptyHeader) {
         // Same table, but dev has an empty header row that prod omits (author choice in Tridion).
         tableIssues.push({ kind: 'empty-header', headerText: t.headerText, prodRows: t.rowCount, devRows: devT.rowCount });
@@ -874,8 +935,8 @@ function comparePage(prodPage, devPage) {
 
   // Dev tables not matched to any prod table — present in dev but removed from prod.
   const prodTableKeys = new Set((prodPage.tables || []).map(t => tableKey(t)));
-  for (const dt of (devPage.tables || [])) {
-    if (!prodTableKeys.has(tableKey(dt)) && !matchedDevKeys.has(tableKey(dt))) {
+  for (const dt of devTables) {
+    if (!prodTableKeys.has(tableKey(dt)) && !matchedDevIndexes.has(dt.index)) {
       tableIssues.push({ kind: 'extra-in-dev', headerText: dt.headerText, devRows: dt.rowCount, devCols: dt.colCount });
     }
   }
@@ -930,13 +991,13 @@ function printPageDetail(c, prodPage, devPage) {
   log('\n' + '═'.repeat(72));
   log(` ${c.label.toUpperCase()}`);
   log('═'.repeat(72));
-  dim(`  Dev:  ${c.devUrl}`);
+  dim(`  ${DEV_LABEL}:  ${c.devUrl}`);
   dim(`  Prod: ${c.prodUrl}`);
 
   const toSentenceCase = (s) => s.charAt(0).toUpperCase() + s.slice(1).toLowerCase();
   const section = (title, prodCount, devCount) => {
     log('\n' + '─'.repeat(72));
-    log(` ${toSentenceCase(title)}  (prod: ${prodCount}, dev: ${devCount})`);
+    log(` ${toSentenceCase(title)}  (prod: ${prodCount}, ${DEV_LABEL}: ${devCount})`);
     log('─'.repeat(72));
   };
 
@@ -951,14 +1012,14 @@ function printPageDetail(c, prodPage, devPage) {
     section('LIST ITEMS', prodPage.listItems.length, devPage.listItems.length);
     for (const i of c.listIssues) {
       const p = i.text.length > 80 ? i.text.slice(0, 77) + '…' : i.text;
-      if (i.kind === 'missing')          err(`  ✗ Missing from dev as list content (expected depth ${i.prodDepth}) — "${p}"`);
-      else if (i.kind === 'similar-list-item') warn(`  ⇄ Similar list item in dev, but phrased/structured differently (expected depth ${i.prodDepth}; match ${i.similarityPct}%) — "${p}"` + (i.devText ? ` → dev: "${i.devText}"` : ''));
-      else if (i.kind === 'present-as-paragraph') warn(`  ¶ Present in dev as paragraph/text block, not list item (expected depth ${i.prodDepth}; match ${i.similarityPct}%) — "${p}"` + (i.devText ? ` → dev: "${i.devText}"` : ''));
-      else if (i.kind === 'wrong-depth') warn(`  ⤵ Same list item found in dev, but at a different nesting level (dev: ${i.devDepth}, expected: ${i.prodDepth}) — "${p}"`);
-      else if (i.kind === 'wrong-type')  warn(`  ⇄ Same list item found in dev, but list type changed (${i.prodType}→${i.devType}) — "${p}"`);
-      else if (i.kind === 'nested-note') warn(`  ⚠ Note nested in list item in dev (sibling in prod) — "${p}"`);
-      else if (i.kind === 'content-outside-list') warn(`  ⚠ Content moved outside the list in dev (inside list item in prod) — "${p}"`);
-      else if (i.kind === 'paragraph-longer-in-dev') warn(`  ⚠ Dev list item absorbs extra paragraph content — "${p}"`);
+      if (i.kind === 'missing')          err(`  ✗ Missing from ${DEV_LABEL} as list content (expected depth ${i.prodDepth}) — "${p}"`);
+      else if (i.kind === 'similar-list-item') warn(`  ⇄ Similar list item in ${DEV_LABEL}, but phrased/structured differently (expected depth ${i.prodDepth}; match ${i.similarityPct}%) — "${p}"` + (i.devText ? ` → ${DEV_LABEL}: "${i.devText}"` : ''));
+      else if (i.kind === 'present-as-paragraph') warn(`  ¶ Present in ${DEV_LABEL} as paragraph/text block, not list item (expected depth ${i.prodDepth}; match ${i.similarityPct}%) — "${p}"` + (i.devText ? ` → ${DEV_LABEL}: "${i.devText}"` : ''));
+      else if (i.kind === 'wrong-depth') warn(`  ⤵ Same list item found in ${DEV_LABEL}, but at a different nesting level (${DEV_LABEL}: ${i.devDepth}, expected: ${i.prodDepth}) — "${p}"`);
+      else if (i.kind === 'wrong-type')  warn(`  ⇄ Same list item found in ${DEV_LABEL}, but list type changed (${i.prodType}→${i.devType}) — "${p}"`);
+      else if (i.kind === 'nested-note') warn(`  ⚠ Note nested in list item in ${DEV_LABEL} (sibling in prod) — "${p}"`);
+      else if (i.kind === 'content-outside-list') warn(`  ⚠ Content moved outside the list in ${DEV_LABEL} (inside list item in prod) — "${p}"`);
+      else if (i.kind === 'paragraph-longer-in-dev') warn(`  ⚠ ${DEV_LABEL} list item absorbs extra paragraph content — "${p}"`);
     }
   }
 
@@ -969,10 +1030,10 @@ function printPageDetail(c, prodPage, devPage) {
       const h = t.headerText.length > 60 ? t.headerText.slice(0, 57) + '…' : t.headerText;
       if (t.kind === 'missing-table') err(`  ✗ Missing table — "${h}" (prod: ${t.prodRows}r × ${t.prodCols}c)`);
       else if (t.kind === 'possible-merge') warn(`  ⇄ Possible table merge — "${h}" (prod: ${t.prodRows}r × ${t.prodCols}c; cell content matches ${t.devTableCount} dev tables, likely merged into one in prod)`);
-      else if (t.kind === 'empty-header') warn(`  ⚠ Empty header row in dev not present in prod — "${h}" (prod: ${t.prodRows}r, dev: ${t.devRows}r incl. empty header; author choice in Tridion)`);
-      else if (t.kind === 'fewer-rows') warn(`  ⤵ Fewer rows — "${h}" (prod: ${t.prodRows}, dev: ${t.devRows})`);
-      else if (t.kind === 'fewer-cols') warn(`  ⤵ Fewer cols — "${h}" (prod: ${t.prodCols}, dev: ${t.devCols})`);
-      else if (t.kind === 'extra-in-dev') err(`  ✗ Extra table in dev not in prod — "${h}" (dev: ${t.devRows}r × ${t.devCols}c)`);
+      else if (t.kind === 'empty-header') warn(`  ⚠ Empty header row in ${DEV_LABEL} not present in prod — "${h}" (prod: ${t.prodRows}r, ${DEV_LABEL}: ${t.devRows}r incl. empty header; author choice in Tridion)`);
+      else if (t.kind === 'fewer-rows') warn(`  ⤵ Fewer rows — "${h}" (prod: ${t.prodRows}, ${DEV_LABEL}: ${t.devRows})`);
+      else if (t.kind === 'fewer-cols') warn(`  ⤵ Fewer cols — "${h}" (prod: ${t.prodCols}, ${DEV_LABEL}: ${t.devCols})`);
+      else if (t.kind === 'extra-in-dev') err(`  ✗ Extra table in ${DEV_LABEL} not in prod — "${h}" (${DEV_LABEL}: ${t.devRows}r × ${t.devCols}c)`);
     }
   }
 
@@ -982,9 +1043,9 @@ function printPageDetail(c, prodPage, devPage) {
     section('IMAGES', (prodPage.images || []).length, (devPage.images || []).length);
     for (const img of c.missingImages) {
       if (img.kind === 'section') {
-        warn(`  ⚠ ${img.count} image${img.count > 1 ? 's' : ''} missing in dev under section "${img.section}" (prod: ${img.prodTotal}, dev: ${img.devTotal})`);
+        warn(`  ⚠ ${img.count} image${img.count > 1 ? 's' : ''} missing in ${DEV_LABEL} under section "${img.section}" (prod: ${img.prodTotal}, ${DEV_LABEL}: ${img.devTotal})`);
       } else {
-        err(`  ✗ ${img.count} image${img.count > 1 ? 's' : ''} missing from dev`);
+        err(`  ✗ ${img.count} image${img.count > 1 ? 's' : ''} missing from ${DEV_LABEL}`);
       }
     }
   }
@@ -1024,18 +1085,18 @@ function printReport(report, prodPages, devPages) {
   log(' COMPARISON REPORT');
   log('═'.repeat(72));
   const pageCompleteness = prodTotal > 0 ? Math.round((devTotal / prodTotal) * 100) : 100;
-  log(`  Dev pages         : ${devTotal} / ${prodTotal} in prod  (${pageCompleteness}% page coverage)`);
+  log(`  ${DEV_LABEL} pages${' '.repeat(Math.max(1, 11 - DEV_LABEL.length))}: ${devTotal} / ${prodTotal} in prod  (${pageCompleteness}% page coverage)`);
   log(`  Compared (common) : ${report.common.length}`);
-  log(`  Missing from dev  : ${report.missingInDev.length}`);
-  log(`  Extra in dev      : ${report.extraInDev.length}`);
+  log(`  Missing from ${DEV_LABEL}${' '.repeat(Math.max(1, 4 - DEV_LABEL.length))}: ${report.missingInDev.length}`);
+  log(`  Extra in ${DEV_LABEL}${' '.repeat(Math.max(1, 7 - DEV_LABEL.length))}: ${report.extraInDev.length}`);
   log(`  Pages with issues : ${pagesWithIssues.length}`);
 
   // ── Missing pages ──────────────────────────────────────────────────────────
   log('\n' + '─'.repeat(72));
-  log(' MISSING PAGES (present in prod, absent from dev)');
+  log(` MISSING PAGES (present in prod, absent from ${DEV_LABEL})`);
   log('─'.repeat(72));
   if (missingInDev.length === 0) {
-    ok('  [✓] Dev contains all production pages.');
+    ok(`  [✓] ${DEV_LABEL} contains all production pages.`);
   } else {
     for (const p of missingInDev) {
       err(`  ✗  ${prodPages.get(p).label}`);
@@ -1047,7 +1108,7 @@ function printReport(report, prodPages, devPages) {
   // ── Extra pages ────────────────────────────────────────────────────────────
   if (extraInDev.length > 0) {
     log('\n' + '─'.repeat(72));
-    log(' EXTRA PAGES IN DEV (new/unreleased content not yet in prod)');
+    log(` EXTRA PAGES IN ${DEV_LABEL.toUpperCase()} (new/unreleased content not yet in prod)`);
     log('─'.repeat(72));
     for (const p of extraInDev) {
       warn(`  +  ${devPages.get(p).label}`);
@@ -1120,6 +1181,159 @@ function printSinglePage(prodPage, devPage, pathname) {
   log('\n' + '═'.repeat(72) + '\n');
 }
 
+function pageDetailLines(c, prodPage, devPage) {
+  const lines = [];
+  const toSentenceCase = (s) => s.charAt(0).toUpperCase() + s.slice(1).toLowerCase();
+  const section = (title, prodCount, devCount) => {
+    lines.push('');
+    lines.push('─'.repeat(72));
+    lines.push(` ${toSentenceCase(title)}  (prod: ${prodCount}, ${DEV_LABEL}: ${devCount})`);
+    lines.push('─'.repeat(72));
+  };
+
+  lines.push('');
+  lines.push('═'.repeat(72));
+  lines.push(` ${c.label.toUpperCase()}`);
+  lines.push('═'.repeat(72));
+  lines.push(`  ${DEV_LABEL}:  ${c.devUrl}`);
+  lines.push(`  Prod: ${c.prodUrl}`);
+
+  if (c.missingHeadings.length > 0) {
+    section('HEADINGS', prodPage.headings.length, devPage.headings.length);
+    for (const h of c.missingHeadings) lines.push(`  ✗ ${'#'.repeat(h.level)} ${h.text}`);
+  }
+
+  if (c.listIssues.length > 0) {
+    section('LIST ITEMS', prodPage.listItems.length, devPage.listItems.length);
+    for (const i of c.listIssues) {
+      const p = i.text.length > 80 ? i.text.slice(0, 77) + '…' : i.text;
+      if (i.kind === 'missing') lines.push(`  ✗ Missing from ${DEV_LABEL} as list content (expected depth ${i.prodDepth}) — "${p}"`);
+      else if (i.kind === 'similar-list-item') lines.push(`  ⇄ Similar list item in ${DEV_LABEL}, but phrased/structured differently (expected depth ${i.prodDepth}; match ${i.similarityPct}%) — "${p}"` + (i.devText ? ` → ${DEV_LABEL}: "${i.devText}"` : ''));
+      else if (i.kind === 'present-as-paragraph') lines.push(`  ¶ Present in ${DEV_LABEL} as paragraph/text block, not list item (expected depth ${i.prodDepth}; match ${i.similarityPct}%) — "${p}"` + (i.devText ? ` → ${DEV_LABEL}: "${i.devText}"` : ''));
+      else if (i.kind === 'wrong-depth') lines.push(`  ⤵ Same list item found in ${DEV_LABEL}, but at a different nesting level (${DEV_LABEL}: ${i.devDepth}, expected: ${i.prodDepth}) — "${p}"`);
+      else if (i.kind === 'wrong-type') lines.push(`  ⇄ Same list item found in ${DEV_LABEL}, but list type changed (${i.prodType}→${i.devType}) — "${p}"`);
+      else if (i.kind === 'nested-note') lines.push(`  ⚠ Note nested in list item in ${DEV_LABEL} (sibling in prod) — "${p}"`);
+      else if (i.kind === 'content-outside-list') lines.push(`  ⚠ Content moved outside the list in ${DEV_LABEL} (inside list item in prod) — "${p}"`);
+      else if (i.kind === 'paragraph-longer-in-dev') lines.push(`  ⚠ ${DEV_LABEL} list item absorbs extra paragraph content — "${p}"`);
+    }
+  }
+
+  if (c.tableIssues.length > 0) {
+    section('TABLES', prodPage.tables.length, devPage.tables.length);
+    for (const t of c.tableIssues) {
+      const h = t.headerText.length > 60 ? t.headerText.slice(0, 57) + '…' : t.headerText;
+      if (t.kind === 'missing-table') lines.push(`  ✗ Missing table — "${h}" (prod: ${t.prodRows}r × ${t.prodCols}c)`);
+      else if (t.kind === 'possible-merge') lines.push(`  ⇄ Possible table merge — "${h}" (prod: ${t.prodRows}r × ${t.prodCols}c; cell content matches ${t.devTableCount} ${DEV_LABEL} tables, likely merged into one in prod)`);
+      else if (t.kind === 'empty-header') lines.push(`  ⚠ Empty header row in ${DEV_LABEL} not present in prod — "${h}" (prod: ${t.prodRows}r, ${DEV_LABEL}: ${t.devRows}r incl. empty header; author choice in Tridion)`);
+      else if (t.kind === 'fewer-rows') lines.push(`  ⤵ Fewer rows — "${h}" (prod: ${t.prodRows}, ${DEV_LABEL}: ${t.devRows})`);
+      else if (t.kind === 'fewer-cols') lines.push(`  ⤵ Fewer cols — "${h}" (prod: ${t.prodCols}, ${DEV_LABEL}: ${t.devCols})`);
+      else if (t.kind === 'extra-in-dev') lines.push(`  ✗ Extra table in ${DEV_LABEL} not in prod — "${h}" (${DEV_LABEL}: ${t.devRows}r × ${t.devCols}c)`);
+    }
+  }
+
+  if (c.missingImages.length > 0) {
+    section('IMAGES', (prodPage.images || []).length, (devPage.images || []).length);
+    for (const img of c.missingImages) {
+      if (img.kind === 'section') lines.push(`  ⚠ ${img.count} image${img.count > 1 ? 's' : ''} missing in ${DEV_LABEL} under section "${img.section}" (prod: ${img.prodTotal}, ${DEV_LABEL}: ${img.devTotal})`);
+      else lines.push(`  ✗ ${img.count} image${img.count > 1 ? 's' : ''} missing from ${DEV_LABEL}`);
+    }
+  }
+
+  if (c.missingAdmonitions.length > 0 || c.mergedAdmonitions.length > 0) {
+    section('ADMONITIONS', prodPage.admonitions.length, devPage.admonitions.length);
+    for (const a of c.missingAdmonitions) lines.push(`  ✗ Missing [${a.type}] "${a.snippet.slice(0, 80)}"`);
+    for (const a of c.mergedAdmonitions) lines.push(`  ¶ Merged [${a.type}] "${a.snippet.slice(0, 80)}" — prod: ${a.prodParagraphs}p → ${DEV_LABEL}: ${a.devParagraphs}p`);
+  }
+
+  if (c.differentContent.length > 0 || c.condensedContent.length > 0) {
+    section('CONTENT BLOCKS', prodPage.paragraphs.length, devPage.paragraphs.length);
+    for (const p of c.differentContent) {
+      const preview = p.text.split(/\s+/).slice(0, 10).join(' ');
+      const loc = p.section ? ` [in "${p.section}"]` : '';
+      lines.push(`  ✗ Absent — "${preview}…"${loc}`);
+    }
+    for (const p of c.condensedContent) {
+      const preview = p.text.split(/\s+/).slice(0, 10).join(' ');
+      const loc = p.section ? ` [in "${p.section}"]` : '';
+      lines.push(`  ⤵ Condensed — "${preview}…"${loc}`);
+    }
+  }
+
+  return lines;
+}
+
+function renderReportText(report, prodPages, devPages) {
+  const lines = [];
+  const { missingInDev, extraInDev, pagesWithIssues, prodTotal, devTotal } = report;
+  const pageCompleteness = prodTotal > 0 ? Math.round((devTotal / prodTotal) * 100) : 100;
+
+  lines.push('═'.repeat(72));
+  lines.push(' COMPARISON REPORT');
+  lines.push('═'.repeat(72));
+  lines.push(`  ${DEV_LABEL} pages${' '.repeat(Math.max(1, 11 - DEV_LABEL.length))}: ${devTotal} / ${prodTotal} in prod  (${pageCompleteness}% page coverage)`);
+  lines.push(`  Compared (common) : ${report.common.length}`);
+  lines.push(`  Missing from ${DEV_LABEL}${' '.repeat(Math.max(1, 4 - DEV_LABEL.length))}: ${report.missingInDev.length}`);
+  lines.push(`  Extra in ${DEV_LABEL}${' '.repeat(Math.max(1, 7 - DEV_LABEL.length))}: ${report.extraInDev.length}`);
+  lines.push(`  Pages with issues : ${pagesWithIssues.length}`);
+
+  lines.push('');
+  lines.push('─'.repeat(72));
+  lines.push(` MISSING PAGES (present in prod, absent from ${DEV_LABEL})`);
+  lines.push('─'.repeat(72));
+  if (missingInDev.length === 0) {
+    lines.push(`  [✓] ${DEV_LABEL} contains all production pages.`);
+  } else {
+    for (const p of missingInDev) {
+      lines.push(`  ✗  ${prodPages.get(p).label}`);
+      lines.push(`     ${DEV_LABEL} (missing): ${toUrl(DEV_BASE, p)}`);
+      lines.push(`     Prod:          ${prodPages.get(p).url}`);
+    }
+  }
+
+  if (extraInDev.length > 0) {
+    lines.push('');
+    lines.push('─'.repeat(72));
+    lines.push(` EXTRA PAGES IN ${DEV_LABEL.toUpperCase()} (new/unreleased content not yet in prod)`);
+    lines.push('─'.repeat(72));
+    for (const p of extraInDev) {
+      lines.push(`  +  ${devPages.get(p).label}`);
+      lines.push(`     ${DEV_LABEL}:  ${devPages.get(p).url}`);
+    }
+  }
+
+  lines.push('');
+  lines.push('─'.repeat(72));
+  lines.push(' CONTENT ISSUES IN MATCHING PAGES');
+  lines.push('─'.repeat(72));
+  if (pagesWithIssues.length === 0) {
+    lines.push('  [✓] No content issues found in matching pages.');
+  } else {
+    for (const c of pagesWithIssues.sort((a, b) => a.similarity - b.similarity)) {
+      lines.push(...pageDetailLines(c, prodPages.get(c.path), devPages.get(c.path)));
+    }
+  }
+
+  lines.push('');
+  lines.push('═'.repeat(72));
+  return lines.join('\n') + '\n';
+}
+
+function toAsciiReportText(text) {
+  return text
+    .replace(/═/g, '=')
+    .replace(/─/g, '-')
+    .replace(/✗/g, 'X')
+    .replace(/⇄/g, '~')
+    .replace(/⤵/g, '>')
+    .replace(/⚠/g, '!')
+    .replace(/\[✓\]/g, '[OK]')
+    .replace(/[—–]/g, '-')
+    .replace(/â€”/g, '-')
+    .replace(/→/g, '->')
+    .replace(/…/g, '...')
+    .replace(/¶/g, 'P');
+}
+
 // ─── Main ─────────────────────────────────────────────────────────────────────
 async function main() {
   log('\n' + '═'.repeat(72));
@@ -1134,7 +1348,7 @@ async function main() {
     : `${PAGE_START + 1}–${PAGE_END === Infinity ? 'end' : PAGE_END}`;
   log(`  Path  : ${GUIDE_PATH}`);
   log(`  Pages : ${batchLabel}`);
-  log(`  ${DEV_LABEL.padEnd(7)}: ${DEV_BASE}`);
+  log(`  ${DEV_LABEL}: ${DEV_BASE}`);
   log(`  Prod  : ${PROD_BASE}`);
   log('─'.repeat(72) + '\n');
 
@@ -1150,7 +1364,7 @@ async function main() {
     log('[1/2] Fetching PRODUCTION page…');
     const prodPage = await crawlSinglePage(context, PAGE_SINGLE, false, false);
 
-    log(`[2/2] Fetching ${DEV_LABEL.toUpperCase()} page…`);
+    log(`[2/2] Fetching ${DEV_LABEL} page…`);
     let devPage = await crawlSinglePage(context, PAGE_SINGLE, true, headless);
     if (devPage === null) {
       log('\n  Relaunching browser for re-authentication…');
@@ -1161,8 +1375,30 @@ async function main() {
     }
 
     await browser.close();
-    if (!devPage) { err(`\nCould not retrieve ${DEV_LABEL.toLowerCase()} page.`); process.exit(1); }
+    if (!devPage) { err(`\nCould not retrieve ${DEV_LABEL} page.`); process.exit(1); }
+    const c = {
+      path: PAGE_SINGLE,
+      label: prodPage.label,
+      prodUrl: prodPage.url,
+      devUrl:  devPage.url,
+      prodWordCount: prodPage.wordCount,
+      devWordCount:  devPage.wordCount,
+      ...comparePage(prodPage, devPage),
+    };
     printSinglePage(prodPage, devPage, PAGE_SINGLE);
+    if (RESOLVED_OUTPUT_FILE) {
+      const singlePageText = toAsciiReportText([
+        '═'.repeat(72),
+        ' SINGLE PAGE REPORT',
+        '═'.repeat(72),
+        ...pageDetailLines(c, prodPage, devPage),
+        '',
+        '═'.repeat(72),
+        '',
+      ].join('\n'));
+      fs.writeFileSync(RESOLVED_OUTPUT_FILE, singlePageText, 'utf8');
+      ok(`  Report saved → ${RESOLVED_OUTPUT_FILE}`);
+    }
     return;
   }
 
@@ -1171,7 +1407,7 @@ async function main() {
   const prodPages = await crawlSite(context, toUrl(PROD_BASE, GUIDE_PATH), false, false);
 
   // ── Dev crawl (with automatic relaunch if session expired) ────────────────
-  log(`\n[2/2] Crawling ${DEV_LABEL.toUpperCase()}…`);
+  log(`\n[2/2] Crawling ${DEV_LABEL}…`);
   let devPages = await crawlSite(context, toUrl(DEV_BASE, GUIDE_PATH), true, headless);
 
   if (devPages === null) {
@@ -1185,7 +1421,7 @@ async function main() {
   await browser.close();
 
   if (!devPages || devPages.size === 0) {
-    err(`\nCould not retrieve ${DEV_LABEL.toLowerCase()} pages. Check authentication and try again.`);
+    err(`\nCould not retrieve ${DEV_LABEL} pages. Check authentication and try again.`);
     process.exit(1);
   }
 
@@ -1194,69 +1430,9 @@ async function main() {
   const report = buildReport(prodPages, devPages);
   printReport(report, prodPages, devPages);
 
-  if (OUTPUT_FILE) {
-    const json = {
-      generatedAt: new Date().toISOString(),
-      guidePath: GUIDE_PATH,
-      summary: {
-        prodTotal: report.prodTotal,
-        devTotal: report.devTotal,
-        missingPages: report.missingInDev.length,
-        extraPages: report.extraInDev.length,
-        pagesWithContentIssues: report.pagesWithIssues.length,
-      },
-      missingPages: report.missingInDev.map(p => ({
-        path: p, label: prodPages.get(p).label, prodUrl: prodPages.get(p).url,
-      })),
-      extraPages: report.extraInDev.map(p => ({
-        path: p, label: devPages.get(p).label, devUrl: devPages.get(p).url,
-      })),
-      contentIssues: report.pagesWithIssues.map(c => ({
-        path: c.path,
-        label: c.label,
-        similarity: c.similarity,
-        prodWordCount: c.prodWordCount,
-        devWordCount: c.devWordCount,
-        wordDiffPct: c.wordDiffPct,
-        missingSections: c.missingHeadings.map(h => `${'#'.repeat(h.level)} ${h.text}`),
-        missingImages: c.missingImages.length > 0 ? `${c.missingImages[0].count} missing` : [],
-        missingAdmonitions: c.missingAdmonitions.map(a => `[${a.type}] ${a.snippet}`),
-        mergedAdmonitions: c.mergedAdmonitions.map(a =>
-          `[${a.type}] "${a.snippet.slice(0, 80)}" — prod: ${a.prodParagraphs}p, dev: ${a.devParagraphs}p`
-        ),
-        tableIssues: (c.tableIssues || []).map(t => {
-          if (t.kind === 'missing-table') return `[missing-table] "${t.headerText}" — prod ${t.prodRows}r×${t.prodCols}c`;
-          if (t.kind === 'fewer-rows')    return `[fewer-rows] "${t.headerText}" — prod ${t.prodRows}, dev ${t.devRows}`;
-          if (t.kind === 'fewer-cols')    return `[fewer-cols] "${t.headerText}" — prod ${t.prodCols}c, dev ${t.devCols}c`;
-          return JSON.stringify(t);
-        }),
-        differentContent: (c.differentContent || []).map(p => ({ section: p.section, text: p.text.slice(0, 120) })),
-        condensedContent: (c.condensedContent || []).map(p => ({ section: p.section, text: p.text.slice(0, 120) })),
-        listIssues: c.listIssues.map(i => {
-          if (i.kind === 'similar-list-item')
-            return `[similar-list-item] "${i.text}" — similar list item found in dev at depth ${i.devDepth} (${i.devType}), match ${i.similarityPct}%${i.devText ? `; dev: "${i.devText}"` : ''}`;
-          if (i.kind === 'present-as-paragraph')
-            return `[present-as-paragraph] "${i.text}" — content appears in dev as paragraph/text block instead of list item, match ${i.similarityPct}%${i.devText ? `; dev: "${i.devText}"` : ''}`;
-          if (i.kind === 'wrong-depth')
-            return `[wrong-depth] "${i.text}" — prod depth ${i.prodDepth}, dev depth ${i.devDepth}`;
-          if (i.kind === 'missing')
-            return `[missing-list-item] "${i.text}" — not found in dev as list content; expected depth ${i.prodDepth}`;
-          if (i.kind === 'wrong-type')
-            return `[wrong-type] "${i.text}" — prod ${i.prodType}, dev ${i.devType}`;
-          if (i.kind === 'nested-note')
-            return `[nested-note] "${i.text}" — note nested in li in dev, sibling in prod`;
-          if (i.kind === 'content-outside-list')
-            return `[content-outside-list] "${i.text}" — paragraph outside list in dev, inside li in prod`;
-          if (i.kind === 'paragraph-longer-in-dev')
-            return `[paragraph-longer-in-dev] "${i.text}" — extra content appended to list item in dev`;
-          return JSON.stringify(i);
-        }),
-        prodUrl: c.prodUrl,
-        devUrl: c.devUrl,
-      })),
-    };
-    fs.writeFileSync(OUTPUT_FILE, JSON.stringify(json, null, 2));
-    ok(`  Report saved → ${OUTPUT_FILE}`);
+  if (RESOLVED_OUTPUT_FILE) {
+    fs.writeFileSync(RESOLVED_OUTPUT_FILE, toAsciiReportText(renderReportText(report, prodPages, devPages)), 'utf8');
+    ok(`  Report saved → ${RESOLVED_OUTPUT_FILE}`);
   }
 }
 
