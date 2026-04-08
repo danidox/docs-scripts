@@ -2144,6 +2144,158 @@ def fix_split_list_item_descriptions(lines: List[str]) -> List[str]:
     return lines
 
 
+def fix_dt_list_indent(lines: List[str]) -> List[str]:
+    """Fix broken <dt>/<dd> list structure produced by md_maker.
+
+    md_maker converts DITA <dl>/<dt>/<dd> elements into Markdown.  When a
+    <dd> contains a nested <ul>, markdownify emits the <ul> items with a
+    4-space indent.  After unwrap_markdown_paragraphs_and_lists collapses
+    soft wraps, the result is:
+
+        **`param`** [Type](url) : description : discover in the following ways:
+            * sub-item A          ← 4-space indent, no list parent at col 0
+            * sub-item B
+
+    Docusaurus renders the 4-space-indented items as a code block (not a
+    sub-list) because there is no parent list item at col 0.  The correct
+    form is:
+
+        * **`param`** [Type](url) : description : discover in the following ways:
+          * sub-item A            ← 2-space indent under the new * parent
+          * sub-item B
+
+    Detection criteria:
+      - A paragraph at col 0 (no leading whitespace, doesn't start with a
+        list marker) is followed — possibly after blank lines and indented
+        continuation lines — by list items at exactly 4-space indent where
+        no prior list item at col 0 opened a list context.
+      - Only the first 4-space-indented block directly after each such
+        paragraph is fixed; genuine nested sub-lists (which already have a
+        col-0 parent) are left untouched.
+    """
+    result = lines[:]
+    fixes = 0
+    list_head = re.compile(r'^(\s*)([-*+]|\d+\.)\s+')
+    code_fence = re.compile(r'^\s*(```|~~~)')
+    in_code = False
+    # Track whether we are currently inside a list rooted at col 0
+    # (indent == 0).  Used to distinguish genuine nested items from orphaned ones.
+    col0_list_active = False  # True when a col-0 list item was seen recently
+
+    i = 0
+    while i < len(result):
+        line = result[i]
+
+        # Track code fences so we never touch code block content
+        if code_fence.match(line):
+            in_code = not in_code
+            i += 1
+            continue
+        if in_code:
+            i += 1
+            continue
+
+        stripped = line.strip()
+
+        # A blank line doesn't reset col0_list_active — the sub-items
+        # following a paragraph may be separated by a blank line.
+        if not stripped:
+            i += 1
+            continue
+
+        m = list_head.match(line)
+        if m:
+            indent = len(m.group(1))
+            if indent == 0:
+                col0_list_active = True
+            i += 1
+            continue
+
+        # Non-blank, non-list line.  Reset col0_list_active on headings or
+        # any unindented non-list content (new section resets context).
+        if line[0:1] not in (' ', '\t'):
+            col0_list_active = False
+
+            # Check whether this is a candidate paragraph: col-0, not a
+            # heading, not a code fence, not frontmatter.
+            if stripped.startswith('#') or stripped.startswith('---') or stripped.startswith(':::'):
+                i += 1
+                continue
+
+            # Look ahead: find the first non-blank line after this paragraph
+            j = i + 1
+            while j < len(result) and not result[j].strip():
+                j += 1
+            if j >= len(result):
+                i += 1
+                continue
+
+            # That next non-blank line must be a list item at exactly 4-space indent
+            next_m = list_head.match(result[j])
+            if not next_m or len(next_m.group(1)) != 4:
+                i += 1
+                continue
+
+            # Collect the full run of 4-space-indented list items (and their
+            # indented continuation lines / images / notes) that follow.
+            run_end = j  # exclusive end of the run
+            k = j
+            while k < len(result):
+                kline = result[k]
+                if not kline.strip():
+                    # Peek past blank: if next non-blank is still 4-space list, include
+                    nk = k + 1
+                    while nk < len(result) and not result[nk].strip():
+                        nk += 1
+                    if nk < len(result) and list_head.match(result[nk]) and len(list_head.match(result[nk]).group(1)) >= 4:
+                        k = nk
+                        run_end = nk + 1
+                        continue
+                    break
+                km = list_head.match(kline)
+                if km:
+                    ki = len(km.group(1))
+                    if ki >= 4:
+                        run_end = k + 1
+                        k += 1
+                        continue
+                    else:
+                        break  # list item at lower indent ends this block
+                if kline[0:1] in (' ', '\t') and len(kline) - len(kline.lstrip()) >= 4:
+                    # Continuation line (image, note, text) indented >= 4
+                    run_end = k + 1
+                    k += 1
+                    continue
+                break
+
+            if run_end <= j:
+                i += 1
+                continue
+
+            # Apply the fix: add "* " to the paragraph, de-indent 4→2 for the block
+            result[i] = '* ' + line.rstrip()
+            for idx in range(j, run_end):
+                rline = result[idx]
+                if rline.strip() == '':
+                    continue
+                # Remove exactly 2 spaces of indent (4→2 for list items, 6→4 for images etc.)
+                if rline.startswith('    '):
+                    result[idx] = '  ' + rline[4:]
+                elif rline.startswith('  '):
+                    result[idx] = rline[2:]
+            _log(f"  [fix] Line {i + 1}: promoted dt/dd paragraph to list item, de-indented {run_end - j} continuation line(s)")
+            fixes += 1
+            col0_list_active = True
+            i += 1
+            continue
+
+        i += 1
+
+    if fixes:
+        return result
+    return lines
+
+
 def fix_note_indent(lines: List[str], md_note: dict, prod_note: dict) -> List[str]:
     """Fix a note's indentation based on prod structure."""
     start = md_note["line"]
@@ -2794,10 +2946,12 @@ def _strip_sup_sub(text: str) -> str:
 
 
 def _norm_para(text: str) -> str:
-    """Normalize paragraph text for comparison â€” strip markdown/HTML formatting."""
-    t = re.sub(r'!\[([^\]]*)\]\([^)]*\)', '', text)      # ![alt](url) â†’ strip entirely
-    t = re.sub(r'\[([^\]]*)\]\([^)]*\)', r'\1', t)       # [text](url) â†’ text
-    t = re.sub(r'\*\*(.+?)\*\*', r'\1', t)              # **bold** â†’ bold (lazy: allows * inside)
+    “””Normalize paragraph text for comparison â€” strip markdown/HTML formatting.”””
+    t = re.sub(r’^\s*[-*+]\s+’, ‘’, text)                # strip leading list marker (* / - / +)
+    t = re.sub(r’^\s*\d+\.\s+’, ‘’, t)                  # strip leading numbered list marker
+    t = re.sub(r’!\[([^\]]*)\]\([^)]*\)’, ‘’, t)        # ![alt](url) â†’ strip entirely
+    t = re.sub(r’\[([^\]]*)\]\([^)]*\)’, r’\1’, t)       # [text](url) â†’ text
+    t = re.sub(r’\*\*(.+?)\*\*’, r’\1’, t)              # **bold** â†’ bold (lazy: allows * inside)
     t = re.sub(r'`([^`]*)`', r'\1', t)                  # `code` â†’ code
     t = _strip_sup_sub(t)                                 # handle <sup>/<sub>
     t = re.sub(r'<[^>]+>', '', t)                        # strip remaining HTML tags
@@ -3720,6 +3874,11 @@ def fix_md_file(md_path: str, prod_url: str, dry_run: bool = False) -> dict:
     lines = fix_split_list_item_descriptions(lines)
     split_desc_fixes = 1 if lines != old_lines else 0
 
+    # Pre-processing: fix dt/dd paragraphs followed by 4-space-indented list items (no prod needed)
+    old_lines = lines[:]
+    lines = fix_dt_list_indent(lines)
+    dt_list_fixes = 1 if lines != old_lines else 0
+
     # Fetch and parse prod HTML
     _log("  Fetching prod HTML...")
     container = fetch_prod_html(prod_url)
@@ -3733,7 +3892,7 @@ def fix_md_file(md_path: str, prod_url: str, dry_run: bool = False) -> dict:
     stats = {"note_indent": 0, "note_paragraphs": 0, "image_indent": 0,
              "orphaned_para": 0, "table_indent": 0,
              "para_indent": 0, "collapsed_list": collapsed_list_fixes,
-             "split_desc": split_desc_fixes,
+             "split_desc": split_desc_fixes, "dt_list": dt_list_fixes,
              "frontmatter_title": frontmatter_title_fixes,
              "code_entities": code_entity_fixes, "encoding": encoding_fixes,
              "expand_table": expand_table_fixes, "assignment": assignment_fixes, "errors": 0}
