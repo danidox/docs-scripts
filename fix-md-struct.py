@@ -1422,6 +1422,20 @@ def extract_prod_structure(container: Tag) -> dict:
             if not already:
                 structure["paragraphs"].append({"text": text})
 
+    # Handle <div class="shortdesc"> — DITA intro paragraph rendered without a
+    # child <p> tag. These are top-level and never inside admonitions, so no
+    # skip check is needed beyond the standard dedup guard.
+    for div in container.find_all("div", class_="shortdesc"):
+        if _is_para_skip(div):
+            continue
+        for text in _extract_inline_segs(div):
+            if text.startswith('`') and text.endswith('`'):
+                continue
+            text_norm = re.sub(r'\s+', '', text.lower())
+            if not any(re.sub(r'\s+', '', p["text"].lower()) == text_norm
+                       for p in structure["paragraphs"]):
+                structure["paragraphs"].append({"text": text})
+
     # Handle <div class="section"> with bare text nodes (no child <p>).
     # Extract ALL inline text segments between block elements.
     # No heading guard needed: the segment extractor only collects NavigableString
