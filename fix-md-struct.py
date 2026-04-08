@@ -3217,13 +3217,15 @@ def _extract_all_text_content(structure: dict) -> set:
     return content
 
 
-def _content_exists_in_format(text: str, structure: dict, exclude_tables: bool = False) -> bool:
+def _content_exists_in_format(text: str, structure: dict, exclude_tables: bool = False,
+                               only_lists: bool = False) -> bool:
     """Check if given normalized text exists in structure (any format).
 
     Args:
         text: Normalized text to search for
         structure: MD or prod structure dict
         exclude_tables: If True, don't search in tables (for table content checks)
+        only_lists: If True, search only in list_items (skip paragraphs, tables, li_paragraphs)
 
     Returns:
         True if text found in paragraphs, lists, or tables (unless excluded)
@@ -3253,17 +3255,18 @@ def _content_exists_in_format(text: str, structure: dict, exclude_tables: bool =
             return True
         return False
 
-    # Check paragraphs
-    for para in structure.get("paragraphs", []):
-        para_norm = _norm_para(para.get("text", ""))
-        if _text_matches(text, para_norm):
-            return True
-        # Also handle combined prod paragraphs (e.g. image between two sentences):
-        # prod may wrap "Sentence A. [img] Sentence B." in one <div class="p">,
-        # while MD has them as separate paragraphs. If the structure paragraph's
-        # text is a prefix of the search text, the content exists.
-        if len(para_norm) >= 20 and text.startswith(para_norm):
-            return True
+    if not only_lists:
+        # Check paragraphs
+        for para in structure.get("paragraphs", []):
+            para_norm = _norm_para(para.get("text", ""))
+            if _text_matches(text, para_norm):
+                return True
+            # Also handle combined prod paragraphs (e.g. image between two sentences):
+            # prod may wrap "Sentence A. [img] Sentence B." in one <div class="p">,
+            # while MD has them as separate paragraphs. If the structure paragraph's
+            # text is a prefix of the search text, the content exists.
+            if len(para_norm) >= 20 and text.startswith(para_norm):
+                return True
 
     # Check lists
     for item in structure.get("list_items", []):
@@ -3271,25 +3274,26 @@ def _content_exists_in_format(text: str, structure: dict, exclude_tables: bool =
         if _text_matches(text, item_norm):
             return True
 
-    # Check li_paragraphs (block elements inside <li> that are not the list head)
-    for li_p in structure.get("li_paragraphs", []):
-        li_p_norm = _norm_para(li_p.get("text", ""))
-        if _text_matches(text, li_p_norm):
-            return True
+    if not only_lists:
+        # Check li_paragraphs (block elements inside <li> that are not the list head)
+        for li_p in structure.get("li_paragraphs", []):
+            li_p_norm = _norm_para(li_p.get("text", ""))
+            if _text_matches(text, li_p_norm):
+                return True
 
-    # Check tables (unless excluded)
-    if not exclude_tables:
-        for table in structure.get("tables", []):
-            caption_norm = _norm_para(table.get("caption_text", ""))
-            if _text_matches(text, caption_norm):
-                return True
-            table_preview = _norm_para(table.get("text_preview", ""))
-            if _text_matches(text, table_preview):
-                return True
-            for h in table.get("headers", []):
-                h_norm = _norm_para(h)
-                if _text_matches(text, h_norm):
+        # Check tables (unless excluded)
+        if not exclude_tables:
+            for table in structure.get("tables", []):
+                caption_norm = _norm_para(table.get("caption_text", ""))
+                if _text_matches(text, caption_norm):
                     return True
+                table_preview = _norm_para(table.get("text_preview", ""))
+                if _text_matches(text, table_preview):
+                    return True
+                for h in table.get("headers", []):
+                    h_norm = _norm_para(h)
+                    if _text_matches(text, h_norm):
+                        return True
 
     return False
 
@@ -3682,19 +3686,27 @@ def compare_structure(md: dict, prod: dict) -> List[str]:
             still_unmatched_md.append(md_p)
 
     still_unmatched_prod = []
+    prod_para_as_md_list = []   # prod paragraph whose content is a list item in MD
     for prod_p in prod_unmatched:
         # Code-only prod paragraphs (start with backtick) correspond to code
-        # fences in MD which are never extracted as paragraphs â€" suppress them
+        # fences in MD which are never extracted as paragraphs -- suppress them
         if prod_p["text"].strip().startswith('`'):
             continue
         # Image-led prod paragraphs often represent icon + label patterns that
         # MD may express as list items or plain text instead of a paragraph.
-        if prod_p["text"].strip().startswith('![]('):
+        if prod_p["text"].strip().startswith('![]('): 
             continue
         pn = _norm_para(prod_p["text"])
-        # Check if this content exists in MD in any format
-        if not _content_exists_in_format(pn, md, exclude_tables=False):
+        # Check where this content exists in MD
+        in_md_lists = _content_exists_in_format(pn, md, only_lists=True)
+        in_md_any = _content_exists_in_format(pn, md, exclude_tables=False)
+        if in_md_lists:
+            # Content is a list item in MD but a paragraph in prod -- format mismatch
+            prod_para_as_md_list.append(prod_p)
+        elif not in_md_any:
+            # Truly not found anywhere in MD
             still_unmatched_prod.append(prod_p)
+        # else: found in MD paragraphs/tables -- suppress (silent match)
 
     # Only flag truly missing content (not just reformatted content)
     # Try to pair unmatched MDâ†"prod paragraphs to show "wording differs" instead
@@ -3753,6 +3765,10 @@ def compare_structure(md: dict, prod: dict) -> List[str]:
             warnings.append(
                 f"  [struct] Paragraph in prod not found in MD: "
                 f"\"{prod_p['text'][:60]}...\"")
+    for prod_p in prod_para_as_md_list:
+        warnings.append(
+            f"  [struct] Paragraph in prod, list item in MD: "
+            f"\"{prod_p['text'][:60]}...\"")
 
     return warnings
 
