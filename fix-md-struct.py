@@ -2243,14 +2243,19 @@ def fix_dt_list_indent(lines: List[str]) -> List[str]:
             while k < len(result):
                 kline = result[k]
                 if not kline.strip():
-                    # Peek past blank: if next non-blank is still 4-space list, include
+                    # Peek past blank: if next non-blank is still indented >= 4
+                    # (list item, image, continuation text), include it in the run.
                     nk = k + 1
                     while nk < len(result) and not result[nk].strip():
                         nk += 1
-                    if nk < len(result) and list_head.match(result[nk]) and len(list_head.match(result[nk]).group(1)) >= 4:
-                        k = nk
-                        run_end = nk + 1
-                        continue
+                    if nk < len(result):
+                        next_nblank = result[nk]
+                        next_indent = len(next_nblank) - len(next_nblank.lstrip())
+                        nm = list_head.match(next_nblank)
+                        if next_indent >= 4 or (nm and len(nm.group(1)) >= 4):
+                            run_end = nk + 1
+                            k = nk + 1
+                            continue
                     break
                 km = list_head.match(kline)
                 if km:
