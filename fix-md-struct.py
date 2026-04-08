@@ -2077,6 +2077,73 @@ def fix_collapsed_list_items(lines: List[str]) -> List[str]:
     return lines
 
 
+def fix_split_list_item_descriptions(lines: List[str]) -> List[str]:
+    """Merge split list-item descriptions back onto the parent item line.
+
+    md_maker sometimes wraps a long list item so the ' - description' part
+    falls onto the next line as an indented sub-item:
+
+        * `Name` `LongType<...>`
+          - The description.
+
+    should be:
+
+        * `Name` `LongType<...>` - The description.
+
+    Only merges when there is exactly one such continuation line — multiple
+    indented dash-items indicate a genuine sub-list and are left untouched.
+    """
+    result = lines[:]
+    fixes = 0
+    i = 0
+    while i < len(result):
+        line = result[i]
+        m = re.match(r'^(\s*)([*\-+]) (.+)', line)
+        if not m:
+            i += 1
+            continue
+        indent = len(m.group(1))
+        marker = m.group(2)
+        item_text = m.group(3).rstrip()
+
+        # Find the next non-blank line
+        j = i + 1
+        while j < len(result) and result[j].strip() == '':
+            j += 1
+        if j >= len(result):
+            i += 1
+            continue
+
+        # Must be a dash sub-item at exactly indent+2
+        sub_m = re.match(r'^(\s*)- (.+)', result[j])
+        if not sub_m or len(sub_m.group(1)) != indent + 2:
+            i += 1
+            continue
+        sub_text = sub_m.group(2).rstrip()
+
+        # Check the line after the sub-item — if another item sits at the same
+        # sub-indent level, this is a real sub-list; leave it alone.
+        k = j + 1
+        while k < len(result) and result[k].strip() == '':
+            k += 1
+        if k < len(result):
+            after_m = re.match(r'^(\s*)[-*+] ', result[k])
+            if after_m and len(after_m.group(1)) == indent + 2:
+                i += 1
+                continue
+
+        # Merge: fold the sub-item onto the parent line and remove it.
+        result[i] = f"{' ' * indent}{marker} {item_text} - {sub_text}"
+        del result[i + 1:j + 1]
+        _log(f"  [fix] Line {i + 1}: merged split list-item description onto parent")
+        fixes += 1
+        # Re-check same index in case the next line is also a split item.
+
+    if fixes:
+        return result
+    return lines
+
+
 def fix_note_indent(lines: List[str], md_note: dict, prod_note: dict) -> List[str]:
     """Fix a note's indentation based on prod structure."""
     start = md_note["line"]
@@ -3648,6 +3715,11 @@ def fix_md_file(md_path: str, prod_url: str, dry_run: bool = False) -> dict:
     lines = fix_collapsed_list_items(lines)
     collapsed_list_fixes = 1 if lines != old_lines else 0
 
+    # Pre-processing: merge split list-item descriptions (no prod needed)
+    old_lines = lines[:]
+    lines = fix_split_list_item_descriptions(lines)
+    split_desc_fixes = 1 if lines != old_lines else 0
+
     # Fetch and parse prod HTML
     _log("  Fetching prod HTML...")
     container = fetch_prod_html(prod_url)
@@ -3661,6 +3733,7 @@ def fix_md_file(md_path: str, prod_url: str, dry_run: bool = False) -> dict:
     stats = {"note_indent": 0, "note_paragraphs": 0, "image_indent": 0,
              "orphaned_para": 0, "table_indent": 0,
              "para_indent": 0, "collapsed_list": collapsed_list_fixes,
+             "split_desc": split_desc_fixes,
              "frontmatter_title": frontmatter_title_fixes,
              "code_entities": code_entity_fixes, "encoding": encoding_fixes,
              "expand_table": expand_table_fixes, "assignment": assignment_fixes, "errors": 0}
