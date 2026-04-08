@@ -3581,7 +3581,7 @@ def compare_structure(md: dict, prod: dict) -> List[str]:
         # If all prod table content exists in MD (in any format), don't flag count mismatch
         missing_table_content = False
         for content_snippet in all_prod_table_content:
-            if not _content_exists_in_format(content_snippet, md, exclude_tables=False):
+            if not _content_exists_in_format(content_snippet, md, exclude_tables=True):
                 missing_table_content = True
                 break
 
