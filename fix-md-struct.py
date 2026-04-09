@@ -2965,7 +2965,7 @@ def fix_misindented_paragraphs(lines: List[str], md: dict, prod: dict) -> Tuple[
 
         # Check if this paragraph appears in prod's li_paragraphs
         search_prefix = para_norm[:40]
-        if not any(search_prefix in pn or pn[:40] in para_norm for pn in prod_li_norms):
+        if not any(pn.startswith(search_prefix) or pn[:40] in para_norm for pn in prod_li_norms):
             continue
 
         # Find preceding list item's continuation indent (stops at headings)
