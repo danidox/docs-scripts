@@ -2376,9 +2376,14 @@ def fix_note_indent(lines: List[str], md_note: dict, prod_note: dict) -> List[st
     else:
         # Note should be top-level (indent 0)
         if current_indent > 0:
-            _log(f"  [fix] Note at line {start + 1}: indent {current_indent} -> 0 (top-level)")
-            for k in range(start, min(end + 1, len(lines))):
-                lines[k] = lines[k].lstrip(' ')
+            # Before de-indenting, check MD context. If the note is between list
+            # items (list context exists), prod simply failed to detect it as in_list
+            # (escaped <li>). Leave it at its current indent rather than stripping it.
+            ctx = _find_list_cont_indent(lines, start)
+            if ctx is None:
+                _log(f"  [fix] Note at line {start + 1}: indent {current_indent} -> 0 (top-level)")
+                for k in range(start, min(end + 1, len(lines))):
+                    lines[k] = lines[k].lstrip(' ')
 
     return lines
 
@@ -2688,8 +2693,13 @@ def fix_image_indent(lines: List[str], md_img: dict, prod_img: dict) -> List[str
             lines[line_idx] = ' ' * target_indent + stripped
     else:
         if current_indent > 0:
-            _log(f"  [fix] Image at line {line_idx + 1}: indent {current_indent} -> 0 (top-level)")
-            lines[line_idx] = lines[line_idx].lstrip(' ')
+            # Before de-indenting, check MD context. If the image is between list
+            # items (list context exists), prod simply failed to detect it as in_list
+            # (escaped <li>). Leave it at its current indent rather than stripping it.
+            ctx = _find_list_cont_indent(lines, line_idx)
+            if ctx is None:
+                _log(f"  [fix] Image at line {line_idx + 1}: indent {current_indent} -> 0 (top-level)")
+                lines[line_idx] = lines[line_idx].lstrip(' ')
         else:
             # Fallback: prod did not detect this image as inside a list because
             # the image also escaped its <li> in the prod HTML. Check MD context:
@@ -2940,12 +2950,17 @@ def _find_list_cont_indent(lines: List[str], target_line: int) -> Optional[int]:
     """
     list_head = re.compile(r'^(\s*)([-*+]|\d+\.)\s+')
     heading_re = re.compile(r'^#{1,6}\s+')
+    note_fence_re = re.compile(r'^\s*:::')
     for k in range(target_line - 1, -1, -1):
         prev = lines[k]
         if not prev.strip():
             continue
         if heading_re.match(prev):
             return None  # heading closes list context
+        # ::: fences (note/tip/important openers and closers) can appear inside
+        # list items -- treat them as transparent, keep scanning.
+        if note_fence_re.match(prev):
+            continue
         m = list_head.match(prev)
         if m:
             base = len(m.group(1))
