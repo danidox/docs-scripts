@@ -2633,6 +2633,22 @@ def fix_image_indent(lines: List[str], md_img: dict, prod_img: dict) -> List[str
         if current_indent > 0:
             _log(f"  [fix] Image at line {line_idx + 1}: indent {current_indent} -> 0 (top-level)")
             lines[line_idx] = lines[line_idx].lstrip(' ')
+        else:
+            # Fallback: prod did not detect this image as inside a list because
+            # the image also escaped its <li> in the prod HTML. Check MD context:
+            # if the nearest preceding non-blank line is indented, the image is
+            # mid-list and should be re-indented to match the list continuation.
+            prev_raw = ""
+            for _k in range(line_idx - 1, -1, -1):
+                if lines[_k].strip():
+                    prev_raw = lines[_k]
+                    break
+            if prev_raw and prev_raw[0:1] in (" ", "\t"):
+                target_indent = _find_list_cont_indent(lines, line_idx)
+                if target_indent is not None:
+                    _log(f"  [fix] Image at line {line_idx + 1}: indent 0 -> {target_indent} (context)")
+                    stripped = lines[line_idx].lstrip(' ')
+                    lines[line_idx] = ' ' * target_indent + stripped
 
     return lines
 
