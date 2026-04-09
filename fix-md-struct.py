@@ -2046,13 +2046,22 @@ def fix_multiline_frontmatter_title(lines: List[str]) -> List[str]:
 
     return result
 
-def fix_collapsed_list_items(lines: List[str]) -> List[str]:
+def fix_collapsed_list_items(lines: List[str], prod: dict = None) -> List[str]:
     """Split collapsed list items that were merged onto a single line.
 
     md_maker sometimes collapses multiple list items onto one line, e.g.:
         * Item one* Item two* Item three
     This function detects the pattern and splits them back into separate lines.
+    If prod structure is provided, the full line text is checked against prod list
+    items before splitting -- if it matches a single prod item, the * markers are
+    italic formatting (not list separators) and the line is left intact.
     """
+    # Build set of normalized prod list item texts for fast lookup
+    prod_list_norms = set()
+    if prod:
+        for item in prod.get("list_items", []):
+            prod_list_norms.add(_normalize(item["text"]))
+
     fixes = 0
     result = []
     for idx, line in enumerate(lines):
@@ -2077,6 +2086,19 @@ def fix_collapsed_list_items(lines: List[str]) -> List[str]:
         if not matches:
             result.append(line)
             continue
+        # If prod structure is available, check whether the full line text matches
+        # a single prod list item. If yes, the * is italic formatting -- skip split.
+        # Strip MD inline formatting (backticks, bold/italic, links) before comparing
+        # because prod text is plain while MD text retains formatting markers.
+        if prod_list_norms:
+            plain_rest = re.sub(r'`([^`]+)`', r'\1', rest)
+            plain_rest = re.sub(r'\*{1,3}([^*]+)\*{1,3}', r'\1', plain_rest)
+            plain_rest = re.sub(r'\[([^\]]+)\]\([^)]+\)', r'\1', plain_rest)
+            full_norm = _normalize(plain_rest)
+            if full_norm in prod_list_norms:
+                _log(f"  [skip] Line {idx + 1}: full text matches prod list item, not a collapsed list")
+                result.append(line)
+                continue
         # Split at each match position
         prefix = ' ' * indent
         prev_end = 0
@@ -3936,11 +3958,6 @@ def fix_md_file(md_path: str, prod_url: str, dry_run: bool = False) -> dict:
     if encoding_fixes:
         _log(f"  [fix] Fixed encoding corruption (Windows-1252 mis-decode) in {encoding_fixes} line(s)")
 
-    # Pre-processing: split collapsed list items (no prod needed)
-    old_lines = lines[:]
-    lines = fix_collapsed_list_items(lines)
-    collapsed_list_fixes = 1 if lines != old_lines else 0
-
     # Pre-processing: merge split list-item descriptions (no prod needed)
     old_lines = lines[:]
     lines = fix_split_list_item_descriptions(lines)
@@ -3959,6 +3976,10 @@ def fix_md_file(md_path: str, prod_url: str, dry_run: bool = False) -> dict:
         return {"errors": 1}
 
     prod = extract_prod_structure(container)
+    # Split collapsed list items now that prod is available (needed to detect italic * vs list *)
+    old_lines = lines[:]
+    lines = fix_collapsed_list_items(lines, prod)
+    collapsed_list_fixes = 1 if lines != old_lines else 0
     md = parse_md_structure(lines)
 
     stats = {"note_indent": 0, "note_paragraphs": 0, "image_indent": 0,
