@@ -1455,16 +1455,17 @@ def extract_prod_structure(container: Tag) -> dict:
                        for p in structure["paragraphs"]):
                 structure["paragraphs"].append({"text": text})
 
-    # Handle <dl> definition lists â€" combine <dt>/<dd> pairs as "term : definition"
+    # Handle <dl> definition lists -- combine <dt>/<dd> pairs as "term : definition"
     # to match the MD format (e.g. "DisplayName : Retrieves the display name...")
+    # Walk <dl> direct children instead of recursive find_all to avoid mispairing
+    # when a <dd> contains a nested <dl> (its <dt>/<dd> would be included in the
+    # recursive results and cause zip() to align the wrong pairs).
     for dl in container.find_all("dl"):
         if _is_para_skip(dl):
             continue
-        dts = dl.find_all("dt")
-        dds = dl.find_all("dd")
-        for dt, dd in zip(dts, dds):
-            dt_text = re.sub(r'\s+', ' ', _html_to_md_text(dt).strip())
-            dd_text = re.sub(r'\s+', ' ', _html_to_md_text(dd).strip())
+        def _emit_dt_dd(dt_el, dd_el):
+            dt_text = re.sub(r'\s+', ' ', _html_to_md_text(dt_el).strip())
+            dd_text = re.sub(r'\s+', ' ', _html_to_md_text(dd_el).strip())
             if dt_text and dd_text:
                 text = f"{dt_text} : {dd_text}"
                 if len(text) > 10:
@@ -1472,6 +1473,25 @@ def extract_prod_structure(container: Tag) -> dict:
                     if not any(re.sub(r'\s+', '', p["text"].lower()) == text_norm
                                for p in structure["paragraphs"]):
                         structure["paragraphs"].append({"text": text})
+        # Support both <dlentry>-wrapped and flat <dt>/<dd> sequences
+        dlentries = dl.find_all("dlentry", recursive=False)
+        if dlentries:
+            for entry in dlentries:
+                dt_el = entry.find("dt")
+                dd_el = entry.find("dd")
+                if dt_el and dd_el:
+                    _emit_dt_dd(dt_el, dd_el)
+        else:
+            # Flat: walk direct children pairing each <dt> with its next <dd>
+            current_dt = None
+            for child in dl.children:
+                if not hasattr(child, "name"):
+                    continue
+                if child.name == "dt":
+                    current_dt = child
+                elif child.name == "dd" and current_dt is not None:
+                    _emit_dt_dd(current_dt, child)
+                    current_dt = None  # consume: one <dd> per <dt>
 
     # A prod sentence should not be classified both as a top-level paragraph and
     # as a list-continuation paragraph. When that happens, later fix phases can
@@ -2144,6 +2164,13 @@ def fix_split_list_item_descriptions(lines: List[str]) -> List[str]:
     return lines
 
 
+# Matches a bare <dt>/<dd> paragraph: backtick param name + type link + " : "
+# e.g. `value` [ResultsValue](url) : description
+#      **`index`** [Int](url) : description
+_DT_DD_BARE_RE = re.compile(
+    r'^(\*\*`[^`]+`\*\*|`[^`]+`)\s+\[[^\]]+\]\([^)]+\).*\s:\s'
+)
+
 def fix_dt_list_indent(lines: List[str]) -> List[str]:
     """Fix broken <dt>/<dd> list structure produced by md_maker.
 
@@ -2233,6 +2260,14 @@ def fix_dt_list_indent(lines: List[str]) -> List[str]:
             # That next non-blank line must be a list item at exactly 4-space indent
             next_m = list_head.match(result[j])
             if not next_m or len(next_m.group(1)) != 4:
+                # No 4-space sub-items follow. If the line itself matches the bare
+                # dt/dd pattern (param name + type link + " : " description), promote
+                # it to a list item without any de-indenting.
+                if _DT_DD_BARE_RE.match(stripped):
+                    result[i] = '* ' + line.rstrip()
+                    _log(f"  [fix] Line {i + 1}: promoted bare dt/dd paragraph to list item")
+                    fixes += 1
+                    col0_list_active = True
                 i += 1
                 continue
 
