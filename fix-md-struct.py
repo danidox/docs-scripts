@@ -1455,6 +1455,19 @@ def extract_prod_structure(container: Tag) -> dict:
                        for p in structure["paragraphs"]):
                 structure["paragraphs"].append({"text": text})
 
+    # Handle <div class="example"> — DITA example blocks rendered without a
+    # wrapping <p>. Their text maps to plain paragraphs in MD, so include them
+    # in the structural comparison to avoid false-positive "paragraph not in prod"
+    # warnings.
+    for div in container.find_all("div", class_="example"):
+        if _is_para_skip(div):
+            continue
+        for text in _extract_inline_segs(div):
+            text_norm = re.sub(r'\s+', '', text.lower())
+            if not any(re.sub(r'\s+', '', p["text"].lower()) == text_norm
+                       for p in structure["paragraphs"]):
+                structure["paragraphs"].append({"text": text})
+
     # Handle <dl> definition lists -- combine <dt>/<dd> pairs as "term : definition"
     # to match the MD format (e.g. "DisplayName : Retrieves the display name...")
     # Walk <dl> direct children instead of recursive find_all to avoid mispairing
