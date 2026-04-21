@@ -1455,6 +1455,19 @@ def extract_prod_structure(container: Tag) -> dict:
                        for p in structure["paragraphs"]):
                 structure["paragraphs"].append({"text": text})
 
+    # Handle <div class="example"> — DITA example blocks rendered without a
+    # wrapping <p>. Their text maps to plain paragraphs in MD, so include them
+    # in the structural comparison to avoid false-positive "paragraph not in prod"
+    # warnings.
+    for div in container.find_all("div", class_="example"):
+        if _is_para_skip(div):
+            continue
+        for text in _extract_inline_segs(div):
+            text_norm = re.sub(r'\s+', '', text.lower())
+            if not any(re.sub(r'\s+', '', p["text"].lower()) == text_norm
+                       for p in structure["paragraphs"]):
+                structure["paragraphs"].append({"text": text})
+
     # Handle <dl> definition lists -- combine <dt>/<dd> pairs as "term : definition"
     # to match the MD format (e.g. "DisplayName : Retrieves the display name...")
     # Walk <dl> direct children instead of recursive find_all to avoid mispairing
@@ -1599,7 +1612,7 @@ def parse_md_structure(lines: List[str]) -> dict:
 
         # Track list items
         m_list = list_head.match(line)
-        if m_list:
+        if m_list and not _is_italic_continuation(lines, i):
             indent = len(m_list.group(1))
             marker = m_list.group(2)
             # Pop items at same or deeper indent
@@ -1942,7 +1955,7 @@ def parse_md_structure(lines: List[str]) -> dict:
             # Skip indented content (table rows, continuation lines, etc.)
             if lines[k][0:1] in (' ', '\t'):
                 continue
-            if list_head_re.match(lines[k]):
+            if list_head_re.match(lines[k]) and not _is_italic_continuation(lines, k):
                 prev_list_line = k
                 break
             # Anything else at indent 0 (heading, fence, bare paragraph) closes context
@@ -1962,7 +1975,7 @@ def parse_md_structure(lines: List[str]) -> dict:
             # Skip images and indented content â€" they don't break list context
             if stripped_k.startswith('![') or lines[k][0:1] in (' ', '\t'):
                 continue
-            if list_head_re.match(lines[k]):
+            if list_head_re.match(lines[k]) and not _is_italic_continuation(lines, k):
                 next_list_line = k
             elif heading_re.match(lines[k]):
                 next_is_heading = True
@@ -2071,6 +2084,10 @@ def fix_collapsed_list_items(lines: List[str], prod: dict = None) -> List[str]:
         if not re.match(r'^[*\-+] ', stripped):
             result.append(line)
             continue
+        # Skip lines that are italic continuations from the previous line
+        if _is_italic_continuation(lines, idx):
+            result.append(line)
+            continue
         marker_char = stripped[0]
         current_marker = marker_char + ' '
         # Find collapsed markers: non-* char followed by "* " (for * lists).
@@ -2099,6 +2116,21 @@ def fix_collapsed_list_items(lines: List[str], prod: dict = None) -> List[str]:
                 _log(f"  [skip] Line {idx + 1}: full text matches prod list item, not a collapsed list")
                 result.append(line)
                 continue
+        # Filter out split candidates where the '*' closes an italic span opened
+        # earlier in the same line.  Count single '*' (excluding '**'/'***') in
+        # the text preceding the match; an odd count means the span is still open
+        # and this '*' closes it — it is not a list-item boundary.
+        def _is_closing_italic_match(text: str, pos: int) -> bool:
+            before = text[:pos]
+            before = re.sub(r'\*{3}', '\x00\x00\x00', before)  # *** → placeholder
+            before = re.sub(r'\*{2}', '\x00\x00', before)       # **  → placeholder
+            return before.count('*') % 2 == 1
+
+        matches = [m for m in matches if not _is_closing_italic_match(rest, m.start())]
+        if not matches:
+            result.append(line)
+            continue
+
         # Split at each match position
         prefix = ' ' * indent
         prev_end = 0
@@ -2943,6 +2975,26 @@ def _split_md_table_cells(row_text: str) -> List[str]:
 
 
 
+_OPEN_ITALIC_RE = re.compile(r'(?<!\*)\*\w+$')
+
+
+def _is_italic_continuation(lines: List[str], line_idx: int) -> bool:
+    """Return True if the line at line_idx starts with '* ' but is actually
+    the continuation of an italic span that was left open at the end of the
+    previous non-blank line (e.g. '...the *sister\\n* activity,...').
+
+    Only applies to '*' markers — '-' and '+' have no italic ambiguity.
+    """
+    line = lines[line_idx]
+    if not re.match(r'^\s*\* ', line):
+        return False
+    for k in range(line_idx - 1, -1, -1):
+        prev = lines[k]
+        if prev.strip():
+            return bool(_OPEN_ITALIC_RE.search(prev))
+    return False
+
+
 def _find_list_cont_indent(lines: List[str], target_line: int) -> Optional[int]:
     """Find the continuation indent for the list item preceding target_line.
 
@@ -2963,6 +3015,9 @@ def _find_list_cont_indent(lines: List[str], target_line: int) -> Optional[int]:
             continue
         m = list_head.match(prev)
         if m:
+            if _is_italic_continuation(lines, k):
+                # This '*' is the tail of a broken italic span, not a list marker
+                continue
             base = len(m.group(1))
             marker_len = len(m.group(2)) + 1
             return base + marker_len
@@ -4077,6 +4132,17 @@ def fix_md_file(md_path: str, prod_url: str, dry_run: bool = False) -> dict:
 
     # Re-parse after note fixes (they can add/remove lines, shifting all subsequent line numbers)
     md = parse_md_structure(lines)
+
+    # Fix misindented paragraphs (e.g. figure captions) BEFORE image fixes.
+    # fix_image_indent's fallback heuristic checks whether the line immediately
+    # preceding an image is indented; if a figure caption at col-0 sits between
+    # the image and the rest of the list continuation, the gate fails and the
+    # image is skipped.  Running fix_misindented_paragraphs here ensures those
+    # captions are already at the correct indent by the time fix_image_indent runs.
+    lines, n_para_pre = fix_misindented_paragraphs(lines, md, prod)
+    stats["para_indent"] += n_para_pre
+    if n_para_pre:
+        md = parse_md_structure(lines)
 
     # Fix images
     img_pairs = match_images(md["images"], prod["images"])
