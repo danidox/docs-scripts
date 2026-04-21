@@ -1,0 +1,11 @@
+{
+  "productName": "Orchestrator",
+  "productNameSlug": "orchestrator",
+  "release": "2023.10",
+  "publicationType": "Api Guide",
+  "publicationTypeSlug": "api-guide",
+  "deliveryOption": "Standalone",
+  "deliveryOptionSlug": "standalone",
+  "description": "Your product description",
+  "displayOrder": "1"
+}

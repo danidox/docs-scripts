@@ -1,0 +1,11 @@
+{
+  "productName": "Assistant",
+  "productNameSlug": "assistant",
+  "release": "latest",
+  "publicationType": "Release Notes",
+  "publicationTypeSlug": "release-notes",
+  "deliveryOption": "Standalone",
+  "deliveryOptionSlug": "standalone",
+  "description": "Your product description",
+  "displayOrder": "1"
+}

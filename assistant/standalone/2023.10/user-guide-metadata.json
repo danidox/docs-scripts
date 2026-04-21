@@ -1,0 +1,11 @@
+{
+  "productName": "Assistant",
+  "productNameSlug": "assistant",
+  "release": "2023.10",
+  "publicationType": "User Guide",
+  "publicationTypeSlug": "user-guide",
+  "deliveryOption": "Standalone",
+  "deliveryOptionSlug": "standalone",
+  "description": "Your product description",
+  "displayOrder": "1"
+}

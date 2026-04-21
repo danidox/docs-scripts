@@ -1,0 +1,9 @@
+Tables Curation Summary
+Mode: WRITE
+Root: C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\automation-suite\automation-suite\2023.10\installation-guide
+
+Files  updated: 1
+Total table blocks  modified: 1
+
+Details:
+ - C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\automation-suite\automation-suite\2023.10\installation-guide\updating-the-cluster-configuration.md  (1 table)

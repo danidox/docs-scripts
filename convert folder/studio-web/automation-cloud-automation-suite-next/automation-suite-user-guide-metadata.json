@@ -1,0 +1,12 @@
+{
+  "productName": "Studio Web",
+  "productNameSlug": "studio-web",
+  "release": "latest",
+  "publicationType": "User Guide",
+  "publicationTypeSlug": "user-guide",
+  "deliveryOption": "Automation Suite",
+  "deliveryOptionSlug": "automation-suite",
+  "description": "Start your automation journey",
+  "visible": false,
+  "displayOrder": "1"
+}

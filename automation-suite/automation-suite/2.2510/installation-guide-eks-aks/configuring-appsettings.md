@@ -1,0 +1,45 @@
+---
+title: "Configuring appSettings"
+visible: true
+slug: "configuring-appsettings"
+---
+
+The Orchestrator configuration consists of an array of Kubernetes config maps and secrets that are loaded in a specific order, and placed in the `appSettings` section of config maps.
+
+The latest configuration is loaded from the `orchestrator-customconfig` config map. Any newly loaded configuration overwrites all existing settings that have the same key.
+
+To display the current custom Orchestrator configuration, use the `config orchestrator get-config` uipathctl command:
+
+```
+uipathctl config orchestrator get-config --app-settings
+{
+  "key":"value"
+}
+```
+
+The `uipathctl` commands needed for configuring `appSettings` are:
+
+* `uipathctl config orchestrator get-config --app-settings`- This exports the current configuration in a key-value pair json file, ready for editing. You can read more about it [here](https://docs.uipath.com/automation-suite/automation-suite/2.2510/reference-guide/uipathctl-config-orchestrator-get-config).
+* `uipathctl config orchestrator update-config --app-settings appsettings.json`- This updates the configuration with your changes. You can read more about it [here](https://docs.uipath.com/automation-suite/automation-suite/2.2510/reference-guide/uipathctl-config-orchestrator-update-config).
+1. Export the current custom `appSettings` configuration to a json file using this command:
+   ```
+   uipathctl config orchestrator get-config --app-settings > appsettings.json
+   ```
+2. Edit the exported `appsettings.json` file as needed. You can add, remove, or change any of its settings.
+
+Example:
+
+   ```
+   {
+       "Triggers.DisableWhenFailedCount": "20",
+       "Triggers.JobsCountStrategy": "NoLimit"
+   }
+   ```
+   :::note
+   You must export the file again every time you need to make a change, since the update overwrites all settings.
+   :::
+3. Update the `appSettings` configuration using this command:
+   ```
+   uipathctl config orchestrator update-config --app-settings appsettings.json
+   orchestrator config updated
+   ```

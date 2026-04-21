@@ -1,0 +1,16 @@
+{
+  "productName": "Assistant",
+  "productNameSlug": "assistant",
+  "release": "latest",
+  "publicationType": "Release Notes",
+  "publicationTypeSlug": "release-notes",
+  "deliveryOption": "Automation Cloud",
+  "deliveryOptionSlug": "automation-cloud",
+  "description": "Your product description",
+  "displayOrder": "1",
+  "enabledEnvironments": {
+    "dev": true,
+    "stg": false,
+    "prod": false
+  }
+}

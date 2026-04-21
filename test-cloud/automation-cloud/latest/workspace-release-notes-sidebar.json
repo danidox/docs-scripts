@@ -1,0 +1,134 @@
+{
+  "title": "Test Cloud workspace release notes",
+  "children": [
+    {
+      "title": "Test Cloud",
+      "children": [
+        {
+          "title": "2026",
+          "href": "/test-cloud/automation-cloud/latest/workspace-release-notes/2026.md",
+          "children": [
+            {
+              "title": "March 2026",
+              "href": "/test-cloud/automation-cloud/latest/workspace-release-notes/march-2026.md"
+            },
+            {
+              "title": "February 2026",
+              "href": "/test-cloud/automation-cloud/latest/workspace-release-notes/february-2026.md"
+            },
+            {
+              "title": "January 2026",
+              "href": "/test-cloud/automation-cloud/latest/workspace-release-notes/january-2026.md"
+            }
+          ]
+        },
+        {
+          "title": "2025",
+          "href": "/test-cloud/automation-cloud/latest/workspace-release-notes/2025.md",
+          "children": [
+            {
+              "title": "December 2025",
+              "href": "/test-cloud/automation-cloud/latest/workspace-release-notes/december-2025.md"
+            },
+            {
+              "title": "November 2025",
+              "href": "/test-cloud/automation-cloud/latest/workspace-release-notes/november-2025.md"
+            },
+            {
+              "title": "October 2025",
+              "href": "/test-cloud/automation-cloud/latest/workspace-release-notes/october-2025.md"
+            },
+            {
+              "title": "September 2025",
+              "href": "/test-cloud/automation-cloud/latest/workspace-release-notes/september-2025.md"
+            },
+            {
+              "title": "August 2025",
+              "href": "/test-cloud/automation-cloud/latest/workspace-release-notes/august-2025.md"
+            },
+            {
+              "title": "July 2025",
+              "href": "/test-cloud/automation-cloud/latest/workspace-release-notes/july-2025.md"
+            },
+            {
+              "title": "June 2025",
+              "href": "/test-cloud/automation-cloud/latest/workspace-release-notes/june-2025.md"
+            },
+            {
+              "title": "May 2025",
+              "href": "/test-cloud/automation-cloud/latest/workspace-release-notes/may-2025.md"
+            },
+            {
+              "title": "April 2025",
+              "href": "/test-cloud/automation-cloud/latest/workspace-release-notes/april-2025.md"
+            },
+            {
+              "title": "March 2025",
+              "href": "/test-cloud/automation-cloud/latest/workspace-release-notes/march-2025.md"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Test Cloud Public Sector",
+      "children": [
+        {
+          "title": "2026",
+          "href": "/test-cloud/automation-cloud/latest/workspace-release-notes/public-sector-2026.md",
+          "children": [
+            {
+              "title": "February 2026",
+              "href": "/test-cloud/automation-cloud/latest/workspace-release-notes/public-sector-february-2026.md"
+            }
+          ]
+        },
+        {
+          "title": "2025",
+          "href": "/test-cloud/automation-cloud/latest/workspace-release-notes/public-sector-2025.md",
+          "children": [
+            {
+              "title": "December 2025",
+              "href": "/test-cloud/automation-cloud/latest/workspace-release-notes/public-sector-december-2025.md"
+            },
+            {
+              "title": "November 2025",
+              "href": "/test-cloud/automation-cloud/latest/workspace-release-notes/public-sector-november-2025.md"
+            },
+            {
+              "title": "October 2025",
+              "href": "/test-cloud/automation-cloud/latest/workspace-release-notes/public-sector-october-2025.md"
+            },
+            {
+              "title": "September 2025",
+              "href": "/test-cloud/automation-cloud/latest/workspace-release-notes/public-sector-september-2025.md"
+            },
+            {
+              "title": "August 2025",
+              "href": "/test-cloud/automation-cloud/latest/workspace-release-notes/public-sector-august-2025.md"
+            },
+            {
+              "title": "July 2025",
+              "href": "/test-cloud/automation-cloud/latest/workspace-release-notes/public-sector-july-2025.md"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Test Cloud Dedicated",
+      "children": [
+        {
+          "title": "2026",
+          "href": "/test-cloud/automation-cloud/latest/workspace-release-notes/dedicated-2026.md",
+          "children": [
+            {
+              "title": "February 2026",
+              "href": "/test-cloud/automation-cloud/latest/workspace-release-notes/dedicated-february-2026.md"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,167 @@
+===== Run started at 2025-10-13 12:22:00 =====
+[2025-10-13 12:22:17] Processed: C:\Users\daniela.craciun\OneDrive - UiPath\1docs-as-code\uipath-docs-content\converted-content\integration-service\automation-cloud\latest\automation-cloud-user-guide-sidebar.json
+  Would replace connections.mdx -> connections-acloud.mdx
+  Would replace connectors.mdx -> connectors-acloud.mdx
+  Would replace exploring-notifications.mdx -> exploring-notifications-acloud.mdx
+  Would replace how-to.mdx -> how-to-acloud.mdx
+  Would replace integration-service-licensing-overview.mdx -> integration-service-licensing-overview-acloud.mdx
+  Would replace introduction.mdx -> introduction-acloud.mdx
+  Would replace salesforce-setup-for-the-agentforce--flows-connector.mdx -> salesforce-setup-for-the-agentforce--flows-connector-acloud.mdx
+  Would replace triggers.mdx -> triggers-acloud.mdx
+  Would replace uipath-amazon-webservices-authentication.mdx -> uipath-amazon-webservices-authentication-acloud.mdx
+  Would replace uipath-asana-asana-authentication.mdx -> uipath-asana-asana-authentication-acloud.mdx
+  Would replace uipath-atlassian-jira-authentication.mdx -> uipath-atlassian-jira-authentication-acloud.mdx
+  Would replace uipath-box-box-authentication.mdx -> uipath-box-box-authentication-acloud.mdx
+  Would replace uipath-campaignmonitor-campaignmonitor-authentication.mdx -> uipath-campaignmonitor-campaignmonitor-authentication-acloud.mdx
+  Would replace uipath-cisco-webexteams-authentication.mdx -> uipath-cisco-webexteams-authentication-acloud.mdx
+  Would replace uipath-coupa-coupa-authentication.mdx -> uipath-coupa-coupa-authentication-acloud.mdx
+  Would replace uipath-databricks-databricks.mdx -> uipath-databricks-databricks-acloud.mdx
+  Would replace uipath-docusign-docusign-authentication.mdx -> uipath-docusign-docusign-authentication-acloud.mdx
+  Would replace uipath-dropbox-dropbox-authentication.mdx -> uipath-dropbox-dropbox-authentication-acloud.mdx
+  Would replace uipath-freshworks-freshbooks-authentication.mdx -> uipath-freshworks-freshbooks-authentication-acloud.mdx
+  Would replace uipath-getresponse-getresponse-authentication.mdx -> uipath-getresponse-getresponse-authentication-acloud.mdx
+  Would replace uipath-google-docs-authentication.mdx -> uipath-google-docs-authentication-acloud.mdx
+  Would replace uipath-google-drive-authentication.mdx -> uipath-google-drive-authentication-acloud.mdx
+  Would replace uipath-google-forms-authentication.mdx -> uipath-google-forms-authentication-acloud.mdx
+  Would replace uipath-google-gmail-authentication.mdx -> uipath-google-gmail-authentication-acloud.mdx
+  Would replace uipath-google-sheets-authentication.mdx -> uipath-google-sheets-authentication-acloud.mdx
+  Would replace uipath-google-tasks-authentication.mdx -> uipath-google-tasks-authentication-acloud.mdx
+  Would replace uipath-hubspot-crm-authentication.mdx -> uipath-hubspot-crm-authentication-acloud.mdx
+  Would replace uipath-hubspot-marketing-authentication.mdx -> uipath-hubspot-marketing-authentication-acloud.mdx
+  Would replace uipath-icertis-icertis-authentication.mdx -> uipath-icertis-icertis-authentication-acloud.mdx
+  Would replace uipath-logmein-gotowebinar-authentication.mdx -> uipath-logmein-gotowebinar-authentication-acloud.mdx
+  Would replace uipath-mailchimp-mailchimp-authentication.mdx -> uipath-mailchimp-mailchimp-authentication-acloud.mdx
+  Would replace uipath-microsoft-dynamicscrm-authentication.mdx -> uipath-microsoft-dynamicscrm-authentication-acloud.mdx
+  Would replace uipath-microsoft-github-authentication.mdx -> uipath-microsoft-github-authentication-acloud.mdx
+  Would replace uipath-microsoft-onedrive-authentication.mdx -> uipath-microsoft-onedrive-authentication-acloud.mdx
+  Would replace uipath-microsoft-outlook365-authentication.mdx -> uipath-microsoft-outlook365-authentication-acloud.mdx
+  Would replace uipath-microsoft-powerautomate-authentication.mdx -> uipath-microsoft-powerautomate-authentication-acloud.mdx
+  Would replace uipath-microsoft-teams-authentication.mdx -> uipath-microsoft-teams-authentication-acloud.mdx
+  Would replace uipath-salesforce-marketingcloud-authentication.mdx -> uipath-salesforce-marketingcloud-authentication-acloud.mdx
+  Would replace uipath-salesforce-sfdc-authentication.mdx -> uipath-salesforce-sfdc-authentication-acloud.mdx
+  Would replace uipath-salesforce-slack-authentication.mdx -> uipath-salesforce-slack-authentication-acloud.mdx
+  Would replace uipath-sap-bapi.mdx -> uipath-sap-bapi-acloud.mdx
+  Would replace uipath-sap-bapi-authentication.mdx -> uipath-sap-bapi-authentication-acloud.mdx
+  Would replace uipath-sap-c4cv2-events.mdx -> uipath-sap-c4cv2-events-acloud.mdx
+  Would replace uipath-snowflake-cortex.mdx -> uipath-snowflake-cortex-acloud.mdx
+  Would replace uipath-snowflake-snowflake-authentication.mdx -> uipath-snowflake-snowflake-authentication-acloud.mdx
+  Would replace uipath-stripe-stripe-authentication.mdx -> uipath-stripe-stripe-authentication-acloud.mdx
+  Would replace uipath-zoho-mail-authentication.mdx -> uipath-zoho-mail-authentication-acloud.mdx
+  Would replace unified-pricing-licensing.mdx -> unified-pricing-licensing-acloud.mdx
+  Total replacements: 48
+
+Total replacements across all files: 48
+===== Run ended =====
+
+===== Run started at 2025-10-13 12:22:37 =====
+[2025-10-13 12:22:42] Processed: C:\Users\daniela.craciun\OneDrive - UiPath\1docs-as-code\uipath-docs-content\converted-content\integration-service\automation-cloud\latest\automation-cloud-user-guide-sidebar.json
+  Replaced connections.mdx -> connections-acloud.mdx
+  Replaced connectors.mdx -> connectors-acloud.mdx
+  Replaced exploring-notifications.mdx -> exploring-notifications-acloud.mdx
+  Replaced how-to.mdx -> how-to-acloud.mdx
+  Replaced integration-service-licensing-overview.mdx -> integration-service-licensing-overview-acloud.mdx
+  Replaced introduction.mdx -> introduction-acloud.mdx
+  Replaced salesforce-setup-for-the-agentforce--flows-connector.mdx -> salesforce-setup-for-the-agentforce--flows-connector-acloud.mdx
+  Replaced triggers.mdx -> triggers-acloud.mdx
+  Replaced uipath-amazon-webservices-authentication.mdx -> uipath-amazon-webservices-authentication-acloud.mdx
+  Replaced uipath-asana-asana-authentication.mdx -> uipath-asana-asana-authentication-acloud.mdx
+  Replaced uipath-atlassian-jira-authentication.mdx -> uipath-atlassian-jira-authentication-acloud.mdx
+  Replaced uipath-box-box-authentication.mdx -> uipath-box-box-authentication-acloud.mdx
+  Replaced uipath-campaignmonitor-campaignmonitor-authentication.mdx -> uipath-campaignmonitor-campaignmonitor-authentication-acloud.mdx
+  Replaced uipath-cisco-webexteams-authentication.mdx -> uipath-cisco-webexteams-authentication-acloud.mdx
+  Replaced uipath-coupa-coupa-authentication.mdx -> uipath-coupa-coupa-authentication-acloud.mdx
+  Replaced uipath-databricks-databricks.mdx -> uipath-databricks-databricks-acloud.mdx
+  Replaced uipath-docusign-docusign-authentication.mdx -> uipath-docusign-docusign-authentication-acloud.mdx
+  Replaced uipath-dropbox-dropbox-authentication.mdx -> uipath-dropbox-dropbox-authentication-acloud.mdx
+  Replaced uipath-freshworks-freshbooks-authentication.mdx -> uipath-freshworks-freshbooks-authentication-acloud.mdx
+  Replaced uipath-getresponse-getresponse-authentication.mdx -> uipath-getresponse-getresponse-authentication-acloud.mdx
+  Replaced uipath-google-docs-authentication.mdx -> uipath-google-docs-authentication-acloud.mdx
+  Replaced uipath-google-drive-authentication.mdx -> uipath-google-drive-authentication-acloud.mdx
+  Replaced uipath-google-forms-authentication.mdx -> uipath-google-forms-authentication-acloud.mdx
+  Replaced uipath-google-gmail-authentication.mdx -> uipath-google-gmail-authentication-acloud.mdx
+  Replaced uipath-google-sheets-authentication.mdx -> uipath-google-sheets-authentication-acloud.mdx
+  Replaced uipath-google-tasks-authentication.mdx -> uipath-google-tasks-authentication-acloud.mdx
+  Replaced uipath-hubspot-crm-authentication.mdx -> uipath-hubspot-crm-authentication-acloud.mdx
+  Replaced uipath-hubspot-marketing-authentication.mdx -> uipath-hubspot-marketing-authentication-acloud.mdx
+  Replaced uipath-icertis-icertis-authentication.mdx -> uipath-icertis-icertis-authentication-acloud.mdx
+  Replaced uipath-logmein-gotowebinar-authentication.mdx -> uipath-logmein-gotowebinar-authentication-acloud.mdx
+  Replaced uipath-mailchimp-mailchimp-authentication.mdx -> uipath-mailchimp-mailchimp-authentication-acloud.mdx
+  Replaced uipath-microsoft-dynamicscrm-authentication.mdx -> uipath-microsoft-dynamicscrm-authentication-acloud.mdx
+  Replaced uipath-microsoft-github-authentication.mdx -> uipath-microsoft-github-authentication-acloud.mdx
+  Replaced uipath-microsoft-onedrive-authentication.mdx -> uipath-microsoft-onedrive-authentication-acloud.mdx
+  Replaced uipath-microsoft-outlook365-authentication.mdx -> uipath-microsoft-outlook365-authentication-acloud.mdx
+  Replaced uipath-microsoft-powerautomate-authentication.mdx -> uipath-microsoft-powerautomate-authentication-acloud.mdx
+  Replaced uipath-microsoft-teams-authentication.mdx -> uipath-microsoft-teams-authentication-acloud.mdx
+  Replaced uipath-salesforce-marketingcloud-authentication.mdx -> uipath-salesforce-marketingcloud-authentication-acloud.mdx
+  Replaced uipath-salesforce-sfdc-authentication.mdx -> uipath-salesforce-sfdc-authentication-acloud.mdx
+  Replaced uipath-salesforce-slack-authentication.mdx -> uipath-salesforce-slack-authentication-acloud.mdx
+  Replaced uipath-sap-bapi.mdx -> uipath-sap-bapi-acloud.mdx
+  Replaced uipath-sap-bapi-authentication.mdx -> uipath-sap-bapi-authentication-acloud.mdx
+  Replaced uipath-sap-c4cv2-events.mdx -> uipath-sap-c4cv2-events-acloud.mdx
+  Replaced uipath-snowflake-cortex.mdx -> uipath-snowflake-cortex-acloud.mdx
+  Replaced uipath-snowflake-snowflake-authentication.mdx -> uipath-snowflake-snowflake-authentication-acloud.mdx
+  Replaced uipath-stripe-stripe-authentication.mdx -> uipath-stripe-stripe-authentication-acloud.mdx
+  Replaced uipath-zoho-mail-authentication.mdx -> uipath-zoho-mail-authentication-acloud.mdx
+  Replaced unified-pricing-licensing.mdx -> unified-pricing-licensing-acloud.mdx
+  Total replacements: 48
+
+[2025-10-13 12:22:55] Processed: C:\Users\daniela.craciun\OneDrive - UiPath\1docs-as-code\uipath-docs-content\converted-content\integration-service\automation-suite\latest\automation-suite-user-guide-sidebar.json
+  Replaced connections.mdx -> connections-asuite.mdx
+  Replaced connectors.mdx -> connectors-asuite.mdx
+  Replaced exploring-notifications.mdx -> exploring-notifications-asuite.mdx
+  Replaced how-to.mdx -> how-to-asuite.mdx
+  Replaced integration-service-licensing-overview.mdx -> integration-service-licensing-overview-asuite.mdx
+  Replaced introduction.mdx -> introduction-asuite.mdx
+  Replaced salesforce-setup-for-the-agentforce--flows-connector.mdx -> salesforce-setup-for-the-agentforce--flows-connector-asuite.mdx
+  Replaced triggers.mdx -> triggers-asuite.mdx
+  Replaced uipath-amazon-webservices-authentication.mdx -> uipath-amazon-webservices-authentication-asuite.mdx
+  Replaced uipath-asana-asana-authentication.mdx -> uipath-asana-asana-authentication-asuite.mdx
+  Replaced uipath-atlassian-jira-authentication.mdx -> uipath-atlassian-jira-authentication-asuite.mdx
+  Replaced uipath-box-box-authentication.mdx -> uipath-box-box-authentication-asuite.mdx
+  Replaced uipath-campaignmonitor-campaignmonitor-authentication.mdx -> uipath-campaignmonitor-campaignmonitor-authentication-asuite.mdx
+  Replaced uipath-cisco-webexteams-authentication.mdx -> uipath-cisco-webexteams-authentication-asuite.mdx
+  Replaced uipath-coupa-coupa-authentication.mdx -> uipath-coupa-coupa-authentication-asuite.mdx
+  Replaced uipath-databricks-databricks.mdx -> uipath-databricks-databricks-asuite.mdx
+  Replaced uipath-docusign-docusign-authentication.mdx -> uipath-docusign-docusign-authentication-asuite.mdx
+  Replaced uipath-dropbox-dropbox-authentication.mdx -> uipath-dropbox-dropbox-authentication-asuite.mdx
+  Replaced uipath-freshworks-freshbooks-authentication.mdx -> uipath-freshworks-freshbooks-authentication-asuite.mdx
+  Replaced uipath-getresponse-getresponse-authentication.mdx -> uipath-getresponse-getresponse-authentication-asuite.mdx
+  Replaced uipath-google-docs-authentication.mdx -> uipath-google-docs-authentication-asuite.mdx
+  Replaced uipath-google-drive-authentication.mdx -> uipath-google-drive-authentication-asuite.mdx
+  Replaced uipath-google-gmail-authentication.mdx -> uipath-google-gmail-authentication-asuite.mdx
+  Replaced uipath-google-sheets-authentication.mdx -> uipath-google-sheets-authentication-asuite.mdx
+  Replaced uipath-google-tasks-authentication.mdx -> uipath-google-tasks-authentication-asuite.mdx
+  Replaced uipath-hubspot-crm-authentication.mdx -> uipath-hubspot-crm-authentication-asuite.mdx
+  Replaced uipath-hubspot-marketing-authentication.mdx -> uipath-hubspot-marketing-authentication-asuite.mdx
+  Replaced uipath-logmein-gotowebinar-authentication.mdx -> uipath-logmein-gotowebinar-authentication-asuite.mdx
+  Replaced uipath-mailchimp-mailchimp-authentication.mdx -> uipath-mailchimp-mailchimp-authentication-asuite.mdx
+  Replaced uipath-microsoft-github-authentication.mdx -> uipath-microsoft-github-authentication-asuite.mdx
+  Replaced uipath-microsoft-onedrive-authentication.mdx -> uipath-microsoft-onedrive-authentication-asuite.mdx
+  Replaced uipath-microsoft-outlook365-authentication.mdx -> uipath-microsoft-outlook365-authentication-asuite.mdx
+  Replaced uipath-microsoft-teams-authentication.mdx -> uipath-microsoft-teams-authentication-asuite.mdx
+  Replaced uipath-salesforce-marketingcloud-authentication.mdx -> uipath-salesforce-marketingcloud-authentication-asuite.mdx
+  Replaced uipath-salesforce-slack-authentication.mdx -> uipath-salesforce-slack-authentication-asuite.mdx
+  Replaced uipath-sap-bapi.mdx -> uipath-sap-bapi-asuite.mdx
+  Replaced uipath-sap-bapi-authentication.mdx -> uipath-sap-bapi-authentication-asuite.mdx
+  Replaced uipath-snowflake-cortex.mdx -> uipath-snowflake-cortex-asuite.mdx
+  Replaced uipath-snowflake-snowflake-authentication.mdx -> uipath-snowflake-snowflake-authentication-asuite.mdx
+  Replaced uipath-stripe-stripe-authentication.mdx -> uipath-stripe-stripe-authentication-asuite.mdx
+  Replaced uipath-zoho-mail-authentication.mdx -> uipath-zoho-mail-authentication-asuite.mdx
+  Replaced unified-pricing-licensing.mdx -> unified-pricing-licensing-asuite.mdx
+  Total replacements: 42
+
+Total replacements across all files: 90
+===== Run ended =====
+
+===== Run started at 2025-10-13 12:35:17 =====
+[2025-10-13 12:36:25] Processed: C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\playground\automation-ops\automation-suite\latest\automation-suite-user-guide-sidebar.json
+  Replaced introduction.mdx -> introduction-asuite.mdx
+  Total replacements: 1
+
+[2025-10-13 12:37:14] Processed: C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\playground\automation-ops\automation-cloud\latest\automation-cloud-user-guide-sidebar.json
+  Replaced deploy-governance-policies.mdx -> deploy-governance-policies-acloud.mdx
+  Total replacements: 1
+
+Total replacements across all files: 2
+===== Run ended =====
+

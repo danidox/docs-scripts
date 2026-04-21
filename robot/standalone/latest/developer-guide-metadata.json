@@ -1,0 +1,11 @@
+{
+  "productName": "Robot",
+  "productNameSlug": "robot",
+  "release": "latest",
+  "publicationType": "Developer Guide",
+  "publicationTypeSlug": "developer-guide",
+  "deliveryOption": "Standalone",
+  "deliveryOptionSlug": "standalone",
+  "description": "Your product description",
+  "displayOrder": "1"
+}

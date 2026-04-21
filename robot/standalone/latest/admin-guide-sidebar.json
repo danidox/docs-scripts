@@ -1,0 +1,397 @@
+{
+  "title": "Robot admin guide",
+  "children": [
+    {
+      "title": "Getting started",
+      "children": [
+        {
+          "title": "Introduction to UiPath Robot",
+          "href": "/robot/standalone/latest/admin-guide/introduction-to-uipath-robot.md"
+        }
+      ]
+    },
+    {
+      "title": "Understanding UiPath Robot",
+      "children": [
+        {
+          "title": "Attended vs. unattended",
+          "href": "/robot/standalone/latest/admin-guide/attended-vs-unattended.md",
+          "children": [
+            {
+              "title": "Attended automations",
+              "href": "/robot/standalone/latest/admin-guide/attended-automations.md"
+            },
+            {
+              "title": "Unattended automations",
+              "href": "/robot/standalone/latest/admin-guide/unattended-automations.md"
+            }
+          ]
+        },
+        {
+          "title": "Robot components",
+          "href": "/robot/standalone/latest/admin-guide/robot-components.md",
+          "children": [
+            {
+              "title": "Robot Service",
+              "href": "/robot/standalone/latest/admin-guide/service.md"
+            },
+            {
+              "title": "Robot Executor",
+              "href": "/robot/standalone/latest/admin-guide/robot-executor.md"
+            },
+            {
+              "title": "Robot Command Line Interface",
+              "href": "/robot/standalone/latest/admin-guide/command-line-interface.md"
+            },
+            {
+              "title": "Update Service",
+              "href": "/robot/standalone/latest/admin-guide/update-service.md"
+            },
+            {
+              "title": "RobotAPI",
+              "href": "/robot/standalone/latest/admin-guide/robot-api.md"
+            },
+            {
+              "title": "RobotJS",
+              "href": "/robot/standalone/latest/admin-guide/about-the-robot-javascript-sdk.md"
+            },
+            {
+              "title": "Packages and libraries",
+              "href": "/robot/standalone/latest/admin-guide/packages.md"
+            }
+          ]
+        },
+        {
+          "title": "Service Mode vs. User Mode",
+          "href": "/robot/standalone/latest/admin-guide/according-to-deployment.md"
+        },
+        {
+          "title": "Installation models",
+          "href": "/robot/standalone/latest/admin-guide/installation-models.md",
+          "children": [
+            {
+              "title": "Installing on Windows OS",
+              "href": "/robot/standalone/latest/admin-guide/windows-installations.md"
+            },
+            {
+              "title": "Installing on Mac",
+              "href": "/robot/standalone/latest/admin-guide/mac-installation.md"
+            },
+            {
+              "title": "Installing on Linux",
+              "href": "/robot/standalone/latest/admin-guide/docker-installation.md"
+            }
+          ]
+        },
+        {
+          "title": "Job executions",
+          "href": "/robot/standalone/latest/admin-guide/job-executions.md",
+          "children": [
+            {
+              "title": "Windows sessions",
+              "href": "/robot/standalone/latest/admin-guide/windows-sessions.md"
+            },
+            {
+              "title": "Background automations",
+              "href": "/robot/standalone/latest/admin-guide/background-process-automation.md"
+            },
+            {
+              "title": "Linux robots",
+              "href": "/robot/standalone/latest/admin-guide/linux-robots.md"
+            },
+            {
+              "title": "High-Density Robots",
+              "href": "/robot/standalone/latest/admin-guide/high-density-robots.md"
+            },
+            {
+              "title": "Citrix Apps virtualization",
+              "href": "/robot/standalone/latest/admin-guide/robot-citrix-apps-virtualization.md"
+            }
+          ]
+        },
+        {
+          "title": "Robot licensing",
+          "href": "/robot/standalone/latest/admin-guide/according-to-license.md"
+        }
+      ]
+    },
+    {
+      "title": "Installation requirements",
+      "children": [
+        {
+          "title": "Compatibility matrix",
+          "href": "/robot/standalone/latest/admin-guide/about-backward-and-forward-compatibility.md"
+        },
+        {
+          "title": "Hardware and software requirements",
+          "href": "/robot/standalone/latest/admin-guide/hardware-and-software-requirements.md"
+        },
+        {
+          "title": "Configuring networking settings",
+          "href": "/robot/standalone/latest/admin-guide/services-the-robot-connects-to.md"
+        },
+        {
+          "title": "Configuration files",
+          "href": "/robot/standalone/latest/admin-guide/configuration-files.md"
+        }
+      ]
+    },
+    {
+      "title": "Installing robots for unattended automations",
+      "children": [
+        {
+          "title": "Prerequisites",
+          "href": "/robot/standalone/latest/admin-guide/prerequisites-unattended-installation.md",
+          "children": [
+            {
+              "title": "Installing in a custom path",
+              "href": "/robot/standalone/latest/admin-guide/installing-in-a-custom-path.md"
+            }
+          ]
+        },
+        {
+          "title": "Installing with UiPathRobot.msi",
+          "href": "/robot/standalone/latest/admin-guide/installing-with-uipath-robot-msi-unattended.md"
+        },
+        {
+          "title": "Installing with UiPathStudio.msi",
+          "href": "/robot/standalone/latest/admin-guide/installing-with-uipath-studio-msi-unattended.md"
+        },
+        {
+          "title": "Installing with Command Line Interface",
+          "href": "/robot/standalone/latest/admin-guide/installing-with-command-line-interface-unattended.md",
+          "children": [
+            {
+              "title": "Command prompt examples for unattended automations",
+              "href": "/robot/standalone/latest/admin-guide/uipathrobotmsi-command-prompt-examples-unattended.md"
+            }
+          ]
+        },
+        {
+          "title": "Installing using cloud deployment templates",
+          "href": "/robot/standalone/latest/admin-guide/installing-using-deployment-templates-unattended.md",
+          "children": [
+            {
+              "title": "AWS Marketplace deployment",
+              "href": "/robot/standalone/latest/admin-guide/unattended-aws-deployment.md"
+            },
+            {
+              "title": "Azure Marketplace deployment",
+              "href": "/robot/standalone/latest/admin-guide/unattended-azure-marketplace-deployment.md"
+            },
+            {
+              "title": "GCP Marketplace deployment",
+              "href": "/robot/standalone/latest/admin-guide/gcp-marketplace-deployment-unattended.md"
+            }
+          ]
+        },
+        {
+          "title": "Deploying the Robot to multiple machines",
+          "href": "/robot/standalone/latest/admin-guide/deploying-to-multiple-machines-unattended.md"
+        },
+        {
+          "title": "Setting up Linux robots",
+          "href": "/robot/standalone/latest/admin-guide/setting-up-linux-robots.md"
+        },
+        {
+          "title": "Licensing robots for unattended automations",
+          "href": "/robot/standalone/latest/admin-guide/licensing-robots-unattended.md"
+        },
+        {
+          "title": "Updating UiPath Robot",
+          "href": "/robot/standalone/latest/admin-guide/updating-uipath-robot-unattended.md"
+        }
+      ]
+    },
+    {
+      "title": "Configuring robots for unattended automations",
+      "children": [
+        {
+          "title": "Deploying unattended automations",
+          "href": "/robot/standalone/latest/admin-guide/deploying-unattended-automations.md"
+        },
+        {
+          "title": "Connecting robots for unattended automations to Orchestrator",
+          "href": "/robot/standalone/latest/admin-guide/connecting-robots-to-orchestrator-unattended.md"
+        },
+        {
+          "title": "Setting up Windows Server for High-Density Robots",
+          "href": "/robot/standalone/latest/admin-guide/setting-up-windows-server-for-high-density-robots.md"
+        },
+        {
+          "title": "Redirecting robots through a proxy server",
+          "href": "/robot/standalone/latest/admin-guide/redirecting-unattended-robots-through-a-proxy-server.md"
+        },
+        {
+          "title": "Implementing authentication with credential providers",
+          "href": "/robot/standalone/latest/admin-guide/implementing-authentication-with-credential-providers.md"
+        },
+        {
+          "title": "Configuring package signature verification",
+          "href": "/robot/standalone/latest/admin-guide/package-signature-verification.md"
+        },
+        {
+          "title": "Setting up package folders and network paths",
+          "href": "/robot/standalone/latest/admin-guide/setting-up-package-folders-and-network-paths-unattended.md"
+        },
+        {
+          "title": "Configuring activity feeds",
+          "href": "/robot/standalone/latest/admin-guide/configuring-activity-feeds.md"
+        },
+        {
+          "title": "Using EntraID users with multifactor authentication (MFA) for unattended robots",
+          "href": "/robot/standalone/latest/admin-guide/using-entraid-users-with-multifactor-authentication-mfa-with-robots.md"
+        }
+      ]
+    },
+    {
+      "title": "Installing robots for attended automations",
+      "children": [
+        {
+          "title": "Prerequisites",
+          "href": "/robot/standalone/latest/admin-guide/prerequisites-attended-installation.md"
+        },
+        {
+          "title": "Installing with UiPathRobot.msi",
+          "href": "/robot/standalone/latest/admin-guide/installing-with-uipath-robot-msi-attended.md"
+        },
+        {
+          "title": "Installing with UiPathStudio.msi",
+          "href": "/robot/standalone/latest/admin-guide/installing-with-uipath-studio-msi-attended.md"
+        },
+        {
+          "title": "Installing with Command Line",
+          "href": "/robot/standalone/latest/admin-guide/installing-with-command-line-attended.md",
+          "children": [
+            {
+              "title": "Command prompt examples for attended automations",
+              "href": "/robot/standalone/latest/admin-guide/uipathrobotmsi-command-prompt-examples-attended.md"
+            }
+          ]
+        },
+        {
+          "title": "Installing using deployment templates",
+          "href": "/robot/standalone/latest/admin-guide/installing-using-deployment-templates-attended.md"
+        },
+        {
+          "title": "Deploying the Robot to multiple machines",
+          "href": "/robot/standalone/latest/admin-guide/deploying-to-multiple-machines-attended.md"
+        },
+        {
+          "title": "Licensing robots for attended automations",
+          "href": "/robot/standalone/latest/admin-guide/licensing-robots-attended.md"
+        },
+        {
+          "title": "Updating UiPath Robot",
+          "href": "/robot/standalone/latest/admin-guide/updating-uipath-robot-attended.md"
+        }
+      ]
+    },
+    {
+      "title": "Configuring robots for attended automations",
+      "children": [
+        {
+          "title": "Connecting robots for attended automations to Orchestrator",
+          "href": "/robot/standalone/latest/admin-guide/connecting-robots-to-orchestrator-attended.md"
+        },
+        {
+          "title": "Configuring preloaded execution",
+          "href": "/robot/standalone/latest/admin-guide/configuring-preloaded-execution.md"
+        },
+        {
+          "title": "Setting up package folders and network paths",
+          "href": "/robot/standalone/latest/admin-guide/setting-up-package-folders-and-network-paths-attended.md"
+        }
+      ]
+    },
+    {
+      "title": "Integrations",
+      "children": [
+        {
+          "title": "CrowdStrike integration",
+          "href": "/robot/standalone/latest/admin-guide/crowdstrike-integration.md"
+        }
+      ]
+    },
+    {
+      "title": "Governance",
+      "children": [
+        {
+          "title": "Settings for Robot policies",
+          "href": "/robot/standalone/latest/admin-guide/settings-for-robot-policies.md"
+        }
+      ]
+    },
+    {
+      "title": "Troubleshooting",
+      "children": [
+        {
+          "title": "Understanding robot logs",
+          "href": "/robot/standalone/latest/admin-guide/understanding-robot-logs.md",
+          "children": [
+            {
+              "title": "Log levels",
+              "href": "/robot/standalone/latest/admin-guide/logging-levels.md"
+            },
+            {
+              "title": "Log fields",
+              "href": "/robot/standalone/latest/admin-guide/log-fields.md"
+            },
+            {
+              "title": "Log storage",
+              "href": "/robot/standalone/latest/admin-guide/log-storage.md"
+            },
+            {
+              "title": "Managing robot logs",
+              "href": "/robot/standalone/latest/admin-guide/managing-robot-logs.md"
+            },
+            {
+              "title": "Stack trace details",
+              "href": "/robot/standalone/latest/admin-guide/stack-trace-details.md"
+            }
+          ]
+        },
+        {
+          "title": "Robot Service troubleshooting",
+          "href": "/robot/standalone/latest/admin-guide/robot-service-troubleshooting.md"
+        },
+        {
+          "title": "Execution troubleshooting",
+          "href": "/robot/standalone/latest/admin-guide/execution-troubleshooting.md"
+        },
+        {
+          "title": "Recording and Remote Control troubleshooting",
+          "href": "/robot/standalone/latest/admin-guide/recording-and-remote-control-troubleshooting.md"
+        },
+        {
+          "title": "Networking troubleshooting",
+          "href": "/robot/standalone/latest/admin-guide/networking-troubleshooting.md"
+        },
+        {
+          "title": "Connection troubleshooting",
+          "href": "/robot/standalone/latest/admin-guide/connection-troubleshooting.md"
+        },
+        {
+          "title": "Licensing troubleshooting",
+          "href": "/robot/standalone/latest/admin-guide/licensing-troubleshooting.md"
+        },
+        {
+          "title": "Package troubleshooting",
+          "href": "/robot/standalone/latest/admin-guide/package-deployment-troubleshooting.md"
+        },
+        {
+          "title": ".NET troubleshooting",
+          "href": "/robot/standalone/latest/admin-guide/net-troubleshooting.md"
+        },
+        {
+          "title": "Logging troubleshooting",
+          "href": "/robot/standalone/latest/admin-guide/logging-troubleshooting.md"
+        },
+        {
+          "title": "Session troubleshooting",
+          "href": "/robot/standalone/latest/admin-guide/session-troubleshooting.md"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+Tables Curation Summary
+Mode: WRITE
+Root: C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\apps
+
+Files  updated: 11
+Total table blocks  modified: 19
+
+Details:
+ - C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\apps\automation-suite\latest\user-guide\different-types-of-container-controls-and-when-to-use-them.md  (1 table)
+ - C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\apps\automation-suite\latest\user-guide\legacy-versus-vb-expressions.md  (5 tables)
+ - C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\apps\automation-suite\latest\user-guide\licensing.md  (1 table)
+ - C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\apps\automation-suite\latest\user-guide\rule-reset-values.md  (1 table)
+ - C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\apps\automation-suite\latest\user-guide\the-query-builder.md  (1 table)
+ - C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\apps\automation-cloud\latest\user-guide\apps-feature-availability.md  (1 table)
+ - C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\apps\automation-cloud\latest\user-guide\different-types-of-container-controls-and-when-to-use-them.md  (1 table)
+ - C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\apps\automation-cloud\latest\user-guide\legacy-versus-vb-expressions.md  (5 tables)
+ - C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\apps\automation-cloud\latest\user-guide\licensing.md  (1 table)
+ - C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\apps\automation-cloud\latest\user-guide\rule-reset-values.md  (1 table)
+ - C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\apps\automation-cloud\latest\user-guide\the-query-builder.md  (1 table)

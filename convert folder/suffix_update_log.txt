@@ -1,0 +1,192 @@
+===== Run started at 2025-12-13 14:14:07 =====
+[2025-12-13 14:14:20] Processed: C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\convert folder\studio-web\automation-suite\latest\everyone-user-guide-sidebar.json
+  Would replace adding-activities-to-your-workflow.* -> adding-activities-to-your-workflow-asuite.md
+  Would replace apps-in-studio-web.* -> apps-in-studio-web-asuite.md
+  Would replace automation-details.* -> automation-details-asuite.md
+  Would replace changing-the-background-color.* -> changing-the-background-color-asuite.md
+  Would replace configuring-a-project-to-use-your-data.* -> configuring-a-project-to-use-your-data-asuite.md
+  Would replace configuring-activities.* -> configuring-activities-asuite.md
+  Would replace configuring-the-cx-companion-app.* -> configuring-the-cx-companion-app-asuite.md
+  Would replace connecting-rpa-workflows-to-accounts.* -> connecting-rpa-workflows-to-accounts-asuite.md
+  Would replace creating-a-project.* -> creating-a-project-asuite.md
+  Would replace creating-an-rpa-workflow-from-an-idea.* -> creating-an-rpa-workflow-from-an-idea-asuite.md
+  Would replace custom-html.* -> custom-html-asuite.md
+  Would replace customizing-the-font.* -> customizing-the-font-asuite.md
+  Would replace cx-companion-salesforce-plugin.* -> cx-companion-salesforce-plugin-asuite.md
+  Would replace cx-companion-template-overview.* -> cx-companion-template-overview-asuite.md
+  Would replace date-picker.* -> date-picker-asuite.md
+  Would replace debugging-app-projects.* -> debugging-app-projects-asuite.md
+  Would replace designing-an-action-app.* -> designing-an-action-app-asuite.md
+  Would replace designing-app-projects.* -> designing-app-projects-asuite.md
+  Would replace different-types-of-container-controls-and-when-to-use-them.* -> different-types-of-container-controls-and-when-to-use-them-asuite.md
+  Would replace frequently-asked-questions.* -> frequently-asked-questions-asuite.md
+  Would replace governance.* -> governance-asuite.md
+  Would replace guidelines-for-building-accessible-apps.* -> guidelines-for-building-accessible-apps-asuite.md
+  Would replace how-to-start-an-rpa-workflow.* -> how-to-start-an-rpa-workflow-asuite.md
+  Would replace input-controls.* -> input-controls-asuite.md
+  Would replace licensing.* -> licensing-asuite.md
+  Would replace managing-access-to-studio-web.* -> managing-access-to-studio-web-asuite.md
+  Would replace managing-activities.* -> managing-activities-asuite.md
+  Would replace managing-project-files-and-folders.* -> managing-project-files-and-folders-asuite.md
+  Would replace managing-projects.* -> managing-projects-asuite.md
+  Would replace managing-the-data-in-a-project.* -> managing-the-data-in-a-project-asuite.md
+  Would replace opening-a-project-in-studio-desktop.* -> opening-a-project-in-studio-desktop-asuite.md
+  Would replace overview.* -> overview-asuite.md
+  Would replace page.* -> page-asuite.md
+  Would replace passing-valuies-between-activities.* -> passing-valuies-between-activities-asuite.md
+  Would replace prerequisites-for-using-studio-web.* -> prerequisites-for-using-studio-web-asuite.md
+  Would replace preview-activities-and-packages.* -> preview-activities-and-packages-asuite.md
+  Would replace publishing-a-project.* -> publishing-a-project-asuite.md
+  Would replace publishing-deploying-upgrading-app-projects.* -> publishing-deploying-upgrading-app-projects-asuite.md
+  Would replace resizing-your-controls.* -> resizing-your-controls-asuite.md
+  Would replace rich-text-editor.* -> rich-text-editor-asuite.md
+  Would replace running-a-project.* -> running-a-project-asuite.md
+  Would replace set-an-external-context-using-external-events.* -> set-an-external-context-using-external-events-asuite.md
+  Would replace set-up-a-sample-app.* -> set-up-a-sample-app-asuite.md
+  Would replace sharing-and-collaborating-on-projects.* -> sharing-and-collaborating-on-projects-asuite.md
+  Would replace software-requirements.* -> software-requirements-asuite.md
+  Would replace spacing-out-controls.* -> spacing-out-controls-asuite.md
+  Would replace tabs.* -> tabs-asuite.md
+  Would replace the-expression-editor.* -> the-expression-editor-asuite.md
+  Would replace using-file-and-folder-resources.* -> using-file-and-folder-resources-asuite.md
+  Would replace using-ui-automation.* -> using-ui-automation-asuite.md
+  Would replace validation-control.* -> validation-control-asuite.md
+  Would replace validation-control-component-vs-variable.* -> validation-control-component-vs-variable-asuite.md
+  Would replace viewing-deployments.* -> viewing-deployments-asuite.md
+  Would replace viewing-jobs.* -> viewing-jobs-asuite.md
+  Would replace viewing-the-run-output.* -> viewing-the-run-output-asuite.md
+  Would replace working-with-borders.* -> working-with-borders-asuite.md
+  Distinct bases changed: 56, total references updated: 58
+
+Distinct bases changed across all files: 56
+Total references updated across all files: 58
+===== Run ended =====
+
+===== Run started at 2025-12-13 14:15:04 =====
+[2025-12-13 14:15:10] Processed: C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\convert folder\studio-web\automation-suite\latest\everyone-user-guide-sidebar.json
+  Replaced adding-activities-to-your-workflow.* -> adding-activities-to-your-workflow-asuite.md
+  Replaced apps-in-studio-web.* -> apps-in-studio-web-asuite.md
+  Replaced automation-details.* -> automation-details-asuite.md
+  Replaced changing-the-background-color.* -> changing-the-background-color-asuite.md
+  Replaced configuring-a-project-to-use-your-data.* -> configuring-a-project-to-use-your-data-asuite.md
+  Replaced configuring-activities.* -> configuring-activities-asuite.md
+  Replaced configuring-the-cx-companion-app.* -> configuring-the-cx-companion-app-asuite.md
+  Replaced connecting-rpa-workflows-to-accounts.* -> connecting-rpa-workflows-to-accounts-asuite.md
+  Replaced creating-a-project.* -> creating-a-project-asuite.md
+  Replaced creating-an-rpa-workflow-from-an-idea.* -> creating-an-rpa-workflow-from-an-idea-asuite.md
+  Replaced custom-html.* -> custom-html-asuite.md
+  Replaced customizing-the-font.* -> customizing-the-font-asuite.md
+  Replaced cx-companion-salesforce-plugin.* -> cx-companion-salesforce-plugin-asuite.md
+  Replaced cx-companion-template-overview.* -> cx-companion-template-overview-asuite.md
+  Replaced date-picker.* -> date-picker-asuite.md
+  Replaced debugging-app-projects.* -> debugging-app-projects-asuite.md
+  Replaced designing-an-action-app.* -> designing-an-action-app-asuite.md
+  Replaced designing-app-projects.* -> designing-app-projects-asuite.md
+  Replaced different-types-of-container-controls-and-when-to-use-them.* -> different-types-of-container-controls-and-when-to-use-them-asuite.md
+  Replaced frequently-asked-questions.* -> frequently-asked-questions-asuite.md
+  Replaced governance.* -> governance-asuite.md
+  Replaced guidelines-for-building-accessible-apps.* -> guidelines-for-building-accessible-apps-asuite.md
+  Replaced how-to-start-an-rpa-workflow.* -> how-to-start-an-rpa-workflow-asuite.md
+  Replaced input-controls.* -> input-controls-asuite.md
+  Replaced licensing.* -> licensing-asuite.md
+  Replaced managing-access-to-studio-web.* -> managing-access-to-studio-web-asuite.md
+  Replaced managing-activities.* -> managing-activities-asuite.md
+  Replaced managing-project-files-and-folders.* -> managing-project-files-and-folders-asuite.md
+  Replaced managing-projects.* -> managing-projects-asuite.md
+  Replaced managing-the-data-in-a-project.* -> managing-the-data-in-a-project-asuite.md
+  Replaced opening-a-project-in-studio-desktop.* -> opening-a-project-in-studio-desktop-asuite.md
+  Replaced overview.* -> overview-asuite.md
+  Replaced page.* -> page-asuite.md
+  Replaced passing-valuies-between-activities.* -> passing-valuies-between-activities-asuite.md
+  Replaced prerequisites-for-using-studio-web.* -> prerequisites-for-using-studio-web-asuite.md
+  Replaced preview-activities-and-packages.* -> preview-activities-and-packages-asuite.md
+  Replaced publishing-a-project.* -> publishing-a-project-asuite.md
+  Replaced publishing-deploying-upgrading-app-projects.* -> publishing-deploying-upgrading-app-projects-asuite.md
+  Replaced resizing-your-controls.* -> resizing-your-controls-asuite.md
+  Replaced rich-text-editor.* -> rich-text-editor-asuite.md
+  Replaced running-a-project.* -> running-a-project-asuite.md
+  Replaced set-an-external-context-using-external-events.* -> set-an-external-context-using-external-events-asuite.md
+  Replaced set-up-a-sample-app.* -> set-up-a-sample-app-asuite.md
+  Replaced sharing-and-collaborating-on-projects.* -> sharing-and-collaborating-on-projects-asuite.md
+  Replaced software-requirements.* -> software-requirements-asuite.md
+  Replaced spacing-out-controls.* -> spacing-out-controls-asuite.md
+  Replaced tabs.* -> tabs-asuite.md
+  Replaced the-expression-editor.* -> the-expression-editor-asuite.md
+  Replaced using-file-and-folder-resources.* -> using-file-and-folder-resources-asuite.md
+  Replaced using-ui-automation.* -> using-ui-automation-asuite.md
+  Replaced validation-control.* -> validation-control-asuite.md
+  Replaced validation-control-component-vs-variable.* -> validation-control-component-vs-variable-asuite.md
+  Replaced viewing-deployments.* -> viewing-deployments-asuite.md
+  Replaced viewing-jobs.* -> viewing-jobs-asuite.md
+  Replaced viewing-the-run-output.* -> viewing-the-run-output-asuite.md
+  Replaced working-with-borders.* -> working-with-borders-asuite.md
+  Distinct bases changed: 56, total references updated: 58
+
+Distinct bases changed across all files: 56
+Total references updated across all files: 58
+===== Run ended =====
+
+===== Run started at 2025-12-13 14:51:02 =====
+[2025-12-13 14:51:24] Processed: C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\convert folder\studio-web\automation-suite\latest\everyone-user-guide-sidebar_backup.json
+  Replaced adding-activities-to-your-workflow.* -> adding-activities-to-your-workflow-asuite.md
+  Replaced apps-in-studio-web.* -> apps-in-studio-web-asuite.md
+  Replaced automation-details.* -> automation-details-asuite.md
+  Replaced changing-the-background-color.* -> changing-the-background-color-asuite.md
+  Replaced configuring-a-project-to-use-your-data.* -> configuring-a-project-to-use-your-data-asuite.md
+  Replaced configuring-activities.* -> configuring-activities-asuite.md
+  Replaced configuring-the-cx-companion-app.* -> configuring-the-cx-companion-app-asuite.md
+  Replaced connecting-rpa-workflows-to-accounts.* -> connecting-rpa-workflows-to-accounts-asuite.md
+  Replaced creating-a-project.* -> creating-a-project-asuite.md
+  Replaced creating-an-rpa-workflow-from-an-idea.* -> creating-an-rpa-workflow-from-an-idea-asuite.md
+  Replaced custom-html.* -> custom-html-asuite.md
+  Replaced customizing-the-font.* -> customizing-the-font-asuite.md
+  Replaced cx-companion-salesforce-plugin.* -> cx-companion-salesforce-plugin-asuite.md
+  Replaced cx-companion-template-overview.* -> cx-companion-template-overview-asuite.md
+  Replaced date-picker.* -> date-picker-asuite.md
+  Replaced debugging-app-projects.* -> debugging-app-projects-asuite.md
+  Replaced designing-an-action-app.* -> designing-an-action-app-asuite.md
+  Replaced designing-app-projects.* -> designing-app-projects-asuite.md
+  Replaced different-types-of-container-controls-and-when-to-use-them.* -> different-types-of-container-controls-and-when-to-use-them-asuite.md
+  Replaced frequently-asked-questions.* -> frequently-asked-questions-asuite.md
+  Replaced governance.* -> governance-asuite.md
+  Replaced guidelines-for-building-accessible-apps.* -> guidelines-for-building-accessible-apps-asuite.md
+  Replaced how-to-start-an-rpa-workflow.* -> how-to-start-an-rpa-workflow-asuite.md
+  Replaced input-controls.* -> input-controls-asuite.md
+  Replaced licensing.* -> licensing-asuite.md
+  Replaced managing-access-to-studio-web.* -> managing-access-to-studio-web-asuite.md
+  Replaced managing-activities.* -> managing-activities-asuite.md
+  Replaced managing-project-files-and-folders.* -> managing-project-files-and-folders-asuite.md
+  Replaced managing-projects.* -> managing-projects-asuite.md
+  Replaced managing-the-data-in-a-project.* -> managing-the-data-in-a-project-asuite.md
+  Replaced opening-a-project-in-studio-desktop.* -> opening-a-project-in-studio-desktop-asuite.md
+  Replaced overview.* -> overview-asuite.md
+  Replaced page.* -> page-asuite.md
+  Replaced passing-valuies-between-activities.* -> passing-valuies-between-activities-asuite.md
+  Replaced prerequisites-for-using-studio-web.* -> prerequisites-for-using-studio-web-asuite.md
+  Replaced preview-activities-and-packages.* -> preview-activities-and-packages-asuite.md
+  Replaced publishing-a-project.* -> publishing-a-project-asuite.md
+  Replaced publishing-deploying-upgrading-app-projects.* -> publishing-deploying-upgrading-app-projects-asuite.md
+  Replaced resizing-your-controls.* -> resizing-your-controls-asuite.md
+  Replaced rich-text-editor.* -> rich-text-editor-asuite.md
+  Replaced running-a-project.* -> running-a-project-asuite.md
+  Replaced set-an-external-context-using-external-events.* -> set-an-external-context-using-external-events-asuite.md
+  Replaced set-up-a-sample-app.* -> set-up-a-sample-app-asuite.md
+  Replaced sharing-and-collaborating-on-projects.* -> sharing-and-collaborating-on-projects-asuite.md
+  Replaced software-requirements.* -> software-requirements-asuite.md
+  Replaced spacing-out-controls.* -> spacing-out-controls-asuite.md
+  Replaced tabs.* -> tabs-asuite.md
+  Replaced the-expression-editor.* -> the-expression-editor-asuite.md
+  Replaced using-file-and-folder-resources.* -> using-file-and-folder-resources-asuite.md
+  Replaced using-ui-automation.* -> using-ui-automation-asuite.md
+  Replaced validation-control.* -> validation-control-asuite.md
+  Replaced validation-control-component-vs-variable.* -> validation-control-component-vs-variable-asuite.md
+  Replaced viewing-deployments.* -> viewing-deployments-asuite.md
+  Replaced viewing-jobs.* -> viewing-jobs-asuite.md
+  Replaced viewing-the-run-output.* -> viewing-the-run-output-asuite.md
+  Replaced working-with-borders.* -> working-with-borders-asuite.md
+  Distinct bases changed: 56, total references updated: 56
+
+Distinct bases changed across all files: 56
+Total references updated across all files: 56
+===== Run ended =====
+

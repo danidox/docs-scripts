@@ -1,0 +1,11 @@
+{
+  "productName": "Apps",
+  "productNameSlug": "apps",
+  "release": "latest",
+  "publicationType": "User Guide",
+  "publicationTypeSlug": "user-guide",
+  "deliveryOption": "Automation Cloud",
+  "deliveryOptionSlug": "automation-cloud",
+  "description": "Your product description",
+  "displayOrder": "1"
+}

@@ -1,0 +1,13 @@
+Tables Curation Summary
+Mode: WRITE
+Root: C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\robot
+
+Files  updated: 5
+Total table blocks  modified: 6
+
+Details:
+ - C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\robot\standalone\latest\admin-guide\according-to-license.md  (1 table)
+ - C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\robot\standalone\latest\admin-guide\hardware-and-software-requirements.md  (2 tables)
+ - C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\robot\standalone\latest\admin-guide\robot-executor.md  (1 table)
+ - C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\robot\standalone\latest\admin-guide\services-the-robot-connects-to.md  (1 table)
+ - C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\robot\standalone\latest\admin-guide\update-service.md  (1 table)

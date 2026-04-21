@@ -1,0 +1,17 @@
+Tables Curation Summary
+Mode: WRITE
+Root: C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\assistant
+
+Files  updated: 9
+Total table blocks  modified: 14
+
+Details:
+ - C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\assistant\standalone\latest\user-guide\hardware-and-software-requirements.md  (2 tables)
+ - C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\assistant\standalone\latest\user-guide\pip-child-session.md  (1 table)
+ - C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\assistant\standalone\2025.10\user-guide\hardware-and-software-requirements.md  (2 tables)
+ - C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\assistant\standalone\2025.10\user-guide\pip-child-session.md  (1 table)
+ - C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\assistant\standalone\2024.10\user-guide\hardware-and-software-requirements.md  (2 tables)
+ - C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\assistant\standalone\2024.10\user-guide\pip-child-session.md  (1 table)
+ - C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\assistant\standalone\2023.10\user-guide\field-descriptions.md  (2 tables)
+ - C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\assistant\standalone\2023.10\user-guide\hardware-and-software-requirements.md  (2 tables)
+ - C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\assistant\standalone\2023.10\user-guide\pip-child-session.md  (1 table)

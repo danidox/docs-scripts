@@ -1,0 +1,62 @@
+{
+  "title": "Test Cloud admin guide",
+  "children": [
+    {
+      "title": "Getting started with Test Cloud",
+      "children": [
+        {
+          "title": "About Test Cloud",
+          "href": "/test-cloud/automation-cloud/latest/admin-guide/about-test-cloud.md"
+        },
+        {
+          "title": "Available services",
+          "href": "/test-cloud/automation-cloud/latest/admin-guide/available-services-test-cloud.md"
+        },
+        {
+          "title": "Accessing Test Cloud",
+          "href": "/test-cloud/automation-cloud/latest/admin-guide/accessing-test-cloud.md"
+        },
+        {
+          "title": "Getting started",
+          "href": "/test-cloud/automation-cloud/latest/admin-guide/getting-started-with-test-cloud.md"
+        },
+        {
+          "title": "Exploring the user interface",
+          "href": "/test-cloud/automation-cloud/latest/admin-guide/exploring-the-test-cloud-user-interface.md"
+        },
+        {
+          "title": "Licensing",
+          "href": "/test-cloud/automation-cloud/latest/admin-guide/licensing-test-cloud.md"
+        },
+        {
+          "title": "Migrate from Test Suite to Test Cloud",
+          "href": "/test-cloud/automation-cloud/latest/admin-guide/migrate-from-test-suite-to-test-cloud.md"
+        }
+      ]
+    },
+    {
+      "title": "Managing Test Cloud organizations",
+      "children": [
+        {
+          "title": "Overview",
+          "href": "/test-cloud/automation-cloud/latest/admin-guide/managing-test-cloud-overview.md"
+        }
+      ]
+    },
+    {
+      "title": "Working with Test Cloud",
+      "children": [
+        {
+          "title": "Best practices",
+          "href": "/test-cloud/automation-cloud/latest/admin-guide/test-cloud-best-practices.md",
+          "children": [
+            {
+              "title": "Application testing",
+              "href": "/test-cloud/automation-cloud/latest/admin-guide/application-testing-best-practices.md"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

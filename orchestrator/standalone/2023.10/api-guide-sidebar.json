@@ -1,0 +1,352 @@
+{
+  "title": "Orchestrator api guide",
+  "children": [
+    {
+      "title": "Getting started",
+      "children": [
+        {
+          "title": "About OData and references",
+          "href": "/orchestrator/standalone/2023.10/api-guidE/about-odata-and-references.md"
+        },
+        {
+          "title": "Enumerated types",
+          "href": "/orchestrator/standalone/2023.10/api-guidE/enumerated-types.md"
+        },
+        {
+          "title": "Authenticating",
+          "href": "/orchestrator/standalone/2023.10/api-guidE/authenticating.md"
+        },
+        {
+          "title": "Permissions per endpoint",
+          "href": "/orchestrator/standalone/2023.10/api-guidE/permissions-per-endpoint.md"
+        },
+        {
+          "title": "Building API Requests",
+          "href": "/orchestrator/standalone/2023.10/api-guidE/building-api-requests.md"
+        },
+        {
+          "title": "Response codes",
+          "href": "/orchestrator/standalone/2023.10/api-guidE/response-codes.md"
+        },
+        {
+          "title": "Health check endpoints",
+          "href": "/orchestrator/standalone/2023.10/api-guidE/health-check-endpoints.md"
+        }
+      ]
+    },
+    {
+      "title": "Authentication",
+      "children": [
+        {
+          "title": "Authentication methods",
+          "href": "/orchestrator/standalone/2023.10/api-guidE/authentication-methods.md"
+        },
+        {
+          "title": "External Applications (OAuth)",
+          "href": "/orchestrator/standalone/2023.10/api-guidE/accessing-uipath-resources-using-external-applications.md"
+        },
+        {
+          "title": "ROPC (not recommended)",
+          "href": "/orchestrator/standalone/2023.10/api-guidE/ropc-authentication.md"
+        }
+      ]
+    },
+    {
+      "title": "Swagger definition",
+      "children": [
+        {
+          "title": "Read me",
+          "href": "/orchestrator/standalone/2023.10/api-guidE/read-me.md"
+        },
+        {
+          "title": "Authorizing API calls in Swagger",
+          "href": "/orchestrator/standalone/2023.10/api-guidE/authorizing-api-calls-in-swagger.md"
+        },
+        {
+          "title": "Managing logical resources",
+          "href": "/orchestrator/standalone/2023.10/api-guidE/managing-logical-resources.md"
+        }
+      ]
+    },
+    {
+      "title": "Orchestrator APIs",
+      "children": [
+        {
+          "title": "Alerts Requests",
+          "href": "/orchestrator/standalone/2023.10/api-guidE/alerts-requests.md"
+        },
+        {
+          "title": "Assets requests",
+          "href": "/orchestrator/standalone/2023.10/api-guidE/assets-requests.md"
+        },
+        {
+          "title": "Calendars requests",
+          "href": "/orchestrator/standalone/2023.10/api-guidE/calendars-requests.md"
+        },
+        {
+          "title": "Environments requests",
+          "href": "/orchestrator/standalone/2023.10/api-guidE/environments-requests.md"
+        },
+        {
+          "title": "Folders requests",
+          "href": "/orchestrator/standalone/2023.10/api-guidE/folders-requests.md"
+        },
+        {
+          "title": "Generic Tasks requests",
+          "href": "/orchestrator/standalone/2023.10/api-guidE/generic-tasks-requests.md"
+        },
+        {
+          "title": "Jobs requests",
+          "href": "/orchestrator/standalone/2023.10/api-guidE/jobs-requests.md"
+        },
+        {
+          "title": "Libraries requests",
+          "href": "/orchestrator/standalone/2023.10/api-guidE/libraries-requests.md"
+        },
+        {
+          "title": "License requests",
+          "href": "/orchestrator/standalone/2023.10/api-guidE/license-requests.md"
+        },
+        {
+          "title": "Packages requests",
+          "href": "/orchestrator/standalone/2023.10/api-guidE/packages-requests.md"
+        },
+        {
+          "title": "Permissions requests",
+          "href": "/orchestrator/standalone/2023.10/api-guidE/permissions-requests.md"
+        },
+        {
+          "title": "Personal workspaces requests",
+          "href": "/orchestrator/standalone/2023.10/api-guidE/personal-workspaces-requests.md"
+        },
+        {
+          "title": "Processes requests",
+          "href": "/orchestrator/standalone/2023.10/api-guidE/processes-requests.md"
+        },
+        {
+          "title": "Queue Items requests",
+          "href": "/orchestrator/standalone/2023.10/api-guidE/queue-items-requests.md"
+        },
+        {
+          "title": "Queue retention policy requests",
+          "href": "/orchestrator/standalone/2023.10/api-guidE/queue-retention-policy-requests.md"
+        },
+        {
+          "title": "Robots requests",
+          "href": "/orchestrator/standalone/2023.10/api-guidE/robots-requests.md"
+        },
+        {
+          "title": "Roles requests",
+          "href": "/orchestrator/standalone/2023.10/api-guidE/roles-requests.md"
+        },
+        {
+          "title": "Schedules requests",
+          "href": "/orchestrator/standalone/2023.10/api-guidE/schedules-requests.md"
+        },
+        {
+          "title": "Settings requests",
+          "href": "/orchestrator/standalone/2023.10/api-guidE/settings-requests.md"
+        },
+        {
+          "title": "Storage bucket requests",
+          "href": "/orchestrator/standalone/2023.10/api-guidE/storage-bucket-requests.md"
+        },
+        {
+          "title": "Tasks requests",
+          "href": "/orchestrator/standalone/2023.10/api-guidE/tasks-requests.md"
+        },
+        {
+          "title": "Task Catalogs requests",
+          "href": "/orchestrator/standalone/2023.10/api-guidE/task-catalogs-requests.md"
+        },
+        {
+          "title": "Task Forms requests",
+          "href": "/orchestrator/standalone/2023.10/api-guidE/task-forms-requests.md"
+        },
+        {
+          "title": "Tenants requests",
+          "href": "/orchestrator/standalone/2023.10/api-guidE/tenants-requests.md"
+        },
+        {
+          "title": "Transactions requests",
+          "href": "/orchestrator/standalone/2023.10/api-guidE/transactions-requests.md"
+        },
+        {
+          "title": "Users requests",
+          "href": "/orchestrator/standalone/2023.10/api-guidE/users-requests.md"
+        },
+        {
+          "title": "Webhooks requests",
+          "href": "/orchestrator/standalone/2023.10/api-guidE/webhooks-requests.md"
+        }
+      ]
+    },
+    {
+      "title": "Platform Management APIs",
+      "children": [
+        {
+          "title": "Getting started",
+          "href": "/orchestrator/standalone/2023.10/api-guidE/platform-getting-started.md",
+          "children": [
+            {
+              "title": "About this guide",
+              "href": "/orchestrator/standalone/2023.10/api-guidE/about-this-guide.md"
+            },
+            {
+              "title": "Available resources",
+              "href": "/orchestrator/standalone/2023.10/api-guidE/available-resources.md"
+            },
+            {
+              "title": "API endpoint URL structure",
+              "href": "/orchestrator/standalone/2023.10/api-guidE/api-endpoint-url-structure.md"
+            },
+            {
+              "title": "Enumeration List",
+              "href": "/orchestrator/standalone/2023.10/api-guidE/enumeration-list.md"
+            }
+          ]
+        },
+        {
+          "title": "Scopes and permissions",
+          "href": "/orchestrator/standalone/2023.10/api-guidE/about-scopes-and-permissions.md",
+          "children": [
+            {
+              "title": "About scopes and permissions",
+              "href": "/orchestrator/standalone/2023.10/api-guidE/scopes-and-permissions.md"
+            },
+            {
+              "title": "Platform Management scopes and permissions",
+              "href": "/orchestrator/standalone/2023.10/api-guidE/platform-management-scopes-and-permissions.md"
+            }
+          ]
+        },
+        {
+          "title": "Platform Management APIs",
+          "href": "/orchestrator/standalone/2023.10/api-guidE/platform-management-apis.md",
+          "children": [
+            {
+              "title": "Audit Logs",
+              "href": "/orchestrator/standalone/2023.10/api-guidE/audit-logs.md",
+              "children": [
+                {
+                  "title": "Get Audit Logs",
+                  "href": "/orchestrator/standalone/2023.10/api-guidE/get-audit-logs.md"
+                },
+                {
+                  "title": "Download Audit Logs",
+                  "href": "/orchestrator/standalone/2023.10/api-guidE/download-audit-logs.md"
+                }
+              ]
+            },
+            {
+              "title": "Groups",
+              "href": "/orchestrator/standalone/2023.10/api-guidE/group.md",
+              "children": [
+                {
+                  "title": "Get All Groups",
+                  "href": "/orchestrator/standalone/2023.10/api-guidE/get-all-groups.md"
+                },
+                {
+                  "title": "Get Specific Group",
+                  "href": "/orchestrator/standalone/2023.10/api-guidE/get-specific-group.md"
+                },
+                {
+                  "title": "Delete Specific Group",
+                  "href": "/orchestrator/standalone/2023.10/api-guidE/delete-specific-group.md"
+                },
+                {
+                  "title": "Create a New Local Group",
+                  "href": "/orchestrator/standalone/2023.10/api-guidE/create-a-new-local-group.md"
+                },
+                {
+                  "title": "Update Group",
+                  "href": "/orchestrator/standalone/2023.10/api-guidE/update-group.md"
+                }
+              ]
+            },
+            {
+              "title": "Robot Account",
+              "href": "/orchestrator/standalone/2023.10/api-guidE/robot-account.md",
+              "children": [
+                {
+                  "title": "Get All Robot Accounts",
+                  "href": "/orchestrator/standalone/2023.10/api-guidE/get-all-robot-accounts.md"
+                },
+                {
+                  "title": "Delete Robot Accounts",
+                  "href": "/orchestrator/standalone/2023.10/api-guidE/delete-robot-accounts.md"
+                },
+                {
+                  "title": "Get Specific Robot Account",
+                  "href": "/orchestrator/standalone/2023.10/api-guidE/get-specific-robot-account.md"
+                },
+                {
+                  "title": "Delete Specific Robot Account",
+                  "href": "/orchestrator/standalone/2023.10/api-guidE/delete-specific-robot-account.md"
+                },
+                {
+                  "title": "Create a New Robot Account",
+                  "href": "/orchestrator/standalone/2023.10/api-guidE/create-a-new-robot-account.md"
+                },
+                {
+                  "title": "Update Robot Account",
+                  "href": "/orchestrator/standalone/2023.10/api-guidE/update-robot-account.md"
+                }
+              ]
+            },
+            {
+              "title": "User",
+              "href": "/orchestrator/standalone/2023.10/api-guidE/user.md",
+              "children": [
+                {
+                  "title": "Update User",
+                  "href": "/orchestrator/standalone/2023.10/api-guidE/update-user.md"
+                },
+                {
+                  "title": "Delete Specific User",
+                  "href": "/orchestrator/standalone/2023.10/api-guidE/delete-specific-user.md"
+                },
+                {
+                  "title": "Delete Users",
+                  "href": "/orchestrator/standalone/2023.10/api-guidE/delete-users.md"
+                }
+              ]
+            },
+            {
+              "title": "Settings",
+              "href": "/orchestrator/standalone/2023.10/api-guidE/settings.md",
+              "children": [
+                {
+                  "title": "Get Settings",
+                  "href": "/orchestrator/standalone/2023.10/api-guidE/get-settings.md"
+                },
+                {
+                  "title": "Update Settings",
+                  "href": "/orchestrator/standalone/2023.10/api-guidE/update-user-password.md"
+                }
+              ]
+            },
+            {
+              "title": "Message Template",
+              "href": "/orchestrator/standalone/2023.10/api-guidE/message-template.md",
+              "children": [
+                {
+                  "title": "Get Message Template",
+                  "href": "/orchestrator/standalone/2023.10/api-guidE/get-message-template.md"
+                },
+                {
+                  "title": "Update a Message Template",
+                  "href": "/orchestrator/standalone/2023.10/api-guidE/update-a-message-template.md"
+                },
+                {
+                  "title": "Get Message Template by Name",
+                  "href": "/orchestrator/standalone/2023.10/api-guidE/get-message-template-by-name.md"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

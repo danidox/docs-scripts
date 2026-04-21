@@ -1,0 +1,227 @@
+===== Run started at 2026-02-18 13:49:30 =====
+Distinct bases changed across all files: 0
+Total references updated across all files: 0
+===== Run ended =====
+
+===== Run started at 2026-02-18 14:02:03 =====
+Distinct bases changed across all files: 0
+Total references updated across all files: 0
+===== Run ended =====
+
+===== Run started at 2026-02-18 14:02:30 =====
+[2026-02-18 14:02:48] Processed: C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\apps\automation-cloud\latest\user-guide-sidebar.json
+  Replaced accessing-the-production-url-of-an-app.* -> accessing-the-production-url-of-an-app.md
+  Replaced connecting-your-app-to-an-orchestrator-tenant.* -> connecting-your-app-to-an-orchestrator-tenant.md
+  Replaced container-controls.* -> container-controls.md
+  Replaced container-layout.* -> container-layout.md
+  Replaced controls.* -> controls.md
+  Replaced custom-html.* -> custom-html.md
+  Replaced custom-list.* -> custom-list.md
+  Replaced date-picker.* -> date-picker.md
+  Replaced different-types-of-container-controls-and-when-to-use-them.* -> different-types-of-container-controls-and-when-to-use-them.md
+  Replaced document-viewer.* -> document-viewer.md
+  Replaced dropdown.* -> dropdown.md
+  Replaced edit-grid.* -> edit-grid.md
+  Replaced embed-apps.* -> embed-apps.md
+  Replaced guidelines-for-building-accessible-apps.* -> guidelines-for-building-accessible-apps.md
+  Replaced image.* -> image.md
+  Replaced import.* -> import.md
+  Replaced input-controls.* -> input-controls.md
+  Replaced introduction.* -> introduction.md
+  Replaced layout-and-styling.* -> layout-and-styling.md
+  Replaced licensing.* -> licensing.md
+  Replaced limitations.* -> limitations.md
+  Replaced list.* -> list.md
+  Replaced multiselect-dropdown.* -> multiselect-dropdown.md
+  Replaced my-notifications.* -> my-notifications.md
+  Replaced onprem.* -> onprem.md
+  Replaced orchestrator-permissions.* -> orchestrator-permissions.md
+  Replaced page-container.* -> page-container.md
+  Replaced permission-management.* -> permission-management.md
+  Replaced radio-button.* -> radio-button.md
+  Replaced rich-text-editor.* -> rich-text-editor.md
+  Replaced runtime-language-best-practices.* -> runtime-language-best-practices.md
+  Replaced runtime-languages.* -> runtime-languages.md
+  Replaced table.* -> table.md
+  Replaced text-area.* -> text-area.md
+  Replaced textbox-email.* -> textbox-email.md
+  Replaced textbox-number.* -> textbox-number.md
+  Replaced the-expression-editor.* -> the-expression-editor.md
+  Replaced useful-vb-functions.* -> useful-vb-functions.md
+  Replaced using-app-studio.* -> using-app-studio.md
+  Distinct bases changed: 39, total references updated: 39
+
+[2026-02-18 14:03:03] Processed: C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\apps\automation-suite\latest\user-guide-sidebar.json
+  Replaced accessing-the-production-url-of-an-app.* -> accessing-the-production-url-of-an-app-asuite.md
+  Replaced connecting-your-app-to-an-orchestrator-tenant.* -> connecting-your-app-to-an-orchestrator-tenant-asuite.md
+  Replaced container-controls.* -> container-controls-asuite.md
+  Replaced container-layout.* -> container-layout-asuite.md
+  Replaced controls.* -> controls-asuite.md
+  Replaced custom-html.* -> custom-html-asuite.md
+  Replaced custom-list.* -> custom-list-asuite.md
+  Replaced date-picker.* -> date-picker-asuite.md
+  Replaced different-types-of-container-controls-and-when-to-use-them.* -> different-types-of-container-controls-and-when-to-use-them-asuite.md
+  Replaced document-viewer.* -> document-viewer-asuite.md
+  Replaced dropdown.* -> dropdown-asuite.md
+  Replaced edit-grid.* -> edit-grid-asuite.md
+  Replaced embed-apps.* -> embed-apps-asuite.md
+  Replaced guidelines-for-building-accessible-apps.* -> guidelines-for-building-accessible-apps-asuite.md
+  Replaced image.* -> image-asuite.md
+  Replaced import.* -> import-asuite.md
+  Replaced input-controls.* -> input-controls-asuite.md
+  Replaced introduction.* -> introduction-asuite.md
+  Replaced layout-and-styling.* -> layout-and-styling-asuite.md
+  Replaced licensing.* -> licensing-asuite.md
+  Replaced limitations.* -> limitations-asuite.md
+  Replaced list.* -> list-asuite.md
+  Replaced multiselect-dropdown.* -> multiselect-dropdown-asuite.md
+  Replaced my-notifications.* -> my-notifications-asuite.md
+  Replaced onprem.* -> onprem-asuite.md
+  Replaced orchestrator-permissions.* -> orchestrator-permissions-asuite.md
+  Replaced page-container.* -> page-container-asuite.md
+  Replaced permission-management.* -> permission-management-asuite.md
+  Replaced radio-button.* -> radio-button-asuite.md
+  Replaced rich-text-editor.* -> rich-text-editor-asuite.md
+  Replaced runtime-language-best-practices.* -> runtime-language-best-practices-asuite.md
+  Replaced runtime-languages.* -> runtime-languages-asuite.md
+  Replaced table.* -> table-asuite.md
+  Replaced text-area.* -> text-area-asuite.md
+  Replaced textbox-email.* -> textbox-email-asuite.md
+  Replaced textbox-number.* -> textbox-number-asuite.md
+  Replaced the-expression-editor.* -> the-expression-editor-asuite.md
+  Replaced useful-vb-functions.* -> useful-vb-functions-asuite.md
+  Replaced using-app-studio.* -> using-app-studio-asuite.md
+  Distinct bases changed: 39, total references updated: 39
+
+Distinct bases changed across all files: 78
+Total references updated across all files: 78
+===== Run ended =====
+
+===== Run started at 2026-02-18 14:15:03 =====
+[2026-02-18 14:15:09] Processed: C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\apps\automation-cloud\latest\user-guide-sidebar.json
+  Replaced accessing-the-production-url-of-an-app.* -> accessing-the-production-url-of-an-app.md
+  Replaced connecting-your-app-to-an-orchestrator-tenant.* -> connecting-your-app-to-an-orchestrator-tenant.md
+  Replaced container-controls.* -> container-controls.md
+  Replaced container-layout.* -> container-layout.md
+  Replaced controls.* -> controls.md
+  Replaced custom-html.* -> custom-html.md
+  Replaced custom-list.* -> custom-list.md
+  Replaced date-picker.* -> date-picker.md
+  Replaced different-types-of-container-controls-and-when-to-use-them.* -> different-types-of-container-controls-and-when-to-use-them.md
+  Replaced document-viewer.* -> document-viewer.md
+  Replaced dropdown.* -> dropdown.md
+  Replaced edit-grid.* -> edit-grid.md
+  Replaced embed-apps.* -> embed-apps.md
+  Replaced guidelines-for-building-accessible-apps.* -> guidelines-for-building-accessible-apps.md
+  Replaced image.* -> image.md
+  Replaced import.* -> import.md
+  Replaced input-controls.* -> input-controls.md
+  Replaced introduction.* -> introduction.md
+  Replaced layout-and-styling.* -> layout-and-styling.md
+  Replaced licensing.* -> licensing.md
+  Replaced limitations.* -> limitations.md
+  Replaced list.* -> list.md
+  Replaced multiselect-dropdown.* -> multiselect-dropdown.md
+  Replaced my-notifications.* -> my-notifications.md
+  Replaced onprem.* -> onprem.md
+  Replaced orchestrator-permissions.* -> orchestrator-permissions.md
+  Replaced page-container.* -> page-container.md
+  Replaced permission-management.* -> permission-management.md
+  Replaced radio-button.* -> radio-button.md
+  Replaced rich-text-editor.* -> rich-text-editor.md
+  Replaced runtime-language-best-practices.* -> runtime-language-best-practices.md
+  Replaced runtime-languages.* -> runtime-languages.md
+  Replaced table.* -> table.md
+  Replaced text-area.* -> text-area.md
+  Replaced textbox-email.* -> textbox-email.md
+  Replaced textbox-number.* -> textbox-number.md
+  Replaced the-expression-editor.* -> the-expression-editor.md
+  Replaced useful-vb-functions.* -> useful-vb-functions.md
+  Replaced using-app-studio.* -> using-app-studio.md
+  Distinct bases changed: 39, total references updated: 39
+
+[2026-02-18 14:15:37] Processed: C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\apps\automation-suite\latest\user-guide-sidebar.json
+  Replaced accessing-the-production-url-of-an-app.* -> accessing-the-production-url-of-an-app-asuite.md
+  Replaced connecting-your-app-to-an-orchestrator-tenant.* -> connecting-your-app-to-an-orchestrator-tenant-asuite.md
+  Replaced container-controls.* -> container-controls-asuite.md
+  Replaced container-layout.* -> container-layout-asuite.md
+  Replaced controls.* -> controls-asuite.md
+  Replaced custom-html.* -> custom-html-asuite.md
+  Replaced custom-list.* -> custom-list-asuite.md
+  Replaced date-picker.* -> date-picker-asuite.md
+  Replaced different-types-of-container-controls-and-when-to-use-them.* -> different-types-of-container-controls-and-when-to-use-them-asuite.md
+  Replaced document-viewer.* -> document-viewer-asuite.md
+  Replaced dropdown.* -> dropdown-asuite.md
+  Replaced edit-grid.* -> edit-grid-asuite.md
+  Replaced embed-apps.* -> embed-apps-asuite.md
+  Replaced guidelines-for-building-accessible-apps.* -> guidelines-for-building-accessible-apps-asuite.md
+  Replaced image.* -> image-asuite.md
+  Replaced import.* -> import-asuite.md
+  Replaced input-controls.* -> input-controls-asuite.md
+  Replaced introduction.* -> introduction-asuite.md
+  Replaced layout-and-styling.* -> layout-and-styling-asuite.md
+  Replaced licensing.* -> licensing-asuite.md
+  Replaced limitations.* -> limitations-asuite.md
+  Replaced list.* -> list-asuite.md
+  Replaced multiselect-dropdown.* -> multiselect-dropdown-asuite.md
+  Replaced my-notifications.* -> my-notifications-asuite.md
+  Replaced onprem.* -> onprem-asuite.md
+  Replaced orchestrator-permissions.* -> orchestrator-permissions-asuite.md
+  Replaced page-container.* -> page-container-asuite.md
+  Replaced permission-management.* -> permission-management-asuite.md
+  Replaced radio-button.* -> radio-button-asuite.md
+  Replaced rich-text-editor.* -> rich-text-editor-asuite.md
+  Replaced runtime-language-best-practices.* -> runtime-language-best-practices-asuite.md
+  Replaced runtime-languages.* -> runtime-languages-asuite.md
+  Replaced table.* -> table-asuite.md
+  Replaced text-area.* -> text-area-asuite.md
+  Replaced textbox-email.* -> textbox-email-asuite.md
+  Replaced textbox-number.* -> textbox-number-asuite.md
+  Replaced the-expression-editor.* -> the-expression-editor-asuite.md
+  Replaced useful-vb-functions.* -> useful-vb-functions-asuite.md
+  Replaced using-app-studio.* -> using-app-studio-asuite.md
+  Distinct bases changed: 39, total references updated: 39
+
+Distinct bases changed across all files: 78
+Total references updated across all files: 78
+===== Run ended =====
+
+  Renamed: C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\apps\apps-merged\accessing-the-production-url-of-an-app-acloud.md -> C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\apps\apps-merged\accessing-the-production-url-of-an-app.md
+  Renamed: C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\apps\apps-merged\connecting-your-app-to-an-orchestrator-tenant-acloud.md -> C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\apps\apps-merged\connecting-your-app-to-an-orchestrator-tenant.md
+  Renamed: C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\apps\apps-merged\container-controls-acloud.md -> C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\apps\apps-merged\container-controls.md
+  Renamed: C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\apps\apps-merged\container-layout-acloud.md -> C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\apps\apps-merged\container-layout.md
+  Renamed: C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\apps\apps-merged\controls-acloud.md -> C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\apps\apps-merged\controls.md
+  Renamed: C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\apps\apps-merged\custom-html-acloud.md -> C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\apps\apps-merged\custom-html.md
+  Renamed: C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\apps\apps-merged\custom-list-acloud.md -> C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\apps\apps-merged\custom-list.md
+  Renamed: C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\apps\apps-merged\date-picker-acloud.md -> C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\apps\apps-merged\date-picker.md
+  Renamed: C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\apps\apps-merged\different-types-of-container-controls-and-when-to-use-them-acloud.md -> C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\apps\apps-merged\different-types-of-container-controls-and-when-to-use-them.md
+  Renamed: C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\apps\apps-merged\document-viewer-acloud.md -> C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\apps\apps-merged\document-viewer.md
+  Renamed: C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\apps\apps-merged\dropdown-acloud.md -> C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\apps\apps-merged\dropdown.md
+  Renamed: C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\apps\apps-merged\edit-grid-acloud.md -> C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\apps\apps-merged\edit-grid.md
+  Renamed: C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\apps\apps-merged\embed-apps-acloud.md -> C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\apps\apps-merged\embed-apps.md
+  Renamed: C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\apps\apps-merged\guidelines-for-building-accessible-apps-acloud.md -> C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\apps\apps-merged\guidelines-for-building-accessible-apps.md
+  Renamed: C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\apps\apps-merged\image-acloud.md -> C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\apps\apps-merged\image.md
+  Renamed: C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\apps\apps-merged\import-acloud.md -> C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\apps\apps-merged\import.md
+  Renamed: C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\apps\apps-merged\input-controls-acloud.md -> C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\apps\apps-merged\input-controls.md
+  Renamed: C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\apps\apps-merged\introduction-acloud.md -> C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\apps\apps-merged\introduction.md
+  Renamed: C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\apps\apps-merged\layout-and-styling-acloud.md -> C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\apps\apps-merged\layout-and-styling.md
+  Renamed: C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\apps\apps-merged\licensing-acloud.md -> C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\apps\apps-merged\licensing.md
+  Renamed: C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\apps\apps-merged\limitations-acloud.md -> C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\apps\apps-merged\limitations.md
+  Renamed: C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\apps\apps-merged\list-acloud.md -> C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\apps\apps-merged\list.md
+  Renamed: C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\apps\apps-merged\multiselect-dropdown-acloud.md -> C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\apps\apps-merged\multiselect-dropdown.md
+  Renamed: C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\apps\apps-merged\my-notifications-acloud.md -> C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\apps\apps-merged\my-notifications.md
+  Renamed: C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\apps\apps-merged\onprem-acloud.md -> C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\apps\apps-merged\onprem.md
+  Renamed: C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\apps\apps-merged\orchestrator-permissions-acloud.md -> C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\apps\apps-merged\orchestrator-permissions.md
+  Renamed: C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\apps\apps-merged\page-container-acloud.md -> C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\apps\apps-merged\page-container.md
+  Renamed: C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\apps\apps-merged\permission-management-acloud.md -> C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\apps\apps-merged\permission-management.md
+  Renamed: C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\apps\apps-merged\radio-button-acloud.md -> C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\apps\apps-merged\radio-button.md
+  Renamed: C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\apps\apps-merged\rich-text-editor-acloud.md -> C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\apps\apps-merged\rich-text-editor.md
+  Renamed: C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\apps\apps-merged\runtime-language-best-practices-acloud.md -> C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\apps\apps-merged\runtime-language-best-practices.md
+  Renamed: C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\apps\apps-merged\runtime-languages-acloud.md -> C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\apps\apps-merged\runtime-languages.md
+  Renamed: C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\apps\apps-merged\table-acloud.md -> C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\apps\apps-merged\table.md
+  Renamed: C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\apps\apps-merged\text-area-acloud.md -> C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\apps\apps-merged\text-area.md
+  Renamed: C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\apps\apps-merged\textbox-email-acloud.md -> C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\apps\apps-merged\textbox-email.md
+  Renamed: C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\apps\apps-merged\textbox-number-acloud.md -> C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\apps\apps-merged\textbox-number.md
+  Renamed: C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\apps\apps-merged\the-expression-editor-acloud.md -> C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\apps\apps-merged\the-expression-editor.md
+  Renamed: C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\apps\apps-merged\useful-vb-functions-acloud.md -> C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\apps\apps-merged\useful-vb-functions.md
+  Renamed: C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\apps\apps-merged\using-app-studio-acloud.md -> C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\apps\apps-merged\using-app-studio.md

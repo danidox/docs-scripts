@@ -1,0 +1,128 @@
+{
+  "cookies": [
+    {
+      "name": "_cfuvid",
+      "value": "4W43g5jOoGSnI2iM16JkjpoQnUugHDTShkd_GtRFbAA-1775125580.8784904-1.0.1.1-fDtfgErwhOk3bgI7Yu6hgr2kpbdeyk1NM5DS3.m3P9o",
+      "domain": ".uipath.com",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "uipath-docs-guid",
+      "value": "2702a517-1be5-4fe9-88bf-b42a6c8c1962",
+      "domain": "docs.uipath.com",
+      "path": "/",
+      "expires": 1806661584,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "coveo_visitorId",
+      "value": "a555430a-6c8e-42ba-98eb-53da9d6af46a",
+      "domain": ".uipath.com",
+      "path": "/",
+      "expires": 1806682543,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "__cf_bm",
+      "value": "Xwqen856bMnFO_KetMgd3sFHUT_PbSoU69Ydo4LwTIU-1775125584-1.0.1.1-G35zCotp0u3uo_Vrdff4b6gYh.9rQI.HBtDnxDjleVD29WUKkThgTJNW9P37oaRl7QitxGbItPQHXnvbsB65jJUoq76FbrGq.XxpTALGIaY",
+      "domain": ".start.uipath.com",
+      "path": "/",
+      "expires": 1775127385.216398,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "BIGipServer~VS65000-N117~pool-lon10-restapi",
+      "value": "!PRn06wDu2KRG7Rznth2UHRZDKq6Vg8Ptx/GHmuiw7DemTHD7cKGnZpTqMzzuUKZfNsODlVKXZEbrinEBkqDNnplkIyK+e4gwG3hVZ7izGSKXhg==",
+      "domain": "start.uipath.com",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "BIGipServer~VS65000-N117~lon10web-nginx-app_https",
+      "value": "!cY/YfO2dbkGTe4C+3kAq1JriHnUo6VryaTbw3djMeqaIrbs66fkZ/qN3VFdvFNlTv1ZFo80almbL24IUSu7EI6rn44lEGlrtZla1slZFSdwr",
+      "domain": "start.uipath.com",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "CF_AppSession",
+      "value": "bdc4971382ff9d74",
+      "domain": "docs-staging.uipath.com",
+      "path": "/",
+      "expires": 1775211992.469253,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "CF_Authorization",
+      "value": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImRmOGUwMDk3NDU1ZDFmMzE3NGUwMGY2ZjVkNWNlNzg5YjVmMTJjNDkxOWRkN2U5ODY1NGI0NWMxOTAyNmM0ZmMifQ.eyJhdWQiOlsiMjhhMjgxNWUyZTNlM2M0OGFjNDVkZGM2YjczZTdmYzZkZmY3ZmE1ZWU3NzE4YTlhMzA2NDlkNjBiNGU4Mjg1ZSJdLCJlbWFpbCI6ImRhbmllbGEuY3JhY2l1bkB1aXBhdGguY29tIiwiYWNjb3VudF9pZCI6IjA3OGU0MWIyZDNkZjcyMDcwM2Q4ZGYzYzBkNjJhYWFhIiwiZXhwIjoxNzc1MjEyMTk2LCJpYXQiOjE3NzUxMjU3OTYsIm5iZiI6MTc3NTEyNTc5NiwiaXNzIjoiaHR0cHM6Ly91aXBhdGguY2xvdWRmbGFyZWFjY2Vzcy5jb20iLCJzdWIiOiI5ODk0NDBjZC1mNTM1LTViMGYtYTliNi1lYTcyNTQ1YTk0NjUiLCJpZGVudGl0eSI6eyJlbWFpbCI6ImRhbmllbGEuY3JhY2l1bkB1aXBhdGguY29tIiwiYW1yIjpbIm9uZXRpbWVwaW4iXSwiaWRwIjp7ImlkIjoiZTIyY2Q1ZGUtN2MyZi00OWFhLThmNDktYWYxMDZhM2M5NTNkIiwidHlwZSI6Im9uZXRpbWVwaW4ifSwiZ2VvIjp7ImNvdW50cnkiOiJSTyJ9LCJ1c2VyX3V1aWQiOiI5ODk0NDBjZC1mNTM1LTViMGYtYTliNi1lYTcyNTQ1YTk0NjUiLCJhY2NvdW50X2lkIjoiMDc4ZTQxYjJkM2RmNzIwNzAzZDhkZjNjMGQ2MmFhYWEiLCJpYXQiOjE3NzUxMjU3OTYsImlwIjoiODEuMTk2LjguNDIiLCJhdXRoX3N0YXR1cyI6Ik5PTkUiLCJjb21tb25fbmFtZSI6IiIsInNlcnZpY2VfdG9rZW5faWQiOiIiLCJzZXJ2aWNlX3Rva2VuX3N0YXR1cyI6ZmFsc2UsImlzX3dhcnAiOmZhbHNlLCJpc19nYXRld2F5IjpmYWxzZSwiZGV2aWNlX2lkIjoiIiwibXRsc19hdXRoIjp7ImNlcnRfaXNzdWVyX2RuIjoiIiwiY2VydF9zZXJpYWwiOiIiLCJjZXJ0X2lzc3Vlcl9za2kiOiIiLCJjZXJ0X3ByZXNlbnRlZCI6dHJ1ZSwiY29tbW9uX25hbWUiOiIiLCJhdXRoX3N0YXR1cyI6Ik5PTkUifSwidmVyc2lvbiI6Mn0sInR5cGUiOiJvcmciLCJpZGVudGl0eV9ub25jZSI6Ilk5c0tpeDRwaDF0NDdUbEYifQ.cXxeaHq9gHnfY6tBKdgpaW6N3fNZnYDc_xbJtv8GzLMYXyWFDJ-HVj5qnAxpXq0CXr-OM4DOEzqZo6yQ1r35vYL1UpsT3cyTSidJIqPPJwJPVMvWezQXF3n5J3PYgtAE7vAVNDXXJbItFrxrhRxxKcrWfn6YvsjXI4oD2PD-khMtLyUXq7oJmL89pwqDTodhvWDMfa8PLQGWa7tTkZJOEjS4tq8aEZhjr18lyFTAhRpbaYPCpN5viipikkonQHAK52-vihajYvrW-l8s0ZQJRLaqnLFXhBbK4rdhs4k5em0h-L8JOR_17UNB2J4X7uFaXE4P6GWp7KqcX9XBT7yrbg",
+      "domain": "uipath.cloudflareaccess.com",
+      "path": "/",
+      "expires": 1775212198.215857,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "CF_Device",
+      "value": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImRmOGUwMDk3NDU1ZDFmMzE3NGUwMGY2ZjVkNWNlNzg5YjVmMTJjNDkxOWRkN2U5ODY1NGI0NWMxOTAyNmM0ZmMifQ.eyJ0eXBlIjoidHJ1c3RlZF9kZXZpY2UiLCJpc3MiOiJodHRwczovL3VpcGF0aC5jbG91ZGZsYXJlYWNjZXNzLmNvbSIsImlhdCI6MTc3NTEyNTc5NiwiZXhwIjoxNzc3NzE3Nzk2LCJqdGkiOiI0UUdYR2Z3akdIZDFFZGFrNllpMTMxWWVjN0c4Znp3MSIsImVtYWlscyI6WyJkYW5pZWxhLmNyYWNpdW5AdWlwYXRoLmNvbSJdfQ.YzsyAbs-fxrkawu9PkiSG8YBpdKj63wqMMyGUx9ZY_dXg2kw2KQZBUyg5-lm0-aJzYxsAnGebwFR9X49wksZ37-1i9tjFxw3ewYjHWD6bIOIJcOfiYAURPkoAt__Wy3n4VcyTmLIiLdJafCIZIGwtyLne8NqezpNiBcC1zMb8BTV9yaboxhlKGKywl9IC5sxRJZtiuah5-xyhOaCcUSpJ0XF3LbwkVfjY7gMcBAkzC207WY7VRUK7u207zL32Q5KfqhXWG7232h_4qdXl5QPdMmgMXHjZiF6tm58lN7yQBlblyvoi4QeMdJLHErqDULceWeD_NJ5qRfARzTQiOUCGg",
+      "domain": "uipath.cloudflareaccess.com",
+      "path": "/",
+      "expires": 1777717798.215969,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "CF_Authorization",
+      "value": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImRmOGUwMDk3NDU1ZDFmMzE3NGUwMGY2ZjVkNWNlNzg5YjVmMTJjNDkxOWRkN2U5ODY1NGI0NWMxOTAyNmM0ZmMifQ.eyJhdWQiOlsiN2ZlNzVkODk4ZTlhZDI2MWIyNzRjMjA2ZjMxOGYxNmZlNjNhNmZhNzE2MjViMDg0OTA2MDEyMmFkMzA5NmMyYyJdLCJlbWFpbCI6ImRhbmllbGEuY3JhY2l1bkB1aXBhdGguY29tIiwiZXhwIjoxNzc1MjEyMTk2LCJpYXQiOjE3NzUxMjU3OTYsIm5iZiI6MTc3NTEyNTc5NiwiaXNzIjoiaHR0cHM6Ly91aXBhdGguY2xvdWRmbGFyZWFjY2Vzcy5jb20iLCJ0eXBlIjoiYXBwIiwiaWRlbnRpdHlfbm9uY2UiOiJZOXNLaXg0cGgxdDQ3VGxGIiwic3ViIjoiOTg5NDQwY2QtZjUzNS01YjBmLWE5YjYtZWE3MjU0NWE5NDY1IiwiY291bnRyeSI6IlJPIiwicG9saWN5X2lkIjoiOTdjMDFmNDUtZDcwYS00NzY4LWIyODItNDgxNzgyNWM3ZGUxIn0.41mpIQqK0-arZMe-mQDGx6Xr9sT5xfltB0-j2zQB4mkoGYhiqBeiDEKkfkxsP-tC2H6C9xqdtJ1qZTwI-TR_qTGdDSOj_W6_awIyYgYsuh0jwyHfNdYj2o84LKpBUEWjTq9rrO3Unwm2hTf-kx8zDgWRoofwTgdysFUUBch5CvvA3ezReM7R0hyXL8EDgK0k-G1S1wDNPXXaBZRErZAP0oIUBdjN7vxHmuAyLjkTD6fpPMixW1yJ16Om7VMtBsvPzLEAinXrAXuWpVAsrqkv1_9w54Hym6crgYNn8doXd-ivkXQc0amAsdSLKgoafLvNcHTEi-7RavS-yg0VmgOzRQ",
+      "domain": "docs-staging.uipath.com",
+      "path": "/",
+      "expires": 1775212197.319709,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    }
+  ],
+  "origins": [
+    {
+      "origin": "https://docs-staging.uipath.com",
+      "localStorage": [
+        {
+          "name": "visitorId",
+          "value": "a555430a-6c8e-42ba-98eb-53da9d6af46a"
+        }
+      ]
+    },
+    {
+      "origin": "https://docs.uipath.com",
+      "localStorage": [
+        {
+          "name": "slContextTrackerV3Enabled",
+          "value": "true"
+        },
+        {
+          "name": "visitorId",
+          "value": "a555430a-6c8e-42ba-98eb-53da9d6af46a"
+        }
+      ]
+    }
+  ]
+}

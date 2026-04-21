@@ -1,0 +1,5 @@
+Tables Curation Summary
+Mode: WRITE
+Root: C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\assistant\automation-cloud
+
+No files required changes.

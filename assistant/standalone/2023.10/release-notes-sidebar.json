@@ -1,0 +1,81 @@
+{
+  "title": "Assistant release notes",
+  "children": [
+    {
+      "title": "Release notes",
+      "children": [
+		{
+              "title": "2023.10.15",
+              "href": "/assistant/standalone/2023.10/release-notes/2023-10-15.md"
+            },
+            {
+              "title": "2023.10.14",
+              "href": "/assistant/standalone/2023.10/release-notes/2023-10-14.md"
+            },
+            {
+              "title": "2023.10.13",
+              "href": "/assistant/standalone/2023.10/release-notes/2023-10-13.md"
+            },
+            {
+              "title": "2023.10.12",
+              "href": "/assistant/standalone/2023.10/release-notes/2023-10-12.md"
+            },
+            {
+              "title": "2023.10.11",
+              "href": "/assistant/standalone/2023.10/release-notes/2023-10-11.md"
+            },
+            {
+              "title": "2023.10.10",
+              "href": "/assistant/standalone/2023.10/release-notes/2023-10-10.md"
+            },
+            {
+              "title": "2023.10.9",
+              "href": "/assistant/standalone/2023.10/release-notes/release-notes-2023-10-9.md"
+            },
+            {
+              "title": "2023.10.8",
+              "href": "/assistant/standalone/2023.10/release-notes/release-notes-2023-10-8.md"
+            },
+            {
+              "title": "2023.10.7",
+              "href": "/assistant/standalone/2023.10/release-notes/release-notes-2023-10-7.md"
+            },
+            {
+              "title": "2023.10.6",
+              "href": "/assistant/standalone/2023.10/release-notes/release-notes-2023-10-6.md"
+            },
+            {
+              "title": "2023.10.5",
+              "href": "/assistant/standalone/2023.10/release-notes/release-notes-2023-10-5.md"
+            },
+            {
+              "title": "2023.10.4",
+              "href": "/assistant/standalone/2023.10/release-notes/release-notes-2023-10-4.md"
+            },
+            {
+              "title": "2023.10.3",
+              "href": "/assistant/standalone/2023.10/release-notes/release-notes-2023-10-3.md"
+            },
+            {
+              "title": "2023.10.2",
+              "href": "/assistant/standalone/2023.10/release-notes/release-notes-2023-10-2.md"
+            },
+			        {
+          "title": "2023.10.0",
+          "href": "/assistant/standalone/2023.10/release-notes/release-notes-2023-10-0.md",
+		}
+        },
+        {
+          "title": "UiPath Assistant for Excel add-in Release Notes",
+          "href": "/assistant/standalone/2023.10/release-notes/uipath-assistant-for-excel-add-in-release-notes.md",
+          "children": [
+            {
+              "title": "2023.4.2",
+              "href": "/assistant/standalone/2023.10/release-notes/excel-add-in-2023-4-2.md"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

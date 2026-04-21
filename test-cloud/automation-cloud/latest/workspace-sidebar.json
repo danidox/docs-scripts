@@ -1,0 +1,683 @@
+{
+  "title": "Test Cloud workspace",
+  "children": [
+    {
+      "title": "Getting started",
+      "children": [
+        {
+          "title": "About Test Cloud",
+          "href": "/test-cloud/automation-cloud/latest/workspace/about-test-cloud.md"
+        },
+        {
+          "title": "About this guide",
+          "href": "/test-cloud/automation-cloud/latest/workspace/about-this-guide.md"
+        },
+        {
+          "title": "Accessing the platform",
+          "href": "/test-cloud/automation-cloud/latest/workspace/accessing-the-platform.md"
+        },
+        {
+          "title": "Test Cloud product and feature availability",
+          "href": "/test-cloud/automation-cloud/latest/workspace/test-cloud-product-and-feature-availability.md"
+        },
+        {
+          "title": "Getting started with the platform",
+          "href": "/test-cloud/automation-cloud/latest/workspace/getting-started.md"
+        },
+        {
+          "title": "Exploring the user interface",
+          "href": "/test-cloud/automation-cloud/latest/workspace/exploring-the-user-interface.md"
+        },
+        {
+          "title": "Managing user preferences",
+          "href": "/test-cloud/automation-cloud/latest/workspace/managing-user-preferences.md",
+          "children": [
+            {
+              "title": "My notifications",
+              "href": "/test-cloud/automation-cloud/latest/workspace/my-notifications.md"
+            }
+          ]
+        },
+        {
+          "title": "Software requirements",
+          "href": "/test-cloud/automation-cloud/latest/workspace/software-requirements.md"
+        }
+      ]
+    },
+    {
+      "title": "Data security and compliance",
+      "children": [
+        {
+          "title": "Data security and compliance",
+          "href": "/test-cloud/automation-cloud/latest/workspace/data-security-and-compliance.md"
+        },
+        {
+          "title": "Data residency",
+          "href": "/test-cloud/automation-cloud/latest/workspace/data-residency-.md",
+          "children": [
+            {
+              "title": "Data residency Test Cloud",
+              "href": "/test-cloud/automation-cloud/latest/workspace/test-cloud.md",
+              "children": [
+                {
+                  "title": "AI features and model routing",
+                  "href": "/test-cloud/automation-cloud/latest/workspace/ai-features-and-model-routing.md"
+                }
+              ]
+            },
+            {
+              "title": "Data residency Test Cloud Public Sector",
+              "href": "/test-cloud/automation-cloud/latest/workspace/test-cloud-public-sector.md",
+              "children": [
+                {
+                  "title": "Global certifications coverage",
+                  "href": "/test-cloud/automation-cloud/latest/workspace/global-certifications-coverage.md"
+                }
+              ]
+            },
+            {
+              "title": "Data residency Test Cloud Dedicated",
+              "href": "/test-cloud/automation-cloud/latest/workspace/test-cloud-dedicated.md"
+            }
+          ]
+        },
+        {
+          "title": "Encryption",
+          "href": "/test-cloud/automation-cloud/latest/workspace/encryption.md"
+        },
+        {
+          "title": "Certificates",
+          "href": "/test-cloud/automation-cloud/latest/workspace/certificates.md"
+        },
+        {
+          "title": "Functional security",
+          "href": "/test-cloud/automation-cloud/latest/workspace/functional-security.md"
+        },
+        {
+          "title": "Configuring the firewall",
+          "href": "/test-cloud/automation-cloud/latest/workspace/configuring-firewall.md",
+          "children": [
+            {
+              "title": "Configuring the firewall for Test Cloud",
+              "href": "/test-cloud/automation-cloud/latest/workspace/configuring-the-firewall-for-cloud.md"
+            },
+            {
+              "title": "Configuring the firewall for Automation Cloud Public Sector",
+              "href": "/test-cloud/automation-cloud/latest/workspace/configuring-the-firewall-for-public-sector.md"
+            },
+            {
+              "title": "Configuring the firewall for Automation Cloud Dedicated",
+              "href": "/test-cloud/automation-cloud/latest/workspace/configuring-the-firewall-for-dedicated.md"
+            }
+          ]
+        },
+        {
+          "title": "Connecting to UiPath using private link",
+          "href": "/test-cloud/automation-cloud/latest/workspace/connecting-to-uipath-using-ptivate-link.md",
+          "children": [
+            {
+              "title": "Preparing your Azure environment",
+              "href": "/test-cloud/automation-cloud/latest/workspace/preparing-your-azure-environment.md"
+            },
+            {
+              "title": "Configuring private connectivity",
+              "href": "/test-cloud/automation-cloud/latest/workspace/configuring-private-connectivity.md"
+            },
+            {
+              "title": "Operational considerations",
+              "href": "/test-cloud/automation-cloud/latest/workspace/operational-considerations.md"
+            }
+          ]
+        },
+        {
+          "title": "Feature rollout",
+          "href": "/test-cloud/automation-cloud/latest/workspace/feature-rollout.md"
+        },
+        {
+          "title": "High availability and disaster recovery strategy",
+          "href": "/test-cloud/automation-cloud/latest/workspace/high-availability-and-disaster-recovery-strategy.md"
+        }
+      ]
+    },
+    {
+      "title": "Organizations",
+      "children": [
+        {
+          "title": "About organizations",
+          "href": "/test-cloud/automation-cloud/latest/workspace/about-organizations.md"
+        },
+        {
+          "title": "Managing organization administrators",
+          "href": "/test-cloud/automation-cloud/latest/workspace/managing-organization-administrators.md"
+        },
+        {
+          "title": "Managing organization settings",
+          "href": "/test-cloud/automation-cloud/latest/workspace/managing-organization-settings.md"
+        }
+      ]
+    },
+    {
+      "title": "Authentication and security",
+      "children": [
+        {
+          "title": "Understanding authentication models",
+          "href": "/test-cloud/automation-cloud/latest/workspace/authentication-settings.md",
+          "children": [
+            {
+              "title": "Authentication models for Test Cloud",
+              "href": "/test-cloud/automation-cloud/latest/workspace/authentication-models-for-test-cloud.md"
+            },
+            {
+              "title": "Authentication models for Test Cloud Public Sector",
+              "href": "/test-cloud/automation-cloud/latest/workspace/authentication-models-for-test-cloud-public-sector.md"
+            },
+            {
+              "title": "Authentication models for Test Cloud Dedicated",
+              "href": "/test-cloud/automation-cloud/latest/workspace/authentication-models-for-test-cloud-dedicated.md"
+            }
+          ]
+        },
+        {
+          "title": "Allowing or restricting basic authentication",
+          "href": "/test-cloud/automation-cloud/latest/workspace/allowing-or-restricting-basic-authentication.md"
+        },
+        {
+          "title": "Microsoft Entra ID integration",
+          "href": "/test-cloud/automation-cloud/latest/workspace/microsoft-entra-id-integration.md",
+          "children": [
+            {
+              "title": "Microsoft Entra ID integration for Test Cloud and Test Cloud Public Sector",
+              "href": "/test-cloud/automation-cloud/latest/workspace/microsoft-entra-id-integration-for-automation-cloud-and-automation-cloud-public-sector.md"
+            },
+            {
+              "title": "Microsoft Entra ID integration for Test Cloud Dedicated",
+              "href": "/test-cloud/automation-cloud/latest/workspace/azure-ad-integration.md"
+            }
+          ]
+        },
+        {
+          "title": "Configuring the SAML integration",
+          "href": "/test-cloud/automation-cloud/latest/workspace/configuring-the-saml-integration.md",
+          "children": [
+            {
+              "title": "Setting up SAML SSO with Microsoft Entra ID",
+              "href": "/test-cloud/automation-cloud/latest/workspace/setting-up-saml-sso-with-azure-ad.md"
+            },
+            {
+              "title": "Setting up Okta as your identity provider",
+              "href": "/test-cloud/automation-cloud/latest/workspace/setting-up-okta-as-your-identity-provider.md"
+            },
+            {
+              "title": "Setting up PingOne as your identity provider",
+              "href": "/test-cloud/automation-cloud/latest/workspace/setting-up-pingone-as-your-identity-provider.md"
+            },
+            {
+              "title": "Managing UiPath signing certificate for SAML authentication requests",
+              "href": "/test-cloud/automation-cloud/latest/workspace/managing-uipath-signing-certificate-for-saml-authentication-requests.md"
+            }
+          ]
+        },
+        {
+          "title": "Configuring organization security",
+          "href": "/test-cloud/automation-cloud/latest/workspace/security-settings.md",
+          "children": [
+            {
+              "title": "Configuring consent prompts",
+              "href": "/test-cloud/automation-cloud/latest/workspace/configuring-system-prompts.md"
+            },
+            {
+              "title": "Restricting access by IP",
+              "href": "/test-cloud/automation-cloud/latest/workspace/restricting-access-by-ip.md",
+              "children": [
+                {
+                  "title": "Trusted public apps",
+                  "href": "/test-cloud/automation-cloud/latest/workspace/trusted-public-apps.md"
+                }
+              ]
+            },
+            {
+              "title": "Restricting access to a set of users",
+              "href": "/test-cloud/automation-cloud/latest/workspace/restricting-organization-access-to-a-set-of-users.md"
+            },
+            {
+              "title": "Restricting access to organizations",
+              "href": "/test-cloud/automation-cloud/latest/workspace/restricting-access-to-organizations.md"
+            },
+            {
+              "title": "Session policy",
+              "href": "/test-cloud/automation-cloud/latest/workspace/session-policy.md"
+            },
+            {
+              "title": "Customer-managed keys",
+              "href": "/test-cloud/automation-cloud/latest/workspace/customer-managed-keys.md"
+            }
+          ]
+        },
+        {
+          "title": "Local users password complexity requirements",
+          "href": "/test-cloud/automation-cloud/latest/workspace/local-users-password-complexity-requirements.md"
+        }
+      ]
+    },
+    {
+      "title": "Licensing",
+      "children": [
+        {
+          "title": "About licensing",
+          "href": "/test-cloud/automation-cloud/latest/workspace/about-licensing.md"
+        },
+        {
+          "title": "Unified Pricing: Licensing plan framework",
+          "href": "/test-cloud/automation-cloud/latest/workspace/unified-pricing-licensing-plan-framework.md"
+        },
+        {
+          "title": "Activating your Enterprise license",
+          "href": "/test-cloud/automation-cloud/latest/workspace/activating-your-license.md"
+        },
+        {
+          "title": "Purchasing licenses",
+          "href": "/test-cloud/automation-cloud/latest/workspace/purchasing-licenses.md",
+          "children": [
+            {
+              "title": "Purchasing a plan",
+              "href": "/test-cloud/automation-cloud/latest/workspace/purchasing-a-plan.md"
+            },
+            {
+              "title": "Managing your subscription",
+              "href": "/test-cloud/automation-cloud/latest/workspace/managing-your-subscription.md"
+            },
+            {
+              "title": "Switching to different licensing",
+              "href": "/test-cloud/automation-cloud/latest/workspace/switching-to-different-licensing.md"
+            },
+            {
+              "title": "Frequently asked questions",
+              "href": "/test-cloud/automation-cloud/latest/workspace/license-purchase-faqs.md"
+            }
+          ]
+        },
+        {
+          "title": "Upgrading and downgrading licenses",
+          "href": "/test-cloud/automation-cloud/latest/workspace/upgrading-and-downgrading-licenses.md"
+        },
+        {
+          "title": "Migrate from Test Suite to Test Cloud",
+          "href": "/test-cloud/automation-cloud/latest/workspace/migrate-test-suite-to-test-cloud.md"
+        },
+        {
+          "title": "License migration",
+          "href": "/test-cloud/automation-cloud/latest/workspace/license-migration.md"
+        },
+        {
+          "title": "Requesting a service trial",
+          "href": "/test-cloud/automation-cloud/latest/workspace/requesting-a-service-trial.md"
+        },
+        {
+          "title": "Assigning licenses to tenants",
+          "href": "/test-cloud/automation-cloud/latest/workspace/allocating-licenses-to-tenants.md"
+        },
+        {
+          "title": "Assigning user licenses",
+          "href": "/test-cloud/automation-cloud/latest/workspace/allocating-user-licenses.md"
+        },
+        {
+          "title": "Deallocating user licenses",
+          "href": "/test-cloud/automation-cloud/latest/workspace/deallocating-licenses-from-users.md"
+        },
+        {
+          "title": "Monitoring license allocation",
+          "href": "/test-cloud/automation-cloud/latest/workspace/monitoring-license-allocation.md"
+        },
+        {
+          "title": "License overallocation",
+          "href": "/test-cloud/automation-cloud/latest/workspace/license-overallocation.md"
+        },
+        {
+          "title": "Licensing notifications",
+          "href": "/test-cloud/automation-cloud/latest/workspace/licensing-notifications.md"
+        },
+        {
+          "title": "User license management",
+          "href": "/test-cloud/automation-cloud/latest/workspace/user-license-management.md"
+        }
+      ]
+    },
+    {
+      "title": "Tenants and services",
+      "children": [
+        {
+          "title": "About tenants",
+          "href": "/test-cloud/automation-cloud/latest/workspace/about-tenants.md"
+        },
+        {
+          "title": "Managing tenants",
+          "href": "/test-cloud/automation-cloud/latest/workspace/managing-tenants.md",
+          "children": [
+            {
+              "title": "Changing the tenant region",
+              "href": "/test-cloud/automation-cloud/latest/workspace/changing-the-tenant-region.md"
+            }
+          ]
+        },
+        {
+          "title": "Configuring VPN for cloud robots",
+          "href": "/test-cloud/automation-cloud/latest/workspace/configuring-vpn-for-cloud-robots.md",
+          "children": [
+            {
+              "title": "Configuration steps",
+              "href": "/test-cloud/automation-cloud/latest/workspace/configuration-steps.md"
+            },
+            {
+              "title": "DNS configuration for UiPath VPN Gateways",
+              "href": "/test-cloud/automation-cloud/latest/workspace/dns-configuration-for-uipath-vpn-gateways.md"
+            },
+            {
+              "title": "BGP configuration for UiPath VPN Gateways",
+              "href": "/test-cloud/automation-cloud/latest/workspace/bgp-configuration-for-uipath-vpn-gateways.md"
+            },
+            {
+              "title": "IPsec and IKE policy configuration",
+              "href": "/test-cloud/automation-cloud/latest/workspace/ipsec-and-ike-policy-configuration.md"
+            },
+            {
+              "title": "Default IPSec / IKE Policy",
+              "href": "/test-cloud/automation-cloud/latest/workspace/default-ipsec--ike-policy.md"
+            },
+            {
+              "title": "Common VPN vendor mapping (UiPath IPSec / IKE)",
+              "href": "/test-cloud/automation-cloud/latest/workspace/common-vpn-vendor-mapping-uipath-ipsec--ike.md"
+            },
+            {
+              "title": "Frequently asked questions",
+              "href": "/test-cloud/automation-cloud/latest/workspace/frequently-asked-questions-configuring-vpn.md"
+            }
+          ]
+        },
+        {
+          "title": "Managing services",
+          "href": "/test-cloud/automation-cloud/latest/workspace/managing-services.md"
+        },
+        {
+          "title": "Managing tenant and service visibility",
+          "href": "/test-cloud/automation-cloud/latest/workspace/managing-tenant-and-service-visibility.md"
+        },
+        {
+          "title": "Managing tags",
+          "href": "/test-cloud/automation-cloud/latest/workspace/managing-tags.md"
+        }
+      ]
+    },
+    {
+      "title": "Accounts and roles",
+      "children": [
+        {
+          "title": "About accounts and groups",
+          "href": "/test-cloud/automation-cloud/latest/workspace/about-accounts.md"
+        },
+        {
+          "title": "Managing accounts and groups",
+          "href": "/test-cloud/automation-cloud/latest/workspace/managing-accounts-and-groups.md",
+          "children": [
+            {
+              "title": "Managing accounts and local groups for Test Cloud and Test Cloud Public Sector",
+              "href": "/test-cloud/automation-cloud/latest/workspace/managing-account-groups.md"
+            },
+            {
+              "title": "Managing accounts and groups for Test Cloud Dedicated",
+              "href": "/test-cloud/automation-cloud/latest/workspace/managing-account-group.md"
+            }
+          ]
+        },
+        {
+          "title": "Managing access",
+          "href": "/test-cloud/automation-cloud/latest/workspace/managing-access.md",
+          "children": [
+            {
+              "title": "Roles",
+              "href": "/test-cloud/automation-cloud/latest/workspace/roles.md"
+            },
+            {
+              "title": "Role assignments",
+              "href": "/test-cloud/automation-cloud/latest/workspace/role-management.md"
+            },
+            {
+              "title": "Checking access",
+              "href": "/test-cloud/automation-cloud/latest/workspace/checking-access.md"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "AI Trust Layer",
+      "children": [
+        {
+          "title": "About AI Trust Layer",
+          "href": "/test-cloud/automation-cloud/latest/workspace/about-ai-trust-layer.md"
+        },
+        {
+          "title": "Managing AI Trust Layer",
+          "href": "/test-cloud/automation-cloud/latest/workspace/managing-ai-trust-layer.md",
+          "children": [
+            {
+              "title": "Checking usage summary",
+              "href": "/test-cloud/automation-cloud/latest/workspace/checking-usage-summary.md"
+            },
+            {
+              "title": "Viewing audit logs",
+              "href": "/test-cloud/automation-cloud/latest/workspace/viewing-audit-logs.md"
+            },
+            {
+              "title": "Managing AI Trust Layer policies",
+              "href": "/test-cloud/automation-cloud/latest/workspace/managing-ai-trust-layer-policies.md"
+            },
+            {
+              "title": "PII masking",
+              "href": "/test-cloud/automation-cloud/latest/workspace/pii-masking.md"
+            },
+            {
+              "title": "Managing Autopilot for Everyone",
+              "href": "/test-cloud/automation-cloud/latest/workspace/managing-autopilot-for-everyone.md"
+            },
+            {
+              "title": "Configuring LLMs",
+              "href": "/test-cloud/automation-cloud/latest/workspace/configuring-llms.md"
+            },
+            {
+              "title": "Configuring OpenTelemetry",
+              "href": "/test-cloud/automation-cloud/latest/workspace/configuring-opentelemetry.md"
+            },
+            {
+              "title": "Governing contextual data for GenAI features",
+              "href": "/test-cloud/automation-cloud/latest/workspace/governing-contextual-data-for-genai-features.md"
+            }
+          ]
+        },
+        {
+          "title": "About Context Grounding",
+          "href": "/test-cloud/automation-cloud/latest/workspace/about-context-grounding.md",
+          "children": [
+            {
+              "title": "Working with Context Grounding",
+              "href": "/test-cloud/automation-cloud/latest/workspace/working-with-context-grounding.md"
+            },
+            {
+              "title": "Managing indexes",
+              "href": "/test-cloud/automation-cloud/latest/workspace/managing-indexes.md",
+              "children": [
+                {
+                  "title": "Creating indexes",
+                  "href": "/test-cloud/automation-cloud/latest/workspace/creating-indexes.md"
+                }
+              ]
+            },
+            {
+              "title": "Using DeepRAG",
+              "href": "/test-cloud/automation-cloud/latest/workspace/using-deeprag.md"
+            },
+            {
+              "title": "Context Grounding licensing",
+              "href": "/test-cloud/automation-cloud/latest/workspace/context-grounding-licensing.md"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "External applications",
+      "children": [
+        {
+          "title": "OAuth apps",
+          "href": "/test-cloud/automation-cloud/latest/workspace/authorizing-external-applications.md",
+          "children": [
+            {
+              "title": "Managing external OAuth applications",
+              "href": "/test-cloud/automation-cloud/latest/workspace/managing-external-applications.md"
+            },
+            {
+              "title": "Configuring fine-grained access for confidential apps",
+              "href": "/test-cloud/automation-cloud/latest/workspace/configuring-access-for-external-apps.md"
+            }
+          ]
+        },
+        {
+          "title": "App registrations",
+          "href": "/test-cloud/automation-cloud/latest/workspace/app-registrations.md"
+        },
+        {
+          "title": "Personal Access Tokens",
+          "href": "/test-cloud/automation-cloud/latest/workspace/external-applications-personal-access-tokens.md"
+        }
+      ]
+    },
+    {
+      "title": "Notifications",
+      "children": [
+        {
+          "title": "About notifications",
+          "href": "/test-cloud/automation-cloud/latest/workspace/about-notifications.md"
+        },
+        {
+          "title": "Managing notifications",
+          "href": "/test-cloud/automation-cloud/latest/workspace/managing-notifications.md"
+        },
+        {
+          "title": "Configuring system email notifications",
+          "href": "/test-cloud/automation-cloud/latest/workspace/configuring-system-email-notifications.md"
+        }
+      ]
+    },
+    {
+      "title": "Logging",
+      "children": [
+        {
+          "title": "About logs",
+          "href": "/test-cloud/automation-cloud/latest/workspace/about-logs.md"
+        },
+        {
+          "title": "Exporting logs",
+          "href": "/test-cloud/automation-cloud/latest/workspace/exporting-logs.md"
+        }
+      ]
+    },
+    {
+      "title": "Testing in your organization",
+      "children": [
+        {
+          "title": "Testing in your organization",
+          "href": "/test-cloud/automation-cloud/latest/workspace/testing-in-your-organization.md"
+        },
+        {
+          "title": "Testing tools",
+          "href": "/test-cloud/automation-cloud/latest/workspace/testing-tools.md",
+          "children": [
+            {
+              "title": "Studio testing",
+              "href": "/test-cloud/automation-cloud/latest/workspace/testing-capabilities-studio-overview.md"
+            },
+            {
+              "title": "Orchestrator testing",
+              "href": "/test-cloud/automation-cloud/latest/workspace/orchestrator-testing-capabilities-overview.md"
+            },
+            {
+              "title": "Test robots",
+              "href": "/test-cloud/automation-cloud/latest/workspace/test-robots-capabilities-overview.md"
+            },
+            {
+              "title": "Test Manager",
+              "href": "/test-cloud/automation-cloud/latest/workspace/test-manager-capabilities-overview.md"
+            },
+            {
+              "title": "AutopilotTM",
+              "href": "/test-cloud/automation-cloud/latest/workspace/autopilot-oveview.md"
+            },
+            {
+              "title": "Agents for testing",
+              "href": "/test-cloud/automation-cloud/latest/workspace/agents-for-testing-capabilities-overview.md"
+            }
+          ]
+        },
+        {
+          "title": "Testing capabilities",
+          "href": "/test-cloud/automation-cloud/latest/workspace/testing-capabilities.md",
+          "children": [
+            {
+              "title": "Application testing",
+              "href": "/test-cloud/automation-cloud/latest/workspace/application-testing.md",
+              "children": [
+                {
+                  "title": "Application testing",
+                  "href": "/test-cloud/automation-cloud/latest/workspace/application-testing-best-practices.md"
+                }
+              ]
+            },
+            {
+              "title": "Automation testing",
+              "href": "/test-cloud/automation-cloud/latest/workspace/rpa-testing.md"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Troubleshooting",
+      "children": [
+        {
+          "title": "About troubleshooting",
+          "href": "/test-cloud/automation-cloud/latest/workspace/about-troubleshooting.md"
+        },
+        {
+          "title": "Alerts troubleshooting",
+          "href": "/test-cloud/automation-cloud/latest/workspace/alerts-troubleshooting.md"
+        },
+        {
+          "title": "General troubleshooting",
+          "href": "/test-cloud/automation-cloud/latest/workspace/general-troubleshooting.md"
+        }
+      ]
+    },
+    {
+      "title": "Migrating to Test Cloud",
+      "children": [
+        {
+          "title": "About migrating to a cloud offering",
+          "href": "/test-cloud/automation-cloud/latest/workspace/about-migrating-to-automation-cloud.md"
+        },
+        {
+          "title": "Migrating Orchestrator",
+          "href": "/test-cloud/automation-cloud/latest/workspace/migrating-orchestrator-to-cloud.md",
+          "children": [
+            {
+              "title": "Using the Automation Cloud Migration Tool",
+              "href": "/test-cloud/automation-cloud/latest/workspace/using-the-migration-tool.md"
+            },
+            {
+              "title": "Manual migration",
+              "href": "/test-cloud/automation-cloud/latest/workspace/manual-migration.md"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

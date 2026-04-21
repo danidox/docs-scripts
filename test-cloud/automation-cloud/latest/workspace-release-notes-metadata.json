@@ -1,0 +1,16 @@
+{
+  "productName": "Test Cloud",
+  "productNameSlug": "test-cloud",
+  "release": "latest",
+  "publicationType": "Workspace Release Notes",
+  "publicationTypeSlug": "workspace-release-notes",
+  "deliveryOption": "Automation Cloud",
+  "deliveryOptionSlug": "automation-cloud",
+  "description": "Your product description",
+  "displayOrder": "1",
+  "enabledEnvironments": {
+    "dev": true,
+    "stg": false,
+    "prod": false
+  }
+}

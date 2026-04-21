@@ -1,0 +1,195 @@
+{
+  "title": "Automation Suite release notes",
+  "children": [
+    {
+      "title": "Automation Suite on Linux Release Notes",
+      "children": [
+        {
+          "title": "2023.10.0",
+          "href": "/automation-suite/automation-suite/2023.10/release-notes/automation-suite-2023-10-0.md"
+        },
+        {
+          "title": "2023.10.1",
+          "href": "/automation-suite/automation-suite/2023.10/release-notes/automation-suite-2023-10-1.md"
+        },
+        {
+          "title": "2023.10.2",
+          "href": "/automation-suite/automation-suite/2023.10/release-notes/automation-suite-2023-10-2.md",
+          "children": [
+            {
+              "title": "2023.10.2+patch2",
+              "href": "/automation-suite/automation-suite/2023.10/release-notes/automation-suite-2023-10-2-patch-2.md"
+            },
+            {
+              "title": "2023.10.2+patch3",
+              "href": "/automation-suite/automation-suite/2023.10/release-notes/automation-suite-2023-10-2-patch-3.md"
+            },
+            {
+              "title": "2023.10.2+patch4",
+              "href": "/automation-suite/automation-suite/2023.10/release-notes/automation-suite-2023-10-2-patch-4.md"
+            },
+            {
+              "title": "2023.10.2+patch5",
+              "href": "/automation-suite/automation-suite/2023.10/release-notes/automation-suite-2023-10-2-patch-5.md"
+            }
+          ]
+        },
+        {
+          "title": "2023.10.3",
+          "href": "/automation-suite/automation-suite/2023.10/release-notes/automation-suite-2023-10-3.md",
+          "children": [
+            {
+              "title": "2023.10.3+patch1",
+              "href": "/automation-suite/automation-suite/2023.10/release-notes/automation-suite-2023-10-3-patch-1.md"
+            },
+            {
+              "title": "2023.10.3+patch2",
+              "href": "/automation-suite/automation-suite/2023.10/release-notes/automation-suite-2023-10-3-patch-2.md"
+            },
+            {
+              "title": "2023.10.3+patch3",
+              "href": "/automation-suite/automation-suite/2023.10/release-notes/automation-suite-2023-10-3-patch-3.md"
+            }
+          ]
+        },
+        {
+          "title": "2023.10.4",
+          "href": "/automation-suite/automation-suite/2023.10/release-notes/automation-suite-2023-10-4.md",
+          "children": [
+            {
+              "title": "2023.10.4+patch2",
+              "href": "/automation-suite/automation-suite/2023.10/release-notes/automation-suite-2023-10-4-patch-2.md"
+            },
+            {
+              "title": "2023.10.4+patch3",
+              "href": "/automation-suite/automation-suite/2023.10/release-notes/2023104patch3.md"
+            }
+          ]
+        },
+        {
+          "title": "2023.10.5",
+          "href": "/automation-suite/automation-suite/2023.10/release-notes/automation-suite-2023-10-5.md"
+        },
+        {
+          "title": "2023.10.6",
+          "href": "/automation-suite/automation-suite/2023.10/release-notes/automation-suite-2023-10-6.md"
+        },
+        {
+          "title": "2023.10.7",
+          "href": "/automation-suite/automation-suite/2023.10/release-notes/automation-suite-2023-10-7.md",
+          "children": [
+            {
+              "title": "2023.10.7+patch1",
+              "href": "/automation-suite/automation-suite/2023.10/release-notes/automation-suite-2023-10-7-patch-1.md"
+            }
+          ]
+        },
+        {
+          "title": "2023.10.8",
+          "href": "/automation-suite/automation-suite/2023.10/release-notes/automation-suite-2023-10-8.md"
+        },
+        {
+          "title": "2023.10.9",
+          "href": "/automation-suite/automation-suite/2023.10/release-notes/automation-suite-2023-10-9.md"
+        },
+        {
+          "title": "2023.10.10",
+          "href": "/automation-suite/automation-suite/2023.10/release-notes/automation-suite-2023-10-10.md"
+        },
+        {
+          "title": "2023.10.11",
+          "href": "/automation-suite/automation-suite/2023.10/release-notes/automation-suite-2023-10-11.md"
+        },
+        {
+          "title": "2023.10.12",
+          "href": "/automation-suite/automation-suite/2023.10/release-notes/automation-suite-2023-10-12.md",
+          "children": [
+            {
+              "title": "2023.10.12+patch1",
+              "href": "/automation-suite/automation-suite/2023.10/release-notes/automation-suite-2023-10-12-patch-1.md"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Automation Suite on EKS/AKS Release Notes",
+      "children": [
+        {
+          "title": "2023.10.0",
+          "href": "/automation-suite/automation-suite/2023.10/release-notes/automation-suite-on-eks-aks-2023-10-0.md"
+        },
+        {
+          "title": "2023.10.1",
+          "href": "/automation-suite/automation-suite/2023.10/release-notes/automation-suite-on-eks-aks-2023-10-1.md"
+        },
+        {
+          "title": "2023.10.2",
+          "href": "/automation-suite/automation-suite/2023.10/release-notes/automation-suite-on-eks-aks-2023-10-2.md",
+          "children": [
+            {
+              "title": "2023.10.2+patch3",
+              "href": "/automation-suite/automation-suite/2023.10/release-notes/automation-suite-on-eks-aks-2023-10-2-patch-3.md"
+            },
+            {
+              "title": "2023.10.2+patch4",
+              "href": "/automation-suite/automation-suite/2023.10/release-notes/automation-suite-on-eks-aks-2023-10-2-patch-4.md"
+            }
+          ]
+        },
+        {
+          "title": "2023.10.3",
+          "href": "/automation-suite/automation-suite/2023.10/release-notes/automation-suite-on-eks-aks-2023-10-3.md"
+        },
+        {
+          "title": "2023.10.4",
+          "href": "/automation-suite/automation-suite/2023.10/release-notes/automation-suite-on-eks-aks-2023-10-4.md",
+          "children": [
+            {
+              "title": "2023.10.4+patch3",
+              "href": "/automation-suite/automation-suite/2023.10/release-notes/automation-suite-on-eks-aks-2023-10-4-patch-3.md"
+            }
+          ]
+        },
+        {
+          "title": "2023.10.5",
+          "href": "/automation-suite/automation-suite/2023.10/release-notes/automation-suite-on-eks-aks-2023-10-5.md"
+        },
+        {
+          "title": "2023.10.6",
+          "href": "/automation-suite/automation-suite/2023.10/release-notes/automation-suite-on-eks-aks-2023-10-6.md"
+        },
+        {
+          "title": "2023.10.7",
+          "href": "/automation-suite/automation-suite/2023.10/release-notes/automation-suite-on-eks-aks-2023-10-7.md"
+        },
+        {
+          "title": "2023.10.8",
+          "href": "/automation-suite/automation-suite/2023.10/release-notes/automation-suite-on-eks-aks-2023-10-8.md"
+        },
+        {
+          "title": "2023.10.9",
+          "href": "/automation-suite/automation-suite/2023.10/release-notes/automation-suite-on-eks-aks-2023-10-9.md"
+        },
+        {
+          "title": "2023.10.10",
+          "href": "/automation-suite/automation-suite/2023.10/release-notes/automation-suite-on-eks-aks-2023-10-10.md"
+        },
+        {
+          "title": "2023.10.11",
+          "href": "/automation-suite/automation-suite/2023.10/release-notes/automation-suite-on-eks-aks-2023-10-11.md"
+        },
+        {
+          "title": "2023.10.12",
+          "href": "/automation-suite/automation-suite/2023.10/release-notes/automation-suite-on-eks-aks-2023-10-12.md",
+          "children": [
+            {
+              "title": "2023.10.12+patch1",
+              "href": "/automation-suite/automation-suite/2023.10/release-notes/automation-suite-on-eks-aks-2023-10-12-patch-1.md"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

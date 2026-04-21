@@ -1,0 +1,759 @@
+{
+  "title": "Apps user guide",
+  "children": [
+    {
+      "title": "Getting Started",
+      "children": [
+        {
+          "title": "Introduction",
+          "href": "/apps/automation-cloud/latest/user-guide/introduction.md"
+        },
+        {
+          "title": "Apps feature availability",
+          "href": "/apps/automation-cloud/latest/user-guide/apps-feature-availability.md"
+        },
+        {
+          "title": "Licensing",
+          "href": "/apps/automation-cloud/latest/user-guide/licensing.md"
+        },
+        {
+          "title": "Using Autopilot in Apps",
+          "href": "/apps/automation-cloud/latest/user-guide/using-autopilot-in-apps.md"
+        },
+        {
+          "title": "Using App Studio",
+          "href": "/apps/automation-cloud/latest/user-guide/using-app-studio.md"
+        },
+        {
+          "title": "Exporting an App",
+          "href": "/apps/automation-cloud/latest/user-guide/exporting-an-app.md"
+        },
+        {
+          "title": "Importing an App",
+          "href": "/apps/automation-cloud/latest/user-guide/import.md"
+        },
+        {
+          "title": "Audit logs",
+          "href": "/apps/automation-cloud/latest/user-guide/audit-logs.md"
+        },
+        {
+          "title": "Regions and Instances",
+          "href": "/apps/automation-cloud/latest/user-guide/regions-and-instances.md"
+        }
+      ]
+    },
+    {
+      "title": "Demo apps",
+      "children": [
+        {
+          "title": "Demos summary",
+          "href": "/apps/automation-cloud/latest/user-guide/demos-summary.md"
+        }
+      ]
+    },
+    {
+      "title": "How To",
+      "children": [
+        {
+          "title": "Access the production URL of an app",
+          "href": "/apps/automation-cloud/latest/user-guide/accessing-the-production-url-of-an-app.md"
+        },
+        {
+          "title": "Build a mobile-friendly app",
+          "href": "/apps/automation-cloud/latest/user-guide/build-a-mobile-friendly-app.md"
+        },
+        {
+          "title": "Check the current user group",
+          "href": "/apps/automation-cloud/latest/user-guide/check-the-current-user-group.md",
+          "children": [
+            {
+              "title": "Use the current user group in an app",
+              "href": "/apps/automation-cloud/latest/user-guide/use-the-current-user-group-in-an-app.md"
+            }
+          ]
+        },
+        {
+          "title": "Debug Apps",
+          "href": "/apps/automation-cloud/latest/user-guide/debug-apps.md"
+        },
+        {
+          "title": "Embed Apps",
+          "href": "/apps/automation-cloud/latest/user-guide/embed-apps.md",
+          "children": [
+            {
+              "title": "Responsive and mobile-friendly embedded apps",
+              "href": "/apps/automation-cloud/latest/user-guide/responsive-and-mobile-friendly-embedded-apps.md"
+            }
+          ]
+        },
+        {
+          "title": "Embed Maps",
+          "href": "/apps/automation-cloud/latest/user-guide/embed-maps.md"
+        },
+        {
+          "title": "Set External Context",
+          "href": "/apps/automation-cloud/latest/user-guide/set-external-context.md"
+        },
+        {
+          "title": "Use arrays to populate Dropdown, Multiselect dropdown, and Radio Button controls",
+          "href": "/apps/automation-cloud/latest/user-guide/use-arrays-to-populate-dropdown-controls.md"
+        },
+        {
+          "title": "Use Count with Choice Set values",
+          "href": "/apps/automation-cloud/latest/user-guide/use-count-with-choice-set-values.md"
+        },
+        {
+          "title": "Use DataTable with Table and Edit Grid controls",
+          "href": "/apps/automation-cloud/latest/user-guide/use-datatable-with-table-and-edit-grid-controls.md"
+        },
+        {
+          "title": "Use File Uploader",
+          "href": "/apps/automation-cloud/latest/user-guide/use-file-uploader.md",
+          "children": [
+            {
+              "title": "Uploading and downloading a file using the File Uploader control",
+              "href": "/apps/automation-cloud/latest/user-guide/uploading-and-downloading-a-file.md"
+            },
+            {
+              "title": "Downloading a file using an Image control",
+              "href": "/apps/automation-cloud/latest/user-guide/dlfileimgctrldraft.md"
+            },
+            {
+              "title": "Downloading a file using a URL",
+              "href": "/apps/automation-cloud/latest/user-guide/dlfilelink.md"
+            }
+          ]
+        },
+        {
+          "title": "Use Input Mask",
+          "href": "/apps/automation-cloud/latest/user-guide/use-input-mask.md"
+        }
+      ]
+    },
+    {
+      "title": "Notifications",
+      "children": [
+        {
+          "title": "My notifications",
+          "href": "/apps/automation-cloud/latest/user-guide/my-notifications.md"
+        }
+      ]
+    },
+    {
+      "title": "Using VB Expressions",
+      "children": [
+        {
+          "title": "Overview",
+          "href": "/apps/automation-cloud/latest/user-guide/overview.md"
+        },
+        {
+          "title": "Limitations",
+          "href": "/apps/automation-cloud/latest/user-guide/limitations.md"
+        },
+        {
+          "title": "Using the Expression editor in controls",
+          "href": "/apps/automation-cloud/latest/user-guide/the-expression-editor.md"
+        },
+        {
+          "title": "The Query builder",
+          "href": "/apps/automation-cloud/latest/user-guide/the-query-builder.md",
+          "children": [
+            {
+              "title": "Using the Fetch functions",
+              "href": "/apps/automation-cloud/latest/user-guide/using-the-fetch-functions.md"
+            }
+          ]
+        },
+        {
+          "title": "Migrating legacy apps to VB expressions",
+          "href": "/apps/automation-cloud/latest/user-guide/migrating-legacy-apps-to-vb-expressions.md"
+        },
+        {
+          "title": "Legacy versus VB expressions",
+          "href": "/apps/automation-cloud/latest/user-guide/legacy-versus-vb-expressions.md"
+        },
+        {
+          "title": "Useful VB functions",
+          "href": "/apps/automation-cloud/latest/user-guide/useful-vb-functions.md"
+        },
+        {
+          "title": "Custom VB functions",
+          "href": "/apps/automation-cloud/latest/user-guide/custom-vb-functions.md"
+        },
+        {
+          "title": "Under the hood",
+          "href": "/apps/automation-cloud/latest/user-guide/under-the-hood.md"
+        }
+      ]
+    },
+    {
+      "title": "Designing your App",
+      "children": [
+        {
+          "title": "Controls Overview",
+          "href": "/apps/automation-cloud/latest/user-guide/controls.md"
+        },
+        {
+          "title": "Layout and Styling",
+          "href": "/apps/automation-cloud/latest/user-guide/layout-and-styling.md"
+        },
+        {
+          "title": "Sample App Layouts",
+          "href": "/apps/automation-cloud/latest/user-guide/sample-app-layouts.md"
+        },
+        {
+          "title": "Input Controls",
+          "href": "/apps/automation-cloud/latest/user-guide/input-controls.md",
+          "children": [
+            {
+              "title": "Button",
+              "href": "/apps/automation-cloud/latest/user-guide/button.md"
+            },
+            {
+              "title": "Checkbox",
+              "href": "/apps/automation-cloud/latest/user-guide/checkbox.md"
+            },
+            {
+              "title": "Custom HTML",
+              "href": "/apps/automation-cloud/latest/user-guide/custom-html.md"
+            },
+            {
+              "title": "Date Picker",
+              "href": "/apps/automation-cloud/latest/user-guide/date-picker.md"
+            },
+            {
+              "title": "Dropdown",
+              "href": "/apps/automation-cloud/latest/user-guide/dropdown.md"
+            },
+            {
+              "title": "File Uploader",
+              "href": "/apps/automation-cloud/latest/user-guide/file-uploader.md"
+            },
+            {
+              "title": "Multiselect Dropdown",
+              "href": "/apps/automation-cloud/latest/user-guide/multiselect-dropdown.md"
+            },
+            {
+              "title": "Radio Button",
+              "href": "/apps/automation-cloud/latest/user-guide/radio-button.md"
+            },
+            {
+              "title": "Rich Text Editor",
+              "href": "/apps/automation-cloud/latest/user-guide/rich-text-editor.md"
+            },
+            {
+              "title": "Slider",
+              "href": "/apps/automation-cloud/latest/user-guide/slider.md"
+            },
+            {
+              "title": "Switch",
+              "href": "/apps/automation-cloud/latest/user-guide/switch.md"
+            },
+            {
+              "title": "Text Area",
+              "href": "/apps/automation-cloud/latest/user-guide/text-area.md"
+            },
+            {
+              "title": "Textbox",
+              "href": "/apps/automation-cloud/latest/user-guide/textbox.md"
+            },
+            {
+              "title": "Textbox (Email)",
+              "href": "/apps/automation-cloud/latest/user-guide/textbox-email.md"
+            },
+            {
+              "title": "Textbox (Number)",
+              "href": "/apps/automation-cloud/latest/user-guide/textbox-number.md"
+            }
+          ]
+        },
+        {
+          "title": "Container Controls",
+          "href": "/apps/automation-cloud/latest/user-guide/container-controls.md",
+          "children": [
+            {
+              "title": "Differences Between Container Controls",
+              "href": "/apps/automation-cloud/latest/user-guide/different-types-of-container-controls-and-when-to-use-them.md"
+            },
+            {
+              "title": "Container Layout",
+              "href": "/apps/automation-cloud/latest/user-guide/container-layout.md"
+            },
+            {
+              "title": "Container",
+              "href": "/apps/automation-cloud/latest/user-guide/container.md"
+            },
+            {
+              "title": "Page",
+              "href": "/apps/automation-cloud/latest/user-guide/page.md"
+            },
+            {
+              "title": "Page Container",
+              "href": "/apps/automation-cloud/latest/user-guide/page-container.md"
+            }
+          ]
+        },
+        {
+          "title": "Display Controls",
+          "href": "/apps/automation-cloud/latest/user-guide/display-controls.md",
+          "children": [
+            {
+              "title": "Custom List",
+              "href": "/apps/automation-cloud/latest/user-guide/custom-list.md"
+            },
+            {
+              "title": "Divider",
+              "href": "/apps/automation-cloud/latest/user-guide/divider.md"
+            },
+            {
+              "title": "Document Viewer",
+              "href": "/apps/automation-cloud/latest/user-guide/document-viewer.md"
+            },
+            {
+              "title": "File Downloader",
+              "href": "/apps/automation-cloud/latest/user-guide/file-downloader.md"
+            },
+            {
+              "title": "Edit Grid",
+              "href": "/apps/automation-cloud/latest/user-guide/edit-grid.md"
+            },
+            {
+              "title": "Header",
+              "href": "/apps/automation-cloud/latest/user-guide/header.md"
+            },
+            {
+              "title": "IFrame",
+              "href": "/apps/automation-cloud/latest/user-guide/iframe.md"
+            },
+            {
+              "title": "Image",
+              "href": "/apps/automation-cloud/latest/user-guide/image.md"
+            },
+            {
+              "title": "Label",
+              "href": "/apps/automation-cloud/latest/user-guide/label.md"
+            },
+            {
+              "title": "List",
+              "href": "/apps/automation-cloud/latest/user-guide/list.md"
+            },
+            {
+              "title": "Table",
+              "href": "/apps/automation-cloud/latest/user-guide/table.md"
+            },
+            {
+              "title": "Tabs",
+              "href": "/apps/automation-cloud/latest/user-guide/tabs.md"
+            }
+          ]
+        },
+        {
+          "title": "Icon Controls",
+          "href": "/apps/automation-cloud/latest/user-guide/icons.md"
+        },
+        {
+          "title": "Guidelines for building accessible apps",
+          "href": "/apps/automation-cloud/latest/user-guide/guidelines-for-building-accessible-apps.md",
+          "children": [
+            {
+              "title": "Building accessible apps",
+              "href": "/apps/automation-cloud/latest/user-guide/building-accessible-apps.md"
+            },
+            {
+              "title": "Adding accessible descriptors",
+              "href": "/apps/automation-cloud/latest/user-guide/adding-accessible-descriptors.md"
+            },
+            {
+              "title": "The Accessible label",
+              "href": "/apps/automation-cloud/latest/user-guide/the-accessible-label.md"
+            },
+            {
+              "title": "Using the Tab control for accessibility",
+              "href": "/apps/automation-cloud/latest/user-guide/using-the-tab-control-for-accessibility.md"
+            },
+            {
+              "title": "Designing accessible lists and headings",
+              "href": "/apps/automation-cloud/latest/user-guide/designing-accessible-lists-and-headings.md"
+            },
+            {
+              "title": "Responsive app design",
+              "href": "/apps/automation-cloud/latest/user-guide/responsive-app-design.md"
+            },
+            {
+              "title": "Color contrast ratio",
+              "href": "/apps/automation-cloud/latest/user-guide/color-contrast-ratio.md"
+            },
+            {
+              "title": "Preset styles and aria-level mappings for the Header control",
+              "href": "/apps/automation-cloud/latest/user-guide/preset-styles-and-aria-level-mappings.md"
+            },
+            {
+              "title": "Runtime language",
+              "href": "/apps/automation-cloud/latest/user-guide/runtime-languages.md"
+            }
+          ]
+        },
+        {
+          "title": "The resources panel",
+          "href": "/apps/automation-cloud/latest/user-guide/the-lookup-panel.md"
+        },
+        {
+          "title": "Page export and import",
+          "href": "/apps/automation-cloud/latest/user-guide/export-and-import-app-pages.md"
+        },
+        {
+          "title": "Variables in Apps",
+          "href": "/apps/automation-cloud/latest/user-guide/variables-in-apps.md",
+          "children": [
+            {
+              "title": "Naming conventions for Apps variables",
+              "href": "/apps/automation-cloud/latest/user-guide/naming-conventions-for-apps-variables.md"
+            }
+          ]
+        },
+        {
+          "title": "User context references",
+          "href": "/apps/automation-cloud/latest/user-guide/user-context-references.md"
+        },
+        {
+          "title": "Public Apps",
+          "href": "/apps/automation-cloud/latest/user-guide/use-public-apps.md"
+        },
+        {
+          "title": "Saving Your App",
+          "href": "/apps/automation-cloud/latest/user-guide/saving-your-app.md"
+        },
+        {
+          "title": "Best practices",
+          "href": "/apps/automation-cloud/latest/user-guide/best-practices-.md",
+          "children": [
+            {
+              "title": "Performance best practices",
+              "href": "/apps/automation-cloud/latest/user-guide/performance-best-practices.md"
+            },
+            {
+              "title": "Runtime language best practices",
+              "href": "/apps/automation-cloud/latest/user-guide/runtime-language-best-practices.md"
+            }
+          ]
+        },
+        {
+          "title": "App Errors & Troubleshooting",
+          "href": "/apps/automation-cloud/latest/user-guide/app-errors-troubleshooting.md"
+        }
+      ]
+    },
+    {
+      "title": "Designing your app with Autopilot",
+      "children": [
+        {
+          "title": "Using a text prompt to generate an app",
+          "href": "/apps/automation-cloud/latest/user-guide/text-to-app.md"
+        },
+        {
+          "title": "Using a PDF or image to generate an app",
+          "href": "/apps/automation-cloud/latest/user-guide/pdf-or-image-to-app.md"
+        },
+        {
+          "title": "Using an entity to generate an app",
+          "href": "/apps/automation-cloud/latest/user-guide/entity-to-app.md"
+        },
+        {
+          "title": "Adding a page to your app",
+          "href": "/apps/automation-cloud/latest/user-guide/adding-page.md"
+        },
+        {
+          "title": "Generating VB expressions using a text prompt",
+          "href": "/apps/automation-cloud/latest/user-guide/using-autopilot-to-generate-vb-expressions.md"
+        }
+      ]
+    },
+    {
+      "title": "Events and Rules",
+      "children": [
+        {
+          "title": "About Events and Rules",
+          "href": "/apps/automation-cloud/latest/user-guide/about-events-and-rules.md",
+          "children": [
+            {
+              "title": "Rule: If-Then-Else",
+              "href": "/apps/automation-cloud/latest/user-guide/rule-if-then-else.md"
+            },
+            {
+              "title": "Rule: Open a Page",
+              "href": "/apps/automation-cloud/latest/user-guide/rule-open-page.md"
+            },
+            {
+              "title": "Rule: Open URL",
+              "href": "/apps/automation-cloud/latest/user-guide/rule-open-url.md"
+            },
+            {
+              "title": "Rule: Close Pop-Over/Bottom Sheet",
+              "href": "/apps/automation-cloud/latest/user-guide/rule-close-pop.md"
+            },
+            {
+              "title": "Rule: Log Message",
+              "href": "/apps/automation-cloud/latest/user-guide/rule-log-message.md"
+            },
+            {
+              "title": "Rule: Show Message",
+              "href": "/apps/automation-cloud/latest/user-guide/rule-show-message.md"
+            },
+            {
+              "title": "Rule: Show/Hide Spinner",
+              "href": "/apps/automation-cloud/latest/user-guide/rule-show-spinner.md"
+            },
+            {
+              "title": "Rule: Set Value",
+              "href": "/apps/automation-cloud/latest/user-guide/rule-set-values.md"
+            },
+            {
+              "title": "Rule: Start Process",
+              "href": "/apps/automation-cloud/latest/user-guide/rule-start-process.md"
+            },
+            {
+              "title": "Rule: Reset Values",
+              "href": "/apps/automation-cloud/latest/user-guide/rule-reset-values.md"
+            },
+            {
+              "title": "Rule: Upload File to Storage Bucket",
+              "href": "/apps/automation-cloud/latest/user-guide/rule-upload-file-to-storage-bucket.md"
+            },
+            {
+              "title": "Rule: Download File From Storage Bucket",
+              "href": "/apps/automation-cloud/latest/user-guide/rule-download-file-from-storage-bucket.md"
+            },
+            {
+              "title": "Rule: Create Entity Record",
+              "href": "/apps/automation-cloud/latest/user-guide/rule-create-entity-record.md"
+            },
+            {
+              "title": "Rule: Update Entity Record",
+              "href": "/apps/automation-cloud/latest/user-guide/rule-update-entity-record.md"
+            },
+            {
+              "title": "Rule: Delete Entity Record",
+              "href": "/apps/automation-cloud/latest/user-guide/rule-delete-entity-record.md"
+            },
+            {
+              "title": "Rule: Add to Queue",
+              "href": "/apps/automation-cloud/latest/user-guide/rule-add-to-queue.md"
+            },
+            {
+              "title": "Rule: Trigger workflow",
+              "href": "/apps/automation-cloud/latest/user-guide/rule-trigger-workflow.md"
+            },
+            {
+              "title": "Rule: Submit Action",
+              "href": "/apps/automation-cloud/latest/user-guide/rule-submit-action.md"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Leveraging RPA in your App",
+      "children": [
+        {
+          "title": "Referencing a Process From Orchestrator",
+          "href": "/apps/automation-cloud/latest/user-guide/connecting-your-app-to-an-orchestrator-tenant.md",
+          "children": [
+            {
+              "title": "Input and Output Type Properties",
+              "href": "/apps/automation-cloud/latest/user-guide/input-type-properties.md"
+            },
+            {
+              "title": "Apps and attended automations: bi-directional and instant communication",
+              "href": "/apps/automation-cloud/latest/user-guide/apps-and-attended-automations-bi-directional-and-instant-communication.md"
+            }
+          ]
+        },
+        {
+          "title": "Supported Process Argument Types",
+          "href": "/apps/automation-cloud/latest/user-guide/officially-supported-process-argument-types.md"
+        },
+        {
+          "title": "Replacing a Process",
+          "href": "/apps/automation-cloud/latest/user-guide/replacing-a-process-referenced-in-an-app.md"
+        },
+        {
+          "title": "Referencing a Storage Bucket From Orchestrator",
+          "href": "/apps/automation-cloud/latest/user-guide/referencing-a-storage-bucket-from-orchestrator.md"
+        },
+        {
+          "title": "Connecting Apps to an on-premises Orchestrator instance",
+          "href": "/apps/automation-cloud/latest/user-guide/onprem.md"
+        },
+        {
+          "title": "Orchestrator Permissions",
+          "href": "/apps/automation-cloud/latest/user-guide/orchestrator-permissions.md"
+        },
+        {
+          "title": "Data Flow Between UiPath Apps and Orchestrator",
+          "href": "/apps/automation-cloud/latest/user-guide/data-flow-between-uipath-apps-and-orchestrator.md"
+        }
+      ]
+    },
+    {
+      "title": "Leveraging Entities in Your App",
+      "children": [
+        {
+          "title": "Referencing an Entity in Your App",
+          "href": "/apps/automation-cloud/latest/user-guide/referencing-an-entity-in-your-app.md"
+        },
+        {
+          "title": "Replacing an Entity",
+          "href": "/apps/automation-cloud/latest/user-guide/replacing-an-entity.md"
+        },
+        {
+          "title": "Using Choice Set",
+          "href": "/apps/automation-cloud/latest/user-guide/using-choice-set.md"
+        },
+        {
+          "title": "Displaying the value of an entity field in a label",
+          "href": "/apps/automation-cloud/latest/user-guide/displaying-the-value-of-an-entity-field-in-a-label.md"
+        },
+        {
+          "title": "Using Apps With Data Service",
+          "href": "/apps/automation-cloud/latest/user-guide/using-apps-with-data-service.md"
+        }
+      ]
+    },
+    {
+      "title": "Leveraging Queues in Your App",
+      "children": [
+        {
+          "title": "Referencing a Queue in Your App",
+          "href": "/apps/automation-cloud/latest/user-guide/referencing-a-queue-in-your-app.md"
+        },
+        {
+          "title": "Replacing a Queue",
+          "href": "/apps/automation-cloud/latest/user-guide/replacing-a-queue.md"
+        }
+      ]
+    },
+    {
+      "title": "Leveraging Media in your app",
+      "children": [
+        {
+          "title": "Referencing a media document in your app",
+          "href": "/apps/automation-cloud/latest/user-guide/referencing-a-media-document-in-your-app.md"
+        },
+        {
+          "title": "Binding a media document to Image controls",
+          "href": "/apps/automation-cloud/latest/user-guide/binding-a-media-document-to-image-controls.md"
+        }
+      ]
+    },
+    {
+      "title": "Leveraging Actions in your app",
+      "children": [
+        {
+          "title": "Adding an action to your app",
+          "href": "/apps/automation-cloud/latest/user-guide/adding-an-action-to-your-app.md"
+        },
+        {
+          "title": "Adding an action app to an automation",
+          "href": "/apps/automation-cloud/latest/user-guide/adding-an-action-app-to-an-automation.md"
+        },
+        {
+          "title": "Binding an action to app controls",
+          "href": "/apps/automation-cloud/latest/user-guide/binding-an-action-to-app-controls.md"
+        },
+        {
+          "title": "Demos",
+          "href": "/apps/automation-cloud/latest/user-guide/action-apps-demos.md",
+          "children": [
+            {
+              "title": "Using action apps",
+              "href": "/apps/automation-cloud/latest/user-guide/using-action-apps.md"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Leveraging Connections in your apps",
+      "children": [
+        {
+          "title": "Adding a connection to your app",
+          "href": "/apps/automation-cloud/latest/user-guide/adding-a-connection-to-your-app.md"
+        },
+        {
+          "title": "Replacing a connection",
+          "href": "/apps/automation-cloud/latest/user-guide/replacing-a-connection.md"
+        },
+        {
+          "title": "Using connections in List controls",
+          "href": "/apps/automation-cloud/latest/user-guide/using-connections-in-list-controls.md"
+        },
+        {
+          "title": "FAQ for connections in Apps",
+          "href": "/apps/automation-cloud/latest/user-guide/connections-faq.md"
+        }
+      ]
+    },
+    {
+      "title": "Apps in Studio Web",
+      "children": [
+        {
+          "title": "App projects in Studio Web",
+          "href": "/apps/automation-cloud/latest/user-guide/app-projects-in-studio-web.md"
+        },
+        {
+          "title": "Differences in app development in Studio Web",
+          "href": "/apps/automation-cloud/latest/user-guide/differences-in-app-development-in-studio-web.md"
+        }
+      ]
+    },
+    {
+      "title": "Application Lifecycle Management (ALM)",
+      "children": [
+        {
+          "title": "About ALM",
+          "href": "/apps/automation-cloud/latest/user-guide/overview1.md",
+          "children": [
+            {
+              "title": "General Settings",
+              "href": "/apps/automation-cloud/latest/user-guide/general-settings.md"
+            },
+            {
+              "title": "Permission Management",
+              "href": "/apps/automation-cloud/latest/user-guide/permission-management.md"
+            },
+            {
+              "title": "Managing App Versions",
+              "href": "/apps/automation-cloud/latest/user-guide/publishing-a-new-version-of-an-app.md"
+            },
+            {
+              "title": "Packaging an App as a Client",
+              "href": "/apps/automation-cloud/latest/user-guide/packaging-an-app-as-a-client.md"
+            },
+            {
+              "title": "Apps in Solutions Management",
+              "href": "/apps/automation-cloud/latest/user-guide/apps-in-solutions-management.md"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "UiPath First-Party Apps",
+      "children": [
+        {
+          "title": "Automation Launchpad",
+          "href": "/apps/automation-cloud/latest/user-guide/automation-launchpad.md"
+        }
+      ]
+    },
+    {
+      "title": "Basic Troubleshooting Guide",
+      "children": [
+        {
+          "title": "Apps Troubleshooting and FAQs",
+          "href": "/apps/automation-cloud/latest/user-guide/apps-troubleshooting-and-faqs.md"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "productName": "Studio Web",
+  "productNameSlug": "studio-web",
+  "release": "latest",
+  "publicationType": "Release Notes",
+  "publicationTypeSlug": "release-notes",
+  "deliveryOption": "Automation Cloud",
+  "deliveryOptionSlug": "automation-cloud",
+  "description": "Start your automation journey",
+  "displayOrder": "1"
+}

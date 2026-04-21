@@ -1,0 +1,56 @@
+{
+  "title": "Automation Suite release notes",
+  "children": [
+    {
+      "title": "Automation Suite on Linux Release Notes",
+      "children": [
+        {
+          "title": "2.2510.0",
+          "href": "/automation-suite/automation-suite/2.2510/release-notes/automation-suite-2-2510-0.md"
+        },
+        {
+          "title": "2.2510.1",
+          "href": "/automation-suite/automation-suite/2.2510/release-notes/225101.md"
+        }
+      ]
+    },
+    {
+      "title": "Automation Suite on EKS/AKS Release Notes",
+      "children": [
+        {
+          "title": "2.2510.0",
+          "href": "/automation-suite/automation-suite/2.2510/release-notes/automation-suite-on-eks-aks-2-2510-0.md",
+          "children": [
+            {
+              "title": "2.2510.0+patch1",
+              "href": "/automation-suite/automation-suite/2.2510/release-notes/automation-suite-on-eks-aks-2-2510-0-patch-1.md"
+            }
+          ]
+        },
+        {
+          "title": "2.2510.1",
+          "href": "/automation-suite/automation-suite/2.2510/release-notes/automation-suite-on-eks-aks-2-2510-1.md"
+        }
+      ]
+    },
+    {
+      "title": "Automation Suite on OpenShift release notes",
+      "children": [
+        {
+          "title": "2.2510.0",
+          "href": "/automation-suite/automation-suite/2.2510/release-notes/automation-suite-on-openshift-2-2510-0.md",
+          "children": [
+            {
+              "title": "2.2510.0+patch1",
+              "href": "/automation-suite/automation-suite/2.2510/release-notes/automation-suite-on-openshift-2-2510-0-patch-1.md"
+            }
+          ]
+        },
+        {
+          "title": "2.2510.1",
+          "href": "/automation-suite/automation-suite/2.2510/release-notes/automation-suite-on-openshift-2-2510-1.md"
+        }
+      ]
+    }
+  ]
+}

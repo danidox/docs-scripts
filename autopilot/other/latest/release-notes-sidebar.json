@@ -1,0 +1,132 @@
+{
+  "title": "Autopilot release notes",
+  "children": [
+    {
+      "title": "Autopilot chat release notes",
+      "children": [
+        {
+          "title": "2026",
+          "href": "/autopilot/other/latest/release-notes/release-notes-2026.md",
+          "children": [
+            {
+              "title": "April 2026",
+              "href": "/autopilot/other/latest/release-notes/april-2026.md"
+            },
+            {
+              "title": "March 2026",
+              "href": "/autopilot/other/latest/release-notes/march-2026.md"
+            }
+          ]
+        },
+        {
+          "title": "2025",
+          "href": "/autopilot/other/latest/release-notes/release-notes-2025.md",
+          "children": [
+            {
+              "title": "December 2025",
+              "href": "/autopilot/other/latest/release-notes/december-2025.md"
+            },
+            {
+              "title": "October 2025",
+              "href": "/autopilot/other/latest/release-notes/october-2025.md"
+            },
+            {
+              "title": "August 2025",
+              "href": "/autopilot/other/latest/release-notes/august-2025.md"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Autopilot for Everyone release notes",
+      "children": [
+        {
+          "title": "Autopilot for Everyone in Automation Cloud release notes",
+          "href": "/autopilot/other/latest/release-notes/autopilot-for-everyone-in-automation-cloud-release-notes.md",
+          "children": [
+            {
+              "title": "2026.3.1",
+              "href": "/autopilot/other/latest/release-notes/2026-3-1.md"
+            },
+            {
+              "title": "2024.10.16",
+              "href": "/autopilot/other/latest/release-notes/2024-10-16.md"
+            },
+            {
+              "title": "2025.12.1",
+              "href": "/autopilot/other/latest/release-notes/2025-12-1.md"
+            },
+            {
+              "title": "2025.10.4",
+              "href": "/autopilot/other/latest/release-notes/2025-10-4.md"
+            },
+            {
+              "title": "2025.10.3",
+              "href": "/autopilot/other/latest/release-notes/2025-10-3.md"
+            },
+            {
+              "title": "2025.8.1",
+              "href": "/autopilot/other/latest/release-notes/2025-8-1.md"
+            },
+            {
+              "title": "2025.7.1",
+              "href": "/autopilot/other/latest/release-notes/2025-7-1.md"
+            },
+            {
+              "title": "2024.10.15",
+              "href": "/autopilot/other/latest/release-notes/2024-10-15.md"
+            },
+            {
+              "title": "2025.4.1",
+              "href": "/autopilot/other/latest/release-notes/2025-4-1.md"
+            },
+            {
+              "title": "2024.10.12",
+              "href": "/autopilot/other/latest/release-notes/2024-10-12.md"
+            },
+            {
+              "title": "2024.10.8",
+              "href": "/autopilot/other/latest/release-notes/2024-10-8.md"
+            },
+            {
+              "title": "2024.10.7",
+              "href": "/autopilot/other/latest/release-notes/2024-10-7.md"
+            }
+          ]
+        },
+        {
+          "title": "Autopilot for Everyone in Automation Suite release notes",
+          "href": "/autopilot/other/latest/release-notes/autopilot-for-everyone-in-automation-suite-release-notes.md",
+          "children": [
+            {
+              "title": "2025.9.5",
+              "href": "/autopilot/other/latest/release-notes/2025-9-5.md"
+            },
+            {
+              "title": "2025.9.4",
+              "href": "/autopilot/other/latest/release-notes/2025-9-4.md"
+            },
+            {
+              "title": "2025.9.3",
+              "href": "/autopilot/other/latest/release-notes/2025-9-3.md"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Autopilot plug-ins release notes",
+      "children": [
+        {
+          "title": "UiPath Autopilot for Microsoft Teams",
+          "href": "/autopilot/other/latest/release-notes/uipath-autopilot-for-microsoft-teams-release-notes.md"
+        },
+        {
+          "title": "UiPath Autopilot for Slack",
+          "href": "/autopilot/other/latest/release-notes/uipath-autopilot-for-slack.md"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "productName": "Studio Web",
+  "productNameSlug": "studio-web",
+  "release": "latest",
+  "publicationType": "Everyone User Guide",
+  "publicationTypeSlug": "everyone-user-guide",
+  "deliveryOption": "Automation Cloud",
+  "deliveryOptionSlug": "automation-cloud",
+  "description": "Your product description",
+  "displayOrder": "1"
+}

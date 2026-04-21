@@ -1,0 +1,821 @@
+{
+  "title": "Studio Web user guide",
+  "children": [
+    {
+      "title": "Getting started",
+      "children": [
+        {
+          "title": "Overview",
+          "href": "/studio-web/automation-cloud/latest/user-guide/overview.md"
+        },
+        {
+          "title": "The Studio family",
+          "href": "/studio-web/automation-cloud/latest/user-guide/the-studio-family.md"
+        },
+        {
+          "title": "Frequently asked questions",
+          "href": "/studio-web/automation-cloud/latest/user-guide/frequently-asked-questions.md"
+        }
+      ]
+    },
+    {
+      "title": "For administrators",
+      "children": [
+        {
+          "title": "Prerequisites for using Studio Web",
+          "href": "/studio-web/automation-cloud/latest/user-guide/prerequisites-for-using-studio-web.md"
+        },
+        {
+          "title": "Licensing",
+          "href": "/studio-web/automation-cloud/latest/user-guide/licensing.md"
+        },
+        {
+          "title": "Managing access to Studio Web",
+          "href": "/studio-web/automation-cloud/latest/user-guide/managing-access-to-studio-web.md"
+        },
+        {
+          "title": "System requirements",
+          "href": "/studio-web/automation-cloud/latest/user-guide/software-requirements.md"
+        },
+        {
+          "title": "Data residency",
+          "href": "/studio-web/automation-cloud/latest/user-guide/data-residency.md"
+        },
+        {
+          "title": "Governance",
+          "href": "/studio-web/automation-cloud/latest/user-guide/governance.md"
+        }
+      ]
+    },
+    {
+      "title": "RPA workflow projects",
+      "children": [
+        {
+          "title": "Designing RPA workflow projects",
+          "href": "/studio-web/automation-cloud/latest/user-guide/designing-rpa-workflow-projects.md",
+          "children": [
+            {
+              "title": "Creating an RPA workflow from an idea",
+              "href": "/studio-web/automation-cloud/latest/user-guide/creating-an-rpa-workflow-from-an-idea.md"
+            },
+            {
+              "title": "Creating a project",
+              "href": "/studio-web/automation-cloud/latest/user-guide/creating-a-project.md"
+            },
+            {
+              "title": "How to start an RPA workflow",
+              "href": "/studio-web/automation-cloud/latest/user-guide/how-to-start-an-rpa-workflow.md"
+            },
+            {
+              "title": "Managing project files and folders",
+              "href": "/studio-web/automation-cloud/latest/user-guide/managing-project-files-and-folders.md"
+            },
+            {
+              "title": "Adding activities to a project",
+              "href": "/studio-web/automation-cloud/latest/user-guide/adding-activities-to-your-workflow.md",
+              "children": [
+                {
+                  "title": "Activities reference",
+                  "href": "/studio-web/automation-cloud/latest/user-guide/activities-reference.md"
+                },
+                {
+                  "title": "Preview activities and packages",
+                  "href": "/studio-web/automation-cloud/latest/user-guide/preview-activities-and-packages.md"
+                }
+              ]
+            },
+            {
+              "title": "Connecting RPA workflows to your accounts",
+              "href": "/studio-web/automation-cloud/latest/user-guide/connecting-rpa-workflows-to-accounts.md"
+            },
+            {
+              "title": "Configuring activities",
+              "href": "/studio-web/automation-cloud/latest/user-guide/configuring-activities.md"
+            },
+            {
+              "title": "Managing the activities in a project",
+              "href": "/studio-web/automation-cloud/latest/user-guide/managing-activities.md"
+            },
+            {
+              "title": "Passing values between activities",
+              "href": "/studio-web/automation-cloud/latest/user-guide/passing-valuies-between-activities.md"
+            },
+            {
+              "title": "Iterating through items",
+              "href": "/studio-web/automation-cloud/latest/user-guide/iterating-through-items.md"
+            },
+            {
+              "title": "Managing the data in a project",
+              "href": "/studio-web/automation-cloud/latest/user-guide/managing-the-data-in-a-project.md"
+            },
+            {
+              "title": "Configuring a project to use your data",
+              "href": "/studio-web/automation-cloud/latest/user-guide/configuring-a-project-to-use-your-data.md"
+            },
+            {
+              "title": "Using file and folder resources",
+              "href": "/studio-web/automation-cloud/latest/user-guide/using-file-and-folder-resources.md"
+            },
+            {
+              "title": "Using UI Automation for browser interactions",
+              "href": "/studio-web/automation-cloud/latest/user-guide/using-ui-automation.md",
+              "children": [
+                {
+                  "title": "Debugging banner notification after extension upgrade to Manifest V3",
+                  "href": "/studio-web/automation-cloud/latest/user-guide/debugging-banner-notification-after-extension-upgrade-to-manifest-v3.md"
+                },
+                {
+                  "title": "Autopilot Recorder for UI Automation",
+                  "href": "/studio-web/automation-cloud/latest/user-guide/ui-automation-autopilot-recorder.md"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Running and publishing RPA workflow projects",
+          "href": "/studio-web/automation-cloud/latest/user-guide/running-and-testing-rpa-workflow-projects.md",
+          "children": [
+            {
+              "title": "Running a project",
+              "href": "/studio-web/automation-cloud/latest/user-guide/running-a-project.md"
+            },
+            {
+              "title": "Viewing the run output",
+              "href": "/studio-web/automation-cloud/latest/user-guide/viewing-the-run-output.md"
+            },
+            {
+              "title": "Publishing a project",
+              "href": "/studio-web/automation-cloud/latest/user-guide/publishing-a-project.md"
+            }
+          ]
+        },
+        {
+          "title": "Managing RPA workflow projects",
+          "href": "/studio-web/automation-cloud/latest/user-guide/managing-rpa-workflow-projects.md",
+          "children": [
+            {
+              "title": "Managing projects",
+              "href": "/studio-web/automation-cloud/latest/user-guide/managing-projects.md"
+            },
+            {
+              "title": "Sharing and collaborating on projects",
+              "href": "/studio-web/automation-cloud/latest/user-guide/sharing-and-collaborating-on-projects.md"
+            },
+            {
+              "title": "Creating a template from a project",
+              "href": "/studio-web/automation-cloud/latest/user-guide/creating-a-template-from-a-project.md"
+            },
+            {
+              "title": "Opening a project in Studio Desktop",
+              "href": "/studio-web/automation-cloud/latest/user-guide/opening-a-project-in-studio-desktop.md"
+            },
+            {
+              "title": "Automation details",
+              "href": "/studio-web/automation-cloud/latest/user-guide/automation-details.md",
+              "children": [
+                {
+                  "title": "Viewing jobs",
+                  "href": "/studio-web/automation-cloud/latest/user-guide/viewing-jobs.md"
+                },
+                {
+                  "title": "Viewing deployments",
+                  "href": "/studio-web/automation-cloud/latest/user-guide/viewing-deployments.md"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "App projects",
+      "children": [
+        {
+          "title": "Apps in Studio Web",
+          "href": "/studio-web/automation-cloud/latest/user-guide/apps-in-studio-web.md"
+        },
+        {
+          "title": "About app projects",
+          "href": "/studio-web/automation-cloud/latest/user-guide/working-with-app-projects.md",
+          "children": [
+            {
+              "title": "Designing app projects",
+              "href": "/studio-web/automation-cloud/latest/user-guide/designing-app-projects.md"
+            },
+            {
+              "title": "App templates",
+              "href": "/studio-web/automation-cloud/latest/user-guide/web-app-templates.md",
+              "children": [
+                {
+                  "title": "CX Companion App",
+                  "href": "/studio-web/automation-cloud/latest/user-guide/cx-companion-app.md",
+                  "children": [
+                    {
+                      "title": "Template overview",
+                      "href": "/studio-web/automation-cloud/latest/user-guide/cx-companion-template-overview.md"
+                    },
+                    {
+                      "title": "Configuring the CX Companion app",
+                      "href": "/studio-web/automation-cloud/latest/user-guide/configuring-the-cx-companion-app.md"
+                    },
+                    {
+                      "title": "Set up a sample app",
+                      "href": "/studio-web/automation-cloud/latest/user-guide/set-up-a-sample-app.md"
+                    },
+                    {
+                      "title": "CX Companion Salesforce plugin",
+                      "href": "/studio-web/automation-cloud/latest/user-guide/cx-companion-salesforce-plugin.md"
+                    },
+                    {
+                      "title": "Frequently asked questions",
+                      "href": "/studio-web/automation-cloud/latest/user-guide/cx-companion-frequently-asked-questions.md"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "title": "Debugging app projects",
+              "href": "/studio-web/automation-cloud/latest/user-guide/debugging-app-projects.md"
+            },
+            {
+              "title": "Publishing, deploying, and upgrading app projects",
+              "href": "/studio-web/automation-cloud/latest/user-guide/publishing-deploying-upgrading-app-projects.md"
+            },
+            {
+              "title": "Importing and exporting app projects",
+              "href": "/studio-web/automation-cloud/latest/user-guide/importing-exporting-app-projects.md"
+            },
+            {
+              "title": "Designing your app with Autopilot",
+              "href": "/studio-web/automation-cloud/latest/user-guide/designing-your-app-with-autopilot.md",
+              "children": [
+                {
+                  "title": "Using a text prompt to generate an app",
+                  "href": "/studio-web/automation-cloud/latest/user-guide/text-to-app.md"
+                },
+                {
+                  "title": "Using a PDF or image to generate an app",
+                  "href": "/studio-web/automation-cloud/latest/user-guide/pdf-or-image-to-app.md"
+                },
+                {
+                  "title": "Generating VB expressions using a text prompt",
+                  "href": "/studio-web/automation-cloud/latest/user-guide/using-autopilot-to-generate-vb-expressions.md"
+                }
+              ]
+            },
+            {
+              "title": "Designing an action app",
+              "href": "/studio-web/automation-cloud/latest/user-guide/designing-an-action-app.md",
+              "children": [
+                {
+                  "title": "Adding an action app to an automation",
+                  "href": "/studio-web/automation-cloud/latest/user-guide/adding-an-action-app-to-a-workflow.md"
+                }
+              ]
+            },
+            {
+              "title": "Working with entities in an app project",
+              "href": "/studio-web/automation-cloud/latest/user-guide/working-with-entities-in-an-app-project.md"
+            },
+            {
+              "title": "Guidelines for building accessible apps",
+              "href": "/studio-web/automation-cloud/latest/user-guide/guidelines-for-building-accessible-apps.md",
+              "children": [
+                {
+                  "title": "Building accessible apps",
+                  "href": "/studio-web/automation-cloud/latest/user-guide/building-accessible-apps.md"
+                },
+                {
+                  "title": "Adding accessible descriptors",
+                  "href": "/studio-web/automation-cloud/latest/user-guide/adding-accessible-descriptors.md"
+                },
+                {
+                  "title": "The Accessible label",
+                  "href": "/studio-web/automation-cloud/latest/user-guide/the-accessible-label.md"
+                },
+                {
+                  "title": "Using the Tab control for accessibility",
+                  "href": "/studio-web/automation-cloud/latest/user-guide/using-the-tab-control-for-accessibility.md"
+                },
+                {
+                  "title": "Designing accessible lists and headings",
+                  "href": "/studio-web/automation-cloud/latest/user-guide/designing-accessible-lists-and-headings.md"
+                },
+                {
+                  "title": "Responsive app design",
+                  "href": "/studio-web/automation-cloud/latest/user-guide/responsive-app-design.md"
+                },
+                {
+                  "title": "Color contrast ratio",
+                  "href": "/studio-web/automation-cloud/latest/user-guide/color-contrast-ratio.md"
+                },
+                {
+                  "title": "Preset styles and aria-level mappings for the Header control",
+                  "href": "/studio-web/automation-cloud/latest/user-guide/preset-styles-and-aria-level-mappings.md"
+                }
+              ]
+            },
+            {
+              "title": "Known limitations",
+              "href": "/studio-web/automation-cloud/latest/user-guide/known-limitations.md"
+            }
+          ]
+        },
+        {
+          "title": "App Controls",
+          "href": "/studio-web/automation-cloud/latest/user-guide/app-controls.md",
+          "children": [
+            {
+              "title": "Controls Overview",
+              "href": "/studio-web/automation-cloud/latest/user-guide/controls.md"
+            },
+            {
+              "title": "Input Controls",
+              "href": "/studio-web/automation-cloud/latest/user-guide/input-controls.md",
+              "children": [
+                {
+                  "title": "Button",
+                  "href": "/studio-web/automation-cloud/latest/user-guide/button.md"
+                },
+                {
+                  "title": "Checkbox",
+                  "href": "/studio-web/automation-cloud/latest/user-guide/checkbox.md"
+                },
+                {
+                  "title": "Custom HTML",
+                  "href": "/studio-web/automation-cloud/latest/user-guide/custom-html.md"
+                },
+                {
+                  "title": "Date Picker",
+                  "href": "/studio-web/automation-cloud/latest/user-guide/date-picker.md"
+                },
+                {
+                  "title": "Dropdown",
+                  "href": "/studio-web/automation-cloud/latest/user-guide/dropdown.md"
+                },
+                {
+                  "title": "File Uploader",
+                  "href": "/studio-web/automation-cloud/latest/user-guide/file-uploader.md"
+                },
+                {
+                  "title": "Multiselect Dropdown",
+                  "href": "/studio-web/automation-cloud/latest/user-guide/multiselect-dropdown.md"
+                },
+                {
+                  "title": "Radio Button",
+                  "href": "/studio-web/automation-cloud/latest/user-guide/radio-button.md"
+                },
+                {
+                  "title": "Rich Text Editor",
+                  "href": "/studio-web/automation-cloud/latest/user-guide/rich-text-editor.md"
+                },
+                {
+                  "title": "Slider",
+                  "href": "/studio-web/automation-cloud/latest/user-guide/slider.md"
+                },
+                {
+                  "title": "Switch",
+                  "href": "/studio-web/automation-cloud/latest/user-guide/switch.md"
+                },
+                {
+                  "title": "Text Area",
+                  "href": "/studio-web/automation-cloud/latest/user-guide/text-area.md"
+                },
+                {
+                  "title": "Textbox",
+                  "href": "/studio-web/automation-cloud/latest/user-guide/textbox.md"
+                },
+                {
+                  "title": "Textbox (Email)",
+                  "href": "/studio-web/automation-cloud/latest/user-guide/textbox-email.md"
+                },
+                {
+                  "title": "Textbox (Number)",
+                  "href": "/studio-web/automation-cloud/latest/user-guide/textbox-number.md"
+                }
+              ]
+            },
+            {
+              "title": "Display Controls",
+              "href": "/studio-web/automation-cloud/latest/user-guide/display-controls.md",
+              "children": [
+                {
+                  "title": "Custom List",
+                  "href": "/studio-web/automation-cloud/latest/user-guide/custom-list.md"
+                },
+                {
+                  "title": "Divider",
+                  "href": "/studio-web/automation-cloud/latest/user-guide/divider.md"
+                },
+                {
+                  "title": "Document Viewer",
+                  "href": "/studio-web/automation-cloud/latest/user-guide/document-viewer.md"
+                },
+                {
+                  "title": "Edit Grid",
+                  "href": "/studio-web/automation-cloud/latest/user-guide/edit-grid.md"
+                },
+                {
+                  "title": "File Downloader",
+                  "href": "/studio-web/automation-cloud/latest/user-guide/file-downloader.md"
+                },
+                {
+                  "title": "Header",
+                  "href": "/studio-web/automation-cloud/latest/user-guide/header.md"
+                },
+                {
+                  "title": "IFrame",
+                  "href": "/studio-web/automation-cloud/latest/user-guide/iframe.md"
+                },
+                {
+                  "title": "Image",
+                  "href": "/studio-web/automation-cloud/latest/user-guide/image.md"
+                },
+                {
+                  "title": "Label",
+                  "href": "/studio-web/automation-cloud/latest/user-guide/label.md"
+                },
+                {
+                  "title": "List",
+                  "href": "/studio-web/automation-cloud/latest/user-guide/list.md"
+                },
+                {
+                  "title": "Table",
+                  "href": "/studio-web/automation-cloud/latest/user-guide/table.md"
+                },
+                {
+                  "title": "Tabs",
+                  "href": "/studio-web/automation-cloud/latest/user-guide/tabs.md"
+                },
+                {
+                  "title": "Validation Control",
+                  "href": "/studio-web/automation-cloud/latest/user-guide/validation-control.md",
+                  "children": [
+                    {
+                      "title": "The Validation Control variable",
+                      "href": "/studio-web/automation-cloud/latest/user-guide/th-validation-control-variable.md"
+                    },
+                    {
+                      "title": "Validation Control object vs variable",
+                      "href": "/studio-web/automation-cloud/latest/user-guide/validation-control-component-vs-variable.md"
+                    },
+                    {
+                      "title": "Validation Control properties",
+                      "href": "/studio-web/automation-cloud/latest/user-guide/validation-control-properties.md"
+                    },
+                    {
+                      "title": "Validation Control activities",
+                      "href": "/studio-web/automation-cloud/latest/user-guide/validation-control-activities.md"
+                    },
+                    {
+                      "title": "Common VB expressions for Validation Control",
+                      "href": "/studio-web/automation-cloud/latest/user-guide/common-vb-expressions-for-validation-control.md"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "title": "Container Controls",
+              "href": "/studio-web/automation-cloud/latest/user-guide/container-controls.md",
+              "children": [
+                {
+                  "title": "Differences Between Container Controls",
+                  "href": "/studio-web/automation-cloud/latest/user-guide/different-types-of-container-controls-and-when-to-use-them.md"
+                },
+                {
+                  "title": "Container",
+                  "href": "/studio-web/automation-cloud/latest/user-guide/container.md"
+                },
+                {
+                  "title": "Container Layout",
+                  "href": "/studio-web/automation-cloud/latest/user-guide/container-layout.md"
+                },
+                {
+                  "title": "Page",
+                  "href": "/studio-web/automation-cloud/latest/user-guide/page.md"
+                },
+                {
+                  "title": "Page Container",
+                  "href": "/studio-web/automation-cloud/latest/user-guide/page-container.md"
+                }
+              ]
+            },
+            {
+              "title": "Icon Controls",
+              "href": "/studio-web/automation-cloud/latest/user-guide/icons.md"
+            },
+            {
+              "title": "Layout and Styling",
+              "href": "/studio-web/automation-cloud/latest/user-guide/layout-and-styling.md",
+              "children": [
+                {
+                  "title": "Positioning Your Controls",
+                  "href": "/studio-web/automation-cloud/latest/user-guide/positioning-your-controls.md"
+                },
+                {
+                  "title": "Resizing Your Controls",
+                  "href": "/studio-web/automation-cloud/latest/user-guide/resizing-your-controls.md"
+                },
+                {
+                  "title": "Customizing the Font",
+                  "href": "/studio-web/automation-cloud/latest/user-guide/customizing-the-font.md"
+                },
+                {
+                  "title": "Working With Borders",
+                  "href": "/studio-web/automation-cloud/latest/user-guide/working-with-borders.md"
+                },
+                {
+                  "title": "Spacing Out Controls",
+                  "href": "/studio-web/automation-cloud/latest/user-guide/spacing-out-controls.md"
+                },
+                {
+                  "title": "Changing the Background Color",
+                  "href": "/studio-web/automation-cloud/latest/user-guide/changing-the-background-color.md"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "How to",
+          "href": "/studio-web/automation-cloud/latest/user-guide/how-to.md",
+          "children": [
+            {
+              "title": "Set an external context using query parameters",
+              "href": "/studio-web/automation-cloud/latest/user-guide/setting-an-external-context-using-query-parameters.md"
+            },
+            {
+              "title": "Set an external context using external events",
+              "href": "/studio-web/automation-cloud/latest/user-guide/set-an-external-context-using-external-events.md"
+            },
+            {
+              "title": "Use arrays to populate Dropdown, Multiselect dropdown, and Radio Button controls",
+              "href": "/studio-web/automation-cloud/latest/user-guide/use-arrays-to-populate-dropdown-controls.md"
+            },
+            {
+              "title": "Use tabular controls with Data Service entities in app projects",
+              "href": "/studio-web/automation-cloud/latest/user-guide/using-tabular-controls-with-data-service-entities-in-app-projects.md"
+            }
+          ]
+        },
+        {
+          "title": "VB expressions",
+          "href": "/studio-web/automation-cloud/latest/user-guide/vb-expressions.md",
+          "children": [
+            {
+              "title": "Using the Expression editor in controls",
+              "href": "/studio-web/automation-cloud/latest/user-guide/the-expression-editor.md"
+            },
+            {
+              "title": "Using VB properties in apps in Studio Web",
+              "href": "/studio-web/automation-cloud/latest/user-guide/referencing-vb-properties-in-a-workflow.md"
+            },
+            {
+              "title": "Useful VB functions",
+              "href": "/studio-web/automation-cloud/latest/user-guide/useful-vb-functions.md"
+            }
+          ]
+        },
+        {
+          "title": "App activities",
+          "href": "/studio-web/automation-cloud/latest/user-guide/app-activities.md"
+        }
+      ]
+    },
+    {
+      "title": "Agentic processes",
+      "children": [
+        {
+          "title": "About agentic processes",
+          "href": "/studio-web/automation-cloud/latest/user-guide/about-agentic-processes.md"
+        },
+        {
+          "title": "Creating an agentic project",
+          "href": "/studio-web/automation-cloud/latest/user-guide/creating-an-agentic-project.md"
+        },
+        {
+          "title": "Process modeling",
+          "href": "/studio-web/automation-cloud/latest/user-guide/process-modeling.md"
+        },
+        {
+          "title": "Process implementation",
+          "href": "/studio-web/automation-cloud/latest/user-guide/process-implementation.md",
+          "children": [
+            {
+              "title": "Agentic process elements",
+              "href": "/studio-web/automation-cloud/latest/user-guide/agentic-process-elements.md"
+            },
+            {
+              "title": "Configuring agentic process elements",
+              "href": "/studio-web/automation-cloud/latest/user-guide/configuring-agentic-process-elements.md"
+            },
+            {
+              "title": "Debugging an agentic process",
+              "href": "/studio-web/automation-cloud/latest/user-guide/debugging-an-agentic-process.md"
+            },
+            {
+              "title": "Publishing, deploying, and upgrading an agentic process",
+              "href": "/studio-web/automation-cloud/latest/user-guide/publishing-deploying-upgrading-an-agentic-process.md"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Agents",
+      "children": [
+        {
+          "title": "About agents",
+          "href": "/studio-web/automation-cloud/latest/user-guide/about-agents.md"
+        },
+        {
+          "title": "Building an agent in Studio Web",
+          "href": "/studio-web/automation-cloud/latest/user-guide/building-an-agent-in-studio-web.md"
+        }
+      ]
+    },
+    {
+      "title": "Solutions",
+      "children": [
+        {
+          "title": "About solutions",
+          "href": "/studio-web/automation-cloud/latest/user-guide/about-solutions.md",
+          "children": [
+            {
+              "title": "Key concepts",
+              "href": "/studio-web/automation-cloud/latest/user-guide/key-concepts.md"
+            }
+          ]
+        },
+        {
+          "title": "Creating solutions",
+          "href": "/studio-web/automation-cloud/latest/user-guide/creating-solutions.md"
+        },
+        {
+          "title": "Managing solutions",
+          "href": "/studio-web/automation-cloud/latest/user-guide/managing-solutions.md"
+        },
+        {
+          "title": "Designing solutions",
+          "href": "/studio-web/automation-cloud/latest/user-guide/designing-solutions.md",
+          "children": [
+            {
+              "title": "Solution resources",
+              "href": "/studio-web/automation-cloud/latest/user-guide/solution-resources.md"
+            }
+          ]
+        },
+        {
+          "title": "Debugging solutions",
+          "href": "/studio-web/automation-cloud/latest/user-guide/debugging-solutions.md"
+        },
+        {
+          "title": "Publishing and deploying solutions",
+          "href": "/studio-web/automation-cloud/latest/user-guide/publishing-and-deploying-solutions.md"
+        },
+        {
+          "title": "Version control for solutions",
+          "href": "/studio-web/automation-cloud/latest/user-guide/version-control-solutions.md"
+        },
+        {
+          "title": "From projects to solutions: before and after",
+          "href": "/studio-web/automation-cloud/latest/user-guide/unified-developer-experience-before-after.md"
+        },
+        {
+          "title": "FAQ",
+          "href": "/studio-web/automation-cloud/latest/user-guide/solutions-faq.md"
+        },
+        {
+          "title": "Known limitations",
+          "href": "/studio-web/automation-cloud/latest/user-guide/solutions-known-limitations.md"
+        }
+      ]
+    },
+    {
+      "title": "API workflows",
+      "children": [
+        {
+          "title": "About API workflows",
+          "href": "/studio-web/automation-cloud/latest/user-guide/about-api-workflows.md",
+          "children": [
+            {
+              "title": "Capabilities",
+              "href": "/studio-web/automation-cloud/latest/user-guide/capabilities.md"
+            },
+            {
+              "title": "How it works",
+              "href": "/studio-web/automation-cloud/latest/user-guide/how-it-works.md"
+            },
+            {
+              "title": "User scenarios",
+              "href": "/studio-web/automation-cloud/latest/user-guide/user-scenarios.md"
+            },
+            {
+              "title": "RPA worfklows vs. API workflows",
+              "href": "/studio-web/automation-cloud/latest/user-guide/rpa-vs-api-workflows.md"
+            },
+            {
+              "title": "Autopilot and API workflows",
+              "href": "/studio-web/automation-cloud/latest/user-guide/autopilot-and-api-workflows.md"
+            },
+            {
+              "title": "FAQ",
+              "href": "/studio-web/automation-cloud/latest/user-guide/faq.md"
+            }
+          ]
+        },
+        {
+          "title": "User interface",
+          "href": "/studio-web/automation-cloud/latest/user-guide/user-interface.md"
+        },
+        {
+          "title": "API workflows activities",
+          "href": "/studio-web/automation-cloud/latest/user-guide/api-workflow-specific-activities.md",
+          "children": [
+            {
+              "title": "Connector",
+              "href": "/studio-web/automation-cloud/latest/user-guide/connector.md"
+            },
+            {
+              "title": "HTTP",
+              "href": "/studio-web/automation-cloud/latest/user-guide/http.md"
+            },
+            {
+              "title": "Script",
+              "href": "/studio-web/automation-cloud/latest/user-guide/script.md"
+            },
+            {
+              "title": "If",
+              "href": "/studio-web/automation-cloud/latest/user-guide/if.md"
+            },
+            {
+              "title": "For Each",
+              "href": "/studio-web/automation-cloud/latest/user-guide/for-each.md"
+            },
+            {
+              "title": "Do While",
+              "href": "/studio-web/automation-cloud/latest/user-guide/do-while.md"
+            },
+            {
+              "title": "Assign",
+              "href": "/studio-web/automation-cloud/latest/user-guide/assign-.md"
+            },
+            {
+              "title": "Try Catch",
+              "href": "/studio-web/automation-cloud/latest/user-guide/try-catch.md"
+            },
+            {
+              "title": "Wait",
+              "href": "/studio-web/automation-cloud/latest/user-guide/wait.md"
+            },
+            {
+              "title": "Response",
+              "href": "/studio-web/automation-cloud/latest/user-guide/response.md"
+            }
+          ]
+        },
+        {
+          "title": "Managing API workflows",
+          "href": "/studio-web/automation-cloud/latest/user-guide/managing-api-workflows.md"
+        },
+        {
+          "title": "Consuming API workflows",
+          "href": "/studio-web/automation-cloud/latest/user-guide/consuming-api-workflows.md"
+        },
+        {
+          "title": "Tutorials",
+          "href": "/studio-web/automation-cloud/latest/user-guide/tutorials.md",
+          "children": [
+            {
+              "title": "Building your first API workflow",
+              "href": "/studio-web/automation-cloud/latest/user-guide/your-first-api-workflow.md"
+            },
+            {
+              "title": "Paging over HTTP calls",
+              "href": "/studio-web/automation-cloud/latest/user-guide/paging-over-http-calls.md"
+            },
+            {
+              "title": "Extracting worker hierarchy from Workday",
+              "href": "/studio-web/automation-cloud/latest/user-guide/extracting-worker-hierarchy-from-workday.md"
+            },
+            {
+              "title": "Retrieving ticket details",
+              "href": "/studio-web/automation-cloud/latest/user-guide/retrieving-ticket-details.md"
+            },
+            {
+              "title": "Integrating Databricks Genie API with API workflows",
+              "href": "/studio-web/automation-cloud/latest/user-guide/integrating-databricks-genie-api-with-api-workflows.md"
+            },
+            {
+              "title": "Integrating Snowflake Cortex API with API workflows",
+              "href": "/studio-web/automation-cloud/latest/user-guide/integrating-snowflake-cortex-api-with-api-workflows.md"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

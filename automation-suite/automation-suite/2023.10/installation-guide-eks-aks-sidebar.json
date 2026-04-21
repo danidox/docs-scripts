@@ -1,0 +1,580 @@
+{
+  "title": "Automation Suite installation guide eks aks",
+  "children": [
+    {
+      "title": "Overview",
+      "children": [
+        {
+          "title": "Automation Suite overview",
+          "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/automation-suite-overview.md"
+        },
+        {
+          "title": "Automation Suite products",
+          "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/automation-suite-products.md"
+        },
+        {
+          "title": "Automation Suite stack",
+          "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/automation-suite-stack.md"
+        },
+        {
+          "title": "Deployment scenarios",
+          "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/deployment-scenarios.md"
+        },
+        {
+          "title": "Capacity planning",
+          "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/capacity-planning.md"
+        },
+        {
+          "title": "Compatibility matrix",
+          "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/compatibility-matrix.md"
+        },
+        {
+          "title": "Certificates overview",
+          "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/certificates-overview.md"
+        },
+        {
+          "title": "Security and compliance",
+          "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/security-and-compliance.md"
+        }
+      ]
+    },
+    {
+      "title": "Requirements",
+      "children": [
+        {
+          "title": "Kubernetes cluster and nodes",
+          "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/kubernetes-cluster-and-nodes.md"
+        },
+        {
+          "title": "Proxy",
+          "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/configuring-the-proxy.md"
+        },
+        {
+          "title": "SQL database",
+          "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/sql-database.md"
+        },
+        {
+          "title": "Caching",
+          "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/caching.md"
+        },
+        {
+          "title": "Storage",
+          "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/storage.md"
+        },
+        {
+          "title": "Networking",
+          "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/networking.md",
+          "children": [
+            {
+              "title": "Configuring NGINX ingress controller",
+              "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/configuring-nginx-ingress-controller.md"
+            }
+          ]
+        },
+        {
+          "title": "Certificate requirements",
+          "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/certificate-requirements.md"
+        }
+      ]
+    },
+    {
+      "title": "Installation",
+      "children": [
+        {
+          "title": "Configuring input.json",
+          "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/configuring-inputjson.md",
+          "children": [
+            {
+              "title": "AKS input.json example",
+              "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/aks-inputjson-example.md"
+            },
+            {
+              "title": "EKS input.json example",
+              "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/eks-inputjson-example.md"
+            }
+          ]
+        },
+        {
+          "title": "Installing Automation Suite",
+          "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/installing-automation-suite.md",
+          "children": [
+            {
+              "title": "Configuring the OCI-compliant registry",
+              "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/configuring-the-oci-compliant-registry.md"
+            },
+            {
+              "title": "Output example: prerequisite check",
+              "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/output-example-prerequisite-check.md"
+            },
+            {
+              "title": "Output example: Automation Suite installation",
+              "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/output-example-automation-suite-installation.md"
+            }
+          ]
+        },
+        {
+          "title": "Downloading the installation packages",
+          "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/downloading-the-installation-packages.md"
+        },
+        {
+          "title": "uipathctl",
+          "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/uipathctl.md"
+        }
+      ]
+    },
+    {
+      "title": "Post-installation",
+      "children": [
+        {
+          "title": "Accessing Automation Suite",
+          "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/accessing-automation-suite.md"
+        },
+        {
+          "title": "Managing the certificates",
+          "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/managing-the-certificates.md"
+        },
+        {
+          "title": "Managing the cluster in ArgoCD",
+          "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/managing-the-cluster-in-argocd.md"
+        },
+        {
+          "title": "Managing products",
+          "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/managing-products.md"
+        },
+        {
+          "title": "Updating credentials",
+          "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/updating-credentials.md"
+        },
+        {
+          "title": "Backing up and restoring the cluster",
+          "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/backing-up-and-restoring-the-cluster.md",
+          "children": [
+            {
+              "title": "Configuring the backup store",
+              "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/configuring-the-backup-store.md"
+            },
+            {
+              "title": "Backing up the cluster",
+              "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/backing-up-the-cluster.md"
+            },
+            {
+              "title": "Restoring the backup",
+              "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/restoring-the-backup.md"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Migration and upgrade",
+      "children": [
+        {
+          "title": "Upgrading Automation Suite on EKS/AKS",
+          "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/upgrading-automation-suite.md"
+        },
+        {
+          "title": "Migrating standalone products to Automation Suite",
+          "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/migrating-standalone-products-to-automation-suite.md",
+          "children": [
+            {
+              "title": "Performing a full migration",
+              "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/full-migration.md",
+              "children": [
+                {
+                  "title": "Migration prerequisites",
+                  "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/migration-prerequisites.md",
+                  "children": [
+                    {
+                      "title": "Migration compatibility matrix",
+                      "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/migration-compatibility-matrix.md"
+                    }
+                  ]
+                },
+                {
+                  "title": "Pre-migration steps",
+                  "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/pre-migration-steps.md",
+                  "children": [
+                    {
+                      "title": "Step 1: Saving the connection strings",
+                      "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/saving-the-connection-strings-and-tenant-names.md"
+                    },
+                    {
+                      "title": "Step 2: Creating your organizations in Automation Suite",
+                      "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/creating-your-organizations-in-automation-suite.md"
+                    }
+                  ]
+                },
+                {
+                  "title": "Migration steps",
+                  "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/migration-steps.md",
+                  "children": [
+                    {
+                      "title": "Step 1: Moving the Identity organization data from standalone to Automation Suite",
+                      "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/moving-the-identity-organization-data-from-standalone-to-automation-suite.md"
+                    },
+                    {
+                      "title": "Step 2: Restoring the standalone product database",
+                      "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/restoring-the-standalone-product-database.md"
+                    },
+                    {
+                      "title": "Step 3: Backing up the platform database in Automation Suite",
+                      "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/backing-up-the-platform-database-in-automation-suite.md"
+                    },
+                    {
+                      "title": "Step 4: Merging organizations in Automation Suite",
+                      "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/merging-organizations-in-automation-suite.md"
+                    },
+                    {
+                      "title": "Step 5: Updating the migrated product connection strings",
+                      "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/updating-the-connection-strings.md"
+                    },
+                    {
+                      "title": "Step 6: Migrating standalone Orchestrator",
+                      "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/migrating-standalone-orchestrator.md"
+                    },
+                    {
+                      "title": "Step 7: Migrating standalone Insights",
+                      "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/migrating-standalone-insights.md"
+                    },
+                    {
+                      "title": "Step 8: Migrating standalone Test Manager",
+                      "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/migrating-standalone-test-manager.md"
+                    },
+                    {
+                      "title": "Step 9: Deleting the default tenant",
+                      "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/deleting-the-default-tenant.md"
+                    }
+                  ]
+                },
+                {
+                  "title": "Post-migration steps",
+                  "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/post-migration-steps.md",
+                  "children": [
+                    {
+                      "title": "Step 1: Removing old cache keys",
+                      "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/removing-old-cache-keys.md"
+                    },
+                    {
+                      "title": "Step 2: Updating AD integration and authentication",
+                      "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/updating-ad-integration-and-authentication.md"
+                    },
+                    {
+                      "title": "Step 3: Validating the Insights migration",
+                      "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/validating-the-insights-migration.md"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "title": "Performing a single tenant migration",
+              "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/using-the-migration-tool.md"
+            }
+          ]
+        },
+        {
+          "title": "Migrating from Automation Suite on Linux to Automation Suite on EKS/AKS",
+          "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/migrating-from-automation-suite-on-linux-to-automation-suite-on-eksaks.md"
+        },
+        {
+          "title": "Applying a patch",
+          "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/applying-a-patch.md",
+          "children": [
+            {
+              "title": "Patch artifact download links",
+              "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/patch-artifact-download-links.md"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Monitoring and alerting",
+      "children": [
+        {
+          "title": "Using the monitoring stack",
+          "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/using-the-monitoring-stack.md"
+        },
+        {
+          "title": "Alert runbooks",
+          "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/alert-runbooks.md"
+        }
+      ]
+    },
+    {
+      "title": "Cluster administration",
+      "children": [
+        {
+          "title": "Performing database maintenance",
+          "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/database-maintenance.md"
+        },
+        {
+          "title": "Configuring the FQDN post-installation",
+          "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/configuring-the-fqdn-post-installation.md"
+        },
+        {
+          "title": "Forwarding application logs to external tools",
+          "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/forwarding-application-logs-to-external-tools.md"
+        }
+      ]
+    },
+    {
+      "title": "Product-specific configuration",
+      "children": [
+        {
+          "title": "Document Understanding",
+          "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/document-understanding-specific-configuration.md",
+          "children": [
+            {
+              "title": "Accessing the Models",
+              "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/access-to-the-models.md"
+            },
+            {
+              "title": "Enabling or disabling Chinese, Japanese, Korean OCR",
+              "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/enabling-or-disabling-chinese-japanese-korean-ocr.md"
+            },
+            {
+              "title": "Enabling or disabling Extended Languages OCR",
+              "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/enable-or-disable-extended-languages-ocr.md"
+            }
+          ]
+        },
+        {
+          "title": "Insights",
+          "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/insights-specific-configuration.md",
+          "children": [
+            {
+              "title": "Remapping the organization IDs",
+              "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/remapping-the-organization-id.md"
+            },
+            {
+              "title": "Migrating Looker data to Automation Suite",
+              "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/migrating-insights-to-automation-suite.md"
+            },
+            {
+              "title": "Performing Insights database maintenance",
+              "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/insights-database-maintenance.md"
+            },
+            {
+              "title": "Configuring log rules",
+              "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/configuring-log-rules.md"
+            }
+          ]
+        },
+        {
+          "title": "Orchestrator",
+          "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/orchestrator-specific-configuration.md",
+          "children": [
+            {
+              "title": "Configuring Orchestrator parameters",
+              "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/configuring-orchestrator-parameters.md"
+            },
+            {
+              "title": "Orchestrator appSettings",
+              "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/orchestrator-configuration-file-checklist.md"
+            },
+            {
+              "title": "Configuring appSettings",
+              "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/configuring-appsettings.md"
+            },
+            {
+              "title": "Configuring the maximum request size",
+              "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/configuring-maximum-request-size.md"
+            },
+            {
+              "title": "Overriding cluster-level storage configuration",
+              "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/overriding-cluster-level-storage-configuration.md"
+            },
+            {
+              "title": "Configuring NLog",
+              "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/configuring-nlog.md",
+              "children": [
+                {
+                  "title": "Saving robot logs to Elasticsearch",
+                  "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/saving-robot-logs-to-elasticsearch.md"
+                }
+              ]
+            },
+            {
+              "title": "Configuring credential stores",
+              "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/configuring-credential-stores.md"
+            },
+            {
+              "title": "Configuring encryption key per tenant",
+              "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/configuring-encryption-key-per-tenant.md"
+            },
+            {
+              "title": "Cleaning up the Orchestrator database",
+              "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/cleaning-up-the-orchestrator-database.md"
+            }
+          ]
+        },
+        {
+          "title": "Process Mining",
+          "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/process-mining-specific-configuration.md",
+          "children": [
+            {
+              "title": "Rotating Blob Storage Credentials",
+              "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/rotating-blob-storage-credentials.md"
+            },
+            {
+              "title": "Disabling use of pre-signed URLs when uploading data to Amazon S3 storage",
+              "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/disabling-use-of-pre-signed-urls-when-uploading-data-to-amazon-s3-storage.md"
+            },
+            {
+              "title": "Configuring process app security",
+              "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/configuring-process-app-security-.md"
+            },
+            {
+              "title": "Setting up Kerberos authentication with basic MSSQL authentication for Process Mining",
+              "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/setting-up-kerberos-authentication-with-basic-mssql--authentication-for-process-mining.md"
+            }
+          ]
+        },
+        {
+          "title": "Task Mining",
+          "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/task-mining.md",
+          "children": [
+            {
+              "title": "Cleaning up the Task Mining database",
+              "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/testing-for-duplicate-localizations-1.md"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Troubleshooting",
+      "children": [
+        {
+          "title": "How to",
+          "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/how-to.md",
+          "children": [
+            {
+              "title": "How to forward application logs to Splunk",
+              "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/forwarding-application-logs-to-splunk.md"
+            },
+            {
+              "title": "How to work with certificates",
+              "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/how-to-work-certificates.md"
+            },
+            {
+              "title": "How to collect DU usage data with in-cluster objectstore (Ceph)",
+              "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/how-to-collect-du-usage-data-with-in-cluster-objectstore-ceph.md"
+            },
+            {
+              "title": "How to uninstall Automation Suite",
+              "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/how-to-uninstall-automation-suite.md"
+            }
+          ]
+        },
+        {
+          "title": "Troubleshooting",
+          "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/troubleshooting.md",
+          "children": [
+            {
+              "title": "Installation and configuration troubleshooting",
+              "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/installation-and-configuration-troubleshooting.md",
+              "children": [
+                {
+                  "title": "Installation fails when Velero is enabled",
+                  "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/installation-fails-when-velero-is-enabled.md"
+                }
+              ]
+            },
+            {
+              "title": "Upgrade and migration troubleshooting",
+              "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/upgrade-and-migration-troubleshooting.md",
+              "children": [
+                {
+                  "title": "AI Center provisioning failure after upgrading to 2023.10 or later",
+                  "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/ai-center-provisioning-failure-after-upgrading-to-202310.md"
+                },
+                {
+                  "title": "Insights volumes created in two different zones following migration",
+                  "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/insights-volumes-created-in-two-different-zones-following-migration.md"
+                },
+                {
+                  "title": "Upgrade fails due to overridden Insights PVC sizes",
+                  "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/upgrade-fails-due-to-overridden-insights-pvc-sizes.md"
+                }
+              ]
+            },
+            {
+              "title": "Other troubleshooting",
+              "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/general-troubleshooting.md",
+              "children": [
+                {
+                  "title": "The backup setup does not work due to a failure to connect to Azure Government",
+                  "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/the-backup-setup-does-not-work-due-to-a-failure-to-connect-to-azure-government.md"
+                },
+                {
+                  "title": "Pods in the uipath namespace stuck when enabling custom node taints",
+                  "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/pods-in-the-uipath-namespace-not-running-when-enabling-custom-node-taints.md"
+                },
+                {
+                  "title": "Unable to launch Automation Hub and Apps with proxy setup",
+                  "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/unable-to-launch-automation-hub-and-apps-with-proxy-setup.md"
+                },
+                {
+                  "title": "Pods cannot communicate with FQDN in a proxy environment",
+                  "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/pods-cannot-communicate-with-fqdn-via-proxy.md"
+                },
+                {
+                  "title": "Test Automation SQL connection string is ignored",
+                  "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/test-automation-sql-connection-string-is-ignored.md"
+                },
+                {
+                  "title": "EKS backup failure due to Velero version",
+                  "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/eks-backup-failure-due-to-velero-version.md"
+                }
+              ]
+            },
+            {
+              "title": "Automation Suite Robots troubleshooting",
+              "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/automation-suite-robots-troubleshooting.md",
+              "children": [
+                {
+                  "title": "Provisioning Automation Suite Robots fails",
+                  "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/provisioning-automation-suite-robots-fails.md"
+                },
+                {
+                  "title": "Health check of Automation Suite Robots fails",
+                  "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/health-check-of-automation-suite-robots-fails.md"
+                }
+              ]
+            },
+            {
+              "title": "Task Mining troubleshooting",
+              "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/task-mining-troubleshooting.md",
+              "children": [
+                {
+                  "title": "After Disaster Recovery Dapr is not working properly for Task Mining",
+                  "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/after-disaster-recovery-dapr-is-not-working-properly-for-task-mining.md"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Troubleshooting tools",
+          "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/troubleshooting-tools.md",
+          "children": [
+            {
+              "title": "Running the diagnostics tool",
+              "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/running-the-diagnostics-tool.md"
+            },
+            {
+              "title": "Running the support bundle tool",
+              "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/running-the-support-bundle-tool.md"
+            },
+            {
+              "title": "Exploring summarized telemetry",
+              "href": "/automation-suite/automation-suite/2023.10/installation-guide-eks-aks/exploring-summarized-telemetry.md"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

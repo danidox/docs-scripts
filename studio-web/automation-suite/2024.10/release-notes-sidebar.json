@@ -1,0 +1,44 @@
+{
+  "title": "Studio Web release notes",
+  "children": [
+    {
+      "title": "Release Notes",
+      "children": [
+        {
+          "title": "2024.10.0",
+          "href": "/studio-web/automation-suite/2024.10/release-notes/2024-10-0.md"
+        },
+        {
+          "title": "2024.10.1",
+          "href": "/studio-web/automation-suite/2024.10/release-notes/2024-10-1.md"
+        },
+        {
+          "title": "2024.10.2",
+          "href": "/studio-web/automation-suite/2024.10/release-notes/2024102.md"
+        },
+        {
+          "title": "2024.10.3",
+          "href": "/studio-web/automation-suite/2024.10/release-notes/2024-10-3.md"
+        },
+        {
+          "title": "2024.10.4",
+          "href": "/studio-web/automation-suite/2024.10/release-notes/2024-10-4.md",
+          "children": [
+            {
+              "title": "2024-10-4+patch1",
+              "href": "/studio-web/automation-suite/2024.10/release-notes/2024-10-4-patch-1.md"
+            }
+          ]
+        },
+        {
+          "title": "2024.10.5",
+          "href": "/studio-web/automation-suite/2024.10/release-notes/2024-10-5.md"
+        },
+        {
+          "title": "2024.10.6",
+          "href": "/studio-web/automation-suite/2024.10/release-notes/2024-10-6.md"
+        }
+      ]
+    }
+  ]
+}

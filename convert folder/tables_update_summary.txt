@@ -1,0 +1,14 @@
+Tables Curation Summary
+Mode: WRITE
+Root: C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\convert folder\studio-web\convert-sw-latest
+
+Files  updated: 6
+Total table blocks  modified: 6
+
+Details:
+ - C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\convert folder\studio-web\convert-sw-latest\different-types-of-container-controls-and-when-to-use-them.md  (1 table)
+ - C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\convert folder\studio-web\convert-sw-latest\ui-automation-autopilot-recorder.md  (1 table)
+ - C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\convert folder\studio-web\convert-sw-latest\unified-developer-experience-before-after.md  (1 table)
+ - C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\convert folder\studio-web\convert-sw-latest\validation-control-component-vs-variable.md  (1 table)
+ - C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\convert folder\studio-web\convert-sw-latest\_different-types-of-container-controls-and-when-to-use-them-asuite.md  (1 table)
+ - C:\Users\daniela.craciun\OneDrive - UiPath\UiPath\docs-as-code\~scripts\convert folder\studio-web\convert-sw-latest\_validation-control-component-vs-variable-asuite.md  (1 table)

@@ -1,0 +1,120 @@
+{
+  "title": "Studio Web release notes",
+  "children": [
+    {
+      "title": "Release notes",
+      "children": [
+        {
+          "title": "2025",
+          "href": "/studio-web/automation-cloud/latest/release-notes/release-notes-2025.md",
+          "children": [
+            {
+              "title": "November 2025",
+              "href": "/studio-web/automation-cloud/latest/release-notes/november-2025.md"
+            },
+            {
+              "title": "October 2025",
+              "href": "/studio-web/automation-cloud/latest/release-notes/october-2025.md"
+            },
+            {
+              "title": "September 2025",
+              "href": "/studio-web/automation-cloud/latest/release-notes/september-2025.md"
+            },
+            {
+              "title": "August 2025",
+              "href": "/studio-web/automation-cloud/latest/release-notes/august-2025.md"
+            },
+            {
+              "title": "July 2025",
+              "href": "/studio-web/automation-cloud/latest/release-notes/july-2025.md"
+            },
+            {
+              "title": "June 2025",
+              "href": "/studio-web/automation-cloud/latest/release-notes/june-2025.md"
+            },
+            {
+              "title": "May 2025",
+              "href": "/studio-web/automation-cloud/latest/release-notes/may-2025.md"
+            },
+            {
+              "title": "April 2025",
+              "href": "/studio-web/automation-cloud/latest/release-notes/april-2025.md"
+            },
+            {
+              "title": "March 2025",
+              "href": "/studio-web/automation-cloud/latest/release-notes/march-2025.md"
+            },
+            {
+              "title": "February 2025",
+              "href": "/studio-web/automation-cloud/latest/release-notes/february-2025.md"
+            },
+            {
+              "title": "January 2025",
+              "href": "/studio-web/automation-cloud/latest/release-notes/january-2025.md"
+            }
+          ]
+        },
+        {
+          "title": "2024",
+          "href": "/studio-web/automation-cloud/latest/release-notes/release-notes-2024.md",
+          "children": [
+            {
+              "title": "December 2024",
+              "href": "/studio-web/automation-cloud/latest/release-notes/december-2024.md"
+            },
+            {
+              "title": "October 2024",
+              "href": "/studio-web/automation-cloud/latest/release-notes/october-2024.md"
+            },
+            {
+              "title": "September 2024",
+              "href": "/studio-web/automation-cloud/latest/release-notes/september-2024.md"
+            },
+            {
+              "title": "August 2024",
+              "href": "/studio-web/automation-cloud/latest/release-notes/august-2024.md"
+            },
+            {
+              "title": "July 2024",
+              "href": "/studio-web/automation-cloud/latest/release-notes/july-2024.md"
+            },
+            {
+              "title": "June 2024",
+              "href": "/studio-web/automation-cloud/latest/release-notes/june-2024.md"
+            },
+            {
+              "title": "May 2024",
+              "href": "/studio-web/automation-cloud/latest/release-notes/may-2024.md"
+            },
+            {
+              "title": "April 2024",
+              "href": "/studio-web/automation-cloud/latest/release-notes/april-2024.md"
+            },
+            {
+              "title": "March 2024",
+              "href": "/studio-web/automation-cloud/latest/release-notes/march-2024.md"
+            },
+            {
+              "title": "February 2024",
+              "href": "/studio-web/automation-cloud/latest/release-notes/february-2024.md"
+            },
+            {
+              "title": "January 2024",
+              "href": "/studio-web/automation-cloud/latest/release-notes/january-2024.md"
+            }
+          ]
+        },
+        {
+          "title": "2023",
+          "href": "/studio-web/automation-cloud/latest/release-notes/release-notes-2023.md",
+          "children": [
+            {
+              "title": "June 2023",
+              "href": "/studio-web/automation-cloud/latest/release-notes/release-notes-june-2023.md"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

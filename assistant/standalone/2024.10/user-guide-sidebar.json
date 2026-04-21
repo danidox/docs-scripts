@@ -1,0 +1,139 @@
+{
+  "title": "Assistant user guide",
+  "children": [
+    {
+      "title": "UiPath Assistant",
+      "children": [
+        {
+          "title": "About UiPath Assistant",
+          "href": "/assistant/standalone/2024.10/user-guide/about-uipath-assistant.md"
+        },
+        {
+          "title": "Preferences",
+          "href": "/assistant/standalone/2024.10/user-guide/field-descriptions.md"
+        }
+      ]
+    },
+    {
+      "title": "Installing UiPath Assistant",
+      "children": [
+        {
+          "title": "Hardware and software requirements",
+          "href": "/assistant/standalone/2024.10/user-guide/hardware-and-software-requirements.md"
+        },
+        {
+          "title": "Installing UiPath Assistant",
+          "href": "/assistant/standalone/2024.10/user-guide/installing-uipath-assistant.md"
+        }
+      ]
+    },
+    {
+      "title": "Configuring UiPath Assistant",
+      "children": [
+        {
+          "title": "Signing In to Your Account",
+          "href": "/assistant/standalone/2024.10/user-guide/sign-in-to-your-account.md"
+        },
+        {
+          "title": "Task Capture Launcher",
+          "href": "/assistant/standalone/2024.10/user-guide/task-capture-launcher.md"
+        },
+        {
+          "title": "UiPath Assistant for Excel add-in",
+          "href": "/assistant/standalone/2024.10/user-guide/excel-add-in.md"
+        },
+        {
+          "title": "Automatic Assistant startup",
+          "href": "/assistant/standalone/2024.10/user-guide/automatic-assistant-startup.md"
+        }
+      ]
+    },
+    {
+      "title": "Assistant on MacOS",
+      "children": [
+        {
+          "title": "UiPath Assistant on Mac",
+          "href": "/assistant/standalone/2024.10/user-guide/uipath-assistant-on-mac.md"
+        }
+      ]
+    },
+    {
+      "title": "Picture in picture",
+      "children": [
+        {
+          "title": "Robot session (previously Picture-in-Picture)",
+          "href": "/assistant/standalone/2024.10/user-guide/picture-in-picture.md"
+        },
+        {
+          "title": "PiP - Child Session",
+          "href": "/assistant/standalone/2024.10/user-guide/pip-child-session.md"
+        },
+        {
+          "title": "Robot session - Virtual Desktop",
+          "href": "/assistant/standalone/2024.10/user-guide/pip-virtual-desktop.md"
+        },
+        {
+          "title": "Technology Comparison",
+          "href": "/assistant/standalone/2024.10/user-guide/technology-comparison.md"
+        }
+      ]
+    },
+    {
+      "title": "Configuring attended automations",
+      "children": [
+        {
+          "title": "Automation Configuration",
+          "href": "/assistant/standalone/2024.10/user-guide/process-configuration.md"
+        }
+      ]
+    },
+    {
+      "title": "Governance",
+      "children": [
+        {
+          "title": "Assistant Governance",
+          "href": "/assistant/standalone/2024.10/user-guide/assistant-governance.md"
+        },
+        {
+          "title": "Settings for Assistant Policies",
+          "href": "/assistant/standalone/2024.10/user-guide/settings-for-assistant-policies.md"
+        }
+      ]
+    },
+    {
+      "title": "Widgets in Assistant",
+      "children": [
+        {
+          "title": "Widgets",
+          "href": "/assistant/standalone/2024.10/user-guide/widgets.md",
+          "children": [
+            {
+              "title": "Apps Widget",
+              "href": "/assistant/standalone/2024.10/user-guide/apps-widget.md"
+            },
+            {
+              "title": "Custom Widgets",
+              "href": "/assistant/standalone/2024.10/user-guide/custom-widgets.md"
+            },
+            {
+              "title": "Marketplace Widget",
+              "href": "/assistant/standalone/2024.10/user-guide/marketplace-widget.md"
+            },
+            {
+              "title": "Automation Store Widget",
+              "href": "/assistant/standalone/2024.10/user-guide/automation-store-widget.md"
+            },
+            {
+              "title": "Action Center Widget",
+              "href": "/assistant/standalone/2024.10/user-guide/action-center-widget.md"
+            },
+            {
+              "title": "Autopilot widget",
+              "href": "/assistant/standalone/2024.10/user-guide/autopilot-widget.md"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

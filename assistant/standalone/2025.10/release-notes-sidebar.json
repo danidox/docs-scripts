@@ -1,0 +1,38 @@
+{
+  "title": "Assistant release notes",
+  "children": [
+    {
+      "title": "Release notes",
+      "children": [
+        {
+          "title": "2025.10.7",
+          "href": "/assistant/standalone/2025.10/release-notes/2025107.md"
+        },
+        {
+          "title": "2025.10.6",
+          "href": "/assistant/standalone/2025.10/release-notes/2025-10-6.md"
+        },
+        {
+          "title": "2025.10.5",
+          "href": "/assistant/standalone/2025.10/release-notes/2025-10-5.md"
+        },
+        {
+          "title": "2025.10.4",
+          "href": "/assistant/standalone/2025.10/release-notes/2025-10-4.md"
+        },
+        {
+          "title": "2025.10.3",
+          "href": "/assistant/standalone/2025.10/release-notes/2025-10-3.md"
+        },
+        {
+          "title": "2025.10.2",
+          "href": "/assistant/standalone/2025.10/release-notes/2025-10-2.md"
+        },
+        {
+          "title": "2025.10.1",
+          "href": "/assistant/standalone/2025.10/release-notes/2025-10-1.md"
+        }
+      ]
+    }
+  ]
+}

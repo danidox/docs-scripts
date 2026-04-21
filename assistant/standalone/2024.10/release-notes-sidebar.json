@@ -1,0 +1,88 @@
+{
+  "title": "Assistant release notes",
+  "children": [
+    {
+      "title": "Release notes",
+      "children": [
+        {
+          "title": "2024.10.20",
+          "href": "/assistant/standalone/2024.10/release-notes/20241020.md"
+        },
+        {
+          "title": "2024.10.19",
+          "href": "/assistant/standalone/2024.10/release-notes/2024-10-19.md"
+        },
+        {
+          "title": "2024.10.18",
+          "href": "/assistant/standalone/2024.10/release-notes/2024-10-18.md"
+        },
+        {
+          "title": "2024.10.17",
+          "href": "/assistant/standalone/2024.10/release-notes/2024-10-17.md"
+        },
+        {
+          "title": "2024.10.16",
+          "href": "/assistant/standalone/2024.10/release-notes/2024-10-16.md"
+        },
+        {
+          "title": "2024.10.15",
+          "href": "/assistant/standalone/2024.10/release-notes/2024-10-15.md"
+        },
+        {
+          "title": "2024.10.14",
+          "href": "/assistant/standalone/2024.10/release-notes/2024-10-14.md"
+        },
+        {
+          "title": "2024.10.13",
+          "href": "/assistant/standalone/2024.10/release-notes/2024-10-13.md"
+        },
+        {
+          "title": "2024.10.12",
+          "href": "/assistant/standalone/2024.10/release-notes/2024-10-12.md"
+        },
+        {
+          "title": "2024.10.11",
+          "href": "/assistant/standalone/2024.10/release-notes/2024-10-11.md"
+        },
+        {
+          "title": "2024.10.10",
+          "href": "/assistant/standalone/2024.10/release-notes/2024-10-10.md"
+        },
+        {
+          "title": "2024.10.9",
+          "href": "/assistant/standalone/2024.10/release-notes/2024-10-9.md"
+        },
+        {
+          "title": "2024.10.8",
+          "href": "/assistant/standalone/2024.10/release-notes/2024-10-8.md"
+        },
+        {
+          "title": "2024.10.7",
+          "href": "/assistant/standalone/2024.10/release-notes/2024-10-7.md"
+        },
+        {
+          "title": "2024.10.6",
+          "href": "/assistant/standalone/2024.10/release-notes/2024-10-6.md"
+        },
+        {
+          "title": "2024.10.5",
+          "href": "/assistant/standalone/2024.10/release-notes/2024-10-5.md"
+        },
+        {
+          "title": "2024.10.1",
+          "href": "/assistant/standalone/2024.10/release-notes/release-notes-2024-10-1.md"
+        },
+        {
+          "title": "UiPath Assistant for Excel add-in Release Notes",
+          "href": "/assistant/standalone/2024.10/release-notes/uipath-assistant-for-excel-add-in-release-notes.md",
+          "children": [
+            {
+              "title": "2023.4.2",
+              "href": "/assistant/standalone/2024.10/release-notes/excel-add-in-2023-4-2.md"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

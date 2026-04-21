@@ -1,0 +1,15 @@
+---
+title: "2026"
+visible: true
+slug: "release-notes"
+---
+
+## Release notes
+
+Release notes for the current year are available by clicking on a month in the table of contents on the left
+
+Each page lists the changes made to Robot for Automation Cloud™ Enterprise customers during the selected month: new features, bug fixes, and more
+
+* [March 2026](https://docs.uipath.com/assistant/standalone/latest/release-notes/march-2026#march-2026)
+* [February 2026](https://docs.uipath.com/assistant/standalone/latest/release-notes/february-2026#february-2026)
+* [January 2026](https://docs.uipath.com/assistant/standalone/latest/release-notes/january-2026#january-2026)

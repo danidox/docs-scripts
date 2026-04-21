@@ -1,0 +1,11 @@
+{
+  "productName": "Robot",
+  "productNameSlug": "robot",
+  "release": "2024.10",
+  "publicationType": "Admin Guide",
+  "publicationTypeSlug": "admin-guide",
+  "deliveryOption": "Standalone",
+  "deliveryOptionSlug": "standalone",
+  "description": "Your product description",
+  "displayOrder": "1"
+}

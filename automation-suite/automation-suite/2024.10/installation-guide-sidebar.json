@@ -1,0 +1,1705 @@
+{
+  "title": "Automation Suite installation guide",
+  "children": [
+    {
+      "title": "Overview",
+      "children": [
+        {
+          "title": "Automation Suite overview",
+          "href": "/automation-suite/automation-suite/2024.10/installation-guide/automation-suite-overview.md",
+          "children": [
+            {
+              "title": "Cross-deployment model feature comparison",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/cross-deployment-model-feature-comparison.md"
+            },
+            {
+              "title": "Responsibility matrix",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/responsibility-matrix.md"
+            }
+          ]
+        },
+        {
+          "title": "Glossary",
+          "href": "/automation-suite/automation-suite/2024.10/installation-guide/glossary.md"
+        },
+        {
+          "title": "Automation Suite products",
+          "href": "/automation-suite/automation-suite/2024.10/installation-guide/automation-suite-products.md"
+        },
+        {
+          "title": "Deployment architecture",
+          "href": "/automation-suite/automation-suite/2024.10/installation-guide/deployment-architecture.md",
+          "children": [
+            {
+              "title": "Multi-node architecture and design consideration",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/multi-node-architecture-and-design-consideration.md"
+            },
+            {
+              "title": "Disaster recovery - Active/Passive and Active/Active",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/disaster-recovery.md",
+              "children": [
+                {
+                  "title": "Quick links",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/quick-links.md"
+                },
+                {
+                  "title": "Overview",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/overview-active-passive-active-active-deployments.md"
+                },
+                {
+                  "title": "Basic architecture considerations",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/basic-architecture-considerations.md"
+                },
+                {
+                  "title": "Q&A: Disaster Recovery",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/qa-multi-site-deployments.md"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Cross-deployment feature comparison",
+          "href": "/automation-suite/automation-suite/2024.10/installation-guide/cross-deployment-feature-comparison.md"
+        },
+        {
+          "title": "Security and compliance",
+          "href": "/automation-suite/automation-suite/2024.10/installation-guide/security-and-compliance.md"
+        },
+        {
+          "title": "Certificates overview",
+          "href": "/automation-suite/automation-suite/2024.10/installation-guide/certificates-overview.md"
+        }
+      ]
+    },
+    {
+      "title": "Requirements",
+      "children": [
+        {
+          "title": "Hardware and software requirements",
+          "href": "/automation-suite/automation-suite/2024.10/installation-guide/hardware-and-software-requirements.md",
+          "children": [
+            {
+              "title": "Evaluating your storage needs",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/evaluating-your-storage-needs.md"
+            },
+            {
+              "title": "Estimating cloud infrastructure costs",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/estimating-your-cloud-infrastructure-cost.md"
+            },
+            {
+              "title": "Capacity planning",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/capacity-planning.md"
+            }
+          ]
+        },
+        {
+          "title": "Root privileges requirements",
+          "href": "/automation-suite/automation-suite/2024.10/installation-guide/root-privileges-requirement.md"
+        },
+        {
+          "title": "High Availability – three availability zones",
+          "href": "/automation-suite/automation-suite/2024.10/installation-guide/high-availability-three-availability-zones.md"
+        },
+        {
+          "title": "Certificate requirements",
+          "href": "/automation-suite/automation-suite/2024.10/installation-guide/certificate-requirements.md"
+        },
+        {
+          "title": "Network requirements",
+          "href": "/automation-suite/automation-suite/2024.10/installation-guide/network-requirements.md"
+        }
+      ]
+    },
+    {
+      "title": "Deployment templates",
+      "children": [
+        {
+          "title": "Q&A: Deployment templates",
+          "href": "/automation-suite/automation-suite/2024.10/installation-guide/qa-deployment-templates.md"
+        },
+        {
+          "title": "AWS Deployment Template",
+          "href": "/automation-suite/automation-suite/2024.10/installation-guide/aws-deployment-template.md",
+          "children": [
+            {
+              "title": "Release Notes",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/aws-deployment-template-release-notes.md"
+            },
+            {
+              "title": "AWS deployment architecture",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/aws-deployment-architecture.md"
+            },
+            {
+              "title": "Step 1: Preparing the AWS deployment",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/planning-the-aws-deployment.md"
+            },
+            {
+              "title": "Step 2: Deploying the Quick Start template",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/deploying-the-quick-start-template.md"
+            },
+            {
+              "title": "Step 3: Post-deployment steps",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/aws-post-deployment-steps.md"
+            },
+            {
+              "title": "AWS deployment parameters",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/aws-deployment-parameters.md"
+            },
+            {
+              "title": "Roles and policies",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/roles-created-by-the-cloudformation-template.md"
+            },
+            {
+              "title": "Completing an upgrade",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/aws-completing-an-upgrade.md"
+            }
+          ]
+        },
+        {
+          "title": "AWS Marketplace deployment",
+          "href": "/automation-suite/automation-suite/2024.10/installation-guide/aws-marketplace-deployment.md",
+          "children": [
+            {
+              "title": "Release notes",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/aws-marketplace-release-notes.md"
+            },
+            {
+              "title": "AWS Marketplace deployment architecture",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/aws-marketplace-deployment-architecture.md"
+            },
+            {
+              "title": "Step 1: Preparing the AWS Marketplace deployment",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/aws-marketplace-preparing-the-aws-marketplace-deployment.md"
+            },
+            {
+              "title": "Step 2: Deploying the AWS Marketplace offering",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/aws-marketplace-deploying-the-aws-marketplace-offering.md"
+            },
+            {
+              "title": "Step 3: Post-deployment steps",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/aws-marketplace-post-deployment-steps.md"
+            },
+            {
+              "title": "AWS Marketplace deployment parameters",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/aws-marketplace-deployment-parameters.md"
+            },
+            {
+              "title": "Roles and policies",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/aws-marketplace-roles-and-policies.md"
+            }
+          ]
+        },
+        {
+          "title": "Azure Deployment Template",
+          "href": "/automation-suite/automation-suite/2024.10/installation-guide/azure-deployment-template.md",
+          "children": [
+            {
+              "title": "Release notes",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/azure-deployment-template-release-notes.md"
+            },
+            {
+              "title": "Azure deployment architecture",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/azure-deployment-architecture.md"
+            },
+            {
+              "title": "Step 1: Preparing the Azure deployment",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/preparing-the-azure-deployment.md"
+            },
+            {
+              "title": "Step 2: Deploying Automation Suite to Azure",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/deploying-automation-suite-to-azure.md"
+            },
+            {
+              "title": "Step 3: Post-deployment steps",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/azure-post-deployment-steps.md"
+            },
+            {
+              "title": "Completing an upgrade",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/azure-completing-an-upgrade.md"
+            }
+          ]
+        },
+        {
+          "title": "GCP Deployment Template",
+          "href": "/automation-suite/automation-suite/2024.10/installation-guide/gcp-deployment-template.md",
+          "children": [
+            {
+              "title": "Release notes",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/gcp-deployment-template-release-notes.md"
+            },
+            {
+              "title": "GCP deployment architecture",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/gcp-deployment-architecture.md"
+            },
+            {
+              "title": "Step 1: Preparing the GCP deployment",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/preparing-the-gcp-deployment.md"
+            },
+            {
+              "title": "Step 2: Deploying Automation Suite to GCP",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/deploying-automation-suite-to-gcp.md"
+            },
+            {
+              "title": "Step 3: Post-deployment steps",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/post-deployment-steps.md"
+            }
+          ]
+        },
+        {
+          "title": "GCP Marketplace deployment",
+          "href": "/automation-suite/automation-suite/2024.10/installation-guide/gcp-marketplace-deployment.md",
+          "children": [
+            {
+              "title": "Release notes",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/gcp-marketplace-release-notes.md"
+            },
+            {
+              "title": "GCP Marketplace deployment architecture",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/gcp-marketplace-deployment-architecture.md"
+            },
+            {
+              "title": "Step 1: Preparing the GCP Marketplace deployment",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/preparing-the-gcp-marketplace-deployment.md"
+            },
+            {
+              "title": "Step 2: Deploying Automation Suite to GCP Marketplace",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/deploying-automation-suite-to-gcp-marketplace.md"
+            },
+            {
+              "title": "Step 3: Post-deployment steps",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/gcp-marketplace-post-deployment-steps.md"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Manual: Preparing the installation",
+      "children": [
+        {
+          "title": "Manual: Preparing the installation",
+          "href": "/automation-suite/automation-suite/2024.10/installation-guide/preparing-the-installation.md"
+        },
+        {
+          "title": "Step 1: Downloading the installation packages and getting them on all the machines",
+          "href": "/automation-suite/automation-suite/2024.10/installation-guide/downloading-installation-packages.md",
+          "children": [
+            {
+              "title": "Installation packages download links",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/installation-packages-download-links.md"
+            }
+          ]
+        },
+        {
+          "title": "Step 2: Configuring the OCI-compliant registry for offline installations",
+          "href": "/automation-suite/automation-suite/2024.10/installation-guide/configuring-the-oci-compliant-registry.md"
+        },
+        {
+          "title": "Step 3: Configuring the external objectstore",
+          "href": "/automation-suite/automation-suite/2024.10/installation-guide/configuring-the-external-objectstore.md"
+        },
+        {
+          "title": "Step 4: Configuring High Availability Add-on",
+          "href": "/automation-suite/automation-suite/2024.10/installation-guide/configuring-high-availability-add-on.md"
+        },
+        {
+          "title": "Step 5: Configuring SQL databases",
+          "href": "/automation-suite/automation-suite/2024.10/installation-guide/configuring-sql-databases.md"
+        },
+        {
+          "title": "Step 6: Configuring the load balancer",
+          "href": "/automation-suite/automation-suite/2024.10/installation-guide/configuring-the-load-balancer.md"
+        },
+        {
+          "title": "Step 7: Configuring the DNS",
+          "href": "/automation-suite/automation-suite/2024.10/installation-guide/configuring-the-dns.md"
+        },
+        {
+          "title": "Step 8: Configuring the disks",
+          "href": "/automation-suite/automation-suite/2024.10/installation-guide/configuring-the-disks.md"
+        },
+        {
+          "title": "Step 9: Configuring kernel and OS level settings",
+          "href": "/automation-suite/automation-suite/2024.10/installation-guide/configuring-kernel-and-os-level-settings.md",
+          "children": [
+            {
+              "title": "Configuring fapolicy settings",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/generating-the-configuration-file-using-wizard.md"
+            }
+          ]
+        },
+        {
+          "title": "Step 10: Configuring the node ports",
+          "href": "/automation-suite/automation-suite/2024.10/installation-guide/configuring-the-node-ports.md"
+        },
+        {
+          "title": "Step 11: Applying miscellaneous settings",
+          "href": "/automation-suite/automation-suite/2024.10/installation-guide/applying-miscellaneous-settings.md"
+        },
+        {
+          "title": "Step 12: Validating and installing the required RPM packages",
+          "href": "/automation-suite/automation-suite/2024.10/installation-guide/validating-and-installing-the-required-rpm-packages.md"
+        },
+        {
+          "title": "Step 13: Generating cluster_config.json",
+          "href": "/automation-suite/automation-suite/2024.10/installation-guide/generating-clusterconfigjson.md"
+        },
+        {
+          "title": "Step 14: Applying advanced configuration",
+          "href": "/automation-suite/automation-suite/2024.10/installation-guide/advanced-installation-experience.md",
+          "children": [
+            {
+              "title": "Cluster_config.json Sample",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/clusterconfigjson-sample.md"
+            },
+            {
+              "title": "General configuration",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/general-configuration.md"
+            },
+            {
+              "title": "Profile configuration",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/profile-configuration.md"
+            },
+            {
+              "title": "Certificate configuration",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/certificate-configuration.md"
+            },
+            {
+              "title": "Database configuration",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/database-configuration.md"
+            },
+            {
+              "title": "External Objectstore configuration",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/external-objectstore-configuration.md"
+            },
+            {
+              "title": "Pre-signed URL configuration",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/pre-signed-url-configuration.md"
+            },
+            {
+              "title": "ArgoCD configuration",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/argocd-configuration.md"
+            },
+            {
+              "title": "Kerberos authentication configuration",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/kerberos-authentication-configuration.md"
+            },
+            {
+              "title": "External OCI-compliant registry configuration",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/external-oci-compliant-registry-configuration.md"
+            },
+            {
+              "title": "Disaster recovery: Active/Passive and Active/Active configurations",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/disaster-recovery-installation.md"
+            },
+            {
+              "title": "High Availability Add-on configuration",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/high-availability-add-on-configuration.md"
+            },
+            {
+              "title": "Orchestrator-specific configuration",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/orchestrator-configuration.md"
+            },
+            {
+              "title": "Insights-specific configuration",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/insights-configuration.md"
+            },
+            {
+              "title": "Process Mining-specific configuration",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/process-mining-configuration.md"
+            },
+            {
+              "title": "Document Understanding-specific configuration",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/document-understanding-configuration.md"
+            },
+            {
+              "title": "Automation Suite Robots-specific configuration",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/automation-suite-robots-configuration.md"
+            },
+            {
+              "title": "AI Center-specific configuration",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/ai-center-specific-configuration.md"
+            },
+            {
+              "title": "Monitoring configuration",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/monitoring-configuration.md"
+            },
+            {
+              "title": "Optional: Configuring the proxy server",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/optional-configuring-the-proxy-server.md"
+            },
+            {
+              "title": "Optional: Enabling resilience to zonal failures in a multi-node HA-ready production cluster",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/optional-enabling-resilience-to-zonal-failures-in-a-multi-node-ha-ready-production-cluster.md"
+            },
+            {
+              "title": "Optional: Passing custom resolv.conf",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/optional-passing-custom-resolvconf.md"
+            },
+            {
+              "title": "Optional: Increasing fault tolerance",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/optional-increasing-fault-tolerance.md"
+            },
+            {
+              "title": "Adding a dedicated agent node with GPU support",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/adding-a-dedicated-agent-node-with-gpu-support.md"
+            },
+            {
+              "title": "Adding a dedicated agent Node for Task Mining",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/adding-a-dedicated-agent-node-for-task-mining.md"
+            },
+            {
+              "title": "Connecting Task Mining application",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/connecting-task-mining-application.md"
+            },
+            {
+              "title": "Adding a Dedicated Agent Node for Automation Suite Robots",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/adding-a-dedicated-agent-node-for-automation-suite-robots.md"
+            }
+          ]
+        },
+        {
+          "title": "Step 15: Configuring the temporary Docker registry for offline installations",
+          "href": "/automation-suite/automation-suite/2024.10/installation-guide/configuring-the-temporary-docker-registry.md"
+        },
+        {
+          "title": "Step 16: Validating the prerequisites for the installation",
+          "href": "/automation-suite/automation-suite/2024.10/installation-guide/validating-the-prerequisites-for-the-installation.md"
+        },
+        {
+          "title": "Running uipathctl",
+          "href": "/automation-suite/automation-suite/2024.10/installation-guide/running-uipathctl.md"
+        }
+      ]
+    },
+    {
+      "title": "Manual: Performing the installation",
+      "children": [
+        {
+          "title": "Manual: Installing Automation Suite",
+          "href": "/automation-suite/automation-suite/2024.10/installation-guide/manual-installing-automation-suite.md"
+        },
+        {
+          "title": "Disaster recovery - Installing the secondary cluster",
+          "href": "/automation-suite/automation-suite/2024.10/installation-guide/installing-the-secondary-cluster.md"
+        }
+      ]
+    },
+    {
+      "title": "Post-installation",
+      "children": [
+        {
+          "title": "Accessing Automation Suite",
+          "href": "/automation-suite/automation-suite/2024.10/installation-guide/accessing-automation-suite.md"
+        },
+        {
+          "title": "Managing the certificates",
+          "href": "/automation-suite/automation-suite/2024.10/installation-guide/managing-the-certificates.md"
+        },
+        {
+          "title": "Updating credentials",
+          "href": "/automation-suite/automation-suite/2024.10/installation-guide/updating-credentials.md",
+          "children": [
+            {
+              "title": "Updating the SQL connection strings",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/updating-the-sql-database.md"
+            },
+            {
+              "title": "Update objectstore credentials",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/update-objectstore-credentials.md"
+            },
+            {
+              "title": "Updating external Redis credentials",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/updating-redis-credentials.md"
+            },
+            {
+              "title": "Updating the registry credentials",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/updating-the-registry-credentials.md"
+            }
+          ]
+        },
+        {
+          "title": "Performing post-installation operations",
+          "href": "/automation-suite/automation-suite/2024.10/installation-guide/performing-post-installation-operations.md"
+        }
+      ]
+    },
+    {
+      "title": "Cluster administration",
+      "children": [
+        {
+          "title": "Managing products",
+          "href": "/automation-suite/automation-suite/2024.10/installation-guide/managing-products.md"
+        },
+        {
+          "title": "Getting Started with the Cluster Administration portal",
+          "href": "/automation-suite/automation-suite/2024.10/installation-guide/getting-started-with-the-cluster-administration-tool.md"
+        },
+        {
+          "title": "Managing the cluster in ArgoCD",
+          "href": "/automation-suite/automation-suite/2024.10/installation-guide/managing-the-cluster-in-argocd.md",
+          "children": [
+            {
+              "title": "Enabling SSO for ArgoCD",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/enabling-sso-for-argocd.md"
+            }
+          ]
+        },
+        {
+          "title": "Backing up and restoring the cluster",
+          "href": "/automation-suite/automation-suite/2024.10/installation-guide/backing-up-and-restoring-the-cluster.md",
+          "children": [
+            {
+              "title": "Setting up the external NFS server",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/setting-up-the-external-nfs-server.md"
+            },
+            {
+              "title": "Configuring the backup store",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/configuring-the-backup-store.md"
+            },
+            {
+              "title": "Backing up the cluster",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/backing-up-the-cluster.md"
+            },
+            {
+              "title": "Additional configuration",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/backup-and-restore-additional-configuration.md"
+            },
+            {
+              "title": "Restoring the backup",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/restoring-the-backup.md"
+            }
+          ]
+        },
+        {
+          "title": "Performing node operations",
+          "href": "/automation-suite/automation-suite/2024.10/installation-guide/performing-node-operations.md",
+          "children": [
+            {
+              "title": "Adding a new node to the cluster",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/adding-a-node-to-the-cluster.md"
+            },
+            {
+              "title": "Removing a node from the cluster",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/removing-a-node-from-the-cluster.md"
+            },
+            {
+              "title": "Repaving a cluster node",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/updating-cluster-nodes.md"
+            },
+            {
+              "title": "Starting and shutting down a node",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/starting-and-shutting-down-a-node.md"
+            },
+            {
+              "title": "Renaming a node",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/renaming-a-node.md"
+            }
+          ]
+        },
+        {
+          "title": "Migrating Redis from in-cluster to external High Availability Add-on",
+          "href": "/automation-suite/automation-suite/2024.10/installation-guide/migrating-redis-from-in-cluster-to-external-high-availability-add-on.md"
+        },
+        {
+          "title": "Migrating data between objectstores",
+          "href": "/automation-suite/automation-suite/2024.10/installation-guide/migrating-data-between-objectstores.md"
+        },
+        {
+          "title": "Migrating in-cluster objectstore to external objectstore",
+          "href": "/automation-suite/automation-suite/2024.10/installation-guide/migrating-in-cluster-objectstore-to-external-objectstore.md"
+        },
+        {
+          "title": "Migrating from in-cluster registry to an external OCI-compliant registry",
+          "href": "/automation-suite/automation-suite/2024.10/installation-guide/migrating-to-an-external-oci-compliant-registry.md"
+        },
+        {
+          "title": "Configuring the cluster",
+          "href": "/automation-suite/automation-suite/2024.10/installation-guide/configuring-the-cluster.md",
+          "children": [
+            {
+              "title": "Configuring the FQDN post-installation",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/configuring-the-fqdn-post-installation.md"
+            },
+            {
+              "title": "Setting up Kerberos authentication",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/setting-up-kerberos-authentication.md",
+              "children": [
+                {
+                  "title": "Prerequisites",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/setting-up-elasticsearch-and-kibana.md"
+                }
+              ]
+            },
+            {
+              "title": "Forwarding logs to external tools",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/forwarding-logs-to-external-tools.md"
+            },
+            {
+              "title": "Forwarding Kubernetes logs to Elasticsearch",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/forwarding-kubernetes-logs-to-elasticsearch.md"
+            }
+          ]
+        },
+        {
+          "title": "Configuring Disaster Recovery - Active/Passive or Active/Active clusters",
+          "href": "/automation-suite/automation-suite/2024.10/installation-guide/configuring-disaster-recovery.md",
+          "children": [
+            {
+              "title": "Switching to the secondary cluster manually in an Active/Passive setup",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/switching-to-the-secondary-cluster.md"
+            },
+            {
+              "title": "Disaster Recovery: Performing post-installation operations",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/multi-site-post-installation-configuration.md"
+            },
+            {
+              "title": "Converting an existing installation to multi-site setup",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/converting-an-existing-installation-to-multi-site-setup.md"
+            },
+            {
+              "title": "Guidelines on upgrading an Active/Passive or Active/Active deployment",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/upgrading-an-active-passive-or-active-active-deployment.md"
+            },
+            {
+              "title": "Guidelines on backing up and restoring an Active/Passive or Active/Active deployment",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/backing-up-and-restoring-an-active-passive-or-active-active-deployment.md"
+            }
+          ]
+        },
+        {
+          "title": "Scaling a single-node (evaluation) deployment to a multi-node (HA) deployment",
+          "href": "/automation-suite/automation-suite/2024.10/installation-guide/scaling-a-single-node-evaluation-deployment-to-a-multi-node-ha-deployment.md"
+        }
+      ]
+    },
+    {
+      "title": "Monitoring and alerting",
+      "children": [
+        {
+          "title": "Monitoring Automation Suite",
+          "href": "/automation-suite/automation-suite/2024.10/installation-guide/monitoring-automation-suite.md"
+        },
+        {
+          "title": "Dashboards and metrics",
+          "href": "/automation-suite/automation-suite/2024.10/installation-guide/dashboards-and-metrics.md"
+        },
+        {
+          "title": "Alerts",
+          "href": "/automation-suite/automation-suite/2024.10/installation-guide/alerts.md"
+        },
+        {
+          "title": "Alert runbooks",
+          "href": "/automation-suite/automation-suite/2024.10/installation-guide/alert-runbooks.md",
+          "children": [
+            {
+              "title": "Service alerts",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/service-alerts.md"
+            },
+            {
+              "title": "Storage alerts",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/storage-alerts.md"
+            },
+            {
+              "title": "Networking alerts",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/networking-alerts.md"
+            },
+            {
+              "title": "Management alerts",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/management-alerts.md"
+            },
+            {
+              "title": "Kubernetes resources alerts",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/kubernetes-resources-alerts.md"
+            },
+            {
+              "title": "Other alerts",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/other-alerts.md"
+            }
+          ]
+        },
+        {
+          "title": "Logs",
+          "href": "/automation-suite/automation-suite/2024.10/installation-guide/logs.md"
+        },
+        {
+          "title": "External monitoring tools",
+          "href": "/automation-suite/automation-suite/2024.10/installation-guide/external-monitoring-tools.md"
+        },
+        {
+          "title": "Health endpoints",
+          "href": "/automation-suite/automation-suite/2024.10/installation-guide/health-endpoints.md"
+        }
+      ]
+    },
+    {
+      "title": "Migration and upgrade",
+      "children": [
+        {
+          "title": "Migrating standalone products to Automation Suite",
+          "href": "/automation-suite/automation-suite/2024.10/installation-guide/migrating-standalone-products-to-automation-suite.md"
+        },
+        {
+          "title": "Performing a full migration",
+          "href": "/automation-suite/automation-suite/2024.10/installation-guide/full-migration.md",
+          "children": [
+            {
+              "title": "Migration prerequisites",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/migration-prerequisites.md",
+              "children": [
+                {
+                  "title": "Migration compatibility matrix",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/migration-compatibility-matrix.md"
+                }
+              ]
+            },
+            {
+              "title": "Pre-migration steps",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/pre-migration-steps.md",
+              "children": [
+                {
+                  "title": "Step 1: Saving the connection strings",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/saving-the-connection-strings-and-tenant-names.md"
+                },
+                {
+                  "title": "Step 2: Creating your organizations in Automation Suite",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/creating-your-organizations-in-automation-suite.md"
+                }
+              ]
+            },
+            {
+              "title": "Migration steps",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/migration-steps.md",
+              "children": [
+                {
+                  "title": "Step 1: Restoring the standalone product database",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/restoring-the-standalone-product-database.md"
+                },
+                {
+                  "title": "Step 2: Updating the schema of the restored product database",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/updating-the-schema-of-the-restored-product-database.md"
+                },
+                {
+                  "title": "Step 3: Moving the Identity organization data from standalone to Automation Suite",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/moving-the-identity-organization-data-from-standalone-to-automation-suite.md"
+                },
+                {
+                  "title": "Step 4: Backing up the platform database in Automation Suite",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/backing-up-the-platform-database-in-automation-suite.md"
+                },
+                {
+                  "title": "Step 5: Merging organizations in Automation Suite",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/merging-organizations-in-automation-suite.md"
+                },
+                {
+                  "title": "Step 6: Updating the migrated product connection strings",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/updating-the-connection-strings.md"
+                },
+                {
+                  "title": "Step 7: Migrating standalone Orchestrator",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/migrating-standalone-orchestrator.md"
+                },
+                {
+                  "title": "Step 8: Migrating standalone Insights",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/migrating-standalone-insights.md"
+                },
+                {
+                  "title": "Step 9: Migrating standalone Test Manager",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/migrating-standalone-test-manager.md"
+                },
+                {
+                  "title": "Step 10: Deleting the default tenant",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/deleting-the-default-tenant.md"
+                }
+              ]
+            },
+            {
+              "title": "Post-migration steps",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/post-migration-steps.md",
+              "children": [
+                {
+                  "title": "Step 1: Removing old Identity cache keys",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/remove-old-identity-cache-keys.md"
+                },
+                {
+                  "title": "Step 2: Updating AD integration and authentication",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/updating-ad-integration-and-authentication.md"
+                },
+                {
+                  "title": "Step 3: Clearing Redis data",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/clearing-redis-data.md"
+                },
+                {
+                  "title": "Step 4: Validating the Insights migration",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/validating-the-insights-migration.md"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Performing a single tenant migration",
+          "href": "/automation-suite/automation-suite/2024.10/installation-guide/using-the-migration-tool.md"
+        },
+        {
+          "title": "Migrating between Automation Suite clusters",
+          "href": "/automation-suite/automation-suite/2024.10/installation-guide/migrating-between-automation-suite-clusters.md"
+        },
+        {
+          "title": "Upgrading Automation Suite",
+          "href": "/automation-suite/automation-suite/2024.10/installation-guide/upgrading-automation-suite.md"
+        },
+        {
+          "title": "Performing an in-place upgrade",
+          "href": "/automation-suite/automation-suite/2024.10/installation-guide/performing-an-in-place-upgrade.md",
+          "children": [
+            {
+              "title": "Downloading the installation packages and getting all the files on the first server node",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/downloading-the-installation-packages-and-getting-all-the-files-on-the-first-server-node.md"
+            },
+            {
+              "title": "Retrieving the latest applied configuration from the cluster",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/retrieving-the-latest-applied-configuration-from-the-cluster.md"
+            },
+            {
+              "title": "Updating the cluster configuration",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/updating-the-cluster-configuration.md"
+            },
+            {
+              "title": "Configuring the OCI-compliant registry for offline installations",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/configuring-the-oci-compliant-registry-upgrade.md"
+            },
+            {
+              "title": "Executing the upgrade",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/executing-the-upgrade.md"
+            },
+            {
+              "title": "Performing post-upgrade operations",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/performing-post-upgrade-operations.md"
+            }
+          ]
+        },
+        {
+          "title": "Performing a side-by-side upgrade",
+          "href": "/automation-suite/automation-suite/2024.10/installation-guide/performing-a-side-by-side-upgrade.md",
+          "children": [
+            {
+              "title": "Preparing the new cluster",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/preparing-the-new-cluster.md"
+            },
+            {
+              "title": "Migrating the data to the new cluster",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/migrating-the-data-to-the-new-cluster.md"
+            },
+            {
+              "title": "Completing the upgrade",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/completing-the-upgrade.md"
+            },
+            {
+              "title": "Scaling up the target cluster",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/scaling-up-the-target-cluster.md"
+            },
+            {
+              "title": "Instant rollback on failure",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/instant-rollback-on-failure.md"
+            }
+          ]
+        },
+        {
+          "title": "Applying a patch",
+          "href": "/automation-suite/automation-suite/2024.10/installation-guide/applying-a-patch.md",
+          "children": [
+            {
+              "title": "Patch artifact download links",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/patch-artifact-download-links.md"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Product-specific configuration",
+      "children": [
+        {
+          "title": "AI Center",
+          "href": "/automation-suite/automation-suite/2024.10/installation-guide/ai-center-specific-configuration.md",
+          "children": [
+            {
+              "title": "Copy the Orchestrator Certificate",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/copy-orchestrator-certificate.md"
+            }
+          ]
+        },
+        {
+          "title": "Apps",
+          "href": "/automation-suite/automation-suite/2024.10/installation-guide/apps-specific-configuration.md",
+          "children": [
+            {
+              "title": "Audit Logs Queries",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/apps-audit-logs-queries.md"
+            }
+          ]
+        },
+        {
+          "title": "Document Understanding",
+          "href": "/automation-suite/automation-suite/2024.10/installation-guide/document-understanding-specific-configuration.md",
+          "children": [
+            {
+              "title": "Accessing the Models",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/access-to-the-models.md"
+            },
+            {
+              "title": "Enabling or disabling Extended Languages OCR",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/enable-or-disable-extended-languages-ocr.md"
+            },
+            {
+              "title": "Allocating GPU resources for Document Understanding modern projects",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/allocating-gpu-resources-for-document-understanding-modern-projects.md"
+            }
+          ]
+        },
+        {
+          "title": "Insights",
+          "href": "/automation-suite/automation-suite/2024.10/installation-guide/insights-specific-configuration.md",
+          "children": [
+            {
+              "title": "Remapping the organization IDs",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/remapping-the-organization-id.md"
+            },
+            {
+              "title": "Migrating Looker data to Automation Suite",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/migrating-insights-to-automation-suite.md"
+            },
+            {
+              "title": "Performing Insights database maintenance",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/insights-database-maintenance.md"
+            },
+            {
+              "title": "Configuring log rules",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/configuring-log-rules.md"
+            }
+          ]
+        },
+        {
+          "title": "Orchestrator",
+          "href": "/automation-suite/automation-suite/2024.10/installation-guide/orchestrator-specific-configuration.md",
+          "children": [
+            {
+              "title": "Configuring Orchestrator parameters",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/configuring-orchestrator-parameters.md"
+            },
+            {
+              "title": "Configuring appSettings",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/configuring-appsettings.md"
+            },
+            {
+              "title": "Configuring the maximum request size",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/configuring-maximum-request-size.md"
+            },
+            {
+              "title": "Overriding cluster-level storage configuration",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/overriding-cluster-level-storage-configuration.md"
+            },
+            {
+              "title": "Configuring NLog",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/configuring-nlog.md"
+            },
+            {
+              "title": "Saving robot logs to Elasticsearch",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/saving-robot-logs-to-elasticsearch.md"
+            },
+            {
+              "title": "Configuring credential stores",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/configuring-credential-stores.md"
+            },
+            {
+              "title": "Configuring encryption key per tenant",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/configuring-encryption-key-per-tenant.md"
+            },
+            {
+              "title": "Cleaning up the Orchestrator database",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/cleaning-up-the-orchestrator-database.md"
+            }
+          ]
+        },
+        {
+          "title": "Process Mining",
+          "href": "/automation-suite/automation-suite/2024.10/installation-guide/process-mining-specific-configuration.md",
+          "children": [
+            {
+              "title": "Rotating Blob Storage Credentials",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/rotating-blob-storage-credentials.md"
+            },
+            {
+              "title": "Disabling use of pre-signed URLs when uploading data to Amazon S3 storage",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/disabling-use-of-pre-signed-urls-when-uploading-data-to-amazon-s3-storage.md"
+            },
+            {
+              "title": "Configuring process app security",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/configuring-process-app-security-.md"
+            },
+            {
+              "title": "Setting up Kerberos authentication with basic MSSQL authentication for Process Mining",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/setting-up-kerberos-authentication-with-basic-mssql--authentication-for-process-mining.md"
+            }
+          ]
+        },
+        {
+          "title": "Task Mining",
+          "href": "/automation-suite/automation-suite/2024.10/installation-guide/task-mining-specific-configuration.md",
+          "children": [
+            {
+              "title": "Out-of-sync Task Mining",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/mitigation-steps-for-out-of-sync-task-mining.md"
+            },
+            {
+              "title": "Cleaning up the Task Mining database",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/testing-for-duplicate-localizations-1.md"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Best practices and maintenance",
+      "children": [
+        {
+          "title": "Installation best practices",
+          "href": "/automation-suite/automation-suite/2024.10/installation-guide/installation-best-practices.md"
+        },
+        {
+          "title": "Encrypting the SQL Server",
+          "href": "/automation-suite/automation-suite/2024.10/installation-guide/encrypting-the-sql-server.md"
+        },
+        {
+          "title": "Performing database maintenance",
+          "href": "/automation-suite/automation-suite/2024.10/installation-guide/database-maintenance.md"
+        },
+        {
+          "title": "Performing yearly certificate maintenance",
+          "href": "/automation-suite/automation-suite/2024.10/installation-guide/performing-yearly-certificate-maintenance.md"
+        },
+        {
+          "title": "Setting up directory roles and permissions",
+          "href": "/automation-suite/automation-suite/2024.10/installation-guide/setting-up-directory-roles-and-permissions.md"
+        }
+      ]
+    },
+    {
+      "title": "Troubleshooting",
+      "children": [
+        {
+          "title": "How to",
+          "href": "/automation-suite/automation-suite/2024.10/installation-guide/how-to.md",
+          "children": [
+            {
+              "title": "How to troubleshoot services during installation",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/how-to-troubleshoot-services-during-installation.md"
+            },
+            {
+              "title": "How to uninstall the cluster",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/how-to-uninstall-the-cluster.md"
+            },
+            {
+              "title": "How to clean up offline artifacts to improve disk space",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/how-to-clean-up-offline-artifacts-to-improve-disk-space.md"
+            },
+            {
+              "title": "How to clear Redis data",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/how-to-clear-redis-data.md"
+            },
+            {
+              "title": "How to enable Istio logging",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/how-to-enable-istio-logging.md"
+            },
+            {
+              "title": "How to manually clean up logs",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/how-to-manually-clean-up-logs.md"
+            },
+            {
+              "title": "How to clean up old logs stored in the sf-logs bucket",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/cleaning-up-old-logs-stored-in-the-sf-logs-bucket.md"
+            },
+            {
+              "title": "How to disable streaming logs for AI Center",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/how-to-disable-streaming-logs-for-aicenter.md"
+            },
+            {
+              "title": "How to debug failed Automation Suite installations",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/how-to-debug-failed-automation-suite-installations.md"
+            },
+            {
+              "title": "How to delete images from the old installer after upgrade",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/how-to-delete-images-from-the-old-installer-after-upgrade.md"
+            },
+            {
+              "title": "How to disable TX checksum offloading",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/how-to-disable-tx-checksum-offloading.md"
+            },
+            {
+              "title": "How to manually set the ArgoCD log level to Info",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/how-to-manually-set-the-argocd-log-level-to-info.md"
+            },
+            {
+              "title": "How to expand AI Center storage",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/how-to-expand-ai-center-storage.md"
+            },
+            {
+              "title": "How to generate the encoded pull_secret_value for external registries",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/how-to-generate-the-encoded-pullsecretvalue-for-external-registries.md"
+            },
+            {
+              "title": "How to address weak ciphers in TLS 1.2",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/how-to-address-weak-ciphers-in-tls-12.md"
+            },
+            {
+              "title": "How to check the TLS version",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/how-to-check-the-tls-version.md"
+            },
+            {
+              "title": "How to work with certificates",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/how-to-work-certificates.md"
+            },
+            {
+              "title": "Sample Azure infrastructure setup",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/sample-azure-infrastructure-setup.md",
+              "children": [
+                {
+                  "title": "Step 1.1: Creating the VM",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/azure-infrastructure-creating-the-vm.md"
+                },
+                {
+                  "title": "Step 1.2: Configuring the VM",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/azure-infrastructure-configuring-the-vm.md",
+                  "children": [
+                    {
+                      "title": "Configuring the DNS of the VM",
+                      "href": "/automation-suite/automation-suite/2024.10/installation-guide/prerequisite-check-for-selinux-iscsid-module-fails.md"
+                    }
+                  ]
+                },
+                {
+                  "title": "Step 2: Configuring the Load Balancer",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/azure-infrastructure-configuring-load-balancer.md"
+                },
+                {
+                  "title": "Step 3: Configuring Azure SQL",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/azure-infrastructure-configuring-azure-sql.md"
+                },
+                {
+                  "title": "Step 4: Creating an Azure storage account",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/azure-creating-an-azure-storage-account.md"
+                },
+                {
+                  "title": "Step 5: Configuring the DNS",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/azure-infrastructure-configuring-dns.md"
+                }
+              ]
+            },
+            {
+              "title": "How to schedule Ceph backup and restore data",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/how-to-schedule-ceph-backup-and-restore-data.md"
+            },
+            {
+              "title": "How to clean up unused Docker images from registry pods",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/how-to-clean-up-unused-docker-images-from-registry-pods.md"
+            },
+            {
+              "title": "How to collect DU usage data with in-cluster objectstore (Ceph)",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/how-to-collect-du-usage-data-with-in-cluster-objectstore-ceph.md"
+            },
+            {
+              "title": "How to install RKE2 SELinux on air-gapped environments",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/how-to-install-rke2-selinux-on-air-gapped-environments.md"
+            },
+            {
+              "title": "How to clean up old differential backups on an NFS server",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/how-to-clean-up-old-differential-backups-on-an-nfs-server.md"
+            }
+          ]
+        },
+        {
+          "title": "Troubleshooting",
+          "href": "/automation-suite/automation-suite/2024.10/installation-guide/troubleshooting.md",
+          "children": [
+            {
+              "title": "Installation and configuration troubleshooting",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/installation-troubleshooting.md",
+              "children": [
+                {
+                  "title": "Unable to run an offline installation on RHEL 8.4 OS",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/unable-to-run-an-offline-installation-on-rhel-84-os.md"
+                },
+                {
+                  "title": "Error in downloading the bundle",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/error-in-downloading-the-bundle.md"
+                },
+                {
+                  "title": "Offline installation fails because of missing binary",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/offline-installation-fails-because-of-missing-binary.md"
+                },
+                {
+                  "title": "Certificate issue in offline installation",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/certificate-issue-in-offline-installation.md"
+                },
+                {
+                  "title": "SQL connection string validation error",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/sql-connection-string-validation-error.md"
+                },
+                {
+                  "title": "Azure disk not marked as SSD",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/azure-disk-not-marked-as-ssd.md"
+                },
+                {
+                  "title": "Failure after certificate update",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/failure-after-certificate-update.md"
+                },
+                {
+                  "title": "Antivirus causes installation issues",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/antivirus-causes-installation-issues.md"
+                },
+                {
+                  "title": "Automation Suite not working after OS upgrade",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/automation-suite-not-working-after-os-upgrade.md"
+                },
+                {
+                  "title": "Automation Suite requires backlog_wait_time to be set to 0",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/automation-suite-requires-backlogwaittime-to-be-set-to-0.md"
+                },
+                {
+                  "title": "Volume unable to mount due to not being ready for workloads",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/volume-unable-to-mount-.md"
+                },
+                {
+                  "title": "Support bundle log collection failure",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/support-bundle-log-collection-failure.md"
+                },
+                {
+                  "title": "Temporary registry installation fails on RHEL 8.9",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/temporary-registry-installation-failure-on-rhel-89.md"
+                },
+                {
+                  "title": "Frequent restart issue in uipath namespace deployments during offline installations",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/frequent-restart-issue-in-uipath-namespace-deployments-during-offline-installations.md"
+                },
+                {
+                  "title": "DNS settings not honored by CoreDNS",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/dns-settings-not-honored-by-coredns.md"
+                },
+                {
+                  "title": "Unable to install temporary registry",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/unable-to-install-temporary-registry.md"
+                }
+              ]
+            },
+            {
+              "title": "Upgrade and migration troubleshooting",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/upgrade-and-migration-troubleshooting.md",
+              "children": [
+                {
+                  "title": "Data loss when reinstalling or upgrading Insights following Automation Suite upgrade",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/data-loss-when-reinstalling-or-upgrading-insights-following-automation-suite-upgrade.md"
+                },
+                {
+                  "title": "Unable to access Automation Hub following upgrade to Automation Suite 2024.10.0",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/unable-to-access-automation-hub-following-upgrade-to-automation-suite-2024100.md"
+                },
+                {
+                  "title": "Single-node upgrade fails at the fabric stage",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/single-node-upgrade-fails-at-the-fabric-stage.md"
+                },
+                {
+                  "title": "Upgrade fails due to unhealthy Ceph",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/upgrade-fails-due-to-unhealthy-ceph.md"
+                },
+                {
+                  "title": "RKE2 not getting started due to space issue",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/rke2-not-getting-started-due-to-space-issue.md"
+                },
+                {
+                  "title": "Volume unable to mount and remains in attach/detach loop state",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/volume-unable-to-mount-and-remains-in-attachdetach-loop-state.md"
+                },
+                {
+                  "title": "Upgrade fails due to classic objects in the Orchestrator database",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/90001.md"
+                },
+                {
+                  "title": "Ceph cluster found in a degraded state after side-by-side upgrade",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/ceph-cluster-found-in-a-degraded-state-after-upgrade.md"
+                },
+                {
+                  "title": "Unhealthy Insights component causes the migration to fail",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/unhealthy-insights-component-causes-the-migration-to-fail.md"
+                },
+                {
+                  "title": "Service upgrade fails for Apps",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/service-upgrade-fails-for-apps.md"
+                },
+                {
+                  "title": "In-place upgrade timeouts",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/in-place-upgrade-timeouts.md"
+                },
+                {
+                  "title": "Docker registry migration stuck in PVC deletion stage",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/docker-registry-migration-stuck-in-pvc-deletion-stage.md"
+                },
+                {
+                  "title": "AI Center provisioning failure after upgrading to 2023.10 or later",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/ai-center-provisioning-failure-after-upgrading-to-202310.md"
+                },
+                {
+                  "title": "Upgrade fails in offline environments",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/upgrade-fails-in-offline-environments.md"
+                },
+                {
+                  "title": "SQL validation fails during upgrade",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/sql-validation-fails-during-upgrade.md"
+                },
+                {
+                  "title": "snapshot-controller-crds pod in CrashLoopBackOff state after upgrade",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/snapshot-controller-crds-pod-in-crashloopbackoff-state-after-upgrade.md"
+                },
+                {
+                  "title": "Upgrade fails due to overridden Insights PVC sizes",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/upgrade-fails-due-to-overridden-insights-pvc-sizes.md"
+                },
+                {
+                  "title": "Failure to upgrade to Automation Suite 2024.10.1",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/failure-to-upgrade-to-automation-suite-2024101.md"
+                },
+                {
+                  "title": "Upgrade fails due to Velero migration issue",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/upgrade-fails-velero-migration-issue.md"
+                },
+                {
+                  "title": "Upgrade stuck on rook-ceph application deletion",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/upgrade-stuck-on-rook-ceph-application-deletion.md"
+                }
+              ]
+            },
+            {
+              "title": "Storage troubleshooting",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/storage-troubleshooting.md",
+              "children": [
+                {
+                  "title": "Failure to upload or download data in objectstore",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/failure-to-uploaddownload-data-in-object-store-rook-ceph.md"
+                },
+                {
+                  "title": "PVC resize does not heal Ceph",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/pvc-resize-does-not-heal-ceph.md"
+                },
+                {
+                  "title": "Failure to resize objectstore PVC",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/failure-to-resize-objectstore-pvc.md"
+                },
+                {
+                  "title": "Rook Ceph or Looker pod stuck in Init state",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/30001.md"
+                },
+                {
+                  "title": "StatefulSet volume attachment error",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/statefulset-volume-attachment-error.md"
+                },
+                {
+                  "title": "Failure to create persistent volumes",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/failure-to-create-persistent-volumes.md"
+                },
+                {
+                  "title": "Failure to compact metrics due to corrupted blocks in Thanos",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/failure-to-compact-metrics-due-to-corrupted-blocks-in-thanos.md"
+                }
+              ]
+            },
+            {
+              "title": "Authentication troubleshooting",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/authentication-troubleshooting.md",
+              "children": [
+                {
+                  "title": "Setting a timeout interval for the management portals",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/setting-a-timeout-interval-for-the-management-portals.md"
+                },
+                {
+                  "title": "Authentication not working after migration",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/authentication-not-working-after-migration.md"
+                },
+                {
+                  "title": "Kinit: Cannot find KDC for realm <AD Domain> while getting initial credentials",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/kinit-cannot-find-kdc-for-realm-ad-domain-while-getting-initial-credentials.md"
+                },
+                {
+                  "title": "Kinit: Keytab contains no suitable keys for *** while getting initial credentials",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/kinit-keytab-contains-no-suitable-keys-for--while-getting-initial-credentials.md"
+                },
+                {
+                  "title": "GSSAPI operation failed due to invalid status code",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/gssapi-operation-failed-with-error-an-invalid-status-code-was-supplied-clients-credentials-have-been-revoked.md"
+                },
+                {
+                  "title": "Alarm received for failed Kerberos-tgt-update job",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/alarm-received-for-failed-kerberos-tgt-update-job.md"
+                },
+                {
+                  "title": "SSPI provider: Server not found in Kerberos database",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/sspi-provider-server-not-found-in-kerberos-database.md"
+                },
+                {
+                  "title": "Login failed for AD user due to disabled account",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/login-failed-for-ad-user-due-to-disabled-account.md"
+                },
+                {
+                  "title": "ArgoCD login failed",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/12001.md"
+                },
+                {
+                  "title": "Update the underlying directory connections",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/update-the-underlying-directory-connections.md"
+                },
+                {
+                  "title": "Robot cannot connect to an Automation Suite Orchestrator instance",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/robot-cannot-connect-to-an-automation-suite-orchestrator-instance.md"
+                }
+              ]
+            },
+            {
+              "title": "Node maintenance troubleshooting",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/node-maintenance-troubleshooting.md",
+              "children": [
+                {
+                  "title": "Node draining does not occur for stopped nodes",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/node-draining-does-not-occur-for-stopped-nodes.md"
+                },
+                {
+                  "title": "Rke2-coredns-rke2-coredns-autoscaler pod in CrashLoopBackOff",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/rke2-coredns-rke2-coredns-autoscaler-pod-in-crashloopbackoff.md"
+                },
+                {
+                  "title": "Node removal failure due to incorrect scaling operation naming",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/node-removal-failure-due-to-incorrect-scaling-operation-naming.md"
+                },
+                {
+                  "title": "Adding agent nodes issue in offline environments",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/adding-agent-nodes-issue-in-offline-environments.md"
+                },
+                {
+                  "title": "Server node joining issue in offline environments with in-cluster registry",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/server-node-joining-issue-in-offline-environments-with-in-cluster-registry.md"
+                }
+              ]
+            },
+            {
+              "title": "Other troubleshooting",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/common-issues.md",
+              "children": [
+                {
+                  "title": "Partial failure to restore backup in Automation Suite 2024.10.0",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/partial-failure-to-restore-backup-in-automation-suite-2024-10-0.md"
+                },
+                {
+                  "title": "Failure to get the sandbox image",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/failure-to-get-the-sandbox-image.md"
+                },
+                {
+                  "title": "Pods not showing in ArgoCD UI",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/pods-not-showing-in-argocd-ui.md"
+                },
+                {
+                  "title": "Redis probe failure",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/redis-probe-failure.md"
+                },
+                {
+                  "title": "RKE2 server fails to start",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/rke2-server-fails-to-start.md"
+                },
+                {
+                  "title": "Secret not found in UiPath namespace",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/secret-not-found-in-uipath-namespace.md"
+                },
+                {
+                  "title": "ArgoCD goes into progressing state after first installation",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/argocd-does-into-progressing-state-after-first-installation.md"
+                },
+                {
+                  "title": "Pods stuck in Init:0/X",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/pods-stuck-in-init0x.md"
+                },
+                {
+                  "title": "Missing Ceph-rook metrics from monitoring dashboards",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/missing-ceph-rook-metrics-from-monitoring-dashboards.md"
+                },
+                {
+                  "title": "Mismatch in reported errors during diagnostic health checks",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/mismatch-in-reported-errors-during-diagnostic-health-checks.md"
+                },
+                {
+                  "title": "No healthy upstream issue",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/no-healthy-upstream-issue.md"
+                },
+                {
+                  "title": "Log streaming does not work in proxy setups",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/log-streaming-does-not-work-in-proxy-setups.md"
+                },
+                {
+                  "title": "Failure to add agent nodes in offline environments",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/failure-to-add-agent-nodes-in-offline-environments.md"
+                },
+                {
+                  "title": "Node becomes unresponsive (OOM) during large Document Understanding bundle upload",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/node-becomes-unresponsive-oom-during-large-document-understanding-bundle-upload.md"
+                },
+                {
+                  "title": "Backup operations fail with PartiallyFailed status",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/backup-failure-with-partiallyfailed-status.md"
+                }
+              ]
+            },
+            {
+              "title": "Orchestrator troubleshooting",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/orchestrator-troubleshooting.md",
+              "children": [
+                {
+                  "title": "Orchestrator pod in CrashLoopBackOff or restarts multiple times",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/orchestrator-pod-in-crashloopbackoff-or-12-running-with-multiple-restarts.md"
+                }
+              ]
+            },
+            {
+              "title": "Test Manager troubleshooting",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/test-manager-troubleshooting.md",
+              "children": [
+                {
+                  "title": "Test Manager licensing issue",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/test-manager-licensing-issue.md"
+                }
+              ]
+            },
+            {
+              "title": "AI Center troubleshooting",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/ai-center-troubleshooting.md",
+              "children": [
+                {
+                  "title": "AI Center skills deployment issues",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/ai-center-skills-deployment-issues.md"
+                },
+                {
+                  "title": "Enabling AI Center on the restored cluster",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/enabling-ai-center-on-the-restored-cluster.md"
+                },
+                {
+                  "title": "Unknown error when accessing AI Center",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/unknown-error-when-accessing-ai-center.md"
+                },
+                {
+                  "title": "AI Center in-cluster proxy issue",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/ai-center-in-cluster-proxy-issue.md"
+                }
+              ]
+            },
+            {
+              "title": "Document Understanding troubleshooting",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/document-understanding-troubleshooting.md",
+              "children": [
+                {
+                  "title": "Document Understanding not on the left rail of Automation Suite",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/document-understanding-not-on-the-left-rail-of-automation-suite.md"
+                },
+                {
+                  "title": "Failed status when creating a data labeling session",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/failed-status-when-creating-a-data-labeling-session.md"
+                },
+                {
+                  "title": "Failed status when trying to deploy an ML skill",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/failed-status-when-trying-to-deploy-an-ml-skill.md"
+                },
+                {
+                  "title": "Migration job fails in ArgoCD",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/migration-job-fails-in-argocd.md"
+                },
+                {
+                  "title": "Handwriting recognition with intelligent form extractor not working",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/handwriting-recognition-with-intelligent-form-extractor-not-working.md"
+                }
+              ]
+            },
+            {
+              "title": "Insights troubleshooting",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/insights-troubleshooting.md",
+              "children": [
+                {
+                  "title": "Navigating to Insights homepage generates a 404",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/navigating-to-insights-home-page-generates-a-404.md"
+                },
+                {
+                  "title": "Looker fails to initialize",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/looker-fails-to-initialize.md"
+                }
+              ]
+            },
+            {
+              "title": "Process Mining troubleshooting",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/process-mining-troubleshooting.md",
+              "children": [
+                {
+                  "title": "Running High Availability with Process Mining",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/running-high-availability-with-process-mining.md"
+                },
+                {
+                  "title": "Process Mining ingestion failed when logged in using Kerberos",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/process-mining-ingestion-failed-when-logged-in-using-kerberos.md"
+                },
+                {
+                  "title": "After Disaster Recovery Dapr is not working properly for Process Mining",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/after-disaster-recovery-dapr-is-not-working-properly-for-process-mining.md"
+                },
+                {
+                  "title": "Unable to connect to AutomationSuite_ProcessMining_Warehouse database using a pyodbc format connection string",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/unable-to-connect-to-automationsuiteprocessminingwarehouse--database-using-a-pyodbc-format-connection-string.md"
+                },
+                {
+                  "title": "Airflow installation fails with sqlalchemy.exc.ArgumentError: Could not parse rfc1738 URL from string ''",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/airflow-installation-fails-with-sqlalchemyexcargumenterror-could-not-parse-rfc1738-url-from-string-.md"
+                },
+                {
+                  "title": "How to add an IP table rule to use SQL Server port 1433",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/how-to-add-an-ip-table-rule-to-use-sql-server-port-1433.md"
+                },
+                {
+                  "title": "Automation Suite certificate is not trusted from the server where CData Sync is running",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/automation-suite-certificate-is-not-trusted-from-the-server-where-cdata-sync-is-running.md"
+                }
+              ]
+            },
+            {
+              "title": "Task Mining troubleshooting",
+              "href": "/automation-suite/automation-suite/2024.10/installation-guide/task-mining-troubleshooting.md",
+              "children": [
+                {
+                  "title": "After Disaster Recovery Dapr is not working properly for Task Mining",
+                  "href": "/automation-suite/automation-suite/2024.10/installation-guide/after-disaster-recovery-dapr-is-not-working-properly-for-task-mining.md"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Running the diagnostics tool",
+          "href": "/automation-suite/automation-suite/2024.10/installation-guide/running-the-diagnostics-tool.md"
+        },
+        {
+          "title": "Using the Automation Suite support bundle",
+          "href": "/automation-suite/automation-suite/2024.10/installation-guide/using-support-bundle-tool.md"
+        },
+        {
+          "title": "Exploring Logs",
+          "href": "/automation-suite/automation-suite/2024.10/installation-guide/exploring-logs.md"
+        },
+        {
+          "title": "Exploring summarized telemetry",
+          "href": "/automation-suite/automation-suite/2024.10/installation-guide/exploring-summarized-telemetry.md"
+        }
+      ]
+    }
+  ]
+}

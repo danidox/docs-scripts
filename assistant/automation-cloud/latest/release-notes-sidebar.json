@@ -1,0 +1,24 @@
+{
+  "title": "Assistant release notes",
+  "children": [
+    {
+      "title": "Assistant Web release notes",
+      "children": [
+        {
+          "title": "2025",
+          "href": "/assistant/automation-cloud/latest/release-notes/release-notes-2025.md",
+          "children": [
+            {
+              "title": "September 2025",
+              "href": "/assistant/automation-cloud/latest/release-notes/september-2025.md"
+            },
+            {
+              "title": "May 2025",
+              "href": "/assistant/automation-cloud/latest/release-notes/may-2025.md"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

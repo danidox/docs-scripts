@@ -1,0 +1,522 @@
+{
+  "title": "Autopilot user guide",
+  "children": [
+    {
+      "title": "Getting started",
+      "children": [
+        {
+          "title": "About this guide",
+          "href": "/autopilot/other/latest/user-guide/about-this-guide.md"
+        },
+        {
+          "title": "About Autopilot™",
+          "href": "/autopilot/other/latest/user-guide/about-autopilot.md"
+        },
+        {
+          "title": "Enabling/disabling Autopilot™",
+          "href": "/autopilot/other/latest/user-guide/enable-disable-functionality.md"
+        },
+        {
+          "title": "Configuring an LLM for Autopilot",
+          "href": "/autopilot/other/latest/user-guide/configuring-an-llm-for-autopilot.md"
+        },
+        {
+          "title": "Unified Pricing licensing",
+          "href": "/autopilot/other/latest/user-guide/unified-pricing-licensing.md"
+        },
+        {
+          "title": "Flex licensing",
+          "href": "/autopilot/other/latest/user-guide/flex-licensing.md"
+        }
+      ]
+    },
+    {
+      "title": "Best practices",
+      "children": [
+        {
+          "title": "Writing effective prompts - generic instructions",
+          "href": "/autopilot/other/latest/user-guide/effective-prompts.md"
+        },
+        {
+          "title": "Designing relevant automations for Autopilot for Everyone",
+          "href": "/autopilot/other/latest/user-guide/designing-autopilot-automations.md"
+        }
+      ]
+    },
+    {
+      "title": "Data privacy",
+      "children": [
+        {
+          "title": "Data privacy",
+          "href": "/autopilot/other/latest/user-guide/data-privacy.md"
+        }
+      ]
+    },
+    {
+      "title": "Autopilot chat",
+      "children": [
+        {
+          "title": "About Autopilot chat",
+          "href": "/autopilot/other/latest/user-guide/about-autopilot-chat.md"
+        },
+        {
+          "title": "User interface",
+          "href": "/autopilot/other/latest/user-guide/user-interface.md"
+        },
+        {
+          "title": "Interacting with Autopilot chat - recommendations",
+          "href": "/autopilot/other/latest/user-guide/interacting-with-autopilot-chat.md"
+        },
+        {
+          "title": "User scenarios for the Autopilot chat",
+          "href": "/autopilot/other/latest/user-guide/user-scenarios.md"
+        },
+        {
+          "title": "Autopilot chat in UiPath products",
+          "href": "/autopilot/other/latest/user-guide/autopilot-chat-in-uipath-products.md",
+          "children": [
+            {
+              "title": "Studio Web",
+              "href": "/autopilot/other/latest/user-guide/autopilot-chat-in-studio-web.md"
+            },
+            {
+              "title": "Orchestrator",
+              "href": "/autopilot/other/latest/user-guide/autopilot-chat-in-orchestrator.md"
+            },
+            {
+              "title": "Test Manager",
+              "href": "/autopilot/other/latest/user-guide/autopilot-chat-in-test-manager.md"
+            },
+            {
+              "title": "Studio",
+              "href": "/autopilot/other/latest/user-guide/autopilot-chat-in-studio-desktop.md"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Generating automations",
+      "children": [
+        {
+          "title": "Generating automations",
+          "href": "/autopilot/other/latest/user-guide/autopilot-for-developers.md"
+        },
+        {
+          "title": "Prompting guide for generating automations",
+          "href": "/autopilot/other/latest/user-guide/prompting-guide-for-autopilot-for-developers.md"
+        },
+        {
+          "title": "Frequently asked questions",
+          "href": "/autopilot/other/latest/user-guide/autopilot-for-developers-faq.md"
+        },
+        {
+          "title": "Generate workflow",
+          "href": "/autopilot/other/latest/user-guide/text-to-workflow.md"
+        },
+        {
+          "title": "Generate coded workflows",
+          "href": "/autopilot/other/latest/user-guide/text-to-coded-workflows.md"
+        },
+        {
+          "title": "Generate expressions",
+          "href": "/autopilot/other/latest/user-guide/text-to-expressions.md"
+        },
+        {
+          "title": "Summarize activities logic and sequences",
+          "href": "/autopilot/other/latest/user-guide/activity-and-sequence-summarization.md"
+        },
+        {
+          "title": "Generate, edit, and analyze API workflows",
+          "href": "/autopilot/other/latest/user-guide/generate-api-workflows.md"
+        },
+        {
+          "title": "Generate apps",
+          "href": "/autopilot/other/latest/user-guide/text-to-app.md",
+          "children": [
+            {
+              "title": "Generate apps based on images or PDFs",
+              "href": "/autopilot/other/latest/user-guide/image-pdf-to-app.md"
+            },
+            {
+              "title": "Generate apps based on Data Service entities",
+              "href": "/autopilot/other/latest/user-guide/entity-to-app.md"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Generating tests",
+      "children": [
+        {
+          "title": "Generating tests",
+          "href": "/autopilot/other/latest/user-guide/autopilot-for-testers.md"
+        },
+        {
+          "title": "Quality-check requirements",
+          "href": "/autopilot/other/latest/user-guide/requirement-evaluation.md"
+        },
+        {
+          "title": "Generate tests for requirement",
+          "href": "/autopilot/other/latest/user-guide/manual-test-generation.md"
+        },
+        {
+          "title": "Import manual test cases",
+          "href": "/autopilot/other/latest/user-guide/import-manual-test-cases.md"
+        },
+        {
+          "title": "Find obsolete tests",
+          "href": "/autopilot/other/latest/user-guide/find-obsolete-tests.md"
+        },
+        {
+          "title": "Generate tests for SAP transactions",
+          "href": "/autopilot/other/latest/user-guide/create-sap-transactions.md"
+        },
+        {
+          "title": "Generate coded automations",
+          "href": "/autopilot/other/latest/user-guide/generate-coded-automations.md"
+        },
+        {
+          "title": "Generate coded API automation",
+          "href": "/autopilot/other/latest/user-guide/generate-coded-api-automation.md"
+        },
+        {
+          "title": "Refactor coded automations",
+          "href": "/autopilot/other/latest/user-guide/refactor-coded-automations.md"
+        },
+        {
+          "title": "Generate low-code automations",
+          "href": "/autopilot/other/latest/user-guide/generate-low-code-automations.md"
+        },
+        {
+          "title": "Generate synthetic test data",
+          "href": "/autopilot/other/latest/user-guide/generate-synthetic-test-data.md"
+        },
+        {
+          "title": "Generate test reports",
+          "href": "/autopilot/other/latest/user-guide/test-result-analysis.md"
+        },
+        {
+          "title": "Search Test Manager project",
+          "href": "/autopilot/other/latest/user-guide/search-test-manager-project.md"
+        }
+      ]
+    },
+    {
+      "title": "Autopilot for Everyone",
+      "children": [
+        {
+          "title": "About Autopilot for Everyone",
+          "href": "/autopilot/other/latest/user-guide/about-autopilot-for-everyone.md"
+        },
+        {
+          "title": "Autopilot for Everyone feature comparison",
+          "href": "/autopilot/other/latest/user-guide/autopilot-for-everyone-feature-comparison.md",
+          "children": [
+            {
+              "title": "Configuration checklist for Autopilot for Everyone in Automation Suite",
+              "href": "/autopilot/other/latest/user-guide/configuration-checklist-for-autopilot-for-everyone-in-automation-suite.md"
+            }
+          ]
+        },
+        {
+          "title": "User types",
+          "href": "/autopilot/other/latest/user-guide/targeted-personas.md"
+        },
+        {
+          "title": "Data sources",
+          "href": "/autopilot/other/latest/user-guide/data-sources.md"
+        },
+        {
+          "title": "Toolset automations",
+          "href": "/autopilot/other/latest/user-guide/out-of-the-box-automations.md"
+        },
+        {
+          "title": "Localization",
+          "href": "/autopilot/other/latest/user-guide/autopilot-localization.md"
+        },
+        {
+          "title": "Prerequisites",
+          "href": "/autopilot/other/latest/user-guide/prerequisites.md"
+        },
+        {
+          "title": "Autopilot widget",
+          "href": "/autopilot/other/latest/user-guide/autopilot-widget.md"
+        },
+        {
+          "title": "Managing Autopilot for Everyone",
+          "href": "/autopilot/other/latest/user-guide/installing-autopilot.md",
+          "children": [
+            {
+              "title": "The Autopilot for Everyone tenant card",
+              "href": "/autopilot/other/latest/user-guide/the-autopilot-for-everyone-tenant-card.md"
+            },
+            {
+              "title": "Prerequisites for installation",
+              "href": "/autopilot/other/latest/user-guide/prerequisites-for-installation.md"
+            },
+            {
+              "title": "Enabling Anthropic models",
+              "href": "/autopilot/other/latest/user-guide/enabling-anthropic-models.md"
+            },
+            {
+              "title": "Installing Autopilot for Everyone",
+              "href": "/autopilot/other/latest/user-guide/installing-autopilot-for-everyone.md"
+            },
+            {
+              "title": "Updating Autopilot for Everyone",
+              "href": "/autopilot/other/latest/user-guide/updating-autopilot-for-everyone.md"
+            },
+            {
+              "title": "Uninstalling Autopilot for Everyone",
+              "href": "/autopilot/other/latest/user-guide/uninstalling-autopilot-for-everyone.md"
+            },
+            {
+              "title": "Configuring Autopilot for Everyone",
+              "href": "/autopilot/other/latest/user-guide/customizing-autopilot-for-everyone.md"
+            },
+            {
+              "title": "Disabling the Autopilot welcome screen in Assistant",
+              "href": "/autopilot/other/latest/user-guide/disabling-the-autopilot-welcome-screen-in-assistant.md"
+            },
+            {
+              "title": "Configuring an LLM for Autopilot for Everyone",
+              "href": "/autopilot/other/latest/user-guide/bringing-your-own-model.md"
+            }
+          ]
+        },
+        {
+          "title": "Configuring Autopilot for Everyone",
+          "href": "/autopilot/other/latest/user-guide/configuring-autopilot-for-everyone.md",
+          "children": [
+            {
+              "title": "Starting prompts",
+              "href": "/autopilot/other/latest/user-guide/stating-prompts.md"
+            },
+            {
+              "title": "Context Grounding",
+              "href": "/autopilot/other/latest/user-guide/context-grounding.md"
+            },
+            {
+              "title": "Tools",
+              "href": "/autopilot/other/latest/user-guide/automation-properties.md"
+            },
+            {
+              "title": "Advanced settings",
+              "href": "/autopilot/other/latest/user-guide/advanced-settings.md"
+            },
+            {
+              "title": "License settings",
+              "href": "/autopilot/other/latest/user-guide/license-settings.md"
+            },
+            {
+              "title": "Specialized Autopilot",
+              "href": "/autopilot/other/latest/user-guide/specialized-autopilot.md"
+            },
+            {
+              "title": "Configuring custom route for feedback",
+              "href": "/autopilot/other/latest/user-guide/configuring-custom-route-for-feedback.md"
+            },
+            {
+              "title": "Configuring Medical Record Summarization (MRS) tasks",
+              "href": "/autopilot/other/latest/user-guide/configuring-medical-record-summarization-mrs-tasks.md"
+            }
+          ]
+        },
+        {
+          "title": "Deploying the Admin App",
+          "href": "/autopilot/other/latest/user-guide/configuring-the-admin-app.md",
+          "children": [
+            {
+              "title": "Admin App overview",
+              "href": "/autopilot/other/latest/user-guide/admin-app-overview.md"
+            },
+            {
+              "title": "Downloading the Admin App",
+              "href": "/autopilot/other/latest/user-guide/downloading-the-admin-app.md"
+            },
+            {
+              "title": "Deploying the Admin App process",
+              "href": "/autopilot/other/latest/user-guide/deploying-the-admin-app-process-in-your-personal-workspace.md"
+            },
+            {
+              "title": "Installing the Admin App",
+              "href": "/autopilot/other/latest/user-guide/installing-the-admin-app.md"
+            },
+            {
+              "title": "Using the Admin App",
+              "href": "/autopilot/other/latest/user-guide/using-the-admin-app.md"
+            }
+          ]
+        },
+        {
+          "title": "Deploying toolset automations",
+          "href": "/autopilot/other/latest/user-guide/deploying-toolset-automations-from-marketplace.md"
+        },
+        {
+          "title": "Interacting with Autopilot for Everyone",
+          "href": "/autopilot/other/latest/user-guide/interacting-with-autopilot-for-everyone.md",
+          "children": [
+            {
+              "title": "Prompt-to-response flow",
+              "href": "/autopilot/other/latest/user-guide/answer-types.md"
+            },
+            {
+              "title": "Launching Autopilot for Everyone",
+              "href": "/autopilot/other/latest/user-guide/launching-autopilot-for-everyone.md"
+            },
+            {
+              "title": "Autopilot settings for business users",
+              "href": "/autopilot/other/latest/user-guide/autopilot-settings-in-assistant.md"
+            },
+            {
+              "title": "Using a specialized Autopilot",
+              "href": "/autopilot/other/latest/user-guide/using-a-specialized-autopilot-for-everyone.md"
+            },
+            {
+              "title": "Using a starting prompt",
+              "href": "/autopilot/other/latest/user-guide/using-a-starting-prompt.md"
+            },
+            {
+              "title": "Uploading and analyzing files",
+              "href": "/autopilot/other/latest/user-guide/uploading-and-analyzing-documents.md"
+            },
+            {
+              "title": "Running automations",
+              "href": "/autopilot/other/latest/user-guide/running-automations.md"
+            },
+            {
+              "title": "Interacting with Autopilot answers",
+              "href": "/autopilot/other/latest/user-guide/reviewing-autopilot-answers.md"
+            },
+            {
+              "title": "Using suggested prompts",
+              "href": "/autopilot/other/latest/user-guide/using-suggested-prompts.md"
+            },
+            {
+              "title": "Starting a new chat",
+              "href": "/autopilot/other/latest/user-guide/starting-a-new-chat.md"
+            },
+            {
+              "title": "Chat history",
+              "href": "/autopilot/other/latest/user-guide/chat-history.md"
+            },
+            {
+              "title": "Providing general feedback",
+              "href": "/autopilot/other/latest/user-guide/giving-feedback.md"
+            }
+          ]
+        },
+        {
+          "title": "Pasting operations with Clipboard AI",
+          "href": "/autopilot/other/latest/user-guide/pasting-operations-with-clipboard-ai.md",
+          "children": [
+            {
+              "title": "Accessing the Clipboard AI toolbar",
+              "href": "/autopilot/other/latest/user-guide/accessing-clipboardai-within-autopilot.md"
+            },
+            {
+              "title": "Generating tables from documents",
+              "href": "/autopilot/other/latest/user-guide/generating-tables-from-structured-documents.md"
+            },
+            {
+              "title": "Pasting information from the table to other applications",
+              "href": "/autopilot/other/latest/user-guide/pasting-information-from-the-table-to-other-applications.md"
+            },
+            {
+              "title": "Pasting from multi-line tables into a web form",
+              "href": "/autopilot/other/latest/user-guide/copying-from-multi-line-tables-and-pasting-into-a-web-form.md"
+            },
+            {
+              "title": "Using the Clipboard AI mapper",
+              "href": "/autopilot/other/latest/user-guide/using-the-clipboard-ai-mapper.md"
+            },
+            {
+              "title": "Sending the table to Clipboard AI",
+              "href": "/autopilot/other/latest/user-guide/sending-the-table-to-clipboard-ai.md"
+            }
+          ]
+        },
+        {
+          "title": "Clipboard AI Enterprise version",
+          "href": "/autopilot/other/latest/user-guide/clipboard-ai-enterprise-version.md"
+        },
+        {
+          "title": "Autopilot integrations",
+          "href": "/autopilot/other/latest/user-guide/autopilot-plug-ins.md",
+          "children": [
+            {
+              "title": "UiPath Autopilot™ for Microsoft Teams",
+              "href": "/autopilot/other/latest/user-guide/uipath-autopilot-for-microsoft-teams.md",
+              "children": [
+                {
+                  "title": "Setup",
+                  "href": "/autopilot/other/latest/user-guide/uipath-autopilot-for-microsoft-teams-setup.md"
+                },
+                {
+                  "title": "1:1 chat with Autopilot for Teams",
+                  "href": "/autopilot/other/latest/user-guide/1-1-chat-with-autopilot-for-teams.md",
+                  "children": [
+                    {
+                      "title": "Using the 1:1 chat with Autopilot for Teams app",
+                      "href": "/autopilot/other/latest/user-guide/using-the-1-1-chat-with-autopilot-for-teams-app.md"
+                    },
+                    {
+                      "title": "Autopilot for Teams known limitations",
+                      "href": "/autopilot/other/latest/user-guide/autopilot-for-teams-known-limitations.md"
+                    }
+                  ]
+                },
+                {
+                  "title": "Teams Search Messaging Extension",
+                  "href": "/autopilot/other/latest/user-guide/teams-search-messaging-extension.md",
+                  "children": [
+                    {
+                      "title": "Setup",
+                      "href": "/autopilot/other/latest/user-guide/teams-search-extension-setup.md"
+                    },
+                    {
+                      "title": "Using the Teams Search Messaging Extension",
+                      "href": "/autopilot/other/latest/user-guide/using-the-teams-search-messaging-extension.md"
+                    },
+                    {
+                      "title": "Known limitations",
+                      "href": "/autopilot/other/latest/user-guide/teams-search-extension-known-limitations.md"
+                    }
+                  ]
+                },
+                {
+                  "title": "Microsoft 365 Copilot Plug-in",
+                  "href": "/autopilot/other/latest/user-guide/microsoft-365-copilot-plug-in.md",
+                  "children": [
+                    {
+                      "title": "Setup",
+                      "href": "/autopilot/other/latest/user-guide/microsoft-365-copilot-plug-in-setup.md"
+                    },
+                    {
+                      "title": "Using the Microsoft 365 Copilot Plug-in",
+                      "href": "/autopilot/other/latest/user-guide/using-the-microsoft-365-copilot-plug-in.md"
+                    },
+                    {
+                      "title": "Microsoft 365 Copilot Plug-in known limitations",
+                      "href": "/autopilot/other/latest/user-guide/copilot-plug-in-known-limitations.md"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "title": "UiPath Autopilot™ for Slack",
+              "href": "/autopilot/other/latest/user-guide/uipath-autopilot-for-slack.md"
+            }
+          ]
+        },
+        {
+          "title": "Troubleshooting",
+          "href": "/autopilot/other/latest/user-guide/troubleshooting.md"
+        }
+      ]
+    }
+  ]
+}

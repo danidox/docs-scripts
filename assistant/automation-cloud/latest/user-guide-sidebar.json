@@ -1,0 +1,152 @@
+{
+  "title": "Assistant user guide",
+  "children": [
+    {
+      "title": "Getting started",
+      "children": [
+        {
+          "title": "About Assistant Web",
+          "href": "/assistant/automation-cloud/latest/user-guide/about-assistant-web.md",
+          "children": [
+            {
+              "title": "Benefits",
+              "href": "/assistant/automation-cloud/latest/user-guide/benefits.md"
+            },
+            {
+              "title": "Accessing Assistant Web",
+              "href": "/assistant/automation-cloud/latest/user-guide/accessing-assistant-web.md"
+            }
+          ]
+        },
+        {
+          "title": "User interface",
+          "href": "/assistant/automation-cloud/latest/user-guide/user-interface.md",
+          "children": [
+            {
+              "title": "The Autopilot panel",
+              "href": "/assistant/automation-cloud/latest/user-guide/the-autopilot-panel.md"
+            },
+            {
+              "title": "The Automations panel",
+              "href": "/assistant/automation-cloud/latest/user-guide/the-automations-panel.md"
+            },
+            {
+              "title": "The Launchpad panel",
+              "href": "/assistant/automation-cloud/latest/user-guide/the-launchpad-panel.md"
+            },
+            {
+              "title": "The Automation details tab",
+              "href": "/assistant/automation-cloud/latest/user-guide/the-automation-details-tab.md",
+              "children": [
+                {
+                  "title": "The More actions menu",
+                  "href": "/assistant/automation-cloud/latest/user-guide/the-contextual-menu.md"
+                }
+              ]
+            },
+            {
+              "title": "The Tasks panel",
+              "href": "/assistant/automation-cloud/latest/user-guide/the-tasks-panel.md"
+            }
+          ]
+        },
+        {
+          "title": "Preferences",
+          "href": "/assistant/automation-cloud/latest/user-guide/preferences.md",
+          "children": [
+            {
+              "title": "Providing feedback",
+              "href": "/assistant/automation-cloud/latest/user-guide/providing-feedback.md"
+            }
+          ]
+        },
+        {
+          "title": "Installing Assistant standalone",
+          "href": "/assistant/automation-cloud/latest/user-guide/installing-assistant-standalone.md"
+        },
+        {
+          "title": "Unified Pricing licensing",
+          "href": "/assistant/automation-cloud/latest/user-guide/unified-pricing-licensing.md"
+        }
+      ]
+    },
+    {
+      "title": "Setup",
+      "children": [
+        {
+          "title": "Assistant Web setup",
+          "href": "/assistant/automation-cloud/latest/user-guide/assistant-web-setup.md"
+        }
+      ]
+    },
+    {
+      "title": "Running automations",
+      "children": [
+        {
+          "title": "Configuring automations",
+          "href": "/assistant/automation-cloud/latest/user-guide/configuring-automations.md"
+        },
+        {
+          "title": "Running automations",
+          "href": "/assistant/automation-cloud/latest/user-guide/running-automations.md"
+        },
+        {
+          "title": "Stopping automations",
+          "href": "/assistant/automation-cloud/latest/user-guide/stopping-automations.md"
+        },
+        {
+          "title": "Automation statuses",
+          "href": "/assistant/automation-cloud/latest/user-guide/automation-statuses.md"
+        }
+      ]
+    },
+    {
+      "title": "Governance",
+      "children": [
+        {
+          "title": "Assistant policies",
+          "href": "/assistant/automation-cloud/latest/user-guide/assistant-policies.md"
+        },
+        {
+          "title": "Selecting a policy version",
+          "href": "/assistant/automation-cloud/latest/user-guide/selecting-a-policy-version.md"
+        },
+        {
+          "title": "Creating the policy",
+          "href": "/assistant/automation-cloud/latest/user-guide/creating-and-deploying-the-policy.md"
+        },
+        {
+          "title": "Deploying the policy",
+          "href": "/assistant/automation-cloud/latest/user-guide/deploying-the-policy.md"
+        },
+        {
+          "title": "Settings for Assistant policies",
+          "href": "/assistant/automation-cloud/latest/user-guide/settings-for-assistant-policies.md"
+        }
+      ]
+    },
+    {
+      "title": "Widgets in Assistant Web",
+      "children": [
+        {
+          "title": "Widgets",
+          "href": "/assistant/automation-cloud/latest/user-guide/widgets.md",
+          "children": [
+            {
+              "title": "Autopilot™ widget",
+              "href": "/assistant/automation-cloud/latest/user-guide/autopilot-widget.md"
+            },
+            {
+              "title": "Apps Widget",
+              "href": "/assistant/automation-cloud/latest/user-guide/apps-widget.md"
+            },
+            {
+              "title": "Action Center Widget",
+              "href": "/assistant/automation-cloud/latest/user-guide/action-center-widget.md"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

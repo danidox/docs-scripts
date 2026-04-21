@@ -1,0 +1,11 @@
+{
+  "productName": "Automation Suite",
+  "productNameSlug": "automation-suite",
+  "release": "2023.10",
+  "publicationType": "Installation Guide Eks Aks",
+  "publicationTypeSlug": "installation-guide-eks-aks",
+  "deliveryOption": "Automation Suite",
+  "deliveryOptionSlug": "automation-suite",
+  "description": "Your product description",
+  "displayOrder": "1"
+}

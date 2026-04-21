@@ -1,0 +1,155 @@
+{
+  "cookies": [
+    {
+      "name": "CF_AppSession",
+      "value": "c5ac506e54889fdd",
+      "domain": "docs-dev.uipath.com",
+      "path": "/",
+      "expires": 1774458905.449538,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "esctx-XYT5vAhWcZM",
+      "value": "AQABCQEAAACvnsHKEvvRQb3Bz3Qc7wnaRXZvU3RzQXJ0aWZhY3RzDQAAAAAA09Yx9ur3lkQV2ZsctAMRrQE7m4Uceo1VdJCMzahsnHA0iwtrS9HyttYVOA-yfJu1gy1MvU50xYbWJ-BCO7nxGUXp66tmhjfsDeyYRu4lrn2LlSaTwxUDGeiELoMwDeLNJGaTITjZjH6F3COgPr7DXSAA",
+      "domain": ".login.microsoftonline.com",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "x-ms-gateway-slice",
+      "value": "estsfd",
+      "domain": "login.microsoftonline.com",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "stsservicecookie",
+      "value": "estsfd",
+      "domain": "login.microsoftonline.com",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "AADSSO",
+      "value": "NA|NoExtension",
+      "domain": ".login.microsoftonline.com",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "buid",
+      "value": "1.AQsAKj012FOxF02IJ5AsUfcjV_QaMzCKN3xLqrrT7R9McSoAAAALAA.AQABGgEAAACvnsHKEvvRQb3Bz3Qc7wnaRXZvU3RzQXJ0aWZhY3RzAwAAAAAAD8Le6x2H2Y5DgbElxOPPWuUSLS16uvpKxgzwvuwECgjBHWpWtOu52yB2YzlMqjuD8DIDD3ZOJ5OkKTkXYNu9qr1AmDh-HawrbfW2dd8gdcYgAA",
+      "domain": "login.microsoftonline.com",
+      "path": "/",
+      "expires": 1776964509.745406,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "esctx",
+      "value": "PAQABBwEAAACvnsHKEvvRQb3Bz3Qc7wnaRXZvU3RzQXJ0aWZhY3RzDQAAAAAA2bXIANMov49BWmCmV4ZAFKLrSF2hVuifVi2oPSOHEfW1oNupSlEReT_J-pwDn8VtqZxg1aeQUQy1JMEzMCyoeJJMMm4dDnHyNZU59GSN_EaHl_jIOMuYAMMmtPeZvpzs5v8MG0leDxlnCOeKBRbOlHi3jUkofVwM525r1xtMO5YgAA",
+      "domain": ".login.microsoftonline.com",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "esctx-CminAQLJKPk",
+      "value": "AQABCQEAAACvnsHKEvvRQb3Bz3Qc7wnaRXZvU3RzQXJ0aWZhY3RzDQAAAAAAQzFYX75wkvHCrRcZJYLCMhybRG215BX-3JXFrL-bXeMA6H6w3d6-SNKypsO17hhghu8IJ2ob0o0UNXShs9I3JEEJ1aH6pQpqUyAj1OthErUj_vU1oUi3NSk7tRcz8cLJhOKTK2HIylC9E1Cy3Ar-9CAA",
+      "domain": ".login.microsoftonline.com",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "fpc",
+      "value": "AtYJL-cLeSVNv-AHzUyfTdcYDwfBAQAAAJu9VOEOAAAA",
+      "domain": "login.microsoftonline.com",
+      "path": "/",
+      "expires": 1776964510.714345,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "brcap",
+      "value": "0",
+      "domain": ".login.microsoftonline.com",
+      "path": "/",
+      "expires": 1808064909,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "uaid",
+      "value": "6450c905ebe84b9f8894a49636284e32",
+      "domain": ".login.live.com",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "MSPRequ",
+      "value": "id=N&lt=1774372508&co=1",
+      "domain": ".login.live.com",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "fpc",
+      "value": "AuLnqozAdH9FuqpRDJ4zGO4",
+      "domain": "autologon.microsoftazuread-sso.com",
+      "path": "/",
+      "expires": 1776964510.641643,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "x-ms-gateway-slice",
+      "value": "estsfd",
+      "domain": "autologon.microsoftazuread-sso.com",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "stsservicecookie",
+      "value": "estsfd",
+      "domain": "autologon.microsoftazuread-sso.com",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    }
+  ],
+  "origins": []
+}

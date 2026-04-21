@@ -1,0 +1,11 @@
+{
+  "productName": "Automation Suite",
+  "productNameSlug": "automation-suite",
+  "release": "2024.10",
+  "publicationType": "Installation Guide",
+  "publicationTypeSlug": "installation-guide",
+  "deliveryOption": "Automation Suite",
+  "deliveryOptionSlug": "automation-suite",
+  "description": "Your product description",
+  "displayOrder": "1"
+}

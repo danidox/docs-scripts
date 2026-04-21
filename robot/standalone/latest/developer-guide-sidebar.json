@@ -1,0 +1,28 @@
+{
+  "title": "Robot developer guide",
+  "children": [
+    {
+      "title": "Robot JavaScript SDK",
+      "children": [
+        {
+          "title": "About the Robot JavaScript SDK",
+          "href": "/robot/standalone/latest/developer-guide/about-the-robot-javascript-sdk.md"
+        },
+        {
+          "title": "Configuration Steps",
+          "href": "/robot/standalone/latest/developer-guide/configuration-steps.md"
+        },
+        {
+          "title": "SDK Specifications",
+          "href": "/robot/standalone/latest/developer-guide/sdk-specifications.md",
+          "children": [
+            {
+              "title": "Settings fields",
+              "href": "/robot/standalone/latest/developer-guide/settings-fields.md"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
