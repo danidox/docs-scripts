@@ -1054,16 +1054,22 @@ def extract_prod_structure(container: Tag) -> dict:
         li_parent = div.find_parent("li")
         depth = _li_depth(li_parent) if li_parent else -1
         text = div.get_text(strip=True)[:80]
-        # Collect direct-child <p> elements (not inside <ul>/<ol>/<li>)
-        # to locate paragraph breaks.  <p> inside list items are bullet
-        # content, not standalone paragraphs.
+        # Collect direct-child <p> elements and <div class="p ..."> blocks
+        # (not inside <ul>/<ol>/<li>) to locate paragraph breaks.
+        # <p> inside list items are bullet content, not standalone paragraphs.
+        # Some CMS-generated pages use <div class="p ..."> instead of <p> for
+        # paragraphs that contain inline code or have special styling.
         para_starts = []
         direct_p_count = 0
-        for p in div.find_all("p"):
-            # Check if this <p> is inside a list within the note
+        for p in div.find_all(lambda tag: tag.name == "p" or (
+                tag.name == "div" and "p" in tag.get("class", []))):
+            # Check if this element is inside a list within the note
             list_ancestor = p.find_parent(["ul", "ol"])
             if list_ancestor and div in list_ancestor.parents:
-                continue  # inside a list â€" skip
+                continue  # inside a list — skip
+            # Skip <div class="p"> that are themselves the admonition container
+            if p is div:
+                continue
             p_text = re.sub(r'\s+', ' ', _html_to_md_text(p).strip())
             if p_text:
                 para_starts.append(p_text)
