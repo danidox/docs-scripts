@@ -4543,6 +4543,7 @@ def main():
             end_page = int(args.limit)
         totals = fix_guide(args.prod_url, dry_run=args.dry_run,
                            start_page=start_page, end_page=end_page)
+        _shutdown_playwright()
         if totals["errors"]:
             sys.exit(1)
         return
@@ -4577,6 +4578,7 @@ def main():
         summary = f"Single page: {', '.join(parts)}"
         _write_report(report_path, fixed_pages, summary)
 
+    _shutdown_playwright()
     if stats.get("errors"):
         sys.exit(1)
 
