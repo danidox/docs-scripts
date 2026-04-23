@@ -1074,6 +1074,51 @@ def extract_prod_structure(container: Tag) -> dict:
             if p_text:
                 para_starts.append(p_text)
                 direct_p_count += 1
+        # Check for inline content (e.g. <strong class="ph b">Erratum...</strong>)
+        # that appears as a direct child of the admonition div BEFORE the first
+        # <p> or <div class="p">. These are not captured by the loop above but
+        # must be prepended to the first paragraph so rebuild preserves them.
+        leading_inline = []
+        for child in div.children:
+            if isinstance(child, NavigableString):
+                t = str(child).strip()
+                if t:
+                    leading_inline.append(t)
+            elif isinstance(child, Tag):
+                if child.name in ("style", "script", "button", "svg"):
+                    continue
+                if child.name == "span" and "importanttitle" in child.get("class", []):
+                    continue  # admonition title label — not content
+                # Skip icon-only divs (e.g. the SVG container that precedes content).
+                # These divs contain only SVG elements and emotion <style> tags —
+                # no content tags — so treat them as decorative and skip.
+                _DECORATIVE_TAGS = {"svg", "path", "mask", "g", "circle", "rect",
+                                    "use", "defs", "desc", "title", "style"}
+                if child.name == "div" and not child.find(
+                        lambda t: t.name not in _DECORATIVE_TAGS):
+                    continue
+                # Stop at the first content block-level element (div, p, ul, ol, table)
+                if child.name in ("div", "p", "ul", "ol", "table", "pre", "blockquote"):
+                    break
+                # Apply inline formatting — mirrors _html_to_md_text's child handling
+                # since we're passing the tag itself, not iterating over its parent.
+                if child.name in ("strong", "b"):
+                    inline_text = f"**{_html_to_md_text(child).strip()}**"
+                elif child.name in ("em", "i"):
+                    inline_text = f"*{_html_to_md_text(child).strip()}*"
+                elif child.name in ("code", "codeph"):
+                    inline_text = f"`{child.get_text().strip()}`"
+                else:
+                    inline_text = _html_to_md_text(child).strip()
+                if inline_text:
+                    leading_inline.append(inline_text)
+        leading_prefix = re.sub(r'\s+', ' ', ' '.join(leading_inline)).strip()
+        if leading_prefix:
+            if para_starts:
+                para_starts[0] = leading_prefix + " " + para_starts[0]
+            else:
+                para_starts.append(leading_prefix)
+                direct_p_count += 1
         structure["notes"].append({
             "in_list": li_parent is not None,
             "li_depth": depth,
