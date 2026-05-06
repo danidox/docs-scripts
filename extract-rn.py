@@ -138,10 +138,12 @@ def _rn_files_from_sidebar(sidebar: dict, user_guide: Path) -> list[Path]:
 # Filename normalization
 # ---------------------------------------------------------------------------
 
-_MONTHS = frozenset({
-    "january", "february", "march", "april", "may", "june",
-    "july", "august", "september", "october", "november", "december",
-})
+_MONTH_ORDER: dict[str, int] = {
+    "january": 1, "february": 2, "march": 3, "april": 4,
+    "may": 5, "june": 6, "july": 7, "august": 8,
+    "september": 9, "october": 10, "november": 11, "december": 12,
+}
+_MONTHS = frozenset(_MONTH_ORDER)
 
 
 def normalize_release_note_basename(basename: str) -> str:
@@ -151,9 +153,11 @@ def normalize_release_note_basename(basename: str) -> str:
     # Strip release-notes- prefix
     stem = re.sub(r"^release-notes-", "", stem)
 
-    # Expand compact 8-digit date YYYYMMDD → YYYY-MM-DD
+    # Expand compact dates: YYYYMMDD → YYYY-MM-DD, YYYYMM → YYYY-MM
     if re.match(r"^\d{8}$", stem):
         stem = f"{stem[:4]}-{stem[4:6]}-{stem[6:]}"
+    elif re.match(r"^\d{6}$", stem):
+        stem = f"{stem[:4]}-{stem[4:]}"
 
     # Strip any product-specific prefix that precedes the first year (YYYY) or
     # month name token.  Expected canonical forms: YYYY, <month>-YYYY, <month>.
@@ -166,6 +170,44 @@ def normalize_release_note_basename(basename: str) -> str:
             break
 
     return stem + ext
+
+
+def _sort_rn_section(node: dict) -> dict:
+    """Reorder a release-notes sidebar section to ascending chronological order.
+
+    Only reorders if the current top-level year order is descending (first > last).
+    Year-indexed children are sorted ascending; unrecognized items keep their
+    relative order at the end.  Month children within each year node are sorted
+    by the same rule.
+    """
+    def year_of(child: dict) -> int:
+        m = re.search(r"\b(\d{4})\b", child.get("title", ""))
+        return int(m.group(1)) if m else 0
+
+    def month_of(child: dict) -> int:
+        title = child.get("title", "").lower()
+        for name, num in _MONTH_ORDER.items():
+            if name in title:
+                return num
+        return 0
+
+    def sort_months(year_node: dict) -> dict:
+        month_children = list(year_node.get("children") or [])
+        recog = [(month_of(c), c) for c in month_children if month_of(c) > 0]
+        unrecog = [c for c in month_children if month_of(c) == 0]
+        if len(recog) >= 2 and recog[0][0] > recog[-1][0]:
+            recog.sort(key=lambda x: x[0])
+        return {**year_node, "children": [c for _, c in recog] + unrecog}
+
+    children = list(node.get("children") or [])
+    recog = [(year_of(c), c) for c in children if year_of(c) > 0]
+    unrecog = [c for c in children if year_of(c) == 0]
+
+    if len(recog) >= 2 and recog[0][0] > recog[-1][0]:
+        recog.sort(key=lambda x: x[0])
+
+    sorted_children = [sort_months(c) for _, c in recog] + unrecog
+    return {**node, "children": sorted_children}
 
 
 # ---------------------------------------------------------------------------
@@ -370,7 +412,7 @@ def extract(doc_root: Path, dry_run: bool) -> dict:
             result["children"] = [_rewrite_node(c) for c in node["children"]]
         return result
 
-    release_section_node = _rewrite_node(release_section["node"])
+    release_section_node = _sort_rn_section(_rewrite_node(release_section["node"]))
     release_notes_sidebar = {
         "title": f"{metadata['productName']} release notes",
         "children": [release_section_node],
