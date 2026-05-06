@@ -105,9 +105,44 @@ def get_release_section_info(sidebar: dict, embedded_basenames: set[str]) -> dic
     raise ValueError("No top-level release-note section found in the user-guide sidebar.")
 
 
+def _find_rn_section_by_title(sidebar: dict) -> dict | None:
+    """Return the first top-level sidebar section whose title is 'Release Notes'."""
+    for index, child in enumerate(sidebar.get("children") or []):
+        if re.match(r"^Release Notes?$", child.get("title", ""), re.IGNORECASE):
+            return {
+                "index": index,
+                "node": child,
+                "title": child.get("title", ""),
+                "hrefs": get_descendant_hrefs(child),
+                "matched_hrefs": [],
+            }
+    return None
+
+
+def _rn_files_from_sidebar(sidebar: dict, user_guide: Path) -> list[Path]:
+    """Return existing user-guide files referenced in the sidebar's Release Notes section."""
+    section = _find_rn_section_by_title(sidebar)
+    if not (section and section["node"].get("children")):
+        return []
+    files = []
+    for href in section["hrefs"]:
+        m = re.search(r"/user-guide/(.+\.md)$", href)
+        if m:
+            p = user_guide / m.group(1)
+            if p.exists():
+                files.append(p)
+    return files
+
+
 # ---------------------------------------------------------------------------
 # Filename normalization
 # ---------------------------------------------------------------------------
+
+_MONTHS = frozenset({
+    "january", "february", "march", "april", "may", "june",
+    "july", "august", "september", "october", "november", "december",
+})
+
 
 def normalize_release_note_basename(basename: str) -> str:
     stem = Path(basename).stem
@@ -119,6 +154,16 @@ def normalize_release_note_basename(basename: str) -> str:
     # Expand compact 8-digit date YYYYMMDD → YYYY-MM-DD
     if re.match(r"^\d{8}$", stem):
         stem = f"{stem[:4]}-{stem[4:6]}-{stem[6:]}"
+
+    # Strip any product-specific prefix that precedes the first year (YYYY) or
+    # month name token.  Expected canonical forms: YYYY, <month>-YYYY, <month>.
+    # Example: "aic-cloud-april-2021" → "april-2021", "cloud-aic-2020" → "2020".
+    # If no year/month is found, the stem is left as-is.
+    parts = stem.split("-")
+    for i, part in enumerate(parts):
+        if re.match(r"^\d{4}$", part) or part.lower() in _MONTHS:
+            stem = "-".join(parts[i:])
+            break
 
     return stem + ext
 
@@ -156,14 +201,20 @@ def find_eligible_doc_roots(root: Path) -> list[Path]:
             continue
 
         embedded_files = list(user_guide.rglob("release-notes-*.md"))
-        if not embedded_files:
-            continue
 
         # Require a dedicated top-level "Release Notes" parent section in the sidebar
         # whose title matches "Release Notes" and which has children.
         # Skips doc roots where release-note files are scattered across product sections.
         try:
             sidebar = read_json(doc_root / "user-guide-sidebar.json")
+
+            # Fall back to sidebar-based discovery for products whose release-note
+            # files don't use the release-notes-*.md naming convention.
+            if not embedded_files:
+                embedded_files = _rn_files_from_sidebar(sidebar, user_guide)
+            if not embedded_files:
+                continue
+
             embedded_basenames = {f.name for f in embedded_files}
             section = get_release_section_info(sidebar, embedded_basenames)
             title = section["node"].get("title", "")
@@ -184,7 +235,8 @@ def find_eligible_doc_roots(root: Path) -> list[Path]:
 
 @dataclass
 class FileMove:
-    relative_path: str          # original relative path inside user-guide
+    original_href: str            # full href as it appears in the sidebar
+    relative_path: str            # original relative path inside user-guide
     normalized_relative_path: str
     source_path: Path
     target_path: Path
@@ -208,7 +260,14 @@ def extract(doc_root: Path, dry_run: bool) -> dict:
     if not user_guide_sidebar_path.exists():
         raise FileNotFoundError(f"Missing sidebar file: {user_guide_sidebar_path}")
 
+    metadata = read_json(user_guide_metadata_path)
+    sidebar = read_json(user_guide_sidebar_path)
+
     embedded_files = list(user_guide.rglob("release-notes-*.md"))
+    # Fall back to sidebar-based discovery for products whose release-note files
+    # don't use the release-notes-*.md naming convention.
+    if not embedded_files:
+        embedded_files = _rn_files_from_sidebar(sidebar, user_guide)
     if not embedded_files:
         raise FileNotFoundError(f"No embedded release-note files found under {user_guide}")
 
@@ -219,8 +278,6 @@ def extract(doc_root: Path, dry_run: bool) -> dict:
     if release_notes_dir.exists() and any(release_notes_dir.iterdir()):
         raise FileExistsError(f"release-notes directory already exists and is not empty: {release_notes_dir}")
 
-    metadata = read_json(user_guide_metadata_path)
-    sidebar = read_json(user_guide_sidebar_path)
     release_value = str(metadata["release"]).replace(".", "-")
     embedded_basenames = {f.name for f in embedded_files}
     release_section = get_release_section_info(sidebar, embedded_basenames)
@@ -255,6 +312,7 @@ def extract(doc_root: Path, dry_run: bool) -> dict:
             else normalized_basename
         )
         files_to_move.append(FileMove(
+            original_href=href,
             relative_path=relative_path,
             normalized_relative_path=normalized_relative_path,
             source_path=source_path,
@@ -295,10 +353,24 @@ def extract(doc_root: Path, dry_run: bool) -> dict:
         },
     }
 
-    # Build release-notes-sidebar.json — rewrite hrefs from /user-guide/release-notes-* to /release-notes/*
-    release_section_json = json.dumps(release_section["node"], ensure_ascii=False)
-    release_section_json = re.sub(r"/user-guide/release-notes-", "/release-notes/", release_section_json)
-    release_section_node = json.loads(release_section_json)
+    # Build release-notes-sidebar.json — rewrite every href that was moved, applying
+    # the same filename normalization used when moving the file on disk.
+    href_map: dict[str, str] = {}
+    for f in files_to_move:
+        old_infix = "/user-guide/" + f.relative_path.replace("\\", "/")
+        new_infix = "/release-notes/" + f.normalized_relative_path.replace("\\", "/")
+        old_href = f.original_href.replace("\\", "/")
+        href_map[old_href] = old_href.replace(old_infix, new_infix, 1)
+
+    def _rewrite_node(node: dict) -> dict:
+        result = {k: v for k, v in node.items() if k not in ("href", "children")}
+        if "href" in node:
+            result["href"] = href_map.get(node["href"], node["href"])
+        if "children" in node:
+            result["children"] = [_rewrite_node(c) for c in node["children"]]
+        return result
+
+    release_section_node = _rewrite_node(release_section["node"])
     release_notes_sidebar = {
         "title": f"{metadata['productName']} release notes",
         "children": [release_section_node],
