@@ -455,7 +455,7 @@ def extract(doc_root: Path, dry_run: bool) -> dict:
         old_url = f"{doc_root_url_path}/user-guide/{old_slug}"
         new_url = f"{doc_root_url_path}/release-notes/{new_slug}"
         csv_rows.append(f"{old_url},307,{new_url}")
-        csv_rows.append(f"/@languageCode{old_url},307,/@languageCode{new_url}")
+        csv_rows.append(f"/languageCode{old_url},307,/languageCode{new_url}")
 
     csv_folder = get_desktop_path() / "release notes redirects"
     doc_root_label = root.relative_to(repo_root).as_posix().replace("/", "-")
