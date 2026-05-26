@@ -1,219 +1,187 @@
 # Localization Structural Comparison Guide
 
-## Context
-
-The docs team is validating localized content during a migration from **Smartling GDN** (Global Delivery Network) to **GitHub-based localization**.
-
-Both environments run the same proprietary docs platform frontend. The difference is the localization delivery mechanism:
-
-| Environment | Content source | Localization mechanism |
-|---|---|---|
-| **Prod** | GitHub (English structure) | GDN injects translated plaintext into the stable English HTML skeleton at runtime — structure is reliable but content is text-overlaid in flight |
-| **Dev** | GitHub (localized files) | Localized markup delivered directly from GitHub — may carry structural artifacts from the translation pipeline |
-
-**Goal:** Validate that structural page components (images, admonitions, tables, lists, headings, code blocks) render correctly on dev. Text accuracy is not the concern — structure integrity is.
-
-**Pilot guides in dev:** `customer-portal`, `maestro`
-**Target locales:** `fr`, `de`, `ja`, `es`, `pt-br`, `zh-cn`
+A walkthrough for using `compare-docs-localized.js` to validate the structure of localized UiPath documentation pages.
 
 ---
 
-## Why baseline = docs-dev/en (default)
+## What the script does
 
-Earlier versions of the script compared **dev/[locale]** against **prod/[locale]** (same locale, different env). That seemed natural but produced two classes of noise:
+It compares two language versions of a UiPath docs guide and reports **structural** differences — counts of headings, list items, images, admonitions, tables, code blocks, video embeds, and specific symbol marks (✅, ❌).
 
-1. **GDN in-flight delivery** — prod's locale pages are English HTML with translated text overlaid by GDN at runtime. Timing aside, this means structure originates from English and any "differences" reflect English-source state, not localized-file quality.
-2. **Dev-ahead-of-prod release lag** — when new content lands in dev but hasn't shipped to prod yet, prod returns an empty placeholder. Every structural element shows up as "missing from prod" in the report. On Maestro fr, 60+ pages were affected this way.
+It does **not** compare translation text. The goal is to catch localization bugs that break page layout (a missing image, a dropped table row, an admonition that lost its type) even when the text reads fine.
 
-**docs-dev/en eliminates both:**
+By default it compares:
 
-- Both sides come from the same GitHub deploy → no release lag.
-- The /en/ route is the raw English content (no GDN involvement).
-- Translation is the only variable, which is exactly what we're validating.
+- **The localized page** — e.g. `docs-dev.uipath.com/fr/maestro/.../about-maestro`
+- against **the English source on the same environment** — e.g. `docs-dev.uipath.com/maestro/.../about-maestro`
 
-If you specifically want to compare against prod (e.g., to confirm what users see live), pass `--baseline-base https://docs.uipath.com`.
+Both come from the same content deployment, so any structural difference is due to localization rather than a content release timing gap.
 
 ---
 
-## The Script: `docs-scripts/compare-docs-localized.js`
+## Setup (one-time)
 
-A Playwright-based tool that crawls two URL trees and compares structural content page by page.
+You need Node.js (v18 or newer) and Git installed.
 
-### Defaults
-| Side | Default base URL | Auth |
-|------|-----------------|------|
-| Dev (being validated) | `docs-dev.uipath.com/[locale]/...` | Cloudflare Access (session saved to `auth-session.json`) |
-| Baseline (English source) | `docs-dev.uipath.com/...` (no locale prefix) | Cloudflare Access (same session) |
-
-**URL pattern:** English on the UiPath docs platform has **no language prefix** — `/maestro/...`, not `/en/maestro/...`. Other locales have a prefix (`/fr/maestro/...`). The script auto-rewrites the path: `/fr/maestro/X` → `/maestro/X` for the English baseline.
-
-**Cookie handling:** The `UIPATH_DOCS_LOCALE` cookie is preset on the browser context **before any navigation**, so the first request already carries the right language preference. This avoids redirect chains caused by a stale cookie from a previous run mismatching the URL we're about to load. The two crawls run sequentially; the second crawl's preset overwrites the first's value on the shared cookie jar — no race because they never run concurrently. The same Cloudflare session covers both crawls.
-
-### What it compares
-- **Page completeness** — pages present in baseline but missing from dev, or extra pages in dev
-- **Headings** (h2–h6) — count per heading level (h1 is rendered outside the content area on both sides and is not captured)
-- **List items** — count per nesting depth; also checks ul/ol type
-- **Images** — count per page (served from `cms.uipath.com/assets` on all environments)
-- **Admonitions** (notes, warnings, tips, cautions) — count per type
-- **Code blocks** — count of `<pre>` elements
-- **Tables** — matched by position; checks row count, column count
-- **Video embeds** — count of `iframe`/`video` elements
-- **Symbol marks** — exact-codepoint count of ✅ (U+2705) and ❌ (U+274C), used in compatibility/availability tables. Catches NMT corruption that swaps these emoji for ASCII or lookalike codepoints (e.g. German NMT replacing ❌ with `x`). Per-codepoint, not per-glyph — so visual similarity doesn't fool the check.
-
-### What it does NOT compare
-- **Icons** rendered via CSS classes or SVG inline elements (not `<img>` tags) — invisible to the script
-- Styling, color, layout
-- Link targets
-- Text translation quality
-
-### Pages excluded from comparison
-- **Baseline-empty pages** — if the baseline URL resolves to an empty page (placeholder for unreleased content), the script peels it out into a "PAGES NOT YET PUBLISHED ON BASELINE" section. These are listed but not counted as having structural issues, since the absence of content on the baseline is not a dev-side defect.
-
----
-
-## How to Run
-
-### Prerequisites
 ```
 cd docs-scripts
-npm install   # installs Playwright and dependencies (first time only)
+npm install
 npx playwright install chromium
 ```
 
-### Basic usage
+You only run these three commands once per machine.
+
+---
+
+## Running a comparison
+
+### The basic command
+
+```
+node compare-docs-localized.js --locale fr --path /fr/maestro/automation-cloud/latest/user-guide/about-maestro
+```
+
+That's the typical run: crawl the whole guide starting from this page, compare it to the English source, print the report. You can paste a full URL after `--path` and the script will strip the domain.
+
+### Variations you'll use often
 
 ```bash
-# Default: dev/fr vs docs-dev/en
-node compare-docs-localized.js --locale fr --path /fr/customer-portal/other/latest/user-guide/about-customer-portal
+# Just one page — fastest, good for spot checks
+node compare-docs-localized.js --locale fr --page /fr/maestro/.../about-maestro
 
-# Single page (fastest — good for spot-checking)
-node compare-docs-localized.js --locale fr --page /fr/customer-portal/other/latest/user-guide/about-customer-portal
+# First 10 pages only
+node compare-docs-localized.js --locale fr --path /fr/maestro/... --limit 10
 
-# First N pages
-node compare-docs-localized.js --locale fr --path /fr/customer-portal/... --limit 10
+# Pages 11 through 20
+node compare-docs-localized.js --locale fr --path /fr/maestro/... --limit 11-20
 
-# Page range
-node compare-docs-localized.js --locale fr --path /fr/customer-portal/... --limit 11-20
+# Save the report to a file
+node compare-docs-localized.js --locale fr --path /fr/maestro/... --output report-fr-maestro.txt
 
-# Save report (relative path saves in docs-scripts\; absolute path saves anywhere)
-node compare-docs-localized.js --locale fr --path /fr/customer-portal/... --output report-fr-customer-portal.txt
-
-# Baseline = prod English (instead of docs-dev English)
-node compare-docs-localized.js --locale fr --path /fr/customer-portal/... --baseline-base https://docs.uipath.com
-
-# Legacy mode: dev/fr vs prod/fr (same locale, across envs)
-node compare-docs-localized.js --locale fr --path /fr/customer-portal/... --baseline-base https://docs.uipath.com --baseline-locale fr
-
-# Debug — element counts and raw image srcs
-node compare-docs-localized.js --locale fr --page /fr/customer-portal/... --debug
+# Show every extracted count (for diagnosing)
+node compare-docs-localized.js --locale fr --page /fr/... --debug
 ```
 
-### URL pattern for localized content
+### Supported locales
 
+| Code    | Language               |
+|---------|------------------------|
+| `fr`    | French                 |
+| `de`    | German                 |
+| `es`    | Spanish                |
+| `pt-br` | Portuguese (Brazil)    |
+| `ja`    | Japanese               |
+| `zh-cn` | Chinese (Simplified)   |
+
+### First-run sign-in
+
+The first time you run the script against `docs-dev.uipath.com` a browser window opens for Cloudflare Access login. Sign in with your UiPath credentials and wait for the docs page to appear — the script detects success automatically and saves your session to `auth-session.json` for future runs. If a session expires later, the login window reopens on its own.
+
+### Choosing a different baseline (optional)
+
+If you need to compare against a different source than docs-dev English:
+
+```bash
+# Compare against production English (what users see live)
+node compare-docs-localized.js --locale fr --path /fr/... --baseline-base https://docs.uipath.com
+
+# Compare two environments of the same locale (advanced, rarely needed)
+node compare-docs-localized.js --locale fr --path /fr/... --baseline-base https://docs.uipath.com --baseline-locale fr
 ```
-docs-dev.uipath.com/fr/customer-portal/other/latest/user-guide/...   ← dev (with locale prefix)
-docs-dev.uipath.com/customer-portal/other/latest/user-guide/...      ← baseline (no prefix, English)
-```
 
-You pass only the dev path with `--path` or `--page`. The script strips the `/fr/` prefix for the baseline side. You can also paste the full URL — the script strips the domain.
-
-### Authentication
-On first run, a browser window opens for Cloudflare Access login. After completing login, the session is saved to `auth-session.json` and reused. The session works for both sides since they share the host (`docs-dev.uipath.com` by default).
+Most of the time the default is what you want.
 
 ---
 
-## Output / Report Sections
+## Reading the report
 
-Every page detail always shows all sections with counts. A `[OK] Counts match` line means the check was performed and passed.
+### Symbols
 
-| Symbol | Meaning |
-|--------|---------|
-| `X` / `✗` | Missing from dev, or fewer than baseline |
-| `+` | Extra in dev (more than baseline) |
-| `>` / `⤵` | Present but reduced (fewer rows/cols) |
-| `~` / `⇄` | Structural change (list type, similar but different) |
-| `!` / `⚠` | Ambiguous difference — check manually |
-| `P` / `¶` | Content moved from list item to paragraph or vice versa |
+| Symbol  | Meaning                                                            |
+|---------|--------------------------------------------------------------------|
+| `[OK]`  | Check ran and passed                                               |
+| `X`     | Missing on the localized side, or fewer than the baseline          |
+| `+`     | Extra on the localized side (more than the baseline)               |
+| `>`     | Reduced (fewer rows or columns in a table)                         |
+| `~`     | Structural change (e.g. an ordered list rendered as unordered)     |
+| `!`     | Ambiguous difference — needs a visual check                        |
+| `P`     | Content moved between a list item and a paragraph                  |
 
-Report sections per page:
-- **HEADINGS** — count difference per heading level
-- **LIST ITEMS** — count difference per nesting depth
-- **TABLES** — missing table, fewer rows/cols, extra table in dev
-- **IMAGES** — count difference
-- **ADMONITIONS** — count difference per type
-- **CODE BLOCKS** — count difference
-- **VIDEO EMBEDS** — count difference
+### Sections, in order
 
----
-
-## False Positives and Pitfalls
-
-### General (any language)
-
-| Issue | What you'll see | Why it happens |
-|-------|----------------|----------------|
-| **Word count differences** | High word-count differences | Translations differ in phrasing and length. Word count is excluded from the "pages with issues" filter for this reason. |
-| **Empty header row in tables** | `! Empty header row in Dev` | The platform may emit an empty `<thead>` row depending on how the source content is authored. Check visually if flagged. |
-| **`present-as-paragraph`** | List item flagged as present in dev as paragraph | Same content rendered with different HTML structure between baseline and dev. Usually benign. |
-| **`content-outside-list`** | Content flagged as moved outside list | Baseline and dev handle content following a list item differently. Usually benign. |
-| **`nested-note`** | Note inside vs alongside a list item | Admonition placement may differ between baseline and dev. Visually fine on both. |
-| **`possible-merge`** | Table flagged as possible merge | Two small tables in dev correspond to one in baseline. Check visually. |
-| **Extra table in dev** | `X Extra table in Dev` | The platform sometimes renders non-table structures as tables depending on content markup. |
-| **Availability indicators** | (Should not appear) | Images with alt="available"/"not available" are explicitly excluded from image counts. |
-| **Pages not yet on baseline** | (Listed in dedicated section, excluded from comparison) | New content that's in dev but hasn't shipped to baseline yet. No longer pollutes content-type counts. |
-
-### Localization-specific
-
-| Issue | Affects | What you'll see | Root cause |
-|-------|---------|----------------|-----------|
-| **Translation phrasing differences** | All locales (text mode only) | `~ similar-list-item` or `X missing` on list items | Translations naturally differ from the source. Structural mode (default) is not affected. |
-| **Fullwidth vs halfwidth punctuation** | `zh-cn`, `ja` | Heading or admonition flagged as missing | NFKC normalization handles most cases but edge cases remain if one side uses fullwidth ASCII and the other doesn't. |
-| **CJK word-overlap metrics unreliable** | `ja`, `zh-cn` | Many false `X Absent` in CONTENT BLOCKS (text mode only) | Word-overlap relies on space-separated tokens. Japanese and Chinese have no word spaces. Bigram fallback mitigates but is approximate. |
-| **Translation artifacts in headings** | All locales | `X Missing heading` | If translation introduced an extra character/tag/whitespace, heading counts per level may differ. Investigate the specific heading. |
-
-### What the script is reliable for with localized content
-
-| Check | Reliable for all locales? |
-|-------|--------------------------|
-| Missing pages | Yes |
-| Heading count per level | Yes |
-| Image count | Yes — language-independent |
-| Table row/column count | Yes — language-independent |
-| Admonition count per type | Yes — type detected from CSS class, not translated label |
-| Code block count | Yes — language-independent |
-| Video embed count | Yes — language-independent |
-| List item depth count | Yes (structural mode); approximate for CJK in text mode |
-
-### What the script cannot detect
-- **Icons** rendered via CSS classes or inline SVG — not captured as images
-- **Broken image display** (image exists in HTML but 404s or fails to load)
-- **Layout regressions** (component present but misaligned)
-- **Translation quality or accuracy**
+1. **COMPARISON REPORT** — top-line counts: pages compared, missing, with issues.
+2. **MISSING PAGES** — present on baseline, absent from the localized side.
+3. **EXTRA PAGES IN [LOCALE]** — present on localized side, not on baseline (typically new content).
+4. **PAGES NOT YET PUBLISHED ON [BASELINE]** — URL exists but has no content on the baseline yet. Listed for awareness, then **excluded** from the per-page comparison so they don't pollute the issue counts.
+5. **CONTENT TYPE SUMMARY** — one line per content type, either `[OK]` or `X N/total pages with issues`. Start here when reading a large report.
+6. **ISSUES BY CONTENT TYPE** — every page with an issue, grouped by content type. This is the detail you investigate.
+7. **IMAGE COUNTS — ALL PAGES** — every page with its image count on both sides. Easy place to spot dropped images at a glance.
+8. **AFFECTED PAGES — URL REFERENCE** — links to every affected page on both sides. URLs live at the bottom of the report so they don't break up the issue listings.
 
 ---
 
-## Recommended Workflow
+## What's checked
 
-1. **Start with a single page** using `--page` and `--debug` to sanity-check that the script is finding the right content on the localized pages.
+- **Page completeness** — pages on the baseline absent from localized, or extras
+- **Headings** — count per heading level (h2 through h6)
+- **List items** — count per nesting depth, plus ordered vs unordered
+- **Tables** — row and column counts, matched by position
+- **Images** — total count per page
+- **Admonitions** — notes, warnings, tips, cautions, etc., counted per type
+- **Code blocks** — count of code blocks
+- **Video embeds** — count of embedded videos
+- **Symbol marks** — exact-codepoint count of ✅ (U+2705) and ❌ (U+274C), used in feature-availability tables. The check is per-codepoint, so a visually similar substitute (an ASCII `x` in place of ❌, for example) is caught as a missing mark.
 
-2. **Use the default baseline** (docs-dev/en) for routine validation — it's the cleanest comparison.
+## What's NOT checked
 
-3. **Switch to `--baseline-base https://docs.uipath.com`** if you specifically need to know what's shipping vs what's not.
-
-4. **For `ja` and `zh-cn`**: focus on language-independent checks (counts), and treat CJK text-mode metrics as approximate.
-
-5. **Save reports** with `--output report-[locale]-[guide].txt` for tracking. Use the **PAGES NOT YET PUBLISHED ON BASELINE** section to track release-lag items separately from structural defects.
-
-6. **Use `--limit` for large guides** — run in batches of 20–30 pages to avoid session timeouts.
-
-7. **Visual spot-check** any flags the script raises for CJK content.
+- **Translation accuracy** — text content is ignored
+- **Icons** rendered as CSS classes or inline SVG (only `<img>` tags are counted)
+- **Broken images** that exist in the HTML but fail to load in the browser
+- **Layout regressions** — if structure is present but misaligned, the script can't see it
 
 ---
 
-## Migration history note
+## Common false positives
 
-The legacy default was dev/[locale] vs prod/[locale]. That produced two real problems on Maestro fr (May 2026):
-- 60+ pages reported with `prod: 0` for all element counts (release lag — pages existed in the sidebar on prod but resolved to empty placeholders, since the new Maestro content hadn't shipped to prod yet).
-- GDN's in-flight text delivery introduced theoretical concerns about extraction timing on prod, even though in practice it doesn't affect structural counts.
+These often look like problems but usually aren't:
 
-The new default (dev/[locale] vs docs-dev/en) eliminates both as confounders. The PAGES NOT YET PUBLISHED ON BASELINE section catches any remaining cases where baseline content is empty.
+| What you see                              | What's actually going on                                                                              |
+|-------------------------------------------|-------------------------------------------------------------------------------------------------------|
+| **Word count is different**               | Translations naturally differ in length. Not flagged as an issue.                                     |
+| `! Empty header row in [LOCALE]`          | The platform sometimes renders an extra empty header row. Usually benign — check visually.            |
+| `P Present as paragraph`                  | Same content rendered as a paragraph rather than a list item. Different markup, same meaning.         |
+| `! Content moved outside list`            | Content following a list rendered slightly differently between sides. Usually benign.                 |
+| `! Note nested in list item`              | An admonition appears inside a list item on one side, alongside it on the other. Same content.        |
+| `~ Possible table merge`                  | Two small tables on the localized side may correspond to one combined table on the baseline.          |
+| `X Extra table`                           | The platform sometimes renders non-table content as a table depending on source markup.               |
+| **PAGES NOT YET PUBLISHED ON [BASELINE]** | The localized side has a page that the baseline doesn't yet — release lag, not a localization bug.    |
+
+When in doubt, open both URLs from the **AFFECTED PAGES** section and compare visually.
+
+---
+
+## Tips
+
+- **Start with one page** using `--page` and `--debug` to confirm the script is finding real content on the pages you care about before scaling up.
+- **Use `--limit` for large guides** — running in batches of 20–30 pages reduces the risk of session timeouts and makes the report easier to review.
+- **For CJK locales (`ja`, `zh-cn`)**, the structural checks are language-independent and reliable. Stick to structural mode (the default) — `--text` mode is approximate for these languages.
+- **Save reports for later** with `--output report-[locale]-[guide].txt`. The text files render correctly in any editor.
+
+---
+
+## Troubleshooting
+
+**Browser opens but the script seems stuck after I log in.**
+The script is waiting for the docs page itself to load. Make sure you've finished Cloudflare Access and are on a real docs page, then return to the terminal — it detects success and continues.
+
+**"Session expired" or "Cloudflare Access" message.**
+Your saved login is no longer valid. The script automatically invalidates `auth-session.json` and reopens the browser. Just sign in again.
+
+**Empty report or "No links matched the guide base path".**
+The seed path is probably wrong, or the page you pointed at doesn't have a sidebar. Re-run with `--debug` and check the extracted link count. Make sure the path starts with the locale prefix (e.g. `/fr/...`).
+
+**A page shows counts of 0 but I can see content on it.**
+Try again — it may be a one-off timing hiccup. If it happens consistently for one page, run that page alone with `--page` and `--debug` to see what was extracted.
+
+**The report flags many pages on a single content type.**
+Check the **CONTENT TYPE SUMMARY** first. If everything else is `[OK]` and only one type is failing, the cause is probably a single underlying issue (e.g. a platform-wide rendering change) rather than a per-page localization bug.
