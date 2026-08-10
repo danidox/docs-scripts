@@ -52,6 +52,20 @@ node compare-docs-localized.js --locale fr --path /fr/customer-portal/other/late
 node compare-docs-localized.js --locale fr --path /fr/... --limit 11-20
 ```
 
+### All locales in one run
+```
+node compare-docs-localized.js --locale fr,de,es,pt-br,ja,zh-cn --path /fr/customer-portal/... --output report-customer-portal.txt
+```
+The English baseline is crawled **once** and reused for every locale — for N pages and 6 locales that's `N + 6N` page loads instead of `6 × 2N`. `--path` must carry the *first* locale listed (`fr` here); every other locale's path is derived automatically by swapping the prefix. Each locale gets its own report file (`report-customer-portal-fr.txt`, `report-customer-portal-de.txt`, …) — passing a single `--output` name is safe, it gets a locale suffix automatically per file.
+
+### Chunking a large guide by subsection
+Instead of crawling a 2000+ page guide in one go, point `--path` at a page inside just the subsection you want:
+```
+node compare-docs-localized.js --locale fr --path /fr/customer-portal/release-notes/2026-08-01 --output report-fr-release-notes.txt
+node compare-docs-localized.js --locale fr --path /fr/customer-portal/user-guide/about-customer-portal --output report-fr-user-guide.txt
+```
+**Important:** seed from an actual page *one level inside* the subsection, not the bare subsection name. The crawl scope is "everything before the last path segment of `--path`" — so `--path /fr/customer-portal/release-notes/2026-08-01` scopes to `/fr/customer-portal/release-notes/` (correct), but `--path /fr/customer-portal/release-notes` (no page after it) scopes to `/fr/customer-portal/` — the whole guide, not just release notes.
+
 ---
 
 ## Choosing a different baseline

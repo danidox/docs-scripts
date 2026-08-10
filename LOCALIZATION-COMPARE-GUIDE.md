@@ -60,7 +60,27 @@ node compare-docs-localized.js --locale fr --path /fr/maestro/... --output repor
 
 # Show every extracted count (for diagnosing)
 node compare-docs-localized.js --locale fr --page /fr/... --debug
+
+# All locales in one run — comma-separate. The English baseline is crawled
+# ONCE and reused for every locale (N + 6N page loads instead of 6 x 2N).
+# --path must carry the FIRST locale listed; the rest are derived from it.
+# Each locale writes its own report: report-guide-fr.txt, report-guide-de.txt, ...
+node compare-docs-localized.js --locale fr,de,es,pt-br,ja,zh-cn --path /fr/customer-portal/... --output report-guide.txt
 ```
+
+### Chunking a large guide by subsection
+
+For guides that run into the thousands of pages, crawl one subsection at a time instead of the whole tree in one pass:
+
+```bash
+node compare-docs-localized.js --locale fr --path /fr/customer-portal/release-notes/2026-08-01 --output report-fr-release-notes.txt
+node compare-docs-localized.js --locale fr --path /fr/customer-portal/user-guide/about-customer-portal --output report-fr-user-guide.txt
+```
+
+The crawl scope is derived by dropping the **last** path segment of `--path` and matching sidebar links against everything before it. That means you must seed from an actual page **one level inside** the subsection you want — not the bare subsection name:
+
+- `--path /fr/customer-portal/release-notes/2026-08-01` → scope is `/fr/customer-portal/release-notes/` ✅ (release notes only)
+- `--path /fr/customer-portal/release-notes` (no page after it) → scope is `/fr/customer-portal/` ❌ (the whole guide, not just release notes)
 
 ### Supported locales
 

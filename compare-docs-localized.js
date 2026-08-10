@@ -23,9 +23,14 @@
  *   overwrites the first's value on the shared cookie jar.
  *
  * Flags:
- *   --locale [fr|de|ja|es|pt-br|zh-cn]
- *       Locale of the dev side. Sets the language cookie before crawling so the
- *       site does not redirect away from the /[locale]/ URL.
+ *   --locale [fr|de|ja|es|pt-br|zh-cn][,locale2,...]
+ *       Locale(s) of the dev side. Comma-separate to run several in one
+ *       invocation (e.g. --locale fr,de,ja) — the English baseline is crawled
+ *       ONCE and reused across every locale, instead of once per locale.
+ *       The --path you pass should carry the FIRST listed locale's prefix;
+ *       every other locale's path is derived by swapping that prefix in.
+ *       Sets the language cookie before crawling so the site does not
+ *       redirect away from the /[locale]/ URL.
  *   --baseline-locale [code]    (default: en)
  *       Locale of the baseline side. Path /[locale]/ is rewritten to
  *       /[baseline-locale]/ on the baseline crawl.
@@ -53,6 +58,19 @@
  *
  *   # Save report
  *   node compare-docs-localized.js --locale fr --path /fr/customer-portal/... --output report-fr.txt
+ *
+ *   # All locales in one run — baseline crawled once, one report file per locale
+ *   node compare-docs-localized.js --locale fr,de,es,pt-br,ja,zh-cn \
+ *       --path /fr/customer-portal/... --output report-customer-portal.txt
+ *   #   -> report-customer-portal-fr.txt, report-customer-portal-de.txt, ...
+ *
+ *   # Chunk a large guide by subsection instead of crawling it whole:
+ *   # seed from an actual PAGE one level inside the subsection you want — the
+ *   # crawl scope is "everything before the last path segment of --path", so
+ *   # seeding from the subsection name itself (no trailing page) widens the
+ *   # scope back out to the whole guide instead of narrowing it.
+ *   node compare-docs-localized.js --locale fr --path /fr/customer-portal/release-notes/2026-08-01 --output report-fr-release-notes.txt
+ *   node compare-docs-localized.js --locale fr --path /fr/customer-portal/user-guide/about-customer-portal --output report-fr-user-guide.txt
  */
 
 'use strict';
@@ -114,7 +132,14 @@ if (getArg('--limit')) {
 }
 const PAGE_SINGLE  = pageInput ? pageInput.path : null;
 const DEBUG        = args.includes('--debug');
-const LOCALE        = getArg('--locale') || null;
+// --locale accepts a comma-separated list (e.g. --locale fr,de,ja) to run every
+// locale in one invocation. LOCALE stays the first entry — it's what the rest of
+// the script (path derivation, labels, single-page mode) already treats as "the"
+// locale; LOCALES is consulted only by the multi-locale loop in main().
+const LOCALE_ARG     = getArg('--locale') || null;
+const LOCALES        = LOCALE_ARG ? LOCALE_ARG.split(',').map(s => s.trim()).filter(Boolean) : [];
+const LOCALE         = LOCALES[0] || null;
+const KNOWN_LOCALES  = new Set(['fr', 'de', 'es', 'pt-br', 'ja', 'zh-cn']);
 const LOCALE_KEY    = getArg('--locale-key') || 'i18nextLng';
 const LOCALE_COOKIE = getArg('--locale-cookie') || 'UIPATH_DOCS_LOCALE';
 const BASELINE_LOCALE = getArg('--baseline-locale') || 'en';
@@ -485,7 +510,15 @@ async function extractPageData(page, isDevSite) {
       });
       const text = liClone.textContent.trim().replace(/\s+/g, ' ');
       const anchors = liClone.querySelectorAll('a');
-      if (anchors.length === 1 && anchors[0].textContent.trim().replace(/\s+/g, ' ') === text) return;
+      // Trailing punctuation (a period outside the <a> tag, or its absence —
+      // Japanese/CJK convention often omits a Western-style terminal period)
+      // must not decide whether a bullet is "just a link": strip it from both
+      // sides before the exact-match check, or the same nav-link bullet gets
+      // excluded on one locale and counted as real content on another,
+      // producing a phantom list-item-count mismatch between languages.
+      const stripTrailingPunct = (s) => s.replace(/[.!?:;、。！？：；]+\s*$/u, '');
+      const anchorText = stripTrailingPunct(anchors[0]?.textContent.trim().replace(/\s+/g, ' ') || '');
+      if (anchors.length === 1 && anchorText === stripTrailingPunct(text)) return;
       if (text) {
         const type = li.parentElement.tagName.toLowerCase();
         listItems.push({ depth, type, text, hasNestedNote });
@@ -586,7 +619,23 @@ async function extractPageData(page, isDevSite) {
       const cells = Array.from(table.querySelectorAll('td, th'))
         .map(c => c.textContent.trim().replace(/\s+/g, ' ')).filter(Boolean);
       const signature = `${colCount}::${headerCells.slice(0, 3).join(' | ').toLowerCase()}`;
-      if (headerText) tables.push({ headerText, rowCount: rows.length, colCount, hasEmptyHeader, cells, signature });
+
+      // Row-width self-consistency check (colspan-aware effective width per
+      // row) — catches a dropped `|` that merges two markdown cells into one
+      // without changing the table's total row count or its header-row cell
+      // count (colCount above only looks at row 0, so a mid-table merge would
+      // otherwise slip through undetected).
+      const rowWidths = rows.map(r =>
+        Array.from(r.querySelectorAll('td, th'))
+          .reduce((sum, c) => sum + (parseInt(c.getAttribute('colspan'), 10) || 1), 0)
+      ).filter(w => w > 0);
+      const widthCounts = new Map();
+      for (const w of rowWidths) widthCounts.set(w, (widthCounts.get(w) || 0) + 1);
+      let modeWidth = rowWidths[0], modeCount = 0;
+      for (const [w, n] of widthCounts) if (n > modeCount) { modeWidth = w; modeCount = n; }
+      const jaggedRowCount = rowWidths.filter(w => w !== modeWidth).length;
+
+      if (headerText) tables.push({ headerText, rowCount: rows.length, colCount, hasEmptyHeader, cells, signature, jaggedRowCount });
     });
 
     const codeBlocks = clone.querySelectorAll('pre').length;
@@ -595,6 +644,25 @@ async function extractPageData(page, isDevSite) {
 
     const text = clone.innerText.replace(/\s+/g, ' ').trim();
     const wordCount = text.split(/\s+/).filter(Boolean).length;
+
+    // Markup-artifact self-check: these tokens should never survive into
+    // rendered text — a correctly-parsed bold/italic/strike/table consumes
+    // them entirely. Their literal presence signals a markdown construct the
+    // renderer failed to parse (e.g. `**text **` — no space after the
+    // opening `**` but one before the closing `**` trips some parsers,
+    // leaving literal asterisks in the output instead of a <strong> tag).
+    // pre/code/table are excluded first since they legitimately contain
+    // these characters (dunder methods, shell pipes, real table markup).
+    const artifactClone = clone.cloneNode(true);
+    artifactClone.querySelectorAll('pre, code, table').forEach(n => n.remove());
+    const artifactText = artifactClone.innerText;
+    const countMatches = (re) => (artifactText.match(re) || []).length;
+    const markupArtifacts = {
+      strayBold:   countMatches(/\*\*/g),
+      strayItalic: countMatches(/__/g),
+      strayStrike: countMatches(/~~/g),
+      strayPipe:   countMatches(/\|/g),
+    };
 
     // Symbol marks used in compatibility/availability tables. Counted by exact
     // codepoint so NMT corruption that swaps to a lookalike (e.g. ✗ U+2717 or
@@ -606,17 +674,16 @@ async function extractPageData(page, isDevSite) {
       '❌': (text.match(/❌/g) || []).length,
     };
 
-    return { headings, listItems, images, rawImageSrcs, admonitions, paragraphs, tables, codeBlocks, videoEmbeds, symbolMarks, text, wordCount };
+    return { headings, listItems, images, rawImageSrcs, admonitions, paragraphs, tables, codeBlocks, videoEmbeds, symbolMarks, markupArtifacts, text, wordCount };
   });
 }
 
 // ─── Site crawler ─────────────────────────────────────────────────────────────
 // `isDevSide`: true for the dev-locale crawl, false for the baseline (English) crawl.
 // `seedUrl` already carries the right locale and base for this side.
-async function crawlSite(context, seedUrl, isDevSide, isHeadless) {
+async function crawlSite(context, seedUrl, isDevSide, isHeadless, devLocaleOverride) {
   const base      = isDevSide ? DEV_BASE : PROD_BASE;
-  const sideLocale = isDevSide ? LOCALE : BASELINE_LOCALE;
-  const guideBase = guideBasePath(new URL(seedUrl).pathname);
+  const sideLocale = isDevSide ? (devLocaleOverride || LOCALE) : BASELINE_LOCALE;
   const pages     = new Map();
 
   // Preset the locale cookie BEFORE any navigation — the first request will
@@ -630,6 +697,14 @@ async function crawlSite(context, seedUrl, isDevSide, isHeadless) {
   log(`  Seed: ${seedUrl}`);
   const status = await navigateWithAuth(page, seedUrl, context, isHeadless);
   if (status === 'reauth') { await page.close(); return null; }
+
+  // Some locales get redirected to a differently-cased canonical URL by the
+  // platform (e.g. /pt-br/... -> /pt-BR/..., /zh-cn/... -> /zh-CN/... — BCP-47
+  // region subtags render uppercase). Derive the crawl scope from the URL we
+  // actually landed on, not the one we requested, so the prefix filter below
+  // matches the real (possibly re-cased) sidebar hrefs instead of silently
+  // matching nothing.
+  const guideBase = guideBasePath(new URL(page.url()).pathname);
 
   // localStorage fallback (cookie was already preset before navigation).
   const origin = isDevSide ? DEV_BASE : PROD_BASE;
@@ -1176,11 +1251,27 @@ function comparePage(prodPage, devPage) {
     if (p !== d) symbolIssues.push({ symbol: key, prodCount: p, devCount: d });
   }
 
-  return { missingHeadings, listIssues, tableIssues, missingImages, missingAdmonitions, mergedAdmonitions, differentContent, condensedContent, codeIssues, videoIssues, symbolIssues, wordDiff, wordDiffPct, similarity: sim };
+  // Markup-artifact self-check — each side is checked independently (this is
+  // not a translation diff: a stray "**" or a jagged table row is a defect
+  // regardless of whether the other side has the same defect).
+  const ARTIFACT_LABEL = { strayBold: '**', strayItalic: '__', strayStrike: '~~', strayPipe: '|' };
+  const markupIssues = [];
+  for (const [side, page] of [[BASELINE_LABEL, prodPage], [DEV_LABEL, devPage]]) {
+    const artifacts = page.markupArtifacts || {};
+    for (const key of Object.keys(ARTIFACT_LABEL)) {
+      const count = artifacts[key] || 0;
+      if (count > 0) markupIssues.push({ kind: key, side, count });
+    }
+    for (const t of (page.tables || [])) {
+      if ((t.jaggedRowCount || 0) > 0) markupIssues.push({ kind: 'jagged-table', side, header: t.headerText, count: t.jaggedRowCount });
+    }
+  }
+
+  return { missingHeadings, listIssues, tableIssues, missingImages, missingAdmonitions, mergedAdmonitions, differentContent, condensedContent, codeIssues, videoIssues, symbolIssues, markupIssues, wordDiff, wordDiffPct, similarity: sim };
 }
 
 // ─── Type-issue entry constants ───────────────────────────────────────────────
-const TYPE_ORDER  = ['headings', 'listItems', 'tables', 'images', 'admonitions', 'codeBlocks', 'videoEmbeds', 'symbolMarks'];
+const TYPE_ORDER  = ['headings', 'listItems', 'tables', 'images', 'admonitions', 'codeBlocks', 'videoEmbeds', 'symbolMarks', 'markupArtifacts'];
 const TYPE_LABELS = {
   headings:    'Headings',
   listItems:   'List items',
@@ -1190,6 +1281,7 @@ const TYPE_LABELS = {
   codeBlocks:  'Code blocks',
   videoEmbeds: 'Video embeds',
   symbolMarks: 'Symbol marks',
+  markupArtifacts: 'Markup artifacts',
 };
 const TYPE_LABEL_PAD = Math.max(...Object.values(TYPE_LABELS).map(l => l.length));
 
@@ -1309,6 +1401,19 @@ function typeIssueEntries(type, c, prodPage, devPage) {
       }
       break;
     }
+    case 'markupArtifacts': {
+      const ARTIFACT_LABEL = { strayBold: '**', strayItalic: '__', strayStrike: '~~', strayPipe: '|' };
+      for (const issue of c.markupIssues || []) {
+        if (issue.kind === 'jagged-table') {
+          const h = issue.header.length > 50 ? issue.header.slice(0, 47) + '…' : issue.header;
+          entries.push(push('warn', `      ⚠ Jagged table rows in ${issue.side} — "${h}" (${issue.count} row(s) with mismatched cell count — check for a dropped "|")`));
+        } else {
+          const sym = ARTIFACT_LABEL[issue.kind] || issue.kind;
+          entries.push(push('warn', `      ⚠ Literal "${sym}" found ${issue.count}× in ${issue.side} rendered text — markdown likely failed to parse`));
+        }
+      }
+      break;
+    }
   }
   return entries;
 }
@@ -1346,7 +1451,7 @@ function buildReport(prodPages, devPages) {
          (c.differentContent   || []).length > 0 || (c.condensedContent || []).length > 0 ||
          c.tableIssues.length > 0 ||
          (c.codeIssues  || []).length > 0 || (c.videoIssues || []).length > 0 ||
-         (c.symbolIssues || []).length > 0
+         (c.symbolIssues || []).length > 0 || (c.markupIssues || []).length > 0
   );
 
   const typeIssues = {
@@ -1358,6 +1463,7 @@ function buildReport(prodPages, devPages) {
     codeBlocks:  pageComparisons.filter(c => (c.codeIssues         || []).length > 0),
     videoEmbeds: pageComparisons.filter(c => (c.videoIssues        || []).length > 0),
     symbolMarks: pageComparisons.filter(c => (c.symbolIssues       || []).length > 0),
+    markupArtifacts: pageComparisons.filter(c => (c.markupIssues   || []).length > 0),
   };
 
   return { missingInDev, extraInDev, baselineEmpty, common, pageComparisons, pagesWithIssues, typeIssues,
@@ -1499,6 +1605,25 @@ function printPageDetail(c, prodPage, devPage) {
       const sym = si.devCount > si.prodCount ? '+' : '✗';
       const fn  = si.devCount > si.prodCount ? warn : err;
       fn(`  ${sym} ${si.symbol}: ${B} ${si.prodCount}, ${DEV_LABEL} ${si.devCount}`);
+    }
+  }
+
+  // Markup artifacts (self-check — stray **/__/~~/| and jagged table rows)
+  log('\n' + '─'.repeat(72));
+  log(' MARKUP ARTIFACTS (self-check — not a translation diff)');
+  log('─'.repeat(72));
+  if ((c.markupIssues || []).length === 0) {
+    ok(`  [✓] No artifacts found`);
+  } else {
+    const ARTIFACT_LABEL = { strayBold: '**', strayItalic: '__', strayStrike: '~~', strayPipe: '|' };
+    for (const issue of c.markupIssues) {
+      if (issue.kind === 'jagged-table') {
+        const h = issue.header.length > 50 ? issue.header.slice(0, 47) + '…' : issue.header;
+        warn(`  ⚠ Jagged table rows in ${issue.side} — "${h}" (${issue.count} row(s) with mismatched cell count — check for a dropped "|")`);
+      } else {
+        const sym = ARTIFACT_LABEL[issue.kind] || issue.kind;
+        warn(`  ⚠ Literal "${sym}" found ${issue.count}× in ${issue.side} rendered text — markdown likely failed to parse`);
+      }
     }
   }
 
@@ -1834,6 +1959,25 @@ function pageDetailLines(c, prodPage, devPage) {
     }
   }
 
+  lines.push('');
+  lines.push('─'.repeat(72));
+  lines.push(' MARKUP ARTIFACTS (self-check — not a translation diff)');
+  lines.push('─'.repeat(72));
+  if ((c.markupIssues || []).length === 0) {
+    lines.push(`  [✓] No artifacts found`);
+  } else {
+    const ARTIFACT_LABEL = { strayBold: '**', strayItalic: '__', strayStrike: '~~', strayPipe: '|' };
+    for (const issue of c.markupIssues) {
+      if (issue.kind === 'jagged-table') {
+        const h = issue.header.length > 50 ? issue.header.slice(0, 47) + '…' : issue.header;
+        lines.push(`  ⚠ Jagged table rows in ${issue.side} — "${h}" (${issue.count} row(s) with mismatched cell count — check for a dropped "|")`);
+      } else {
+        const sym = ARTIFACT_LABEL[issue.kind] || issue.kind;
+        lines.push(`  ⚠ Literal "${sym}" found ${issue.count}× in ${issue.side} rendered text — markdown likely failed to parse`);
+      }
+    }
+  }
+
   if (!STRUCTURAL && (c.differentContent.length > 0 || c.condensedContent.length > 0)) {
     section('CONTENT BLOCKS', prodPage.paragraphs.length, devPage.paragraphs.length);
     for (const p of c.differentContent) {
@@ -2008,6 +2152,15 @@ function toAsciiReportText(text) {
     .replace(/¶/g, 'P');
 }
 
+// Splits off the extension so a multi-locale run can suffix each report
+// filename with its locale instead of every locale overwriting one file.
+function outputFileForLocale(locale, multiple) {
+  if (!RESOLVED_OUTPUT_FILE) return null;
+  if (!multiple) return RESOLVED_OUTPUT_FILE;
+  const m = RESOLVED_OUTPUT_FILE.match(/^(.*?)(\.[^./\\]+)?$/);
+  return `${m[1]}-${locale}${m[2] || ''}`;
+}
+
 // ─── Main ─────────────────────────────────────────────────────────────────────
 async function main() {
   log('\n' + '═'.repeat(72));
@@ -2023,7 +2176,7 @@ async function main() {
     : `${PAGE_START + 1}–${PAGE_END === Infinity ? 'end' : PAGE_END}`;
   log(`  Path     : ${GUIDE_PATH}`);
   log(`  Pages    : ${batchLabel}`);
-  log(`  Locale   : ${LOCALE || '(none — set --locale to inject language preference)'}`);
+  log(`  Locale   : ${LOCALES.length ? LOCALES.join(', ') : '(none — set --locale to inject language preference)'}${LOCALES.length > 1 ? '  (baseline crawled once, reused across all locales)' : ''}`);
   log(`  Baseline : ${BASELINE_LOCALE}  (${CROSS_LOCALE ? 'cross-locale: dev/[locale] vs baseline /' + BASELINE_LOCALE + '/' : 'same-locale legacy mode'})`);
   if (LOCALE) log(`  Key      : ${LOCALE_KEY}`);
   log(`  Mode     : ${STRUCTURAL ? 'structural (count-based, no text matching)  —  use --text to enable text comparison' : 'text (full text matching)'}`);
@@ -2035,6 +2188,11 @@ async function main() {
     warn('  No --locale flag provided. If the site redirects based on stored language');
     warn('  preference, results may reflect the wrong language. Use --locale [fr|de|ja|es|pt-br|zh-cn].');
     warn('  Add --debug to inspect localStorage keys on the target origin.\n');
+  }
+  const unknownLocales = LOCALES.filter(l => !KNOWN_LOCALES.has(l));
+  if (unknownLocales.length) {
+    warn(`  Unrecognized locale code(s): ${unknownLocales.join(', ')} — known: ${[...KNOWN_LOCALES].join(', ')}.`);
+    warn('  Proceeding anyway, but double-check for a typo before a long crawl.\n');
   }
 
   let sessionState = loadSession(DEV_HOST);
@@ -2089,38 +2247,68 @@ async function main() {
     return;
   }
 
-  // ── Baseline crawl ────────────────────────────────────────────────────────
+  // ── Baseline crawl (once — reused for every locale below) ────────────────
+  const multi = LOCALES.length > 1;
   const baselineGuidePath = rewriteLocaleInPath(GUIDE_PATH, LOCALE, BASELINE_LOCALE);
-  log(`\n[1/2] Crawling ${BASELINE_LABEL}…`);
+  log(`\n[1/${LOCALES.length + 1}] Crawling ${BASELINE_LABEL}…`);
   if (CROSS_LOCALE) log(`  Baseline path: ${baselineGuidePath}`);
-  const prodPages = await crawlSite(context, toUrl(PROD_BASE, baselineGuidePath), false, false);
+  let prodPages = await crawlSite(context, toUrl(PROD_BASE, baselineGuidePath), false, headless);
 
-  // ── Dev crawl ─────────────────────────────────────────────────────────────
-  log(`\n[2/2] Crawling ${DEV_LABEL}…`);
-  let devPages = await crawlSite(context, toUrl(DEV_BASE, GUIDE_PATH), true, headless);
-
-  if (devPages === null) {
+  if (prodPages === null) {
     log('\n  Relaunching browser in visible mode for re-authentication…');
     await browser.close();
     invalidateSession();
     ({ browser, context, headless } = await createBrowser(null));
-    devPages = await crawlSite(context, toUrl(DEV_BASE, GUIDE_PATH), true, false);
+    prodPages = await crawlSite(context, toUrl(PROD_BASE, baselineGuidePath), false, false);
+  }
+
+  if (!prodPages || prodPages.size === 0) {
+    err(`\nCould not retrieve ${BASELINE_LABEL} pages. Check authentication and try again.`);
+    process.exit(1);
+  }
+
+  // ── Dev crawl — once per locale, baseline held fixed ─────────────────────
+  let anySucceeded = false;
+  for (let i = 0; i < LOCALES.length; i++) {
+    const locale = LOCALES[i];
+    const devGuidePath = rewriteLocaleInPath(GUIDE_PATH, LOCALE, locale);
+    const devLabel = locale.toUpperCase();
+    log(`\n[${i + 2}/${LOCALES.length + 1}] Crawling ${devLabel}…`);
+    if (multi) log(`  Path: ${devGuidePath}`);
+
+    let devPages = await crawlSite(context, toUrl(DEV_BASE, devGuidePath), true, headless, locale);
+
+    if (devPages === null) {
+      log('\n  Relaunching browser in visible mode for re-authentication…');
+      await browser.close();
+      invalidateSession();
+      ({ browser, context, headless } = await createBrowser(null));
+      devPages = await crawlSite(context, toUrl(DEV_BASE, devGuidePath), true, false, locale);
+    }
+
+    if (!devPages || devPages.size === 0) {
+      err(`\nCould not retrieve ${devLabel} pages. Check authentication and try again.`);
+      continue; // keep going — one bad locale shouldn't abort the rest of the batch
+    }
+    anySucceeded = true;
+
+    DEV_LABEL = devLabel; // buildReport/printReport/renderReportText read this global
+    log('\nBuilding report…');
+    const report = buildReport(prodPages, devPages);
+    printReport(report, prodPages, devPages);
+
+    const outFile = outputFileForLocale(locale, multi);
+    if (outFile) {
+      fs.writeFileSync(outFile, toAsciiReportText(renderReportText(report, prodPages, devPages)), 'utf8');
+      ok(`  Report saved → ${outFile}`);
+    }
   }
 
   await browser.close();
 
-  if (!devPages || devPages.size === 0) {
-    err(`\nCould not retrieve ${DEV_LABEL} pages. Check authentication and try again.`);
+  if (!anySucceeded) {
+    err('\nCould not retrieve dev pages for any requested locale.');
     process.exit(1);
-  }
-
-  log('\nBuilding report…');
-  const report = buildReport(prodPages, devPages);
-  printReport(report, prodPages, devPages);
-
-  if (RESOLVED_OUTPUT_FILE) {
-    fs.writeFileSync(RESOLVED_OUTPUT_FILE, toAsciiReportText(renderReportText(report, prodPages, devPages)), 'utf8');
-    ok(`  Report saved → ${RESOLVED_OUTPUT_FILE}`);
   }
 }
 
