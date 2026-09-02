@@ -1,3 +1,4 @@
 auth-session.json
 auth-session-expired.json
+auth-session-before-refresh-*.json
 report-*.txt
