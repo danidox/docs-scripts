@@ -155,9 +155,18 @@ const CROSS_LOCALE  = !!(LOCALE && BASELINE_LOCALE && LOCALE !== BASELINE_LOCALE
 // target locales we replace it.
 function rewriteLocaleInPath(pathname, fromLocale, toLocale) {
   if (!fromLocale || !toLocale || fromLocale === toLocale) return pathname;
-  const fromPrefix = '/' + fromLocale + '/';
-  if (!pathname.startsWith(fromPrefix)) return pathname;
-  const rest = pathname.slice(fromPrefix.length);
+  // English carries no prefix to strip, so it needs its own branch — matching
+  // against '/en/' below would never succeed and the path would silently pass
+  // through unrewritten (this is what caused missing-page reports to display
+  // the dev URL as a bare copy of the English one, no locale prefix at all).
+  let rest;
+  if (fromLocale === 'en') {
+    rest = pathname.replace(/^\//, '');
+  } else {
+    const fromPrefix = '/' + fromLocale + '/';
+    if (!pathname.startsWith(fromPrefix)) return pathname;
+    rest = pathname.slice(fromPrefix.length);
+  }
   if (toLocale === 'en') return '/' + rest;
   return '/' + toLocale + '/' + rest;
 }
@@ -398,21 +407,76 @@ async function injectLocalePreference(page, origin, locale) {
   }
 }
 
+// ─── Retry / backoff ──────────────────────────────────────────────────────────
+// Ported from the same pattern used for the migration scripts' HTTP fetches
+// (uipath-docs-content/scripts/migration/{extract,compare}.py _get /
+// _fetch_page_props): a big crawl makes hundreds of sequential requests, so
+// the origin (Cloudflare) can throttle with 429/5xx partway through, or a
+// request can just time out transiently. Retry with backoff — honouring a
+// numeric Retry-After header when present — instead of recording a single
+// hiccup as a real content difference.
+function retryDelayMs(attempt, retryAfterHeader) {
+  if (retryAfterHeader && /^\d+$/.test(retryAfterHeader.trim())) {
+    return Math.min(parseInt(retryAfterHeader, 10), 30) * 1000;
+  }
+  return Math.min(2000 * 2 ** (attempt - 1), 30_000);
+}
+
+async function gotoWithRetry(page, url, { waitUntil = 'load', timeout = 30_000, retries = 4 } = {}) {
+  let lastErr;
+  for (let attempt = 1; attempt <= retries; attempt++) {
+    try {
+      const resp = await page.goto(url, { waitUntil, timeout });
+      const status = resp ? resp.status() : 0;
+      if ((status === 429 || status >= 500) && attempt < retries) {
+        const wait = retryDelayMs(attempt, resp.headers()['retry-after']);
+        warn(`  ~ HTTP ${status} (throttled) ${url}; retry ${attempt}/${retries - 1} in ${(wait / 1000).toFixed(0)}s`);
+        await page.waitForTimeout(wait);
+        continue;
+      }
+      return resp;
+    } catch (e) {
+      lastErr = e;
+      if (attempt < retries) {
+        const wait = retryDelayMs(attempt);
+        await page.waitForTimeout(wait);
+        continue;
+      }
+    }
+  }
+  throw lastErr || new Error(`Failed to load ${url} after ${retries} attempts`);
+}
+
+// True when the page we've landed on is the Cloudflare Access login page,
+// not real content. Used both by navigateWithAuth (seed page) and by the
+// per-page crawl loop below — a mid-crawl session expiry must not be treated
+// as a run of pages that all really lost their content.
+async function isOnAuthPage(page) {
+  return page.evaluate(() => {
+    // Real docs content always renders this container. A genuine Cloudflare Access
+    // wall never does — so require its absence before trusting any text/title marker,
+    // otherwise ordinary pages that merely *describe* signing in (e.g. a GitHub SSO
+    // step in a docs article) false-trigger on "Sign in with" etc.
+    if (document.querySelector('.theme-doc-markdown.markdown')) return false;
+    return (
+      document.body.textContent.includes('Sign in with') ||
+      document.body.textContent.includes('Cloudflare Access') ||
+      document.body.textContent.includes('Enter your credentials') ||
+      document.title.toLowerCase().includes('cloudflare access')
+    );
+  });
+}
+
 // ─── Auth-aware navigation ────────────────────────────────────────────────────
 // Auth requirement is determined by host (docs-dev or docs-staging), not by side.
 // This matters now that the baseline side may also be docs-dev (e.g., docs-dev/en).
 async function navigateWithAuth(page, url, context, isHeadless) {
-  await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 60_000 });
+  await gotoWithRetry(page, url, { waitUntil: 'domcontentloaded', timeout: 60_000 });
   const targetHost = new URL(url).hostname;
   if (!hostNeedsAuth(targetHost)) return 'ok';
   await page.waitForTimeout(2500);
 
-  const onAuthPage = await page.evaluate(() =>
-    document.body.textContent.includes('Sign in with') ||
-    document.body.textContent.includes('Cloudflare Access') ||
-    document.body.textContent.includes('Enter your credentials') ||
-    document.title.toLowerCase().includes('access')
-  );
+  const onAuthPage = await isOnAuthPage(page);
 
   if (!onAuthPage) return 'ok';
 
@@ -433,7 +497,7 @@ async function navigateWithAuth(page, url, context, isHeadless) {
   await page.waitForFunction(
     (expectedHost) => window.location.hostname === expectedHost &&
           !document.body.textContent.includes('Sign in with') &&
-          !document.title.toLowerCase().includes('access'),
+          !document.title.toLowerCase().includes('cloudflare access'),
     targetHost,
     { timeout: 0 }
   );
@@ -710,8 +774,10 @@ async function crawlSite(context, seedUrl, isDevSide, isHeadless, devLocaleOverr
   const origin = isDevSide ? DEV_BASE : PROD_BASE;
   await injectLocalePreference(page, origin, sideLocale);
 
-  try { await page.waitForSelector('.theme-doc-markdown.markdown', { timeout: 15_000 }); }
-  catch { await page.waitForTimeout(3000); }
+  try {
+    await page.waitForSelector('.theme-doc-markdown.markdown', { timeout: 15_000 });
+    await page.waitForTimeout(1000);
+  } catch { await page.waitForTimeout(3000); }
 
   const links = await extractGuideLinks(page, guideBase);
   log(`  Found ${links.length} guide links`);
@@ -736,11 +802,28 @@ async function crawlSite(context, seedUrl, isDevSide, isHeadless, devLocaleOverr
     process.stdout.write(`\r  [${PAGE_START + i + 1}/${PAGE_START + limited.length}] ${label.slice(0, 60).padEnd(60)}`);
     try {
       if (normPath(page.url()) !== pathname)
-        await page.goto(fullUrl, { waitUntil: 'load', timeout: 30_000 });
+        await gotoWithRetry(page, fullUrl, { waitUntil: 'load', timeout: 30_000, retries: 4 });
       try {
         await page.waitForSelector('.theme-doc-markdown.markdown', { timeout: 15_000 });
+        // The container mounts before long/complex pages finish hydrating their
+        // full list of <li> elements — extracting immediately after the selector
+        // resolves can under-count list items (confirmed on IXP pages with 80+
+        // nested list items). A short settle delay lets hydration finish.
+        await page.waitForTimeout(1000);
       } catch {
         await page.waitForTimeout(3000);
+      }
+      // A mid-crawl session expiry lands every subsequent page on the Cloudflare
+      // Access login screen — without this check that silently records every
+      // remaining page as "0 headings / 0 list items / ...", which reads as a
+      // catastrophic (and entirely fake) content-loss bug rather than what it is.
+      // Bail out via the same `null` contract the seed-page check already uses
+      // (see navigateWithAuth) so main()'s existing reauth-and-retry handles it.
+      if (hostNeedsAuth(new URL(fullUrl).hostname) && await isOnAuthPage(page)) {
+        process.stdout.write('\n');
+        warn(`  Cloudflare session expired mid-crawl at page ${PAGE_START + i + 1}/${PAGE_START + limited.length} — re-authenticating and restarting this side's crawl.`);
+        await page.close();
+        return null;
       }
       pages.set(key, { label, url: fullUrl, path: pathname, ...(await extractPageData(page, isDevSide)) });
     } catch (e) {
@@ -770,8 +853,10 @@ async function crawlSinglePage(context, pathname, isDevSide, isHeadless) {
   const origin = isDevSide ? DEV_BASE : PROD_BASE;
   await injectLocalePreference(page, origin, sideLocale);
 
-  try { await page.waitForSelector('.theme-doc-markdown.markdown', { timeout: 15_000 }); }
-  catch { await page.waitForTimeout(3000); }
+  try {
+    await page.waitForSelector('.theme-doc-markdown.markdown', { timeout: 15_000 });
+    await page.waitForTimeout(1000);
+  } catch { await page.waitForTimeout(3000); }
   const label = pathname.split('/').pop();
   const data = await extractPageData(page, isDevSide);
   await page.close();
