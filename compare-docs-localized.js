@@ -186,8 +186,9 @@ function hostNeedsAuth(hostname) {
 // shipped to dev/[locale] but not yet to the baseline /en/ tree).
 function isEmptyPage(p) {
   if (!p) return true;
+  const keptListItems = (p.listItems || []).filter(li => !li.selfSkip).length;
   const counts = (p.headings || []).length
-              + (p.listItems || []).length
+              + keptListItems
               + (p.images || []).length
               + (p.admonitions || []).length
               + (p.tables || []).length
@@ -580,12 +581,12 @@ async function extractPageData(page, isDevSite) {
       // sides before the exact-match check, or the same nav-link bullet gets
       // excluded on one locale and counted as real content on another,
       // producing a phantom list-item-count mismatch between languages.
-      const stripTrailingPunct = (s) => s.replace(/[.!?:;、。！？：；]+\s*$/u, '');
+      const stripTrailingPunct = (s) => s.replace(/\s*[.!?:;、。！？：；]+\s*$/u, '');
       const anchorText = stripTrailingPunct(anchors[0]?.textContent.trim().replace(/\s+/g, ' ') || '');
-      if (anchors.length === 1 && anchorText === stripTrailingPunct(text)) return;
+      const selfSkip = anchors.length === 1 && anchorText === stripTrailingPunct(text);
       if (text) {
         const type = li.parentElement.tagName.toLowerCase();
-        listItems.push({ depth, type, text, hasNestedNote });
+        listItems.push({ depth, type, text, hasNestedNote, selfSkip });
       }
     });
 
@@ -890,6 +891,8 @@ function similarity(a, b) {
  * Uses character bigrams for CJK text instead of space-split words.
  */
 function compareListStructure(prodItems, devItems, devParagraphs = []) {
+  prodItems = (prodItems || []).filter(li => !li.selfSkip);
+  devItems  = (devItems  || []).filter(li => !li.selfSkip);
   const norm = (s) => (s || '')
     .toLowerCase()
     .normalize('NFKC')
@@ -1020,6 +1023,36 @@ function compareListStructure(prodItems, devItems, devParagraphs = []) {
   return issues;
 }
 
+// Decide which list items count as "real" content vs. purely-navigational
+// link-only bullets, without letting each language's own translated text
+// independently re-derive that judgment (translation shifts words across the
+// anchor boundary, flipping skip/keep between locales for structurally
+// identical content — see project memory for four confirmed false-positive
+// classes this caused). When both sides have the same raw <li> count, trust
+// document-order positional correspondence and apply EN's selfSkip decision,
+// at each index, to both sides — each side's own depth is still used for
+// bucketing, so a real nesting-shift defect is still caught. When raw counts
+// differ, a mismatch already signals something else worth investigating on
+// its own (e.g. an unclosed-admonition bug), and positional alignment can't
+// be trusted there, so fall back to each side's own independent judgment.
+function getKeptListItems(prodPage, devPage) {
+  const prodRaw = prodPage.listItems || [];
+  const devRaw  = devPage.listItems  || [];
+  let prodKept, devKept;
+  if (prodRaw.length === devRaw.length) {
+    prodKept = []; devKept = [];
+    for (let i = 0; i < prodRaw.length; i++) {
+      if (prodRaw[i].selfSkip) continue;   // EN's decision governs both sides
+      prodKept.push(prodRaw[i]);
+      devKept.push(devRaw[i]);
+    }
+  } else {
+    prodKept = prodRaw.filter(li => !li.selfSkip);
+    devKept  = devRaw.filter(li => !li.selfSkip);
+  }
+  return { prodKept, devKept };
+}
+
 /**
  * Structural comparison: count-based, no text matching.
  * Used by default for localized content where translations differ between
@@ -1037,10 +1070,12 @@ function comparePageStructural(prodPage, devPage) {
     if (p !== d) missingHeadings.push({ structural: true, level: parseInt(lvl), prodCount: p, devCount: d });
   }
 
-  // List items — compare count per nesting depth.
+  // List items — compare count per nesting depth, after resolving which items
+  // count as real content (see getKeptListItems above).
+  const { prodKept, devKept } = getKeptListItems(prodPage, devPage);
   const prodDepths = {}, devDepths = {};
-  for (const li of (prodPage.listItems || [])) prodDepths[li.depth] = (prodDepths[li.depth] || 0) + 1;
-  for (const li of (devPage.listItems  || [])) devDepths[li.depth]  = (devDepths[li.depth]  || 0) + 1;
+  for (const li of prodKept) prodDepths[li.depth] = (prodDepths[li.depth] || 0) + 1;
+  for (const li of devKept)  devDepths[li.depth]  = (devDepths[li.depth]  || 0) + 1;
   const allDepths = new Set([...Object.keys(prodDepths), ...Object.keys(devDepths)]);
   const listIssues = [];
   for (const d of allDepths) {
@@ -1112,7 +1147,8 @@ function comparePageStructural(prodPage, devPage) {
 
   return { missingHeadings, listIssues, tableIssues, missingImages,
            missingAdmonitions, mergedAdmonitions: [], differentContent: [], condensedContent: [],
-           codeIssues, videoIssues, symbolIssues, wordDiff, wordDiffPct, similarity: sim };
+           codeIssues, videoIssues, symbolIssues, wordDiff, wordDiffPct, similarity: sim,
+           listItemCounts: { prod: prodKept.length, dev: devKept.length } };
 }
 
 /**
@@ -1142,6 +1178,14 @@ function comparePage(prodPage, devPage) {
     devPage.listItems  || [],
     devPage.paragraphs || []
   );
+  // compareListStructure filters selfSkip items internally (same-locale mode
+  // has no cross-language drift problem, so each side just uses its own
+  // judgment) — mirror that filter here so listItemCounts matches what was
+  // actually compared, for print-site consistency with the structural mode.
+  const listItemCounts = {
+    prod: (prodPage.listItems || []).filter(li => !li.selfSkip).length,
+    dev:  (devPage.listItems  || []).filter(li => !li.selfSkip).length,
+  };
 
   const prodImageCount = (prodPage.images || []).length;
   const devImageCount  = (devPage.images  || []).length;
@@ -1352,7 +1396,7 @@ function comparePage(prodPage, devPage) {
     }
   }
 
-  return { missingHeadings, listIssues, tableIssues, missingImages, missingAdmonitions, mergedAdmonitions, differentContent, condensedContent, codeIssues, videoIssues, symbolIssues, markupIssues, wordDiff, wordDiffPct, similarity: sim };
+  return { missingHeadings, listIssues, tableIssues, missingImages, missingAdmonitions, mergedAdmonitions, differentContent, condensedContent, codeIssues, videoIssues, symbolIssues, markupIssues, wordDiff, wordDiffPct, similarity: sim, listItemCounts };
 }
 
 // ─── Type-issue entry constants ───────────────────────────────────────────────
@@ -1397,7 +1441,7 @@ function typeIssueEntries(type, c, prodPage, devPage) {
       break;
     }
     case 'listItems': {
-      entries.push(push('dim', `      ${B}:${(prodPage.listItems||[]).length}   ${D}: ${(devPage.listItems||[]).length}`));
+      entries.push(push('dim', `      ${B}:${c.listItemCounts.prod}   ${D}: ${c.listItemCounts.dev}`));
       for (const i of c.listIssues) {
         if (i.structural) {
           const sym = i.devCount > i.prodCount ? '+' : '✗';
@@ -1588,7 +1632,7 @@ function printPageDetail(c, prodPage, devPage) {
   }
 
   // List items
-  section('LIST ITEMS', (prodPage.listItems || []).length, (devPage.listItems || []).length);
+  section('LIST ITEMS', c.listItemCounts.prod, c.listItemCounts.dev);
   if (c.listIssues.length === 0) {
     ok(`  [✓] Counts match`);
   } else {
@@ -1878,7 +1922,7 @@ function printSinglePage(prodPage, devPage, pathname) {
     log(` DEBUG — ${BASELINE_LABEL} extracted data`);
     log('─'.repeat(72));
     log(`  Headings    : ${prodPage.headings.length}`);
-    log(`  List items  : ${(prodPage.listItems || []).length}`);
+    log(`  List items  : ${c.listItemCounts.prod}`);
     log(`  Images      : ${(prodPage.images || []).length} (filtered) / ${(prodPage.rawImageSrcs || []).length} (total in content area)`);
     if ((prodPage.rawImageSrcs || []).length > 0) {
       log(`  All img srcs found (${BASELINE_LABEL}):`);
@@ -1896,7 +1940,7 @@ function printSinglePage(prodPage, devPage, pathname) {
     log(' DEBUG — DEV extracted data');
     log('─'.repeat(72));
     log(`  Headings    : ${devPage.headings.length}`);
-    log(`  List items  : ${(devPage.listItems || []).length}`);
+    log(`  List items  : ${c.listItemCounts.dev}`);
     log(`  Images      : ${(devPage.images || []).length} (filtered) / ${(devPage.rawImageSrcs || []).length} (total in content area)`);
     if ((devPage.rawImageSrcs || []).length > 0) {
       log('  All img srcs found (dev):');
@@ -1950,7 +1994,7 @@ function pageDetailLines(c, prodPage, devPage) {
     }
   }
 
-  section('LIST ITEMS', (prodPage.listItems || []).length, (devPage.listItems || []).length);
+  section('LIST ITEMS', c.listItemCounts.prod, c.listItemCounts.dev);
   if (c.listIssues.length === 0) {
     lines.push(`  [✓] Counts match`);
   } else {
