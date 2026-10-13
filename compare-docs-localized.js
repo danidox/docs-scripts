@@ -245,7 +245,7 @@ async function promptInputs() {
     applySeedInput(parsed);
   }
 
-  if (PAGE_END === null) {
+  if (PAGE_END === null && !PAGE_SINGLE) {
     const answer = await prompt(rl, '  Pages to crawl? (number, range "11-20", or "all") [all]: ');
     const raw = answer.trim().toLowerCase();
     if (!raw || raw === 'all') {
@@ -2336,7 +2336,15 @@ async function main() {
     log(`\n[Single page] ${PAGE_SINGLE}`);
     if (CROSS_LOCALE) log(`              baseline: ${baselinePagePath}`);
     log(`[1/2] Fetching ${BASELINE_LABEL} page…`);
-    const prodPage = await crawlSinglePage(context, baselinePagePath, false, false);
+    let prodPage = await crawlSinglePage(context, baselinePagePath, false, headless);
+    if (prodPage === null) {
+      log('\n  Relaunching browser for re-authentication…');
+      await browser.close();
+      invalidateSession();
+      ({ browser, context, headless } = await createBrowser(null));
+      prodPage = await crawlSinglePage(context, baselinePagePath, false, false);
+    }
+    if (!prodPage) { err(`\nCould not retrieve ${BASELINE_LABEL} page.`); process.exit(1); }
 
     log(`[2/2] Fetching ${DEV_LABEL} page…`);
     let devPage = await crawlSinglePage(context, PAGE_SINGLE, true, headless);
