@@ -350,15 +350,24 @@ async function extractPageData(page, isDevSite) {
       });
       const text = liClone.textContent.trim().replace(/\s+/g, ' ');
 
-      // Skip navigation-only items: li whose entire content is a single <a>.
-      // Tridion sidebar renders every nav entry as <li><a>Title</a></li>.
-      // Content list items always have prose text alongside or beyond any link.
+      // Nav-only items (li whose entire content is a single <a>, e.g. Tridion's
+      // sidebar rendering every nav entry as <li><a>Title</a></li>) are tagged
+      // rather than dropped here — see compareListStructure, which filters by
+      // selfSkip explicitly. Trailing punctuation is stripped on both sides
+      // before the exact-match check (not just after), matching the same fix
+      // applied in compare-docs-localized.js 2026-09-07 — while this tool
+      // compares the same language across platforms rather than translated
+      // locales, a trailing-punctuation rendering difference between Tridion
+      // and Docusaurus could otherwise make an identical nav item look skipped
+      // on only one side.
       const anchors = liClone.querySelectorAll('a');
-      if (anchors.length === 1 && anchors[0].textContent.trim().replace(/\s+/g, ' ') === text) return;
+      const stripTrailingPunct = (s) => s.replace(/\s*[.!?:;、。！？：；]+\s*$/u, '');
+      const anchorText = stripTrailingPunct(anchors[0]?.textContent.trim().replace(/\s+/g, ' ') || '');
+      const selfSkip = anchors.length === 1 && anchorText === stripTrailingPunct(text);
 
       if (text) {
         const type = li.parentElement.tagName.toLowerCase(); // 'ul' or 'ol'
-        listItems.push({ depth, type, text, hasNestedNote });
+        listItems.push({ depth, type, text, hasNestedNote, selfSkip });
       }
     });
 
@@ -601,6 +610,8 @@ function similarity(a, b) {
  * Returns an array of issue objects.
  */
 function compareListStructure(prodItems, devItems, devParagraphs = []) {
+  prodItems = (prodItems || []).filter(li => !li.selfSkip);
+  devItems  = (devItems  || []).filter(li => !li.selfSkip);
   const norm = (s) => (s || '')
     .toLowerCase()
     .normalize('NFKC')
@@ -765,6 +776,13 @@ function comparePage(prodPage, devPage) {
     devPage.listItems  || [],
     devPage.paragraphs || []
   );
+  // compareListStructure filters selfSkip items internally — mirror that filter
+  // here so listItemCounts matches what was actually compared (extraction no
+  // longer pre-filters, see the 2026-09-07 fix note above extractPageData).
+  const listItemCounts = {
+    prod: (prodPage.listItems || []).filter(li => !li.selfSkip).length,
+    dev:  (devPage.listItems  || []).filter(li => !li.selfSkip).length,
+  };
 
   // Images: compare by count. Alt texts differ between Tridion (prod) and
   // Docusaurus (dev) for the same image, so matching by alt is unreliable.
@@ -949,7 +967,7 @@ function comparePage(prodPage, devPage) {
 
   const sim = similarity(prodPage.text, devPage.text);
 
-  return { missingHeadings, listIssues, tableIssues, missingImages, missingAdmonitions, mergedAdmonitions, differentContent, condensedContent, wordDiff, wordDiffPct, similarity: sim };
+  return { missingHeadings, listIssues, tableIssues, missingImages, missingAdmonitions, mergedAdmonitions, differentContent, condensedContent, wordDiff, wordDiffPct, similarity: sim, listItemCounts };
 }
 
 // ─── Report ───────────────────────────────────────────────────────────────────
@@ -1009,7 +1027,7 @@ function printPageDetail(c, prodPage, devPage) {
 
   // List items — only show if there are issues
   if (c.listIssues.length > 0) {
-    section('LIST ITEMS', prodPage.listItems.length, devPage.listItems.length);
+    section('LIST ITEMS', c.listItemCounts.prod, c.listItemCounts.dev);
     for (const i of c.listIssues) {
       const p = i.text.length > 80 ? i.text.slice(0, 77) + '…' : i.text;
       if (i.kind === 'missing')          err(`  ✗ Missing from ${DEV_LABEL} as list content (expected depth ${i.prodDepth}) — "${p}"`);
@@ -1149,7 +1167,7 @@ function printSinglePage(prodPage, devPage, pathname) {
     log(' DEBUG — PROD extracted data');
     log('─'.repeat(72));
     log(`  Headings    : ${prodPage.headings.length}`);
-    log(`  List items  : ${(prodPage.listItems || []).length}`);
+    log(`  List items  : ${c.listItemCounts.prod}`);
     log(`  Images      : ${(prodPage.images || []).length}`);
     log(`  Admonitions : ${(prodPage.admonitions || []).length}`);
     (prodPage.admonitions || []).forEach((a, i) => {
@@ -1163,7 +1181,7 @@ function printSinglePage(prodPage, devPage, pathname) {
     log(' DEBUG — DEV extracted data');
     log('─'.repeat(72));
     log(`  Headings    : ${devPage.headings.length}`);
-    log(`  List items  : ${(devPage.listItems || []).length}`);
+    log(`  List items  : ${c.listItemCounts.dev}`);
     log(`  Images      : ${(devPage.images || []).length}`);
     log(`  Admonitions : ${(devPage.admonitions || []).length}`);
     (devPage.admonitions || []).forEach((a, i) => {
@@ -1204,7 +1222,7 @@ function pageDetailLines(c, prodPage, devPage) {
   }
 
   if (c.listIssues.length > 0) {
-    section('LIST ITEMS', prodPage.listItems.length, devPage.listItems.length);
+    section('LIST ITEMS', c.listItemCounts.prod, c.listItemCounts.dev);
     for (const i of c.listIssues) {
       const p = i.text.length > 80 ? i.text.slice(0, 77) + '…' : i.text;
       if (i.kind === 'missing') lines.push(`  ✗ Missing from ${DEV_LABEL} as list content (expected depth ${i.prodDepth}) — "${p}"`);
